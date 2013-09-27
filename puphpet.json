@@ -57,7 +57,7 @@
             "1": {
                 "servername": "awesome.dev",
                 "serveraliases": "",
-                "docroot": "\/var\/www\/gmo\/public\/",
+                "docroot": "\/var\/www\/",
                 "port": "80",
                 "envvars": ""
             }
