@@ -11,31 +11,10 @@ Class['::apt::update'] -> Package <|
 and title != 'software-properties-common'
 |>
 
-apt::source { 'packages.dotdeb.org':
-  location          => 'http://packages.dotdeb.org',
-  release           => $lsbdistcodename,
-  repos             => 'all',
-  required_packages => 'debian-keyring debian-archive-keyring',
-  key               => '89DF5277',
-  key_server        => 'keys.gnupg.net',
-  include_src       => true
-}
+    apt::key { '4F4EA0AAE5267A6C': }
 
-if $lsbdistcodename == 'squeeze' {
-  apt::source { 'packages.dotdeb.org-php54':
-    location          => 'http://packages.dotdeb.org',
-    release           => 'squeeze-php54',
-    repos             => 'all',
-    required_packages => 'debian-keyring debian-archive-keyring',
-    key               => '89DF5277',
-    key_server        => 'keys.gnupg.net',
-    include_src       => true
-  }
-}
-
-package { 'apache2-mpm-prefork':
-  ensure => 'installed',
-  notify => Service['apache'],
+apt::ppa { 'ppa:ondrej/php5-oldstable':
+  require => Apt::Key['4F4EA0AAE5267A6C']
 }
 
 class { 'puphpet::dotfiles': }
@@ -57,8 +36,8 @@ apache::dotconf { 'custom':
 
 apache::module { 'rewrite': }
 
-apache::vhost { 'gmo.sompongenterprise.com':
-  server_name   => 'gmo.sompongenterprise.com',
+apache::vhost { 'awesome.dev':
+  server_name   => 'awesome.dev',
   serveraliases => [
 ],
   docroot       => '/var/www/',
@@ -77,7 +56,6 @@ class { 'php':
 php::module { 'php5-mysql': }
 php::module { 'php5-cli': }
 php::module { 'php5-curl': }
-php::module { 'php5-gd': }
 php::module { 'php5-intl': }
 php::module { 'php5-mcrypt': }
 
@@ -180,7 +158,7 @@ puphpet::ini { 'custom':
 
 
 class { 'mysql::server':
-  config_hash   => { 'root_password' => 'sompongmo' }
+  config_hash   => { 'root_password' => 'gmodb' }
 }
 
 mysql::db { 'gmo':

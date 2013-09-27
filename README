@@ -3,7 +3,7 @@ Welcome to your custom Vagrant/Puppet setup powered by puPHPet
 
 The setup includes:
 -------------------
-* box:       wheezy64 (http://puppet-vagrant-boxes.puppetlabs.com/debian-70rc1-x64-vbox4210.box)
+* box:       precise64 (http://files.vagrantup.com/precise64.box)
 * webserver: apache
 * database:  mysql
 * PHP:       PHP 5.4
