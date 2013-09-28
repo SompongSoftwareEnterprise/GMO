@@ -20,47 +20,72 @@
     </div>
     <div class="panel-body">
 
-<div class="text-right">
-  <input type="search" class="form-control">
-  <input type="button" class="btn btn-primary" value="Search">
-  
-</div>
+<form class="form-inline" role="search">
+  <div class="form-group">
+    <label class="sr-only" for="exampleInputNumber">Search Input</label>
+    <input type="text" class="form-control" id="exampleInputEmail2" placeholder="Enter search keyword..">
+  </div>
+  <div class="radio">
+    <label>
+      <input type="radio" name="searchOptionRadios" id="searchOptionRadios1" value="ID" > Search for Request ID
+    </label>
+  </div>
+  <div class="radio">
+    <label>
+      <input type="radio" name="searchOptionRadios" id="searchOptionRadios2" value="ImporterName" > Search for Importer Name
+    </label>
+  </div>
+  <div class="radio">
+    <label>
+      <input type="radio" name="searchOptionRadios" id="searchOptionRadios3" value="Requester" > Search for Requester
+    </label>
+  </div>
+  <button type="submit" class="btn btn-primary">Search</button>
+</form>
+<br>
 
 
-<table class="table table-bordered">
-  <thead>
-    <tr>
-      <th>#</th>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Username</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td rowspan="2">1</td>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@TwBootstrap</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</table>
+<table class="table">
+          <thead>
+            <tr class="Header" bgcolor="a8a8a8">
+              <th>Request ID</th>
+              <th>Importer Name</th>
+              <th>Requester</th>
+			  <th>Sent Date</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="success">
+              <td>16</td>
+              <td>Jeremy</td>
+              <td>Bolshave Import Services</td>
+			  <td>19/9/2013</td>
+              <td><strong><font color="green">Complete</font></strong></td>
+            </tr>
+            <tr class="active">
+              <td>17</td>
+              <td>Jeremy</td>
+              <td>Bolshave Import Services</td>
+			  <td>24/9/2013</td>
+              <td><strong><font color="ff9900">Pending</font></strong></td>
+            </tr>
+            <tr class="danger">
+              <td>20</td>
+              <td>Jeremy</td>
+              <td>Jeremy</td>
+			  <td>24/9/2013</td>
+              <td><strong><font color="red">Failed</font></strong></td>
+            </tr>
+            <tr class="warning" >
+              <td>26</td>
+              <td>Jeremy</td>
+              <td>Bolshave Import Services</td>
+			  <td>24/9/2013</td>
+              <td><strong><font color="purple">Document Needed</font></strong></td>
+            </tr>
+          </tbody>
+        </table>
       
     </div>
   </div>
