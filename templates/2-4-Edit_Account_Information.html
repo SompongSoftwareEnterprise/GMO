@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Bootstrap HTML Template</title>
+  <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+  <link href="common.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <div class="container">
+
+
+    <div class="panel panel-default">
+      <div class="row">
+       <div class="panel-heading"> 
+        <div class="col-lg-4">
+          <h3 class="panel-title">
+            Account Setting
+          </h3>
+        </div>        
+      </div>
+    </div>
+
+      <div class="panel-body ">
+
+        <ol class="breadcrumb">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Library</a></li>
+          <li class="active">Data</li>
+        </ol>
+
+
+
+
+
+
+<br><br>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="bs-example bs-example-tabs">
+              <ul id="myTab" class="nav nav-tabs">
+                <li class="active"><a href="#home" data-toggle="tab">Account information</a></li>
+                <li class=""><a href="#profile" data-toggle="tab">Agency</a></li>
+              </ul>
+              <div id="myTabContent" class="tab-content">
+                <div class="tab-pane fade active in" id="accountInformation">
+                  <h3>Account Information</h3>
+                  <p style="color:purple">Account type :  <font style="color:black">Customer<font/>  </p>
+                  <p style="color:purple">UserID :  <input type="text" name="username"/> </p>
+                  <p style="color:purple">Old Password :  <input type="password" name="old-password"/>  </p>
+				  <p style="color:purple">New Password :  <input type="password" name="new-password"/>  </p>
+				  <p style="color:purple">Confirm New Password :  <input type="password" name="confirm-password"/>  </p>
+                </br>
+                  <p style="color:purple">Firstname : <input type="text" name="fname"/>  </p>
+                  <p style="color:purple">Lastname : <input type="password" name="lname"/></p>
+                </br>
+                  <p style="color:purple">Address :  </p> <textarea name="address" cols="50" rows="5"></textarea>
+                  <p style="color:purple">Country : <input type="text" name="country"/> </p>
+                  <p style="color:purple">ZipCode : <input type="text" maxlength="5" name="zipcode"/> </p>
+                  <p style="color:purple"> Phone : <input type="text" maxlength="10" name="phone"/> </p>
+                  
+
+                  <button type="button" class="btn btn-primary btn-lg" style="float:right">Save</button>
+				  <button type="button" class="btn btn-danger btn-lg" style="float:right">Clear</button>
+				  <button type="button" class="btn btn-info btn-lg" style="float:right">Back</button>
+                </div>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        
+
+<br><br>
+        
+                  
+                
+
+
+        
+
+
+    </div>
+  </div>
+
+
+  </div>
+
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="bootstrap/js/bootstrap.js"></script>
+
+</body>
+</html>
