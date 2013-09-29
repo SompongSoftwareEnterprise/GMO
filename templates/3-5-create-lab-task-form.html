@@ -11,23 +11,347 @@
 <body>
 
 <div class="container">
-
-
-  <div class="jumbotron">
-    <div class="container">
-      <h1>GMO Template</h1>
-      <p>Hello world</p>
-      <p><a class="btn btn-primary btn-lg">This is a sample button</a></p>
+    <div class="panel panel-default">
+      <div class="row">
+       <div class="panel-heading"> 
+        <div class="col-lg-4">
+          <h3 class="panel-title">
+            Gabfest Standard
+          </h3>
+        </div>        
+      </div>
     </div>
-  </div>
+
+      <div>
+        <ol class="breadcrumb">
+          <li><a href="#">Home</a></li>
+          <li class="active">Making and Sending a Lab Request Form</li>
+        </ol>
+      </div>
+
+      <div class="row">
+          <div class="col-sm-12">
+            <div class="bs-example bs-example-tabs">
+              <ul id="myTab" class="nav nav-tabs">
+                <li class="active"><a href="#home" data-toggle="tab">Step1</a></li>
+                <li class=""><a href="#profile" data-toggle="tab">Step2</a></li>
+                <li class=""><a href="#profile" data-toggle="tab">Finish</a></li>
+              </ul>
+              <div id="myTabContent" class="tab-content">
+
+                <div class="tab-pane fade active in" id="step1">
+                  <h3>List of Products</h3>
+                    <form class="form-horizontal" role="form">
+                      
+                      <!-- List1 -->
+                      <div class="form-group">
+                        <label for="inputCodeOfProduct1" class="col-lg-2 control-label">Code of Product</label>
+                          <div class="col-lg-8">
+                            <input type="codeOfProduct" class="form-control" id="inputCodeOfProduct1" placeholder="Code Of Product">
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="inputNameOfProduct1" class="col-lg-2 control-label">Name of Product</label>
+                          <div class="col-lg-8">
+                            <input type="nameOfProduct" class="form-control" id="inputNameOfProduct1" placeholder="Name Of Product">
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="measureAndVolume1" class="col-lg-2 control-label">Measure and Volume</label>
+                          <div class="col-lg-8">
+                            <input type="measureAndVolume" class="form-control" id="measureAndVolume1" placeholder="Measure And Volume">
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="date1" class="col-lg-2 control-label">Date</label>
+                          <div class="col-lg-8">
+                            <strong>start</strong>
+                             <select class="dateStart1">
+                              <option>1</option>
+                              <option>2</option>
+                              <option>3</option>
+                              <option>4</option>
+                              <option>5</option>
+                             </select>
+
+                            <select class="monthStart1">
+                              <option>January</option>
+                              <option>February</option>
+                              <option>March</option>
+                              <option>April</option>
+                              <option>May</option>
+                            </select>
+
+                            <select class="yearStart1">
+                              <option>2011</option>
+                              <option>2012</option>
+                              <option>2013</option>
+                              <option>2014</option>
+                              <option>2015</option>
+                            </select>
+                              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <strong>finish</strong>
+                            <select class="dateFinish1">
+                              <option>1</option>
+                              <option>2</option>
+                              <option>3</option>
+                              <option>4</option>
+                              <option>5</option>
+                            </select>
+
+                            <select class="monthFinish1">
+                              <option>January</option>
+                              <option>February</option>
+                              <option>March</option>
+                              <option>April</option>
+                              <option>May</option>
+                            </select>
+
+                            <select class="yearFinish1">
+                              <option>2011</option>
+                              <option>2012</option>
+                              <option>2013</option>
+                              <option>2014</option>
+                              <option>2015</option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <div class="col-sm-offset-4 col-sm-8">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <button type="button" class="btn btn-danger">Delete</button>
+                          </div>
+                      </div>
 
 
-  <h2>Example Grid System</h2>
-  <div class="row">
-    <div class="col-xs-4">This is an example of a 4-4-4 grid system.</div>
-    <div class="col-xs-4">One third</div>
-    <div class="col-xs-4">One third</div>
-  </div>
+                      <!-- List2 -->
+                      <div class="form-group">
+                        <label for="inputCodeOfProduct2" class="col-lg-2 control-label">Code of Product</label>
+                          <div class="col-lg-8">
+                            <input type="codeOfProduct" class="form-control" id="inputCodeOfProduct2" placeholder="Code Of Product">
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="inputNameOfProduct2" class="col-lg-2 control-label">Name of Product</label>
+                          <div class="col-lg-8">
+                            <input type="nameOfProduct" class="form-control" id="inputNameOfProduct2" placeholder="Name Of Product">
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="measureAndVolume2" class="col-lg-2 control-label">Measure and Volume</label>
+                          <div class="col-lg-8">
+                            <input type="measureAndVolume" class="form-control" id="measureAndVolume2" placeholder="Measure And Volume">
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="date1" class="col-lg-2 control-label">Date</label>
+                          <div class="col-lg-8">
+                            <strong>start</strong>
+                             <select class="dateStart2">
+                              <option>1</option>
+                              <option>2</option>
+                              <option>3</option>
+                              <option>4</option>
+                              <option>5</option>
+                             </select>
+
+                            <select class="monthStart2">
+                              <option>January</option>
+                              <option>February</option>
+                              <option>March</option>
+                              <option>April</option>
+                              <option>May</option>
+                            </select>
+
+                            <select class="yearStart2">
+                              <option>2011</option>
+                              <option>2012</option>
+                              <option>2013</option>
+                              <option>2014</option>
+                              <option>2015</option>
+                            </select>
+                              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <strong>finish</strong>
+                            <select class="dateFinish2">
+                              <option>1</option>
+                              <option>2</option>
+                              <option>3</option>
+                              <option>4</option>
+                              <option>5</option>
+                            </select>
+
+                            <select class="monthFinish2">
+                              <option>January</option>
+                              <option>February</option>
+                              <option>March</option>
+                              <option>April</option>
+                              <option>May</option>
+                            </select>
+
+                            <select class="yearFinish2">
+                              <option>2011</option>
+                              <option>2012</option>
+                              <option>2013</option>
+                              <option>2014</option>
+                              <option>2015</option>
+                            </select>
+
+                          </div>
+
+                      </div>
+
+                      <div class="form-group">
+                          <div class="col-sm-offset-4 col-sm-8">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <button type="button" class="btn btn-danger">Delete</button>
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="col-sm-offset-8 col-sm-4">
+                          <button type="button" class="btn btn-primary">Add Project</button>
+                        </div>
+                      </div>
+
+                      
+                      <div class="form-group">
+                        <label for="responsible" class="col-lg-2 control-label">Responsible</label>
+                          <div class="col-lg-8">
+                            <p>1.Somsri</p>
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                          <div class="col-sm-offset-2 col-sm-4">
+                            <input type="responsible" class="form-control" id="addResponsible" placeholder="Responsible">
+                            <button type="button" class="btn btn-primary">Add</button>
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="detailOfAnalysis" class="col-lg-2 control-label">Detail Of Analysis</label>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="inputCodeOfProduct1" class="col-lg-2 control-label">Code of Product</label>
+                          <div class="col-lg-8">
+                            <input type="codeOfProduct" class="form-control" id="inputCodeOfProduct1" placeholder="Code Of Product">
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="inputCodeOfProduct2" class="col-lg-2 control-label">Detail</label>
+                          <div class="col-lg-8">
+                            <input type="detailOfProduct" class="form-control" id="inputDetailOfProduct" placeholder="Detail Of Product">
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="inputMedthodOfExtractDNA" class="col-lg-2 control-label">Medthod Of Extracting DNA</label>
+                          <div class="col-lg-8">
+                            <input type="methodOfExtractingDNA" class="form-control" id="inputMethodOfExtractinfDNA" placeholder="Method Of Exrtacting DNA">
+                          </div>
+                      </div>
+
+
+                      
+                      <div class="form-group">
+                        <label for="detailOfAnalysis" class="col-lg-2 control-label">Method Of Seperating Gene</label>
+                          <div class="col-lg-8">
+                         <div class="checkbox">
+                                <label><input type="checkbox">PRC</label>
+                          </div>
+                          <div class="checkbox">
+                                <label><input type="checkbox">Real-time</label>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <h4><label for="geneOfAnalysis" class="col-lg-2 control-label">Gene Of Analysis</label></h4>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="inputEndogenous" class="col-lg-2 control-label">Endogenous</label>
+                          <div class="col-lg-8">
+                            <input type="endogenous" class="form-control" id="inputEndogenous" placeholder="Endogenous">
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="inputTransgene" class="col-lg-2 control-label">Transgene</label>
+                          <div class="col-lg-8">
+                            <input type="endogenous" class="form-control" id="inputEndogenous" placeholder="Endogenous">
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="inputEndosee" class="col-lg-2 control-label">Endosee</label>
+                          <div class="col-lg-8">
+                            <input type="endosee" class="form-control" id="inputEndosee" placeholder="Endosee">
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="inputDateSend" class="col-lg-2 control-label">Date</label>
+                          <div class="col-lg-8">
+                             <select class="dateStart2">
+                              <option>1</option>
+                              <option>2</option>
+                              <option>3</option>
+                              <option>4</option>
+                              <option>5</option>
+                             </select>
+
+                            <select class="monthStart2">
+                              <option>January</option>
+                              <option>February</option>
+                              <option>March</option>
+                              <option>April</option>
+                              <option>May</option>
+                            </select>
+
+                            <select class="yearStart2">
+                              <option>2011</option>
+                              <option>2012</option>
+                              <option>2013</option>
+                              <option>2014</option>
+                              <option>2015</option>
+                            </select>
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="col-sm-offset-8 col-sm-4">
+                          <button type="button" class="btn btn-default">Reset</button>
+                          <button type="button" class="btn btn-primary">Submit</button>
+                        </div>
+                      </div>
+
+                      
+
+                    </form>
+                </div>
+
+                <div class="tab-pane fade" id="step2">
+                </div>
+
+                <div class="tab-pane fade" id = "finish">
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+  
 
 
 </div>
