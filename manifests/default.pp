@@ -40,7 +40,8 @@ apache::vhost { 'awesome.dev':
   server_name   => 'awesome.dev',
   serveraliases => [
 ],
-  docroot       => '/var/www/',
+  docroot       => '/var/www/gmo/public',
+  directory_allow_override => 'All',
   port          => '80',
   env_variables => [
 ],
