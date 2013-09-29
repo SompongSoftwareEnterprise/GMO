@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Create Analysis of Report</title>
+  <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+  <link href="common.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Create Analysis of Report // Gabfest</h3>
+    </div>
+
+      <div class="panel-body ">
+        <ol class="breadcrumb">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Analysis of Report</a></li>
+          <li class="active">Create</li>
+        </ol>
+
+
+        <div class="row">
+          <label for="sampleLabel" class="col-xs-2 control-label text-right">Sample Name :</label>
+          <div class="col-xs-10 control-label">Baby corn cut</div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-6">
+          <label for="sampleLabel" class="col-xs-4 control-label text-right">Manufacturer or Shipper :</label>
+          <div class="col-xs-8 control-label">AGRO-ON(THAILAND) CO.,LTD</div>
+        </div>
+
+        <div class="col-xs-6">
+          <label for="sampleLabel" class="col-xs-3 control-label text-right">
+            Address :</label>
+            <div class="col-xs-9 control-label">
+              <address>
+                795 Folsom Ave, Suite 600<br>
+                San Francisco, CA 94107<br>
+                <abbr title="Phone">P:</abbr> (123) 456-7890
+              </address>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-6">
+          <label for="sampleLabel" class="col-xs-4 control-label text-right">Vendor or Consignee :</label>
+          <div class="col-xs-8 control-label">AGRO-ON(THAILAND) CO.,LTD</div>
+        </div>
+
+        <div class="col-xs-6">
+          <label for="sampleLabel" class="col-xs-3 control-label text-right">
+            Address :</label>
+            <div class="col-xs-9 control-label">
+              <address>
+                795 Folsom Ave, Suite 600<br>
+                San Francisco, CA 94107<br>
+                <abbr title="Phone">P:</abbr> (123) 456-7890
+              </address>
+            </div>
+          </div>
+        </div>
+
+        
+<hr>
+<div class="row">
+          <label for="sampleLabel" class="col-xs-2 control-label text-right">
+            Description of Product :</label>
+            <div class="col-xs-10 control-label">
+            BABY CORN CUT 6/108 OZ.  CANNED BABY CORN IN BRINE  ORIGIN: THALAND
+            </div>
+
+</div>
+<hr>
+      <div class="row">
+          <label for="sampleLabel" class="col-xs-2 control-label text-right">
+            Country of Origin :</label>
+            <div class="col-xs-10 control-label">
+            THALAND
+            </div>
+      </div>
+      <div class="row">
+          <label for="sampleLabel" class="col-xs-2 control-label text-right">
+            Final Destination :</label>
+            <div class="col-xs-10 control-label">
+            THALAND
+            </div>
+      </div>
+      <div class="row">
+          <label for="sampleLabel" class="col-xs-2 control-label text-right">
+            Port of Entry or Embarkation :</label>
+            <div class="col-xs-10 control-label">
+            THALAND
+            </div>
+      </div>
+<hr>
+        <form class="form-horizontal" role="form">
+          <div class="form-group">
+            <label for="sampleLabel" class="col-xs-2 control-label ">Sample Name :</label>
+            <div class="col-xs-4">
+              <input type="email" class="form-control" id="sampleName" placeholder="Sample Name">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="test" class="col-xs-2 control-label">Test :</label>
+            <div class="col-xs-3">
+              <select class="form-control">
+                <option>Postitive Control</option>
+                <option>Negative Control</option>
+                <option>Condition Reaction</option>
+              </select>
+            </div>
+            <label for="result" class="col-xs-2 control-label">Result :</label>
+            <div class="col-xs-2">
+              <select class="form-control">
+                <option>Positive</option>
+                <option>Negative</option>
+                <option>Satisfaction</option>
+              </select>
+            </div>
+            <div class="col-xs-3">
+              <button type="button" class="btn btn-primary">Add</button>
+              <button type="button" class="btn btn-default">Delete</button>
+            </div>
+
+          </div>
+
+
+          <div class="row">
+            <div class="col-sm-offset-2 col-xs-9">
+              <table class="table table-bordered">
+                <thead>
+                  <tr class="Header" bgcolor="c5aff8">
+                    <th><font color="white">ID</th>
+                    <th><font color="white">Test</th>
+                    <th><font color="white">Result</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="info">
+                    <td><font color="grey">16</td>
+                    <td><font color="grey">Condition Reaction</td>
+                    <td><strong>Positive</strong></td>
+                  </tr>
+                  <tr class="info">
+                    <td><font color="grey">16</td>
+                    <td><font color="grey">Negative Control</td>
+                    <td><strong>Satisfaction</strong></td>
+                  </tr>
+                  <tr class="info">
+                    <td><font color="grey">16</td>
+                    <td><font color="grey">Positive Control</td>
+                    <td><strong>Satisfaction</strong></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        
+
+
+         
+          <div class="form-group row">
+            <div class="col-sm-offset-2 col-xs-10">
+              <button type="button" class="btn btn-default">Cancel</button>
+
+              <button type="button" class="btn btn-primary">Create Analysis of Report</button>
+            </div>
+          </div>
+        </form>
+
+    </div>
+  </div>
+
+
+  </div>
+
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="bootstrap/js/bootstrap.js"></script>
+
+</body>
+</html>
