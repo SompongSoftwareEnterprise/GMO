@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Bootstrap HTML Template</title>
+  <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+  <link href="common.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="panel panel-default">
+        <div class="panel-heading"> 
+            <h3 class="panel-title">
+              Lab Tasks
+            </h3>
+      </div>
+
+      <div class="panel-body ">
+        <ol class="breadcrumb">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Library</a></li>
+          <li class="active">Data</li>
+        </ol>
+
+        <div class="row">
+          <div class="col-sm-12">
+            <ul id="myTab" class="nav nav-tabs">
+              <li class="active"><a href="#labtask" data-toggle="tab">Lab Task</a></li>
+              <li class=""><a href="#completetask" data-toggle="tab">Complete Task</a></li>
+            </ul>
+
+            <div id="myTabContent" class="tab-content">
+              <div class="tab-pane fade active in" id="labtask">
+                
+                <br>
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Task ID</th>
+                      <th>Task Name</th>
+                      <th>Due Date</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="warning">
+                      <td><a href="#">0001</a></td>
+                      <td>Task name 0001</td>
+                      <td>dd/mm/yyyy</td>
+                      <td><strong>Pending</strong></td>
+                    </tr>
+                    <tr class="warning">
+                      <td><a href="#">0002</a></td>
+                      <td>Task name 0002</td>
+                      <td>dd/mm/yyyy</td>
+                      <td><strong>Pending</strong></td>
+                    </tr>
+                    <tr class="warning">
+                      <td><a href="#">0003</a></td>
+                      <td>Task name 0003</td>
+                      <td>dd/mm/yyyy</td>
+                      <td><strong>Pending</strong></td>
+                    </tr>
+                    <tr class="active">
+                      <td><a href="#">0004</a></td>
+                      <td>Task name 0004</td>
+                      <td>dd/mm/yyyy</td>
+                      <td><strong>Analyzing</strong></td>
+                    </tr>
+                    <tr class="active">
+                      <td><a href="#">0005</a></td>
+                      <td>Task name 0005</td>
+                      <td>dd/mm/yyyy</td>
+                      <td><strong>Analyzing</strong></td>
+                    </tr>
+                    <tr class="active">
+                      <td><a href="#">0006</a></td>
+                      <td>Task name 0006</td>
+                      <td>dd/mm/yyyy</td>
+                      <td><strong>Analyzing</strong></td>
+                    </tr>
+                  </tbody>
+                </table>
+                  
+              </div>
+
+              <div class="tab-pane fade" id="completetask">
+                  
+                  task complete page
+                  
+              </div>
+            </div>
+
+          </div>
+        </div>  
+
+
+      </div>
+    </div>
+  </div>
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="bootstrap/js/bootstrap.js"></script>
+
+</body>
+</html>
