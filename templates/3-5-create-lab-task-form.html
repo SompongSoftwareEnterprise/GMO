@@ -15,7 +15,7 @@
     <div class="panel panel-default">   
 
       <div class="panel-heading">
-            <h3 class="panel-title">Receipt</h3>
+            <h3 class="panel-title">Lab Task Form</h3>
             
               <ol class="breadcrumb" style="float:right ;margin-top : -26px">
                       <li><a href="#">Home</a></li>
@@ -28,7 +28,7 @@
       <div class="panel-body ">
 
       <div class="row">
-          <div class="col-sm-12">
+          <div class="col-xs-12">
             <div class="bs-example bs-example-tabs">  
             
               <div id="myTabContent" class="tab-content">
@@ -40,29 +40,37 @@
                       
                       <!-- List1 -->
                       <div class="form-group">
-                        <label for="inputProductCode1" class="col-lg-2 control-label">Product Code</label>
-                          <div class="col-lg-8">
-                            <input type="productCode" class="form-control" id="inputProductCode1" placeholder="Product Code">
+                        <label for="inputProductCode1" class="col-xs-3 control-label">Product Code</label>
+                          
+                          <div class="col-xs-4">
+                            <input type="text" class="form-control" id="productCode" placeholder="ex. 111122223333">
                           </div>
                       </div>
 
                       <div class="form-group">
-                        <label for="inputProductName1" class="col-lg-2 control-label">Product Name</label>
-                          <div class="col-lg-8">
-                            <input type="productName" class="form-control" id="inputProductName1" placeholder="Product Name ">
+                        <label for="inputProductName1" class="col-xs-3 control-label">Product Name</label>
+                          <div class="col-xs-4">
+                            <input type="productName" class="form-control" id="productName" placeholder="ex. Jaturawit">
                           </div>
                       </div>
 
                       <div class="form-group">
-                        <label for="measureAndVolume1" class="col-lg-2 control-label">Measure and Volume</label>
-                          <div class="col-lg-8">
-                            <input type="measureAndVolume" class="form-control" id="measureAndVolume1" placeholder="Measure And Volume">
+                        <label for="measureAndVolume1" class="col-xs-3 control-label">Measure(g)</label>
+                          <div class="col-xs-4">
+                            <input type="measureAndVolume" class="form-control" id="measure" placeholder="ex. 13">
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="measureAndVolume1" class="col-xs-3 control-label">Volume(mL)</label>
+                          <div class="col-xs-4">
+                            <input type="measureAndVolume" class="form-control" id="volume" placeholder="ex. 12">
                           </div>
                       </div>
 
                       <!-- DateStart -->
                       <div class="form-group">
-                        <label for="date1" class="col-lg-2 control-label">Date Start</label>
+                        <label for="date1" class="col-xs-3 control-label">Date Start</label>
                     
                           <div class="col-xs-2">
                           
@@ -101,7 +109,7 @@
 
                             <!-- DateFinish -->
                             <div class="form-group">
-                        <label for="date1" class="col-lg-2 control-label">Date Finish</label>
+                        <label for="date1" class="col-xs-3 control-label">Date Finish</label>
                           <div class="col-xs-2">
                           
                              <select class="form-control">
@@ -137,39 +145,53 @@
                           </div>
 
                         <div class="form-group">
-                          <div class="col-sm-offset-4 col-sm-8">
+                          <div class="col-sm-offset-8 col-xs-4">
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <button type="button" class="btn btn-danger">Delete</button>
                           </div>
+                      </div>
+
+                      <div class="form-group">
+                         <div class="col-sm-offset-8 col-xs-4">
+                             <button type="button" class="btn btn-danger">Delete</button>
+                         </div>
+
                       </div>
 
                       <hr>
 
                       <!-- List2 -->
                       <div class="form-group">
-                        <label for="inputCodeOfProduct2" class="col-lg-2 control-label">Code of Product</label>
-                          <div class="col-lg-8">
-                            <input type="codeOfProduct" class="form-control" id="inputCodeOfProduct2" placeholder="Code Of Product">
+                        <label for="inputProductCode1" class="col-xs-3 control-label">Product Code</label>
+                          
+                          <div class="col-xs-4">
+                            <input type="text" class="form-control" id="productCode" placeholder="ex. 111122223333">
                           </div>
                       </div>
 
                       <div class="form-group">
-                        <label for="inputNameOfProduct2" class="col-lg-2 control-label">Name of Product</label>
-                          <div class="col-lg-8">
-                            <input type="nameOfProduct" class="form-control" id="inputNameOfProduct2" placeholder="Name Of Product">
+                        <label for="inputProductName1" class="col-xs-3 control-label">Product Name</label>
+                          <div class="col-xs-4">
+                            <input type="productName" class="form-control" id="productName" placeholder="ex. Jaturawit">
                           </div>
                       </div>
 
                       <div class="form-group">
-                        <label for="measureAndVolume2" class="col-lg-2 control-label">Measure and Volume</label>
-                          <div class="col-lg-8">
-                            <input type="measureAndVolume" class="form-control" id="measureAndVolume2" placeholder="Measure And Volume">
+                        <label for="measureAndVolume1" class="col-xs-3 control-label">Measure(g)</label>
+                          <div class="col-xs-4">
+                            <input type="measureAndVolume" class="form-control" id="measure" placeholder="ex. 13">
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="measureAndVolume1" class="col-xs-3 control-label">Volume(mL)</label>
+                          <div class="col-xs-4">
+                            <input type="measureAndVolume" class="form-control" id="volume" placeholder="ex. 12">
                           </div>
                       </div>
 
                       <!-- DateStart -->
                       <div class="form-group">
-                        <label for="date1" class="col-lg-2 control-label">Date Start</label>
+                        <label for="date1" class="col-xs-3 control-label">Date Start</label>
                     
                           <div class="col-xs-2">
                           
@@ -208,7 +230,7 @@
 
                             <!-- DateFinish -->
                             <div class="form-group">
-                        <label for="date1" class="col-lg-2 control-label">Date Finish</label>
+                        <label for="date1" class="col-xs-3 control-label">Date Finish</label>
                           <div class="col-xs-2">
                           
                              <select class="form-control">
@@ -243,19 +265,25 @@
                             </div>
                           </div>
 
-                     
-
-                      <div class="form-group">
-                          <div class="col-sm-offset-4 col-sm-8">
+                        <div class="form-group">
+                          <div class="col-sm-offset-8 col-xs-4">
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <button type="button" class="btn btn-danger">Delete</button>
+                           
                           </div>
                       </div>
+
+                      <div class="form-group">
+                         <div class="col-sm-offset-8 col-xs-4">
+                             <button type="button" class="btn btn-danger">Delete</button>
+                         </div>
+
+                      </div>
+
 
                       <hr>
 
                       <div class="form-group">
-                        <div class="col-sm-offset-8 col-sm-4">
+                        <div class="col-sm-offset-5 col-xs-7">
                           <button type="button" class="btn btn-primary">Add Project</button>
                         </div>
                       </div>
@@ -263,18 +291,17 @@
                       <hr>
                       
                       <div class="form-group">
-                        <label for="responsible" class="col-lg-2 control-label">Responsible</label>
-                          <div class="col-lg-8">
-                            <p>1.Somsri</p>
-                          </div>
+                        <label for="responsible" class="col-xs-2 control-label">Responsible</label>
+                         
                       </div>
 
                       <div class="form-group">
-                          <div class="col-sm-offset-2 col-sm-4">
-                            <input type="responsible" class="form-control" id="addResponsible" placeholder="Responsible2"><br>
-                            <input type="responsible" class="form-control" id="addResponsible" placeholder="Responsible3"><br>
-                            <input type="responsible" class="form-control" id="addResponsible" placeholder="Responsible4"><br>
-                            <input type="responsible" class="form-control" id="addResponsible" placeholder="Responsible5"><br>
+                          <div class="col-sm-offset-2 col-xs-4">
+                             <input type="responsible" class="form-control" id="responsible1" placeholder="ex. Somchai"><br>
+                            <input type="responsible" class="form-control" id="responsible2" placeholder="ex. Somchai"><br>
+                            <input type="responsible" class="form-control" id="responsible3" placeholder="ex. Somchai"><br>
+                            <input type="responsible" class="form-control" id="responsible4" placeholder="ex. Somchai"><br>
+                            <input type="responsible" class="form-control" id="responsible5" placeholder="ex. Somchai"><br>
                             <button type="button" class="btn btn-primary">Add</button>
                           </div>
                       </div>
@@ -287,31 +314,31 @@
                       <hr>
 
                       <div class="form-group">
-                        <label for="inputCodeOfProduct1" class="col-lg-2 control-label">Code of Product</label>
-                          <div class="col-lg-8">
-                            <input type="codeOfProduct" class="form-control" id="inputCodeOfProduct1" placeholder="Code Of Product">
+                        <label for="inputCodeOfProduct1" class="col-xs-3 control-label">Product Code</label>
+                          <div class="col-xs-4">
+                            <input type="codeOfProduct" class="form-control" id="inputCodeOfProduct1" placeholder="ex. 111122223333">
                           </div>
                       </div>
 
                       <div class="form-group">
-                        <label for="inputCodeOfProduct2" class="col-lg-2 control-label">Detail</label>
-                          <div class="col-lg-8">
-                            <input type="detailOfProduct" class="form-control" id="inputDetailOfProduct" placeholder="Detail Of Product">
+                        <label for="inputCodeOfProduct2" class="col-xs-3 control-label">Detail</label>
+                          <div class="col-xs-4">
+                            <input type="detailOfProduct" class="form-control" id="inputDetailOfProduct" placeholder="ex. Product Detail">
                           </div>
                       </div>
 
                       <div class="form-group">
-                        <label for="inputMedthodOfExtractDNA" class="col-lg-2 control-label">Medthod Of Extracting DNA</label>
-                          <div class="col-lg-8">
-                            <input type="methodOfExtractingDNA" class="form-control" id="inputMethodOfExtractinfDNA" placeholder="Method Of Exrtacting DNA">
+                        <label for="inputMedthodOfExtractDNA" class="col-xs-3 control-label">Medthod Of Extracting DNA</label>
+                          <div class="col-xs-4">
+                            <input type="methodOfExtractingDNA" class="form-control" id="inputMethodOfExtractinfDNA" placeholder="ex. Boiling method">
                           </div>
                       </div>
 
 
                       
                       <div class="form-group">
-                        <label for="detailOfAnalysis" class="col-lg-2 control-label">Method Of Seperating Gene</label>
-                          <div class="col-lg-8">
+                        <label for="detailOfAnalysis" class="col-xs-2 control-label">Method Of Seperating Gene</label>
+                          <div class="col-xs-8">
                          <div class="checkbox">
                                 <label><input type="checkbox">PRC</label>
                           </div>
@@ -329,85 +356,83 @@
                     <hr>
 
                       <div class="form-group">
-                        <label for="inputEndogenous" class="col-lg-2 control-label">Endogenous</label>
-                          <div class="col-lg-8">
+                        <label for="inputEndogenous" class="col-xs-2 control-label">Endogenous</label>
+                          <div class="col-xs-8">
                             <input type="endogenous" class="form-control" id="inputEndogenous" placeholder="Endogenous">
                           </div>
                       </div>
 
                      
                       <div class="form-group">
-            <label class="col-lg-2 control-label">
+            <label class="col-xs-2 control-label">
                     Transgene
             </label>
-            <div class="col-lg-2">
+            <div class="col-xs-2">
               <input type="checkbox">&nbsp;&nbsp;CaMV 35S Promoter
             </div>
-            <div class="col-lg-2">
+            <div class="col-xs-2">
               <input type="checkbox">&nbsp;&nbsp;Roundup Ready
             </div>
-            <div class="col-lg-2">
+            <div class="col-xs-2">
               <input type="checkbox">&nbsp;&nbsp;NK 603
             </div>
-            <!-- <div class="col-lg-2">
+            <!-- <div class="col-xs-2">
               <input type="checkbox">&nbsp;&nbsp;Bt176
             </div>
-            <div class="col-lg-2">
+            <div class="col-xs-2">
               <input type="checkbox">&nbsp;&nbsp;NOS Terminal
             </div>
-             <div class="col-lg-2">
+             <div class="col-xs-2">
               <input type="checkbox">&nbsp;&nbsp;Mon 810
             </div>    
-             <div class="col-lg-2">
+             <div class="col-xs-2">
               <input type="checkbox">&nbsp;&nbsp;GA 21
             </div>     -->
-             <!-- <div class="col-lg-2">
+             <!-- <div class="col-xs-2">
               <input type="checkbox">&nbsp;&nbsp;BI11
             </div>            
-            <div class="col-lg-2">
+            <div class="col-xs-2">
               <input type="checkbox">&nbsp;&nbsp;Other
                       <input type="text" class="form-control" id="sampleName" placeholder="Fax">
             </div> -->
           </div>
 
           <div class="form-group">
-                <label class="col-lg-2 control-label">
+                <label class="col-xs-2 control-label">
                 </label>
 
-                <div class="col-lg-2">
+                <div class="col-xs-2">
                   <input type="checkbox">&nbsp;&nbsp;Bt176
                 </div>
-                <div class="col-lg-2">
+                <div class="col-xs-2">
                   <input type="checkbox">&nbsp;&nbsp;NOS Terminal
                 </div>
-                <div class="col-lg-2">
+                <div class="col-xs-2">
                   <input type="checkbox">&nbsp;&nbsp;Mon 810
                 </div>
 
          
 
            <!-- <div class="form-group">
-                <label class="col-lg-2 control-label">
+                <label class="col-xs-2 control-label">
                 </label>
-                <div class="col-lg-2">
+                <div class="col-xs-2">
                   <input type="checkbox">&nbsp;&nbsp;Bt176
                 </div>
-                <div class="col-lg-2">
+                <div class="col-xs-2">
                   <input type="checkbox">&nbsp;&nbsp;NOS Terminal
                 </div>
-                <div class="col-lg-2">
+                <div class="col-xs-2">
                   <input type="checkbox">&nbsp;&nbsp;Mon 810
                 </div>
           <div/> -->
-
-
-
-                      </div>
+          </div>
                     </div>
 
                       <div class="form-group">
                         <div class="col-sm-offset-8 col-sm-4">
-                          <button type="button" class="btn btn-default">Reset</button>
+                          <button type="button" class="btn btn-default">Back</button>
+                          <button type="button" class="btn btn-danger">Reset</button>
                           <button type="button" class="btn btn-primary">Submit</button>
                         </div>
                       </div>
@@ -424,9 +449,6 @@
           </div>
         </div>
         </div>
-
-  
-
 
 </div>
 
