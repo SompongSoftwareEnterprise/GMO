@@ -1,7 +1,9 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
+
 <meta charset="utf-8">
 <title>Bootstrap HTML Template</title>
 <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
@@ -14,42 +16,40 @@
 
 
 
-  <div class="panel panel-default">
+  <div class="panel panel-default" backgroundcolor="red">
     <div class="panel-heading">
-      <h3 class="panel-title" style="text-align:left">Request // Lattasit </h3>
+      <h3 class="panel-title">Request // Lattasit</h3>
 	  
-	  
-    </div>
-	
-    <div class="panel-body">
-
-	<ol class="breadcrumb" >
-  <li><a href="# style="text-align:right>Home</a></li>
-  <li><a href="#">Library</a></li>
-  <li class="active">Data</li>
+		<ol class="breadcrumb" style="float:right ;margin-top : -26px">
+		<li><a href="# style="text-align:right>Home</a></li>
+		<li><a href="#">Library</a></li>
+		<li class="active">Data</li>
 </ol>
+    </div>
+    <div class="panel-body">
 	
 <form class="form-inline" role="search" name="searchForm">
   <div class="form-group">
-    <label class="sr-only" for="exampleInputNumber">Search Input</label>
-    <input type="text" class="form-control" id="exampleInputEmail2" placeholder="Enter search keyword.." name="searchInputBox">
+    <label class="sr-only" for="searchInput">Search Input</label>
+    <input type="text" class="form-control" id="searchInput" placeholder="Enter search keyword.." name="search_input">
   </div>
-  <div class="radio">
-    <label>
-      <input type="radio" name="searchOptionRadios" id="searchOptionRadios1" value="ID" > Search for Request ID
-    </label>
-  </div>
-  <div class="radio">
-    <label>
-      <input type="radio" name="searchOptionRadios" id="searchOptionRadios2" value="ImporterName" > Search for Importer Name
-    </label>
-  </div>
-  <div class="radio">
-    <label>
-      <input type="radio" name="searchOptionRadios" id="searchOptionRadios3" value="Requester" > Search for Requester
-    </label>
-  </div>
-  <button type="submit" class="btn btn-primary">Search</button>
+  
+
+<div class="btn-group">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" name="search-dropdown" id="searchDropdown">
+    Action <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+    <li><a href="#">Search by Request ID</a></li>
+    <li><a href="#">Search by Importer Name</a></li>
+    <li><a href="#">Search by Requester</a></li>
+  </ul>
+</div>
+
+
+<button type="submit" class="btn btn-primary">Search</button>
+
+
 </form>
 
 <br>
@@ -57,48 +57,48 @@
 
 <table class="table table-bordered">
           <thead>
-            <tr class="Header" bgcolor="c5aff8">
-              <th><font color="white">Request ID</th>
-              <th><font color="white">Importer Name</th>
-              <th><font color="white">Requester</th>
-			  <th><font color="white">Sent Date</th>
-              <th><font color="white">tatus</th>
+            <tr class="Header">
+              <th>Request ID</th>
+              <th>Importer Name</th>
+              <th>Requester</th>
+			  <th>Sent Date</th>
+              <th>Status</th>
             </tr>
           </thead>
           <tbody>
-            <tr class="info">
-              <td><font color="grey">16</td>
-              <td><font color="grey">Jeremy</td>
-              <td><font color="grey">Bolshave Import Services</td>
-			  <td><font color="grey">19/9/2013</td>
-              <td><strong><font color="green">Complete</font></strong></td>
+            <tr>
+              <td><a href="#">16</a></td>
+              <td>Jeremy</td>
+              <td>Bolshave Import Services</td>
+			  <td>19/9/2013</td>
+              <td class="text-success">Complete</td>
             </tr>
-            <tr class="info">
-              <td><font color="grey">17</td>
-              <td><font color="grey">Jeremy</td>
-              <td><font color="grey">Bolshave Import Services</td>
-			  <td><font color="grey">24/9/2013</td>
-              <td><strong><font color="ff9900">Pending</font></strong></td>
+            <tr>
+              <td><a href="#">17</a></td>
+              <td>Jeremy</td>
+              <td>Bolshave Import Services</td>
+			  <td>24/9/2013</td>
+              <td class="text-warning">Pending</td>
             </tr>
-            <tr class="info">
-              <td><font color="grey">20</td>
-              <td><font color="grey">Jeremy</td>
-              <td><font color="grey">Jeremy</td>
-			  <td><font color="grey">24/9/2013</td>
-              <td><strong><font color="red">Failed</font></strong></td>
+            <tr>
+              <td><a href="#">20</a></td>
+              <td>Jeremy</td>
+              <td>Jeremy</td>
+			  <td>24/9/2013</td>
+              <td class="text-muted">Failed</td>
             </tr>
-            <tr class="info" >
-              <td><font color="grey">26</td>
-              <td><font color="grey">Jeremy</td>
-              <td><font color="grey">Bolshave Import Services</td>
-			  <td><font color="grey">24/9/2013</td>
-              <td><strong><font color="purple">Document Needed</font></strong></td>
+            <tr>
+              <td><a href="#">26</a></td>
+              <td>Jeremy</td>
+              <td>Bolshave Import Services</td>
+			  <td>24/9/2013</td>
+              <td class="text-danger">Document Needed</td>
             </tr>
           </tbody>
         </table>
       
 	  <br>
-	  <button type="button" class="btn btn-normal" color="purple">Make New Request</button>
+	  <button type="button" class="btn btn-default">Make New Request</button>
     </div>
   </div>
 
