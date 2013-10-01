@@ -17,32 +17,34 @@
   <div class="panel panel-default" backgroundcolor="red">
     <div class="panel-heading">
       <h3 class="panel-title">Request // Lattasit</h3>
+	  
+		<ol class="breadcrumb" style="float:right ;margin-top : -26px">
+		<li><a href="# style="text-align:right>Home</a></li>
+		<li><a href="#">Library</a></li>
+		<li class="active">Data</li>
+</ol>
     </div>
     <div class="panel-body">
 	
-	<ol class="breadcrumb" >
-  <li><a href="# style="text-align:right>Home</a></li>
-  <li><a href="#">Library</a></li>
-  <li class="active">Data</li>
-</ol>
+	
 
 <table class="table table-bordered">
           <thead>
-            <tr class="Header" bgcolor="c5aff8">
-              <th><font color="white">Request ID</th>
-              <th><font color="white">Importer Name</th>
-              <th><font color="white">Requester</th>
-			  <th><font color="white">Sent Date</th>
-              <th><font color="white">tatus</th>
+            <tr class="Header">
+              <th>Request ID</th>
+              <th>Importer Name</th>
+              <th>Requester</th>
+			  <th>Sent Date</th>
+              <th>Status</th>
             </tr>
           </thead>
           <tbody>
-            <tr class="info" >
-              <td><font color="grey">26</td>
-              <td><font color="grey">Jeremy</td>
-              <td><font color="grey">Bolshave Import Services</td>
-			  <td><font color="grey">24/9/2013</td>
-              <td><strong><font color="purple">Document Needed</font></strong></td>
+            <tr >
+              <td><a href="3">26</a></td>
+              <td>Jeremy</td>
+              <td>Bolshave Import Services</td>
+			  <td>24/9/2013</td>
+              <td class="text-danger">Document Needed</td>
             </tr>
           </tbody>
         </table>
@@ -53,27 +55,27 @@
           <div class="col-sm-offset-2 col-sm-8">
             <table class="table table-bordered">
               <thead>
-                <tr bgcolor="a65880">
-                  <th><font color="white">Document</th>
-                  <th><font color="white">Status</th>
+                <tr>
+                  <th>Document</th>
+                  <th>Status</th>
                 </tr>
               </thead>
               <tbody>
-                <tr class="info">
-                  <td><font color="grey">สทช. 1-1/1</td>
-                  <td><strong><font color="green">Available</strong></td>
+                <tr>
+                  <td>สทช. 1-1/1(<a href="#">Download</a>)</td>
+                  <td class="text-success">Available</td>
                 </tr>
-                <tr class="info">
-                  <td><font color="grey">สทช. 1-1/2 (<a href="#">Download</a>)</td>
-                  <td><strong><font color="red">Required</strong></td>
+                <tr>
+                  <td>สทช. 1-1/2 </td>
+                  <td class="text-danger">Required</td>
                 </tr>
-                <tr class="info">
-                  <td><font color="grey">Invoice</td>
-                  <td><strong><font color="grey">Pending</strong></td>
+                <tr>
+                  <td>Invoice</td>
+                  <td class="text-warning">Pending</td>
                 </tr>
-                <tr class="info">
-                  <td><font color="grey">Receipt</td>
-                  <td><strong><font color="grey">Pending</strong></td>
+                <tr>
+                  <td>Receipt</td>
+                  <td class="text-warning">Pending</td>
                 </tr>
  
               </tbody>
