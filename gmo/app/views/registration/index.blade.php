@@ -14,7 +14,7 @@
 			<div class="panel-body text-center">
 				<p>If you are<br><strong>"Customer"</strong></p>
 				<p>
-					<button type="button" class="btn btn-primary btn-lg">Click Here</button>
+					<a href="/staff/register/customer" class="btn btn-primary btn-lg">Click Here</a>
 				</p>
 			</div>
 		</div>
