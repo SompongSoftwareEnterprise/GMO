@@ -11,7 +11,8 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('hello');
-});
+Route::get('/', 'HomeController@homePage');
+Route::get('/staff/register',          'RegistrationController@index');
+Route::get('/staff/register/customer', 'RegistrationController@registerCustomer');
+Route::get('/staff/register/agency',   'RegistrationController@registerAgency');
+Route::post('/staff/register',         'RegistrationController@submitRegister');
