@@ -13,7 +13,7 @@
 	margin-bottom: 700px;
 }
 #obj2{
-	margin-left: 100px;
+	margin-left: -100px;
 }
 </style>
 <body>
@@ -28,8 +28,11 @@
 				<tr>
 					<td>
 						<div id="obj1">
-							<button class="btn btn-large btn-danger" type="button" style="margin-bottom:30px;">BROWSE</button><br />
-							<button class="btn btn-large btn-success" type="button">UPLOAD </button>
+							<a href="#" onclick="document.getElementById('fileID').click(); return false;" />
+                            <button class="btn btn-large btn-danger" type="button">Browse</button>
+                            </a>
+							<input type="file" id="fileID" style="visibility: hidden;"/>
+							<button class="btn btn-large btn-primary" type="button">Upload </button>
 						</div>
 					</td>
 					<td><div id="obj2"><img src="pdf-ex.jpg" class="img-polaroid"></div></td>
