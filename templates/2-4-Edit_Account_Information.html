@@ -43,29 +43,106 @@
             <div class="bs-example bs-example-tabs">
               <ul id="myTab" class="nav nav-tabs">
                 <li class="active"><a href="#home" data-toggle="tab">Account information</a></li>
-                <li class=""><a href="#profile" data-toggle="tab">Agency</a></li>
               </ul>
               <div id="myTabContent" class="tab-content">
                 <div class="tab-pane fade active in" id="accountInformation">
-                  <h3>Account Information</h3>
-                  <p style="color:purple">Account type :  <font style="color:black">Customer<font/>  </p>
-                  <p style="color:purple">UserID :  <input type="text" name="username"/> </p>
-                  <p style="color:purple">Old Password :  <input type="password" name="old-password"/>  </p>
-				  <p style="color:purple">New Password :  <input type="password" name="new-password"/>  </p>
-				  <p style="color:purple">Confirm New Password :  <input type="password" name="confirm-password"/>  </p>
-                </br>
-                  <p style="color:purple">Firstname : <input type="text" name="fname"/>  </p>
-                  <p style="color:purple">Lastname : <input type="password" name="lname"/></p>
-                </br>
-                  <p style="color:purple">Address :  </p> <textarea name="address" cols="50" rows="5"></textarea>
-                  <p style="color:purple">Country : <input type="text" name="country"/> </p>
-                  <p style="color:purple">ZipCode : <input type="text" maxlength="5" name="zipcode"/> </p>
-                  <p style="color:purple"> Phone : <input type="text" maxlength="10" name="phone"/> </p>
-                  
 
-                  <button type="button" class="btn btn-danger btn-lg" style="float:right">Save</button>
-				  <button type="button" class="btn btn-default btn-lg" style="float:right">Clear</button>
-				  <button type="button" class="btn btn-default btn-lg" style="float:right">Back</button>
+                  <div class="form-group">
+                    <h3>Account Information</h3>
+                  </div>
+
+                  <div class ="row form-group">
+                     <label for="sampleLabel" class="col-xs-3 control-label text-right"> Account Type:</label>
+                      <div class="col-xs-9 control-label">Customer</div>
+                  </div> 
+
+                  <div class ="row form-group">
+                     <label for="username" class="col-xs-3 control-label text-right"> User ID:</label>
+                      <div class="col-xs-4 control-label">
+                        <input  style="float:center;" class="form-control" type="text" id="username" name="username" placeholder="ex. username"/> 
+                      </div>
+                  </div> 
+
+                  <div class ="row form-group">
+                     <label for="old_password" class="col-xs-3 control-label text-right"> Old Password:</label>
+                      <div class="col-xs-4 control-label">
+                        <input  style="float:center;" class="form-control" type="password" id="old_password" name="old_password" placeholder="ex. ********"/> 
+                      </div>
+                  </div> 
+
+                  <div class ="row form-group">
+                     <label for="new_password" class="col-xs-3 control-label text-right"> New Password:</label>
+                      <div class="col-xs-4 control-label">
+                        <input  style="float:center;" class="form-control" type="password" id="new_password" name="new_password" placeholder="ex. ********"/> 
+                      </div>
+                  </div> 
+
+                  <div class ="row form-group">
+                     <label for="confirm_password" class="col-xs-3 control-label text-right"> Confirm New Password:</label>
+                      <div class="col-xs-4 control-label">
+                        <input  style="float:center;" class="form-control" type="password" id="confirm_password" name="confirm_password" placeholder="ex. ********"/> 
+                      </div>
+                  </div> 
+
+                  <div class ="row form-group">
+                     <label for="firstname" class="col-xs-3 control-label text-right"> First Name:</label>
+                      <div class="col-xs-4 control-label">
+                        <input  style="float:center;" class="form-control" type="text" id="firstname" name="firstname" placeholder="ex. Kanisorn"/> 
+                      </div>
+                  </div> 
+
+                  <div class ="row form-group">
+                     <label for="lastname" class="col-xs-3 control-label text-right"> Last Name:</label>
+                      <div class="col-xs-4 control-label">
+                        <input  style="float:center;" class="form-control" type="text" id="lastname" name="lastname" placeholder="ex. Wirutkul"/> 
+                      </div>
+                  </div> 
+
+                  <div class ="form-group">
+                    <div class="row">
+                     <label for="address" class="col-xs-3 control-label text-right"> Address:</label>
+                      <div class="col-xs-8 control-label">
+                        <input  style="float:center;" class="form-control" type="text" id="address" name="address" placeholder="ex. 129 Paholyothin Road."/> 
+                      </div>
+                    </div>
+                  </div> 
+
+                  <div class="row form-group">
+                      <div class="col-xs-3 control-label"></div>
+                      <div class="col-xs-4 control-label">
+                        <input  style="float:center;" class="form-control" type="text" id="city" name="city" placeholder="Town/City"/> 
+                      </div>
+                      <div class="col-xs-4 control-label">
+                        <input  style="float:center;" class="form-control" type="text" id="province" name="province" placeholder="State/Province"/> 
+                      </div>
+                  </div>
+
+                  <div class ="row form-group">
+                     <label for="country" class="col-xs-3 control-label text-right"> Country:</label>
+                      <div class="col-xs-4 control-label">
+                        <input  class="form-control" type="text" id="country" name="country" placeholder="ex. Thailand"/> 
+                      </div>
+                  </div>
+
+                  <div class ="row form-group">
+                     <label for="zipcode" class="col-xs-3 control-label text-right"> Zip Code:</label>
+                      <div class="col-xs-4 control-label">
+                        <input  class="form-control" type="text" id="zipcode" name="zipcode" placeholder="ex. 20130" maxlength="5" /> 
+                      </div>
+                  </div>
+
+                  <div class ="row form-group">
+                     <label for="phone" class="col-xs-3 control-label text-right"> Phone:</label>
+                      <div class="col-xs-4 control-label">
+                        <input  class="form-control" type="text" id="phone" name="phone" placeholder="ex. 0876566563" maxlength="10" /> 
+                      </div>
+                  </div>
+
+                  <div class="col-sm-offset-7 col-sm-5">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="reset" class="btn btn-danger">Reset</button>
+                    <button type="button" class="btn btn-default">Back</button>
+                  </div>
                 </div>
 
 

@@ -16,3 +16,4 @@ Route::get('/staff/register',          'RegistrationController@index');
 Route::get('/staff/register/customer', 'RegistrationController@registerCustomer');
 Route::get('/staff/register/agency',   'RegistrationController@registerAgency');
 Route::post('/staff/register',         'RegistrationController@submitRegister');
+Route::get('/entrepreneur/account',    'EntrepreneurController@index');
