@@ -19,16 +19,5 @@ class EntrepreneurController extends BaseController {
 		return View::make('account/index');
 	}
 
-	public function registerCustomer() {
-		return $this->registerForm(false);
-	}
-	
-	public function registerAgency() {
-		return $this->registerForm(true);
-	}
-	
-	private function registerForm($is_agency) {
-		return 'is_agency is ' . $is_agency;
-	}
 	
 }
