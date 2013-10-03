@@ -16,7 +16,9 @@ class EntrepreneurController extends BaseController {
 	*/
 
 	public function index() {
-		return View::make('account/index');
+		$accounts = Entrepreneur::all();
+		return View::make('account/index')
+			->with('accounts', $accounts);
 	}
 
 	

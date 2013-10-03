@@ -29,57 +29,62 @@
                 <div class="tab-pane fade active in" id="accountInformation">
                   <h3>Account Information</h3>
                 </br>
-                  <div class ="row">
-                     <label for="sampleLabel" class="col-xs-3 control-label text-right"> Account Type:</label>
-                      <div class="col-xs-9 control-label">Customer</div>
-                  </div> 
-                  <div class ="row">
-                     <label for="sampleLabel" class="col-xs-3 control-label text-right"> User ID:</label>
-                      <div class="col-xs-9 control-label">Sompong1234</div>
-                  </div> 
-                  <div class ="row">
-                     <label for="sampleLabel" class="col-xs-3 control-label text-right"> Password:</label>
-                      <div class="col-xs-9 control-label">************</div>
-                  </div> 
-                </br>
-                  <div class ="row">
-                     <label for="sampleLabel" class="col-xs-3 control-label text-right"> Firstname:</label>
-                      <div class="col-xs-9 control-label">Sompong</div>
-                  </div> 
-                  <div class ="row">
-                     <label for="sampleLabel" class="col-xs-3 control-label text-right"> Lastname:</label>
-                      <div class="col-xs-9 control-label">Bigmuscle</div>
-                  </div> 
-                  <div class ="row">
-                     <label for="sampleLabel" class="col-xs-3 control-label text-right"> Address:</label>
-                      <div class="col-xs-9 control-label">123/45 ngamwongwan55 Sompong Dorm Kasetsart University , bangkok</div>
-                  </div> 
-                  <div class ="row">
-                     <label for="sampleLabel" class="col-xs-3 control-label text-right"> Country:</label>
-                      <div class="col-xs-9 control-label">Thailand</div>
-                  </div> 
-                   <div class ="row">
-                     <label for="sampleLabel" class="col-xs-3 control-label text-right"> Zip code:</label>
-                      <div class="col-xs-9 control-label">11000</div>
-                  </div> 
-                   <div class ="row">
-                     <label for="sampleLabel" class="col-xs-3 control-label text-right"> Phone no.</label>
-                      <div class="col-xs-9 control-label">080-888-3333</div>
-                  </div> 
+
+                @foreach ($accounts as $account)
+
+                    <div class ="row form-group">
+                         <label for="sampleLabel" class="col-xs-3 control-label text-right"> Account Type:</label>
+                          @if ($account->is_agency==0)
+                            <div class="col-xs-9 control-label">Customer</div>
+                          @else
+                            <div class="col-xs-9 control-label">Agency</div>
+                          @endif    
+                    </div> 
+
+                    <div class ="row form-group">
+                         <label for="sampleLabel" class="col-xs-3 control-label text-right"> User ID:</label>
+                          <div class="col-xs-9 control-label">{{$account->user_id}}</div>
+                    </div> 
+
+                    <div class ="row form-group">
+                         <label for="sampleLabel" class="col-xs-3 control-label text-right"> Firstname:</label>
+                          <div class="col-xs-9 control-label">{{$account->first_name}}</div>
+                    </div> 
+                      <div class ="row form-group">
+                         <label for="sampleLabel" class="col-xs-3 control-label text-right"> Lastname:</label>
+                          <div class="col-xs-9 control-label">{{$account->last_name}}</div>
+                    </div> 
+                    
+                    <div class ="row form-group">
+                         <label for="sampleLabel" class="col-xs-3 control-label text-right"> Address:</label>
+                          <div class="col-xs-9 control-label">{{$account->address1}}</div>
+                    </div> 
+                    <div class ="row form-group">
+                         <label for="sampleLabel" class="col-xs-3 control-label text-right"></label>
+                         <div class="col-xs-9 control-label">{{$account->address2}}</div>
+                    </div> 
+
+                    <div class ="row form-group">
+                        <label for="sampleLabel" class="col-xs-3 control-label text-right"> Country:</label>
+                        <div class="col-xs-9 control-label">{{$account->country}}</div>
+                    </div> 
+
+                    <div class ="row form-group">
+                         <label for="sampleLabel" class="col-xs-3 control-label text-right"> Email:</label>
+                          <div class="col-xs-9 control-label">{{$account->email}}</div>
+                    </div> 
+                       
+                    <div class ="row form-group">
+                         <label for="sampleLabel" class="col-xs-3 control-label text-right"> Phone no.</label>
+                          <div class="col-xs-9 control-label">{{$account->phone}}</div>
+                    </div> 
+                @endforeach
                   
-                  <div class="text-right">
-                  <button type="button" class="btn btn-primary">Edit</button>
-                  </div>
+                  
+                <div class="col-sm-offset-9">
+                    <button type="submit" class="btn btn-primary">Edit</button>
                 </div>
 
-
-                
-
-               
-
-                <div class="text-right">
-                  <button type="button" class="btn btn-primary">Add</button>
-                                  </div>
                 </div>
               </div>
             </div>
