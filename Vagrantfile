@@ -13,9 +13,12 @@ Vagrant.configure("2") do |config|
 
   
   config.vm.synced_folder "./", "/var/www", id: "vagrant-root", :mount_options => ["dmode=777","fmode=666"]
+
+  config.vm.provision :shell, :inline =>
+    "sudo sed -i 's/us.archive.ubuntu.com/mirror1.ku.ac.th/g' /etc/apt/sources.list"
+
   config.vm.provision :shell, :inline =>
     "if [[ ! -f /apt-get-run ]]; then sudo apt-get update && sudo touch /apt-get-run; fi"
-
 
   config.vm.provision :shell, :inline => 'echo -e "mysql_root_password=gmodb
 controluser_password=awesome" > /etc/phpmyadmin.facts;'
@@ -26,5 +29,7 @@ controluser_password=awesome" > /etc/phpmyadmin.facts;'
     puppet.options = ['--verbose']
   end
 
+  config.vm.provision :shell, :inline =>
+    "sudo a2dissite default && sudo service apache2 reload"
 
 end
