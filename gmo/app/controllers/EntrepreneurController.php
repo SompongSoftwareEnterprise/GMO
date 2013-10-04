@@ -21,5 +21,12 @@ class EntrepreneurController extends BaseController {
 			->with('accounts', $accounts);
 	}
 
+	public function edit_account(){
+		$entrepreneur = Input::all();
+		// echo $entrepreneur['first_name'];
+		return View::make('account/edit_account')
+			->with('entrepreneur', $entrepreneur);
+	}
+
 	
 }
