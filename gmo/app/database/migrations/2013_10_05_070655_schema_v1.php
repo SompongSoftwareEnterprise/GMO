@@ -12,6 +12,7 @@ class SchemaV1 extends Migration {
 	public function up()
 	{
 		Schema::table('entrepreneurs', function($table) {
+			$table->string('province');
 			$table->string('zip');
 			$table->timestamps();
 		});
