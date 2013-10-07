@@ -23,7 +23,7 @@ Registration
 		<div class="col-sm-offset-1 col-xs-10">
 			<div class="checkbox">
 				<label>
-					{{ Form::checkbox('is_company', '1') }} Company
+					{{ Form::checkbox('is_company', '1', null, array('id' => 'is_company_checkbox')) }} Company
 				</label>
 			</div>
 		</div>
@@ -33,13 +33,13 @@ Registration
 
 		<div class="col-sm-offset-1 col-xs-5">
 			<div class="form-group">
-				{{ Form::label('first_name', 'First Name') }}
+				{{ Form::label('first_name', 'First Name', array('data-label-company' => 'Company Name')) }}
 				{{ Form::text('first_name', '', array('class' => 'form-control', 'placeholder' => '')) }}
 			</div>
 		</div>
 		
 		<div class="col-xs-5">
-			<div class="form-group">
+			<div class="form-group individual">
 				{{ Form::label('last_name', 'Last Name') }}
 				{{ Form::text('last_name', '', array('class' => 'form-control', 'placeholder' => '')) }}
 			</div>
@@ -50,7 +50,7 @@ Registration
 	<div class="row">
 
 		<div class="col-sm-offset-1 col-xs-5">
-			<div class="form-group">
+			<div class="form-group individual">
 				<label>Sex</label>
 				<div class="form-inline">
 					<div class="radio">
@@ -69,7 +69,7 @@ Registration
 		</div>
 		
 		<div class="col-xs-5">
-			<div class="form-group">
+			<div class="form-group individual">
 				<label for="date_of_birth">Date of Birth</label>
 				<div class="row">
 					{{ Form::date('date_of_birth') }}
@@ -158,5 +158,31 @@ Registration
 	</div>
 
 {{ Form::close() }}
+
+<script>
+$(function() {
+
+	var checkbox = $('#is_company_checkbox')
+	var firstName = $('label[for="first_name"]')
+	var firstNameLabel = {
+			company: firstName.data('label-company'),
+			individual: firstName.text()
+		}
+
+	function updateCompany() {
+		var checked = checkbox[0].checked
+		$('.individual')
+			.css('opacity', checked ? 0.33 : 1)
+			.find('input, select').each(function() {
+				this.disabled = checked
+			})
+		firstName.text(firstNameLabel[checked ? 'company' : 'individual'])
+	}
+
+	checkbox.on('change', updateCompany)
+	updateCompany()
+
+})
+</script>
 
 @endsection

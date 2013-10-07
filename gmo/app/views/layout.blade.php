@@ -6,6 +6,8 @@
 	<title>Bootstrap HTML Template</title>
 	<link href="/bootstrap/css/bootstrap.css" rel="stylesheet">
 	<link href="/assets/css/common.css" rel="stylesheet">
+	<script src="/assets/js/jquery.min.js"></script>
+	<script src="/bootstrap/js/bootstrap.js"></script>
 </head>
 
 <body>
@@ -25,9 +27,6 @@
 	</div>
 	
 </div>
-
-<script src="assets/js/jquery.min.js"></script>
-<script src="bootstrap/js/bootstrap.js"></script>
 
 </body>
 </html>

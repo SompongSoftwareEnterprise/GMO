@@ -33,20 +33,27 @@ class RegistrationController extends BaseController {
 	}
 	
 	public function submitRegister() {
-		
-		// create a validator
-		$validator = Validator::make(Input::all(), array(
+
+		// validation rules
+		$rules = array(
 			'first_name' => 'required',
 			'last_name' => 'required',
 			'sex' => 'required|in:M,F',
-			'date_of_birth__date' => 'required|integer',
-			'date_of_birth__month' => 'required|integer',
-			'date_of_birth__year' => 'required|integer',
 			'address1' => 'required',
 			'city' => 'required',
 			'email' => 'required|email',
 			'phone' => 'required',
-		));
+		);
+
+		if (Input::get('is_company', '0')) {
+			unset($rules['last_name']);
+			unset($rules['sex']);
+		} else {
+			$rules += InputDate::rules('date_of_birth');
+		}
+		
+		// create a validator
+		$validator = Validator::make(Input::all(), $rules);
 		
 		// validation failed!!
 		if ($validator->fails()) {
