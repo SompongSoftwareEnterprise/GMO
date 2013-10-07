@@ -12,9 +12,10 @@ class SchemaV1 extends Migration {
 	public function up()
 	{
 		Schema::table('entrepreneurs', function($table) {
-			$table->string('province');
-			$table->string('zip');
-			$table->timestamps();
+			$table->string('province')->default('');
+			$table->string('zip')->default('');
+			$table->timestamp('created_at')->nullable();
+			$table->timestamp('updated_at')->nullable();
 		});
 		Schema::create('customer_agency', function($table) {
 			$table->increments('id');
