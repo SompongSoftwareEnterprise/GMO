@@ -60,6 +60,37 @@ class RegistrationController extends BaseController {
 				->withInput();
 			
 		}
+		
+		// save data
+		$username = 'user' . time();    // TODO
+		$password = 'none';             // TODO
+		
+		$user = new User;
+		$user->username = $username;
+		// TODO: hash password
+		$user->save();
+		
+		$entrepreneur = new Entrepreneur;
+		$entrepreneur->first_name = Input::get('first_name');
+		$entrepreneur->last_name = Input::get('last_name');
+		$entrepreneur->sex = Input::get('sex');
+		$entrepreneur->date_of_birth = InputDate::parse('date_of_birth');
+		$entrepreneur->nationality = Input::get('nationality');
+		$entrepreneur->country = Input::get('country');
+		$entrepreneur->address1 = Input::get('address1', '');
+		$entrepreneur->address2 = Input::get('address2', '');
+		$entrepreneur->city = Input::get('city');
+		$entrepreneur->email = Input::get('email');
+		$entrepreneur->phone = Input::get('phone');
+		$entrepreneur->fax = Input::get('fax');
+		$entrepreneur->mobile = Input::get('mobile');
+		$entrepreneur->user_id = $user->id;
+		$entrepreneur->save();
+		
+		// TODO: send email
+		return 'user has been successfully registered.';
+		
+		
 	}
 	
 }
