@@ -30,7 +30,7 @@
           <div class="col-sm-12">
             <ul id="labTaskTab" class="nav nav-tabs">
               <li class="active"><a href="#labtask" data-toggle="tab">Lab Task</a></li>
-              <li class=""><a href="#completetask" data-toggle="tab">Complete Task</a></li>
+              <li class=""><a href="#waitingforapproval" data-toggle="tab">Waiting For Approval</a></li>
             </ul>
 
             <div id="myTabContent" class="tab-content">
@@ -88,9 +88,39 @@
                   
               </div>
 
-              <div class="tab-pane fade" id="completetask">
+              <div class="tab-pane fade" id="waitingforapproval">
                   
-                  task complete page
+                  <br>
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Task ID</th>
+                        <th>Task Name</th>
+                        <th>Due Date</th>
+                        <th>Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><a href="#">0011</a></td>
+                        <td>Task name 0001</td>
+                        <td>dd/mm/yyyy</td>
+                        <td class="text-warning">Waiting For Approval</td>
+                      </tr>
+                      <tr>
+                        <td><a href="#">0012</a></td>
+                        <td>Task name 0002</td>
+                        <td>dd/mm/yyyy</td>
+                        <td class="text-warning">Waiting For Approval</td>
+                      </tr>
+                      <tr>
+                        <td><a href="#">0013</a></td>
+                        <td>Task name 0003</td>
+                        <td>dd/mm/yyyy</td>
+                        <td class="text-warning">Waiting For Approval</td>
+                      </tr>
+                    </tbody>
+                  </table>
                   
               </div>
             </div>
