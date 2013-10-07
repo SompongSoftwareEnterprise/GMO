@@ -109,7 +109,23 @@ Registration
 		<div class="col-xs-5">
 			<div class="form-group">
 				{{ Form::label('city', 'City') }}
-				{{ Form::text('city', '', array('class' => 'form-control', 'placeholder' => 'ex. Bangkok')) }}
+				{{ Form::text('city', '', array('class' => 'form-control', 'placeholder' => 'ex. Bang Khen')) }}
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-sm-offset-1 col-xs-5">
+			<div class="form-group">
+				{{ Form::label('province', 'Province') }}
+				{{ Form::text('province', '', array('class' => 'form-control', 'placeholder' => 'ex. Bangkok')) }}
+			</div>
+		</div>
+		
+		<div class="col-xs-5">
+			<div class="form-group">
+				{{ Form::label('zip', 'Postal Code') }}
+				{{ Form::text('zip', '', array('class' => 'form-control', 'placeholder' => 'ex. 12345')) }}
 			</div>
 		</div>
 	</div>

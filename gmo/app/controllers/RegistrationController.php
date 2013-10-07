@@ -41,6 +41,8 @@ class RegistrationController extends BaseController {
 			'sex' => 'required|in:M,F',
 			'address1' => 'required',
 			'city' => 'required',
+			'province' => 'required',
+			'zip' => 'required',
 			'email' => 'required|email',
 			'phone' => 'required',
 		);
@@ -79,14 +81,16 @@ class RegistrationController extends BaseController {
 		
 		$entrepreneur = new Entrepreneur;
 		$entrepreneur->first_name = Input::get('first_name');
-		$entrepreneur->last_name = Input::get('last_name');
-		$entrepreneur->sex = Input::get('sex');
+		$entrepreneur->last_name = Input::get('last_name', '');
+		$entrepreneur->sex = Input::get('sex', '');
 		$entrepreneur->date_of_birth = InputDate::parse('date_of_birth');
 		$entrepreneur->nationality = Input::get('nationality');
 		$entrepreneur->country = Input::get('country');
 		$entrepreneur->address1 = Input::get('address1', '');
 		$entrepreneur->address2 = Input::get('address2', '');
 		$entrepreneur->city = Input::get('city');
+		$entrepreneur->province = Input::get('province');
+		$entrepreneur->zip = Input::get('zip');
 		$entrepreneur->email = Input::get('email');
 		$entrepreneur->phone = Input::get('phone');
 		$entrepreneur->fax = Input::get('fax');
