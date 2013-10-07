@@ -26,3 +26,4 @@ Route::post('/entrepreneur/edit_account', array(
   'uses' => 'EntrepreneurController@edit_account'
   
 ));
+Route::get('/lab/labtasks', 'LabTaskController@index');
