@@ -106,35 +106,7 @@
 
 
                       <div class="row">
-          <div class="col-sm-offset-2 col-sm-8">
-            <table class="table table-bordered">
-              <thead>
-                <tr>
-                  <th>Document</th>
-                  <th>Upload</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>สทช. 1-1/1(<a href="#">Download</a>)</td>
-                  <td class="text-warning">pending</td>
-                </tr>
-                <tr>
-                  <td>สทช. 1-1/2 </td>
-                  <td class="text-success">waiting for appproval</td>
-                </tr>
-                <tr>
-                  <td>Invoice</td>
-                  <td class="text-warning">Pending</td>
-                </tr>
-                <tr>
-                  <td>Receipt</td>
-                  <td class="text-warning">Pending</td>
-                </tr>
- 
-              </tbody>
-            </table>
-          </div>
+          
         </div>
 
                        <!-- <div class="form-group">
@@ -157,12 +129,53 @@
                       </div>
                       <hr>
 
+					  <div class="form-group">
+					  <div class="col-sm-offset-2 col-sm-8">
+                          <button type="button" class="btn btn-primary btn-lg btn-block disabled">Start Analyzing Sequence</button>
+						</div>
+					  <div class="col-sm-offset-2 col-sm-8">
+					  
+					  
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Lab Analyzing Sequence</th>
+                  <th>Experiment Document</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1. DNA Extraction</td>
+                  <td class="text-success">Uploaded(<a href="#">Download</a>)</td>
+                </tr>
+                <tr>
+                  <td>2. Volume & Concentration Measurement</td>
+                  <td class="text-warning">Pending(<a href="#">Upload</a>)</td>
+                </tr>
+                <tr>
+                  <td>3. Endrogenous Gene Analysis</td>
+                  <td class="text-danger">Waiting for above sequence</td>
+                </tr>
+                <tr>
+                  <td>4. Gene Analysis</td>
+                  <td class="text-danger">Waiting for above sequence</td>
+                </tr>
+ 
+              </tbody>
+            </table>
+          </div>
+		  </div>
+		  
+		  <hr>
+					  <strong><p class="text-normal text-center">(Lab Head only)</p></strong>
                       <div class="form-group">
-                        <div class="col-sm-offset-8 col-sm-4">
-                          <button type="button" class="btn btn-default">Back</button>
-                          <button type="button" class="btn btn-primary">Upload Lab Result</button>
-                          
-                        </div>
+                        <div class="col-sm-offset-1 col-sm-5">
+                          <button type="button" class="btn btn-success btn-lg btn-block disabled">Pass</button>
+						</div>
+						<div class="col-sm-offset-0 col-sm-5">
+                          <button type="button" class="btn btn-danger btn-lg btn-block disabled">Fail</button>
+                        </div> 
+                        
                       </div>
 
 
