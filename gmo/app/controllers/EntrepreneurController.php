@@ -15,17 +15,22 @@ class EntrepreneurController extends BaseController {
 	|
 	*/
 
+	public function getCurrentEntrepreneur() {
+		return Entrepreneur::all()->first();
+	}
+
+	public function __construct() {
+		$this->entrepreneur = $this->getCurrentEntrepreneur();
+	}
+
 	public function index() {
-		$accounts = Entrepreneur::all();
 		return View::make('account/index')
-			->with('accounts', $accounts);
+			->with('entrepreneur', $this->entrepreneur);
 	}
 
 	public function editAccount(){
-		$entrepreneur = Input::all();
-		// echo $entrepreneur['first_name'];
 		return View::make('account/edit_account')
-			->with('entrepreneur', $entrepreneur);
+			->with('entrepreneur', $this->entrepreneur);
 	}
 
 	private function getEntrepreneur($id) {
@@ -37,30 +42,39 @@ class EntrepreneurController extends BaseController {
 	}
 
 	public function saveAccount(){
-		$input = Input::all();
-		$validator = Validator::make($input, Entrepreneur::getValidationRules());
+		$validator = Validator::make(Input::all(), Entrepreneur::getValidationRules());
 
 		// $user = this->getUser(1);
 
 		// TODO check password
-		if ($validator->failed()) {
-			return 'failed';
+		if ($validator->fails()) {
+			return Redirect::action('EntrepreneurController@editAccount')
+				->withErrors($validator)
+				->withInput();
 		}
 
-		$entrepreneur = $this->getEntrepreneur($input['id']);
-		print_r($input);
-		$entrepreneur->first_name = $input['first_name'];
-		$entrepreneur->last_name = $input['last_name'];
-		// $entrepreneur->password = $input['password'];
-		$entrepreneur->address1 = $input['address1'];
-		$entrepreneur->address2 = $input['address2'];
-		$entrepreneur->city = $input['city'];
-		$entrepreneur->country = $input['country'];
-		$entrepreneur->email = $input['email'];
-		$entrepreneur->phone = $input['phone'];
-		$entrepreneur->save();
+		print_r(Input::all());
+		$id = $this->entrepreneur['id'];
+		echo "$id";
+		$this->entrepreneur['first_name'] = Input::get('first_name');
+		$this->entrepreneur['last_name'] = Input::get('last_name');
+		// $entrepreneur = $this->getEntrepreneur($input['id']);
+		// print_r($input);
+		// $entrepreneur->first_name = $input['first_name'];
+		// $entrepreneur->last_name = $input['last_name'];
+		// // $entrepreneur->password = $input['password'];
+		// $entrepreneur->address1 = $input['address1'];
+		// $entrepreneur->address2 = $input['address2'];
+		// $entrepreneur->city = $input['city'];
+		// $entrepreneur->country = $input['country'];
+		// $entrepreneur->email = $input['email'];
+		// $entrepreneur->phone = $input['phone'];
+		$this->entrepreneur->save();
 
 		echo 'pass for sure';
+
+		return View::make('account/update_account')
+				->with('status',true);
 
 		// return Model::make('Entrepreneur')
 		// 	->with('entrepreneur',$entrepreneur);

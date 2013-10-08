@@ -21,7 +21,7 @@ Route::post('/staff/register',         	'RegistrationController@submitRegister')
 
 Route::get('/entrepreneur/account',    		'EntrepreneurController@index');
 // Route::get('/entrepreneur/edit_account',	'EntrepreneurController@edit_account');
-Route::post('/entrepreneur/edit_account', array(
+Route::get('/entrepreneur/edit_account', array(
 	'as' => 'entrepreneur.edit',
   'uses' => 'EntrepreneurController@editAccount'
 ));
