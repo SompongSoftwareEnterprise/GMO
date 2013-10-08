@@ -23,7 +23,10 @@ Route::get('/entrepreneur/account',    		'EntrepreneurController@index');
 // Route::get('/entrepreneur/edit_account',	'EntrepreneurController@edit_account');
 Route::post('/entrepreneur/edit_account', array(
 	'as' => 'entrepreneur.edit',
-  'uses' => 'EntrepreneurController@edit_account'
-  
+  'uses' => 'EntrepreneurController@editAccount'
+));
+Route::post('/entrepreneur/save_account', array(
+	'as' => 'entrepreneur.save',
+  'uses' => 'EntrepreneurController@saveAccount'
 ));
 Route::get('/lab/labtasks', 'LabTaskController@index');

@@ -6,7 +6,7 @@ Edit Account Information
 
 @section('content')
 
-<!-- {{ Form::open() }} -->
+{{ Form::open(array('route' => 'entrepreneur.save')) }}
 
 <input type="hidden" name="id" value="{{$entrepreneur['id']}}" id="id"/>
 <div class ="row form-group">
@@ -29,38 +29,38 @@ Edit Account Information
 </div> 
 
 <div class ="row form-group">
-	<label for="new_password" class="col-xs-3 control-label text-right"> New Password:</label>
+	<label for="password" class="col-xs-3 control-label text-right"> New Password:</label>
 	<div class="col-xs-4 control-label">
-		<input  style="float:center;" class="form-control" type="password" id="new_password" name="new_password" placeholder="ex. ********"/> 
+		<input  style="float:center;" class="form-control" type="password" id="password" name="password" placeholder="ex. ********"/> 
 	</div>
 </div> 
 
 <div class ="row form-group">
-	<label for="confirm_password" class="col-xs-3 control-label text-right"> Confirm New Password:</label>
+	<label for="password_confirmation" class="col-xs-3 control-label text-right"> Confirm New Password:</label>
 	<div class="col-xs-4 control-label">
-		<input  style="float:center;" class="form-control" type="password" id="confirm_password" name="confirm_password" placeholder="ex. ********"/> 
+		<input  style="float:center;" class="form-control" type="password" id="password_confirmation" name="password_confirmation" placeholder="ex. ********"/> 
 	</div>
 </div> 
 
 <div class ="row form-group">
-	<label for="firstname" class="col-xs-3 control-label text-right"> First Name:</label>
+	<label for="first_name" class="col-xs-3 control-label text-right"> First Name:</label>
 	<div class="col-xs-4 control-label">
-		<input  style="float:center;" class="form-control" value="{{$entrepreneur['first_name']}}" type="text" id="firstname" name="firstname" placeholder="ex. Kanisorn"/> 
+		<input  style="float:center;" class="form-control" value="{{$entrepreneur['first_name']}}" type="text" id="first_name" name="first_name" placeholder="ex. Kanisorn"/> 
 	</div>
 </div> 
 
 <div class ="row form-group">
-	<label for="lastname" class="col-xs-3 control-label text-right"> Last Name:</label>
+	<label for="last_name" class="col-xs-3 control-label text-right"> Last Name:</label>
 	<div class="col-xs-4 control-label">
-		<input  style="float:center;" class="form-control" value="{{$entrepreneur['last_name']}}" type="text" id="lastname" name="lastname" placeholder="ex. Wirutkul"/> 
+		<input  style="float:center;" class="form-control" value="{{$entrepreneur['last_name']}}" type="text" id="last_name" name="last_name" placeholder="ex. Wirutkul"/> 
 	</div>
 </div> 
 
 <div class ="form-group">
 	<div class="row">
-		<label for="address" class="col-xs-3 control-label text-right"> Address:</label>
+		<label for="address1" class="col-xs-3 control-label text-right"> Address:</label>
 		<div class="col-xs-8 control-label">
-			<input  style="float:center;" class="form-control" value="$entrepreneur['address1']" type="text" id="address" name="address" placeholder="ex. 129 Paholyothin Road."/> 
+			<input  style="float:center;" class="form-control" value="{{$entrepreneur['address1']}}" type="text" id="address1" name="address1" placeholder="ex. 129 Paholyothin Road."/> 
 		</div>
 	</div>
 </div> 
@@ -71,7 +71,7 @@ Edit Account Information
 		<input  style="float:center;" class="form-control" value="{{$entrepreneur['address2']}}" type="text" id="address2" name="address2" placeholder="Address2"/> 
 	</div>
 	<div class="col-xs-4 control-label">
-		<input  style="float:center;" class="form-control" value="{{$entrepreneur['city']}}" type="text" id="city" name="province" placeholder="Town/City"/> 
+		<input  style="float:center;" class="form-control" value="{{$entrepreneur['city']}}" type="text" id="city" name="city" placeholder="Town/City"/> 
 	</div>
 </div>
 
@@ -103,7 +103,7 @@ Edit Account Information
 </div>
 </div>
 
-<!-- {{Form::close()}} -->
+{{Form::close()}}
 
 
 @endsection
