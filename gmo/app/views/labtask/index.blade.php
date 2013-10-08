@@ -6,7 +6,7 @@ Registration
 
 @section('content')
 
-{{print($labtasks)}}
+{{dd($items)}}
 
 <div class="row">
 	<div class="col-sm-12">
@@ -29,6 +29,9 @@ Registration
 						</tr>
 					</thead>
 					<tbody>
+						foreach ($labtasks as $labtask) {
+
+						}
 						<tr>
 							<td><a href="#">0001</a></td>
 							<td>Task name 0001</td>
