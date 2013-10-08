@@ -11,13 +11,7 @@ Registration
 
 	{{ Form::hidden('is_agency', $is_agency); }}
 
-	@if($errors->any())
-		<div class="row">
-			<div class="col-sm-offset-1 col-xs-10">
-				{{ View::make('errors') }}
-			</div>
-		</div>
-	@endif
+	{{ View::make('errors_row') }}
 
 	<div class="row">
 		<div class="col-sm-offset-1 col-xs-10">
