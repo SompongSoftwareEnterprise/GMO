@@ -19,17 +19,13 @@ Route::get('/staff/register/customer', 	'RegistrationController@registerCustomer
 Route::get('/staff/register/agency',   	'RegistrationController@registerAgency');
 Route::post('/staff/register',         	'RegistrationController@submitRegister');
 
-Route::get('/entrepreneur/account',    		'EntrepreneurController@index');
-// Route::get('/entrepreneur/edit_account',	'EntrepreneurController@edit_account');
-Route::get('/entrepreneur/edit_account', array(
-	'as' => 'entrepreneur.edit',
-  'uses' => 'EntrepreneurController@editAccount'
-));
-Route::post('/entrepreneur/save_account', array(
-	'as' => 'entrepreneur.save',
-  'uses' => 'EntrepreneurController@saveAccount'
-));
+//account
+Route::get('/entrepreneur/account',    		'EntrepreneurAccountController@index');
+// Route::get('/entrepreneur/edit_account',	'EntrepreneurAccountController@edit_account');
+Route::get('/entrepreneur/edit_account', 'EntrepreneurAccountController@editAccount');
+Route::post('/entrepreneur/save_account', 'EntrepreneurAccountController@saveAccount');
 
+Route::get('/lab/labtasks', 'LabTaskController@index');
 Route::get('/lab', 'LabController@index');
 Route::get('/lab/task/:id', 'LabController@show');
 Route::get('/lab/labtasks', 'LabController@index');
