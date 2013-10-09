@@ -301,30 +301,59 @@ Create Certificate Request Form
 							<h3>Example</h3>
 						</div>
 						<hr>
-						<div class="form-group">
-							<label for="exampleType" class="col-xs-3 control-label">
-								Example Detail # 1
-							</label>
-							<div class="col-xs-6">
-								<input type="text" class="form-control" id="exampleType" name="example_type" placeholder="Type of Example">
+						<div class="example-detail">
+							<div class="form-group">
+								<label for="exampleType_ex1" class="col-xs-3 control-label">
+									Example Detail # <span data-gmo-example="number">1</span>
+								</label>
+								<div class="col-xs-6">
+									<input type="text" class="form-control" id="exampleType_ex1" name="example_type_ex1" placeholder="Type of Example">
+								</div>
+								<div class="col-xs-2 ">
+									<input type="number" class="form-control" placeholder="Quantity" name="example_quantity_ex1">
+								</div>
 							</div>
-							<div class="col-xs-2 ">
-								<input type="email" class="form-control" id="sampleName (ex. Sompong Thepsoftware) (ex. Sompong Thepsoftware)" placeholder="Quantity">
-							</div>
-						</div>
 
-						<div class="form-group">
-							<div class="col-sm-offset-3 col-xs-8 ">
-								<textarea class="form-control" id="sampleName (ex. Sompong Thepsoftware) (ex. Sompong Thepsoftware)" placeholder="Detail" style="height: 95px"></textarea>
+							<div class="form-group">
+								<div class="col-sm-offset-3 col-xs-8 ">
+									<textarea class="form-control" placeholder="Detail" style="height: 95px" name="example_detail_ex1"></textarea>
+								</div>
 							</div>
-						</div>
 
-						<div class="form-group">
-							<div class="col-sm-offset-7 col-xs-5">
-								<button id="removeExample" type="button" class="btn btn-danger">Remove</button>
-								<button id="addExample" type="button" class="btn btn-primary">Add Example</button>
+							<div class="form-group">
+								<div class="col-sm-offset-7 col-xs-5">
+									<button data-gmo-example="remove" type="button" class="btn btn-danger">Remove</button>
+									<button data-gmo-example="add" type="button" class="btn btn-primary">Add Example</button>
+								</div>
 							</div>
 						</div>
+						<script>
+							$(function() {
+								var template = $('.example-detail').html()
+								$(document).on('click', '[data-gmo-example="remove"]', function(e) {
+									if ($('.example-detail').length == 1) {
+										alert('Cannot remove last example')
+									} else {
+										$(this).closest('.example-detail').remove()
+										updateNumber()
+									}
+								})
+								var exId = 1
+								$(document).on('click', '[data-gmo-example="add"]', function(e) {
+									exId += 1
+									$(this).closest('.example-detail').after(
+										'<div class="example-detail">' +
+											template.replace(/ex1/g, 'ex' + exId) +
+										'</div>')
+									updateNumber()
+								})
+								function updateNumber() {
+									$('.example-detail').each(function(index) {
+										$(this).find('[data-gmo-example="number"]').html(index + 1 + '')
+									})
+								}
+							})
+						</script>
 
 						<hr>
 						<div class="form-group">
