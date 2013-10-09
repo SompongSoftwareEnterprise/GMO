@@ -56,3 +56,7 @@ Route::post('/staff/requests/{id}/receipt', array(
 	'as' => 'staff.requests.receipt',
 	'uses' => 'StaffRequestsController@createReceipt'
 ));
+
+Route::get('/test/running_number', function() {
+	return 'NG' . RunningNumber::increment('default');
+});

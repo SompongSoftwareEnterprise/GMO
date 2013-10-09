@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>Bootstrap HTML Template</title>
+	<title>@yield('title')</title>
 	<link href="/bootstrap/css/bootstrap.css" rel="stylesheet">
 	<link href="/assets/css/common.css" rel="stylesheet">
 	<script src="/assets/js/jquery.min.js"></script>
@@ -13,7 +13,7 @@
 <body>
 
 <div class="container">
-
+	
 <div class="panel panel-default">
 	
 	<div class="panel-heading">

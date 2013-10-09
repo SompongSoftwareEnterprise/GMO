@@ -6,14 +6,6 @@ Account Information
 
 @section('content')
 
-
-
-<ol class="breadcrumb" style="float:right ; margin-top:-35px">
-	<li><a href="#">Home</a></li>
-	<li><a href="#">Library</a></li>
-	<li class="active">Data</li>
-</ol>
-
 <br><br>
 <div class="row">
 	<div class="col-sm-12">
