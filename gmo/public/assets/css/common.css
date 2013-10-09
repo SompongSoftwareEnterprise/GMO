@@ -1,7 +1,35 @@
 
 body {
-  padding-top: 70px;
+  background-image:url('/assets/img/bg.jpg');
+  /*padding-top: 70px;*/
+   padding-top: 30px;
   padding-bottom: 30px;
+}
+
+.navbar .container { height: 200ex; }
+
+.account
+{
+  list-style-image:url('/assets/img/icon_account.png');
+}
+
+.setting
+{
+  list-style-image:url('/assets/img/icon_setting.png');
+}
+
+
+.logo{
+  padding-bottom: 30px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.logo-small{
+   /*margin: auto;*/
+  /*position: absolute;*/
+  top: 10px; left: 20px; bottom: 0; right: 0;
 }
 
 .container {
@@ -9,6 +37,15 @@ body {
   width: 970px;
 }
 
+.TableLine {
+ border-top-style: none;
+ border-right-style: none;   
+ border-bottom-style: none;
+
+ border-left-style: dotted;   
+ border-left-width: 1px;
+ border-left-color: #333333;
+}
 /*===================== TEMPLATE SPECIFIC STUFF =====================*/
 
 /*===================== DON'T TOUCH BELOW ME =====================*/
