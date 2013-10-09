@@ -29,5 +29,19 @@ Route::post('/entrepreneur/save_account', array(
 	'as' => 'entrepreneur.save',
   'uses' => 'EntrepreneurController@saveAccount'
 ));
+
 Route::get('/lab', 'LabController@index');
 Route::get('/lab/task/:id', 'LabController@show');
+Route::get('/lab/labtasks', 'LabController@index');
+
+// entrepreneur request
+Route::get('/entrepreneur', 'EntrepreneurRequestsController@index');
+Route::get('/entrepreneur/requests/{id}', array(
+	'as' => 'entrepreneur.requests.show',
+	'uses' => 'EntrepreneurRequestsController@show'
+));
+Route::get('/entrepreneur/requests/new', 'EntrepreneurRequestsController@newRequests');
+Route::post('/entrepreneur/requets/{form_id}', array(
+	'as' => 'entrepreneur.requests.create',
+	'uses' => 'EntrepreneurRequestsController@create'
+));
