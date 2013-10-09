@@ -36,12 +36,27 @@ Route::get('/lab/labtasks', 'LabController@index');
 
 // entrepreneur request
 Route::get('/entrepreneur', 'EntrepreneurRequestsController@index');
+Route::get('/entrepreneur/requests/new', 'EntrepreneurRequestsController@newRequests');
 Route::get('/entrepreneur/requests/{id}', array(
 	'as' => 'entrepreneur.requests.show',
 	'uses' => 'EntrepreneurRequestsController@show'
 ));
-Route::get('/entrepreneur/requests/new', 'EntrepreneurRequestsController@newRequests');
 Route::post('/entrepreneur/requets/{form_id}', array(
 	'as' => 'entrepreneur.requests.create',
 	'uses' => 'EntrepreneurRequestsController@create'
+));
+
+// gmo staff requests
+Route::get('/staff', 'StaffRequestsController@index');
+Route::get('/staff/requests/{id}', array(
+	'as' => 'staff.requests.show',
+	'uses' => 'StaffRequestsController@show'
+));
+Route::post('/staff/requests/{id}/confirm', array(
+	'as' => 'staff.requests.comfirm',
+	'uses' => 'StaffRequestsController@confirm'
+));
+Route::post('/staff/requests/{id}/receipt', array(
+	'as' => 'staff.requests.receipt',
+	'uses' => 'StaffRequestsController@createReceipt'
 ));

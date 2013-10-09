@@ -33,7 +33,7 @@ Create Certificate Request Form
 						<label class="col-xs-3 control-label text-right">
 							Name
 						</label>
-						<div class="col-xs-8  control-label">
+						<div class="col-xs-8 control-label">
 							{{ $entrepreneur->first_name }}
 							{{ $entrepreneur->last_name }}
 						</div>
@@ -492,6 +492,12 @@ Create Certificate Request Form
 	</div>
 
 </div>
+
+<style type="text/css">
+	.control-label {
+		text-align: left;
+	}
+</style>
 
 @endsection
 
