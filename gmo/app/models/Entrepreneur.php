@@ -11,9 +11,15 @@ class Entrepreneur extends Eloquent {
         $rules = array(
         	'first_name' => 'required|min:3|max:80|alpha',
         	'last_name' => 'Required|min:3|Max:80|Alpha',
-	        // 'email'     => 'Required|Between:3,64|Email|Unique:entrepreneurs',
-	        // 'password'  =>'Required|AlphaNum|Between:4,8|Confirmed',
-	        // 'password_confirmation'=>'Required|AlphaNum|Between:4,8'
+	        'email'     => 'Required|Between:3,64|Email',
+	        'address1' => 'required',
+			'city' => 'required',
+			'province' => 'required',
+			'zip' => 'required',
+			'email' => 'required|email',
+			'phone' => 'required',
+	        'password'  =>'Required|AlphaNum|Between:4,8|Confirmed',
+	        'password_confirmation'=>'Required|AlphaNum|Between:4,8'
         );
         return $rules;
     }
