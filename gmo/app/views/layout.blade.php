@@ -13,12 +13,9 @@
 <body>
 <img class="logo" src = "/assets/img/logo.png">
 
-<div class="text">SFKLDF</div>
 <div class="container">
 <nav class="navbar navbar-default " role="navigation">
   <div class="navbar-header">
-    
-    <!-- <a class="navbar-brand logo-small" href="#"><img  src = "/assets/img/logo_small.png"></a> -->
   </div>
 
   <!-- Collect the nav links, forms, and other content for toggling -->
