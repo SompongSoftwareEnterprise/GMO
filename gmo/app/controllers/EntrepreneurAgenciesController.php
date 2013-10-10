@@ -26,14 +26,6 @@ class EntrepreneurAgenciesController extends BaseController {
           return View::make('account/revoke_agency');
         }
 
-        public function createAgencies($entrepreneurID){
-          $agencyID = Input::get('agency_id');
-          $agency = Entrepreneur::where('user_id','=',$agencyID)->first();
-          return View::make('account/add_agency')
-                ->with('entrepreneurID',$entrepreneurID)
-                ->with('agencyID',$agencyID)
-                ->with('agency',$agency);
-        }
 
         public function deleteAgencies($entrepreneurID,$agencyID){
           $agency = Entrepreneur::where('user_id','=',$agencyID)->first();
@@ -55,10 +47,19 @@ class EntrepreneurAgenciesController extends BaseController {
         }
 
 
+        public function createAgencies($entrepreneurID){
+          $agencyID = Input::get('agency_id');
+          $agency = Entrepreneur::where('user_id','=',$agencyID)->first();
+          return View::make('account/add_agency')
+                ->with('entrepreneurID',$entrepreneurID)
+                ->with('agencyID',null )
+                ->with('agency',null);
+        }
+
         public function createAgenciesBySearch(){
           $customerID = Input::get('customer_id');
           $agencyID = Input::get('agency_id');
-          $agency = Entrepreneur::where('user_id','=',$agencyID)->first();
+          $agency = Entrepreneur::where('user_id','=',$agencyID)->where('is_agency','=','1')->first();
           return View::make('account/add_agency')
                 ->with('entrepreneurID',$customerID)
                 ->with('agencyID',$agencyID)
@@ -73,9 +74,14 @@ class EntrepreneurAgenciesController extends BaseController {
         public function create(){
           $agencyID = Input::get('agency_id');
           $customerID = Input::get('customer_id');
-          DB::table('customer_agency')->insert(
-            array('customer_id' => $customerID , 'agency_id' => $agencyID)
-          );
+
+          $isExist = CustomerAgency::where('customer_id','=',$customerID)->where('agency_id','=',$agencyID)->first() != null;
+
+          if(!$isExist){
+            DB::table('customer_agency')->insert(
+              array('customer_id' => $customerID , 'agency_id' => $agencyID)
+            );
+          }
           return Redirect::action('EntrepreneurAccountController@index');
         }
 

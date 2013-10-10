@@ -14,9 +14,16 @@ Account Information
           <div class = "col-xs-2">
             <h5> <strong>Agency ID : </strong></h5>
           </div>
+          @if($agencyID == null)
           <div class = "col-xs-3">
             <input type = "text" name = "agency_id" class = "form-control" placeholder = "ex. 0000000001">
           </div>
+          @else
+          <div class = "col-xs-3">
+            <input type = "text" name = "agency_id" value = {{$agencyID}} class = "form-control" placeholder = "ex. 0000000001">
+          </div>
+          @endif
+
           <div class = "col-xs-1">
             <button id = "searchButton" class ="btn btn-primary"> Search </button>
           </div>
@@ -27,7 +34,7 @@ Account Information
       <br>
       <br>
       <hr>
-      @if($agencyID != null)
+      @if($agency != null)
 
       <div id = "info"  class = "container">
 
