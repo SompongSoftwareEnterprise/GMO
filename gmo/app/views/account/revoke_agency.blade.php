@@ -115,7 +115,7 @@ Account Information
 
       <div class = "row" >
        <!-- <form class = "form-inline text-right " role = "form" action = "EntrepreneurAgenciesController@delete" method = "post">-->
-        {{ Form::open(array('action' => 'EntrepreneurAgenciesController@delete')) }}
+        {{ Form::open(array('action' => 'EntrepreneurAgenciesController@delete', 'class' => 'form-inline text-right' )) }}
           <div class = "form-group col-xs-6 col-sm-offset-5">
 
             <button type = "button" class = "btn btn-default ">Back</button>

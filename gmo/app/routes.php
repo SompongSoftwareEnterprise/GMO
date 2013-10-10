@@ -82,4 +82,6 @@ Route::post('/entrepreneur/account/agencies/{id}/delete','EntrepreneurAgenciesCo
 Route::get('/entrepreneur/account/{entrepreneurID}/{agencyID}','EntrepreneurAgenciesController@deleteAgencies');
 Route::get('/entrepreneur/account/{entrepreneurID}','EntrepreneurAgenciesController@createAgencies');
 
+Route::post('/entrepreneur/account/search','EntrepreneurAgenciesController@createAgenciesBySearch');
+Route::post('/entrepreneur/account/create','EntrepreneurAgenciesController@create');
 Route::post('/entrepreneur/account/delete','EntrepreneurAgenciesController@delete');

@@ -7,16 +7,18 @@ Account Information
 @section('content')
 
     <div class = "container">
-      <form class = "inline-form text-center">
+<!--      <form class = "inline-form text-center"> -->
+        {{ Form::open(array('action' => 'EntrepreneurAgenciesController@createAgenciesBySearch', 'class' => 'form-inline text-right', 'value' => $agencyID) ) }}
+              <input type ='hidden' name = 'customer_id' value = {{$entrepreneurID}} >
         <div class = "row form-group col-xs-9 col-sm-offset-3">
           <div class = "col-xs-2">
             <h5> <strong>Agency ID : </strong></h5>
           </div>
           <div class = "col-xs-3">
-            <input type = "text" class = "form-control" placeholder = "ex. 0000000001">
+            <input type = "text" name = "agency_id" class = "form-control" placeholder = "ex. 0000000001">
           </div>
           <div class = "col-xs-1">
-            <button id = "searchButton" class ="btn btn-primary" onclick="showInfo()" > Search </button>
+            <button id = "searchButton" class ="btn btn-primary"> Search </button>
           </div>
         </div>
       </form>
@@ -25,6 +27,7 @@ Account Information
       <br>
       <br>
       <hr>
+      @if($agencyID != null)
 
       <div id = "info"  class = "container">
 
@@ -36,7 +39,7 @@ Account Information
               <strong>Firstname</strong>
             </div>
             <div class = "col-xs-8 col-sm-offset-1" >
-              SompongFirstname
+              {{$agency->first_name}}
             </div>
           </div>
           <div class = "row">
@@ -44,7 +47,7 @@ Account Information
               <strong>Lastname</strong>
             </div>
             <div class = "col-xs-8 col-sm-offset-1" >
-              SompongLastname
+              {{$agency->last_name}}
             </div>
           </div>
           <div class = "row">
@@ -52,7 +55,7 @@ Account Information
               <strong>Company</strong>
             </div>
             <div class = "col-xs-8 col-sm-offset-1" >
-              SompongCompany
+                ??
             </div>
           </div>
           <div class = "row">
@@ -60,7 +63,7 @@ Account Information
               <strong>Email</strong>
             </div>
             <div class = "col-xs-8 col-sm-offset-1" >
-              SompongEmail
+              {{$agency->email}}
             </div>
           </div>
           <div class = "row">
@@ -68,7 +71,7 @@ Account Information
               <strong>Address1</strong>
             </div>
             <div class = "col-xs-8 col-sm-offset-1" >
-              SompongAddress1
+              {{$agency->address1}}
             </div>
           </div>
           <div class = "row">
@@ -76,7 +79,7 @@ Account Information
               <strong>Address2</strong>
             </div>
             <div class = "col-xs-8 col-sm-offset-1" >
-              SompongAddress2
+              {{$agency->address2}}
             </div>
           </div>
           <div class = "row">
@@ -84,7 +87,7 @@ Account Information
               <strong>Zip code</strong>
             </div>
             <div class = "col-xs-8 col-sm-offset-1" >
-              SompongZip code
+              {{$agency->zip}}
             </div>
           </div>
           <div class = "row">
@@ -92,7 +95,7 @@ Account Information
               <strong>City</strong>
             </div>
             <div class = "col-xs-8 col-sm-offset-1" >
-              SompongCity
+              {{$agency->city}}
             </div>
           </div>
           <div class = "row">
@@ -100,7 +103,7 @@ Account Information
               <strong>Country</strong>
             </div>
             <div class = "col-xs-8 col-sm-offset-1" >
-              SompongCountry
+              {{$agency->country}}
             </div>
           </div>
           <div class = "row">
@@ -108,7 +111,7 @@ Account Information
               <strong>Phone</strong>
             </div>
             <div class = "col-xs-8 col-sm-offset-1" >
-              SompongPhone
+              {{$agency->phone}}
             </div>
           </div>
           <div class = "row">
@@ -116,7 +119,7 @@ Account Information
               <strong>Fax</strong>
             </div>
             <div class = "col-xs-8 col-sm-offset-1" >
-              SompongFax
+              {{$agency->fax}}
             </div>
           </div>
           <div class = "row">
@@ -124,17 +127,21 @@ Account Information
               <strong>Mobile phone</strong>
             </div>
             <div class = "col-xs-8 col-sm-offset-1" >
-              SompongMobile phone
+              {{$agency->mobile}}
             </div>
           </div>
 
-          <form class = "col-xs-9 text-right">
+        {{ Form::open(array('action' => 'EntrepreneurAgenciesController@create', 'class' => 'col-xs-9 text-right') ) }}
+        <!--  <form class = "col-xs-9 text-right"> -->
             <div class = "row form-group">
-              <button id = "agencyId" type = "button" class = "btn btn-primary" onclick = "addConfirmation()">Add Agency</button>
+              <input type ='hidden' name = 'customer_id' value = {{$entrepreneurID}} >
+              <input type ='hidden' name = 'agency_id' value = {{$agency->user_id}} >
+              <input id = "agencyId" type = "submit" class = "btn btn-primary" value = "Add Agency">
             </div>
           </form>
         </div>
-      </div>
 
+      </div>
+    @endif
   </div>
   @endsection
