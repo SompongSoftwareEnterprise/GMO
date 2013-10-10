@@ -1,4 +1,5 @@
-<? php
-class Receipt extends Eloquent{
-	
+<?php
+class Receipt extends Eloquent {
+	public $timestamps = false;
+
 }
