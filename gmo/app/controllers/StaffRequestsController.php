@@ -10,23 +10,15 @@ class StaffRequestsController extends BaseController {
 		return View::make('staff_requests/view_request_information');
 	}
 
-	public function confirm($id) {
-
-	}
-
 	public function createReceipt($id) {
 		
 	}
 
 	public function newLabTask($id) {
-
+		return View::make('staff_requests/create_lab_task');
 	}
 
 	public function createLabTask($id) {
-
-	}
-
-	public function showLabTask($id) {
 
 	}
 

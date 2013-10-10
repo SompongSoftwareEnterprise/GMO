@@ -48,10 +48,6 @@ Route::get('/staff/requests/{id}', array(
 	'as' => 'staff.requests.show',
 	'uses' => 'StaffRequestsController@show'
 ));
-Route::post('/staff/requests/{id}/confirm', array(
-	'as' => 'staff.requests.comfirm',
-	'uses' => 'StaffRequestsController@confirm'
-));
 Route::post('/staff/requests/{id}/receipt', array(
 	'as' => 'staff.requests.receipt',
 	'uses' => 'StaffRequestsController@createReceipt'
@@ -63,10 +59,6 @@ Route::get('staff/requests/{id}/labtask/new', array(
 Route::post('staff/requests/{id}/labtask', array(
 	'as' => 'staff.labtask.create',
 	'uses' => 'StaffRequestsController@createLabTask'
-));
-Route::get('staff/requests/{id}/labtask', array(
-	'as' => 'staff.labtask.show',
-	'uses' => 'StaffRequestsController@showLabTask'
 ));
 Route::get('staff/requests/{id}/result/new', array(
 	'as' => 'staff.labtask.new.result',
