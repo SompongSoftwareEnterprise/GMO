@@ -9,8 +9,8 @@ class StaffRequestsController extends BaseController {
 	}
 
 	public function show($id) {
-
-		return View::make('staff_requests/view_request_information');
+		$data = $this->createRequestData($id);
+		return View::make('staff_requests/view_request_information')->with('data',$data);
 	}
 
 	public function createReceipt(){
@@ -31,7 +31,35 @@ class StaffRequestsController extends BaseController {
 
 	public function createResult($id) {
 
-	}	
+	}
+
+	private function createRequestData($id) {
+		$data = array('Request ID' => '', 'Importer Name' => '', 'Requester'=> '',
+			'Sent Date' => '', 'Status' => '', 'Invoice' => '', 'Receipt' => '');
+		$request = CertificateRequest::where('reference_id','=',$id)->first();
+		$data['Request ID'] = $request['reference_id'];
+
+		$importer = Entrepreneur::find($request['owner_id']);
+		$requester = Entrepreneur::find($request['signer_id']);
+
+		$data['Importer Name'] = $importer['first_name'];
+		$data['Requester'] = $requester['first_name'];
+		$data['Sent Date'] = $request['created_at'];
+		$data['Status'] = $request['status'];
+		$data['Invoice'] = 'Available';
+
+		$receipt = Receipt::where('export_certificate_request_id','=',$request->id).get();
+		if(count($receipt) > 0) {
+			$data['Receipt'] = 'Available';			
+		}
+		else {
+			$data['Receipt'] = 'Pending';		
+		}
+
+		return $data;
+
+
+	}
 
 	private function createRequestTableData($requests) {
 		$items = array();

@@ -22,7 +22,7 @@ View All Requests
 		</thead>
 		<tbody>
 			<tr >
-				<td><a href="3">26</a></td>
+				<td>26</td>
 				<td>Jeremy</td>
 				<td>Bolshave Import Services</td>
 				<td>24/9/2013</td>
