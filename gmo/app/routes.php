@@ -69,7 +69,6 @@ Route::post('staff/requests/{id}/result', array(
 	'uses' => 'StaffRequestsController@createResult'
 ));
 
-//
 Route::get('/test/running_number', function() {
 	return 'NG' . RunningNumber::increment('default');
 });

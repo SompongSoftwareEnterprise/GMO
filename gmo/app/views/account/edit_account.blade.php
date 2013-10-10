@@ -6,7 +6,7 @@ Edit Account Information
 
 @section('content')
 
-{{ Form::model($entrepreneur, array('route' => 'EntrepreneurAccountController@saveAccount')) }}
+{{ Form::model($entrepreneur, array('action' => 'EntrepreneurAccountController@saveAccount')) }}
 
 <div class="form-horizontal">
 
