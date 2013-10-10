@@ -80,7 +80,7 @@ class LabController extends BaseController {
 		$items = array();
 		foreach ($labtasks as $labtask) {
 
-			$labproduct = LabTaskProduct::find($labtask->id);
+			$labproduct = LabTaskProduct::where('lab_task_id','=',$labtask->id)->first();
 			$item = array('taskid' => $labtask->reference_id,'taskname' => $labproduct->product_name,'duedate' => $labproduct->finish,'status' => $labtask->status);
 			array_push($items, $item);
 		}

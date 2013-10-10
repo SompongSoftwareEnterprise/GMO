@@ -14,25 +14,24 @@ View All Requests
 			<th>Entrepreneur</th>
 			<th>Current Process</th>
 		</tr>
+
+
+		@if(count($tableData) == 0)
+		</table>
+		<div class="row">
+			<div class="col-lg-12 text-center"><strong>No Data</strong></div>
+		</div>
+		@else
+		@foreach ($tableData as $request) 
 		<tr>
-			<td><a href="#">0012</a></td>
-			<td>Sprout</td>
-			<td>Sompong Enterprise</td>
-			<td>Nitrogen Test</td>
+			<td><a href="{{action('StaffRequestsController@show',array('id' =>$request['ID']))}}"</a>{{$request['ID']}}</td>
+			<td>{{$request['Plant Name']}}</td>
+			<td>{{$request['Entrepreneur']}}</td>
+			<td>{{$request['Current Process']}}</td>
 		</tr>
-		<tr>
-			<td><a href="#">0023</a></td>
-			<td>Mandragora</td>
-			<td>Monster Inc.</td>
-			<td>Acid Test</td>
-		</tr>
-		<tr>
-			<td><a href="#">0034</a></td>
-			<td>TTD</td>
-			<td>Natus Vincere</td>
-			<td>Creep Test</td>
-		</tr>
-	</table>
+		@endforeach
+		</table>
+		@endif
 </div>
 
 @endsection
