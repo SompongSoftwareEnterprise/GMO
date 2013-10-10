@@ -26,6 +26,15 @@ Registration
 							<th>Status</th>
 						</tr>
 					</thead>
+
+
+					@if(count($items[1]) == 0)
+					<table>
+					</table>
+					<div class="row">
+						<div class="col-lg-12 text-center"><strong>No Data</strong></div>
+					</div>
+					@else
 					<tbody>
 						@foreach ($items[0] as $labtask) 
 							<tr>
@@ -40,6 +49,7 @@ Registration
 							</tr>
 						@endforeach
 					</tbody>
+					@endif
 				</table>
 
 			</div>
@@ -56,6 +66,14 @@ Registration
 							<th>Status</th>
 						</tr>
 					</thead>
+
+					@if(count($items[1]) == 0)
+					<table>
+					</table>
+					<div class="row">
+						<div class="col-lg-12 text-center"><strong>No Data</strong></div>
+					</div>
+					@else
 					<tbody>
 						@foreach ($items[1] as $labtask) 
 							<tr>
@@ -66,6 +84,7 @@ Registration
 							</tr>
 						@endforeach
 					</tbody>
+					@endif
 				</table>
 
 			</div>
