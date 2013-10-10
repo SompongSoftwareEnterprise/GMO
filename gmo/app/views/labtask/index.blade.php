@@ -29,7 +29,7 @@ Registration
 					<tbody>
 						@foreach ($items[0] as $labtask) 
 							<tr>
-							<td><a href="#">{{$labtask['taskid']}}</a></td>
+							<td><a href="{{action('LabController@show',array('id' =>$labtask['taskid']))}}"</a>{{$labtask['taskid']}}</td>
 							<td>{{$labtask['taskname']}}</td>
 							<td>{{$labtask['duedate']}}</td>
 							@if ($labtask['status'] == 'Pending')

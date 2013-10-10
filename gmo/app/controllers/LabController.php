@@ -17,8 +17,10 @@ class LabController extends BaseController {
 
 	public function show($id) {
 		$labtask = LabTask::where('reference_id' , '=', $id)->first();
-		$labtaskProduct = LabTaskProduct::find($labtask->id);
-		$labtaskAssignment = LabTaskAssignment::find($labtask->id);
+		$labtaskProduct = LabTaskProduct::where('lab_task_id' , '=', $labtask->id)->first();
+		$labtaskAssignment = LabTaskAssignment::where('lab_task' , '=', $labtask->id)->get();
+
+		return View::make('labtask/labtask')->with('labtask',$labtask)->with('labtaskProduct',$labtaskProduct)->with('labtaskAssignment',$labtaskAssignment);
 	}
 
 

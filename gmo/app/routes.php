@@ -27,7 +27,7 @@ Route::post('/entrepreneur/save_account', 'EntrepreneurAccountController@saveAcc
 
 Route::get('/lab/labtasks', 'LabTaskController@index');
 Route::get('/lab', 'LabController@index');
-Route::get('/lab/task/:id', 'LabController@show');
+Route::get('/lab/task/{id}', 'LabController@show');
 Route::get('/lab/labtasks', 'LabController@index');
 
 // entrepreneur request
