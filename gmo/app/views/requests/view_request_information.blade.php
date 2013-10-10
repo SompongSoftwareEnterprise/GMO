@@ -18,12 +18,12 @@ View Request Information
 			</tr>
 		</thead>
 		<tbody>
-			<tr >
-				<td><a href="3">26</a></td>
-				<td>Jeremy</td>
-				<td>Bolshave Import Services</td>
-				<td>24/9/2013</td>
-				<td class="text-danger">Document Needed</td>
+			<tr>
+				<td><a href="#">{{ $certReq->id }}</a></td>
+				<td>{{ $entrepreneur->first_name }}</td>
+				<td>{{ $certReq->owner_id }}</td>
+				<td>{{ $certReq->created_at }}</td>
+				<td class="">{{ $certReq->status }}</td>
 			</tr>
 		</tbody>
 	</table>

@@ -41,7 +41,16 @@ Create Certificate Request Form
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
+			<?php foreach($certReqs as $certReq) { ?>
+				<tr>
+					<td><a href="/entrepreneur/requests/{{ $certReq->id }}">{{ $certReq->id }}</a></td>
+					<td>{{ $entrepreneur->first_name }}</td>
+					<td>{{ $certReq->signer_id }}</td>
+					<td>{{ $certReq->created_at }}</td>
+					<td>{{ $certReq->status }}</td>
+				</tr>
+			<?php } ?>
+			<!--<tr>
 				<td><a href="#">16</a></td>
 				<td>Jeremy</td>
 				<td>Bolshave Import Services</td>
@@ -68,7 +77,7 @@ Create Certificate Request Form
 				<td>Bolshave Import Services</td>
 				<td>24/9/2013</td>
 				<td class="text-danger">Document Needed</td>
-			</tr>
+			</tr>-->
 		</tbody>
 	</table>
 

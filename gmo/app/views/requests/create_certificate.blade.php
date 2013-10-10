@@ -107,13 +107,13 @@ Create Certificate Request Form
 
 						<div class="form-group">
 							<div class="col-sm-offset-3 col-xs-4">
-								<input type="text" class="form-control" placeholder="Town/City">
+								<input type="text" class="form-control" name="manufactory_city" placeholder="Town/City">
 							</div>
 							<div class="col-xs-4 ">
 								<select class="form-control" name="manufactory_province">
 									<option>State/Province</option>
-									<option>Negative Control</option>
-									<option>Condition Reaction</option>
+									<option>Bangkok</option>
+									<option>Pathumthani</option>
 								</select>
 							</div>
 						</div>
@@ -122,8 +122,8 @@ Create Certificate Request Form
 							<div class="col-sm-offset-3 col-xs-4">
 								<select class="form-control" name="manufactory_country">
 									<option>Country</option>
-									<option>Negative Control</option>
-									<option>Condition Reaction</option>
+									<option>Thailand</option>
+									<option>Laos</option>
 								</select>
 							</div>
 							<div class="col-xs-4 ">
@@ -167,8 +167,8 @@ Create Certificate Request Form
 							<div class="col-xs-4 ">
 								<select class="form-control" name="warehouse_province">
 									<option>State/Province</option>
-									<option>Negative Control</option>
-									<option>Condition Reaction</option>
+									<option>Bangkok</option>
+									<option>Pathumthani</option>
 								</select>
 							</div>
 						</div>
@@ -177,8 +177,8 @@ Create Certificate Request Form
 							<div class="col-sm-offset-3 col-xs-4">
 								<select class="form-control" name="warehouse_country">
 									<option>Country</option>
-									<option>Negative Control</option>
-									<option>Condition Reaction</option>
+									<option>Thailand</option>
+									<option>Laos</option>
 								</select>
 							</div>
 							<div class="col-xs-4 ">
@@ -272,8 +272,8 @@ Create Certificate Request Form
 							<div class="col-xs-4 ">
 								<select class="form-control" name="receiver_province">
 									<option>State/Province</option>
-									<option>Negative Control</option>
-									<option>Condition Reaction</option>
+									<option>Bangkok</option>
+									<option>Pathumthani</option>
 								</select>
 							</div>
 						</div>
@@ -282,8 +282,8 @@ Create Certificate Request Form
 							<div class="col-sm-offset-3 col-xs-4">
 								<select class="form-control" name="receiver_country">
 									<option>Country</option>
-									<option>Negative Control</option>
-									<option>Condition Reaction</option>
+									<option>Thailand</option>
+									<option>Laos</option>
 								</select>
 							</div>
 							<div class="col-xs-4 ">
@@ -457,8 +457,8 @@ Create Certificate Request Form
 							<div class=" col-xs-4">
 								<select class="form-control" name="province">
 									<option>State/Province</option>
-									<option>Negative Control</option>
-									<option>Condition Reaction</option>
+									<option>Bangkok</option>
+									<option>Pathumthani</option>
 								</select>
 							</div>
 						</div>
@@ -466,8 +466,8 @@ Create Certificate Request Form
 							<div class="col-sm-offset-3 col-xs-4">
 								<select class="form-control" name="country">
 									<option>Country</option>
-									<option>Negative Control</option>
-									<option>Condition Reaction</option>
+									<option>Thailand</option>
+									<option>Laos</option>
 								</select>
 							</div>
 							<div class=" col-xs-4">
