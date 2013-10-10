@@ -24,7 +24,7 @@ Create Certificate Request Form
 				</button>
 			</div>
 		</div>
-		{{ Form::open(array('action' => array('EntrepreneurRequestsController@create', 1), 'class' => 'form-horizontal')) }}
+		{{ Form::open(array('action' => array('EntrepreneurRequestsController@create'), 'class' => 'form-horizontal')) }}
 		<div id="form_1" class="col-xs-10">
 			<div class="panel panel-default">
 				<div class="panel-body text-left">
@@ -201,28 +201,28 @@ Create Certificate Request Form
 								Purpose of Requesting a Certificate
 							</label>
 							<div class="col-xs-3">
-								<input type="checkbox">&nbsp;&nbsp;Export
+								<input type="checkbox" name="purpose[]" value="Export">&nbsp;&nbsp;Export
 							</div>
 							<div class="col-xs-3">
-								<input type="checkbox">&nbsp;&nbsp;Import
+								<input type="checkbox" name="purpose[]" value="Import">&nbsp;&nbsp;Import
 							</div>
 							<div class="col-xs-3">
-								<input type="checkbox">&nbsp;&nbsp;Research
+								<input type="checkbox" name="purpose[]" value="Research">&nbsp;&nbsp;Research
 							</div>
 							<div class="col-xs-3">
-								<input type="checkbox">&nbsp;&nbsp;Industry
+								<input type="checkbox" name="purpose[]" value="Industry">&nbsp;&nbsp;Industry
 							</div>
 							<div class="col-xs-3">
-								<input type="checkbox">&nbsp;&nbsp;Comsumption
+								<input type="checkbox" name="purpose[]" value="Comsumption">&nbsp;&nbsp;Comsumption
 							</div>
 						</div>
 
 						<div class="form-group">
 							<div class="col-sm-offset-3 col-xs-2">
-								<input type="checkbox">&nbsp;&nbsp;Other
+								<input type="checkbox" name="other_checkbox" value="Other">&nbsp;&nbsp;Other
 							</div>
 							<div class="col-xs-6 ">
-								<input type="text" class="form-control" placeholder="Fax">
+								<input type="text" class="form-control" name="other">
 							</div>
 						</div>
 
@@ -355,21 +355,20 @@ Create Certificate Request Form
 							})
 						</script>
 
-						<hr>
-						<div class="form-group">
+						<!--<hr>-->
+						<!--<div class="form-group">
 							<div class="col-sm-offset-7 col-sm-5">
 								<button type="button" class="btn btn-default">Back</button>
 								<button type="reset" class="btn btn-danger">Reset</button>
 								<button type="submit" class="btn btn-primary">Submit</button>
 							</div>
 						</div>
+						-_>
 					<!--</form>-->
 				</div>
 			</div>
 		</div>
-		{{ Form::close() }}
 
-		{{ Form::open(array('action' => array('EntrepreneurRequestsController@create', 2), 'class' => 'form-horizontal')) }}
 		<div id="form_2" class="col-sm-offset-2 col-xs-10">
 			<div class="panel panel-default">
 				<div class="panel-body text-left">
@@ -426,7 +425,7 @@ Create Certificate Request Form
 								Common Name
 							</label>
 							<div class="col-xs-8">
-								<input type="text" class="form-control" id="commonName" name="common_name" placeholder="Name (ex. Sompong Thepsoftware)">
+								<input type="text" class="form-control" id="commonName" name="common_name" placeholder="Plant Name (ex. Onion)">
 							</div>
 						</div>
 						<div class="form-group">
@@ -513,13 +512,14 @@ Create Certificate Request Form
 									<button type="submit" class="btn btn-primary">Submit</button>
 								</div>
 							</div>
-						</form>
+						<!-- </form> -->
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+		{{ Form::close() }}
 	</div>
-
 </div>
 
 <style type="text/css">

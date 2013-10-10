@@ -37,7 +37,7 @@ Route::get('/entrepreneur/requests/{id}', array(
 	'as' => 'entrepreneur.requests.show',
 	'uses' => 'EntrepreneurRequestsController@show'
 ));
-Route::post('/entrepreneur/requets/{form_id}', array(
+Route::post('/entrepreneur/requests', array(
 	'as' => 'entrepreneur.requests.create',
 	'uses' => 'EntrepreneurRequestsController@create'
 ));
@@ -60,11 +60,11 @@ Route::post('staff/requests/{id}/labtask', array(
 	'as' => 'staff.labtask.create',
 	'uses' => 'StaffRequestsController@createLabTask'
 ));
-Route::get('staff/requests/{id}/result/new', array(
+Route::get('staff/requests/{id}/{type}/result/new', array(
 	'as' => 'staff.labtask.new.result',
 	'uses' => 'StaffRequestsController@newResult'
 ));
-Route::post('staff/requests/{id}/result', array(
+Route::post('staff/requests/{id}/{type}/result', array(
 	'as' => 'staff.labtask.create.result',
 	'uses' => 'StaffRequestsController@createResult'
 ));

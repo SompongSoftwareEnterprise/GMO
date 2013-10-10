@@ -87,6 +87,7 @@ View All Requests
 			<button type="button" class="btn btn-default">Create Receipt</button>
 			<button type="button" class="btn btn-disabled">Create Lab Task</button>
 			<button type="button" class="btn btn-disabled">Create Analysis of Report</button>
+
 			<button type="button" class="btn btn-disabled">Create Certificate</button>
 
 		</div>

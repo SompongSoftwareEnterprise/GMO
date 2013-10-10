@@ -25,11 +25,19 @@ class StaffRequestsController extends BaseController {
 
 	}
 
-	public function newResult($id) {
+	public function newResult($id, $type) {
 
-	}
+		$certificiateRequestInfoForm = CertificateRequestInfoForm::whereRaw('export_certificate_request_id=' . $id)->get();	
 
-	public function createResult($id) {
+		// analysis
+		if ($type == 'analysis') {
+			return View::make('staff_requests/create_analysis')
+				->with('certReqInfoForm', $certificiateRequestInfoForm);	
+		}
+		// certificate
+		else if ($type == 'certificate') {
+			return View::make('staff_requests/create_certificate');
+		}	
 
 	}
 
@@ -72,5 +80,7 @@ class StaffRequestsController extends BaseController {
 
 		return $items;
 	}
-
-}
+	
+	public function createResult($id, $type) {
+			
+	}
