@@ -59,7 +59,7 @@ Registration
 					<tbody>
 						@foreach ($items[1] as $labtask) 
 							<tr>
-							<td><a href="#">{{$labtask['taskid']}}</a></td>
+							<td><a href="{{action('LabController@show',array('id' =>$labtask['taskid']))}}">{{$labtask['taskid']}}</a></td>
 							<td>{{$labtask['taskname']}}</td>
 							<td>{{$labtask['duedate']}}</td>
 							<td class="text-warning">{{$labtask['status']}}</td>

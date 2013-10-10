@@ -18,9 +18,9 @@ class LabController extends BaseController {
 	public function show($id) {
 		$labtask = LabTask::where('reference_id' , '=', $id)->first();
 		$labtaskProduct = LabTaskProduct::where('lab_task_id' , '=', $labtask->id)->first();
-		$labtaskAssignment = LabTaskAssignment::where('lab_task' , '=', $labtask->id)->get();
+		$labtaskAssignment = LabTaskAssignment::where('lab_task_id' , '=', $labtask->id)->get();
 
-		return View::make('labtask/labtask')->with('labtask',$labtask)->with('labtaskProduct',$labtaskProduct)->with('labtaskAssignment',$labtaskAssignment);
+		return View::make('labtask/labtask')->with('labtask',$labtask)->with('labtaskProduct',$labtaskProduct)->with('labtaskAssignment',$labtaskAssignment)->with('statuslist',$this->getTaskStatus($labtask['status']));
 	}
 
 
@@ -49,6 +49,21 @@ class LabController extends BaseController {
 
 
 		return View::make('labtask/index')->with('items',array($items_not_finish,$items_waiting_for_approval));
+	}
+
+	private function getTaskStatus($status) {
+		$statusList = array('Pending', 'DNA Extraction','Volume & Concentration Measurement', 'Endrogenous Gene Analysis', 'Gene Analysis','Waiting For Approval');
+		$statusResult = array('Pending' => '',  'DNA Extraction' => '','Volume & Concentration Measurement' => '', 'Endrogenous Gene Analysis' => '', 'Gene Analysis' => '', 'Waiting For Approval' => '');
+		$index = array_search($status, $statusList);
+		$statusResult[$statusList[$index]] = 'Pending';
+		for ($i=$index+1; $i < sizeof($statusList); $i++) { 
+			$statusResult[$statusList[$i]] = 'Waiting for above sequence';
+		}
+
+		for ($i=$index-1; $i >= 0; $i--) { 
+			$statusResult[$statusList[$i]] = 'Completed';
+		}
+		return $statusResult;
 	}
 
 	private function sortByDueDate($labtasks) {
