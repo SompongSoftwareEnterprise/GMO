@@ -18,7 +18,6 @@ class StaffRequestsController extends BaseController {
 		return View::make('staff_requests/create_lab_task');
 	}
 
-<<<<<<< Updated upstream
 	public function createLabTask($id) {
 
 	}
