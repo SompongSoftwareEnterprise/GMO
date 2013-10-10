@@ -5,7 +5,6 @@ View All Requests
 @endsection
 
 @section('content')
-
 <div class="panel-body">
 
 
@@ -22,11 +21,20 @@ View All Requests
 		</thead>
 		<tbody>
 			<tr >
-				<td>26</td>
-				<td>Jeremy</td>
-				<td>Bolshave Import Services</td>
-				<td>24/9/2013</td>
+				<td>{{$data['Request ID']}}</td>
+				<td>{{$data['Importer Name']}}</td>
+				<td>{{$data['Requester']}}</td>
+				<td>{{$data['Sent Date']}}</td>
+				@if($data['Status'] == 'Pending')
+				<td class="text-warning">Pending</td>
+				@elseif($data['Status'] == 'Document Needed')
 				<td class="text-danger">Document Needed</td>
+				@elseif($data['Status'] == 'Failed')
+				<td class="text-danger">Failed</td>
+				@else
+				<td class="text-success">Passed</td>
+				@endif
+				<td></td>
 			</tr>
 		</tbody>
 	</table>
@@ -48,16 +56,28 @@ View All Requests
 						<td class="text-success">Available</td>
 					</tr>
 					<tr>
-						<td>สทช. 1-1/2(<a href="#">Update</a>) </td>
-						<td class="text-danger">Document Needed</td>
+						<td>สทช. 1-1/2(<a href="#">Download</a>) </td>
+						<td class="text-success">Available</td>
 					</tr>
-					<tr>
+					<tr>						
+						@if($data['Invoice'] == 'Pending')
 						<td>Invoice</td>
 						<td class="text-warning">Pending</td>
+						@else
+						<td>Invoice(<a href="#">Download</a>)</td>
+						<td class="text-success">Available</td>
+						@endif
 					</tr>
 					<tr>
+
+						@if($data['Receipt'] == 'Pending')
 						<td>Receipt</td>
 						<td class="text-warning">Pending</td>
+						@else
+						<td>Receipt(<a href="#">Download</a>)</td>
+						<td class="text-success">Available</td>
+						@endif
+
 					</tr>
 
 				</tbody>

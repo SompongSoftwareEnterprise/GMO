@@ -48,7 +48,7 @@ class StaffRequestsController extends BaseController {
 		$data['Status'] = $request['status'];
 		$data['Invoice'] = 'Available';
 
-		$receipt = Receipt::where('export_certificate_request_id','=',$request->id).get();
+		$receipt = Receipt::where('export_certificate_request_id','=',$request->id)->get();
 		if(count($receipt) > 0) {
 			$data['Receipt'] = 'Available';			
 		}
