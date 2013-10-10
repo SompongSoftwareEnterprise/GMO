@@ -113,7 +113,7 @@ class EntrepreneurRequestsController extends BaseController {
 
 		$certReqForm->save();
 
-		return Redirect::('EntrepreneurRequestsController@index');
+		return Redirect::action('EntrepreneurRequestsController@index');
 	}
 
 	public function show($id) {
