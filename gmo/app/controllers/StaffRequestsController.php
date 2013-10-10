@@ -27,16 +27,24 @@ class StaffRequestsController extends BaseController {
 
 	public function newResult($id, $type) {
 
-		$certificiateRequestInfoForm = CertificateRequestInfoForm::whereRaw('export_certificate_request_id=' . $id)->get();	
+		print_r($id);
+
+		$certificateRequestInfoForm = CertificateRequestInfoForm::where('export_certificate_request_id', '=', $id)->first();	
+		$certificateRequestForm = CertificateRequestForm::where('export_certificate_request_id', '=', $id)->first();
 
 		// analysis
 		if ($type == 'analysis') {
 			return View::make('staff_requests/create_analysis')
-				->with('certReqInfoForm', $certificiateRequestInfoForm);	
+				->with(array('certReqInfoForm' => $certificateRequestInfoForm,
+							 'certReqForm' => $certificateRequestForm
+				));	
 		}
 		// certificate
 		else if ($type == 'certificate') {
-			return View::make('staff_requests/create_certificate');
+			return View::make('staff_requests/create_certificate')
+				->with(array('certReqInfoForm' => $certificateRequestInfoForm,
+							 'certReqForm' => $certificateRequestForm
+				));	
 		}	
 
 	}
@@ -82,5 +90,29 @@ class StaffRequestsController extends BaseController {
 	}
 	
 	public function createResult($id, $type) {
-			
+
+		$exportCertificate = new ExportCertificate;
+		$exportCertificate->reference_id =  'NG' . RunningNumber::increment('default');
+		$exportCertificate->export_certificate_request_id = $id;
+		$exportCertificate->sample_name = Input::get('sample_name');
+		$exportCertificate->conclusion = Input::get('conclusion');
+		if ($type == 'analysis') {
+			$exportCertificate->is_certificate = 0;
+		}
+		else {
+			$exportCertificate->is_certificate = 1;
+		}
+
+		$exportCertificate->save();
+
+		$certificateRequest = CertificateRequest::where('id', '=', $id)->first();
+		$certificateRequest->status = 'Available';
+
+		$certificateRequest->update();
+
+		return Redirect::action('StaffRequestsController@index');
 	}
+
+}
+
+?>

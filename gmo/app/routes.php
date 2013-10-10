@@ -61,11 +61,11 @@ Route::post('staff/requests/{id}/labtask', array(
 	'uses' => 'StaffRequestsController@createLabTask'
 ));
 Route::get('staff/requests/{id}/{type}/result/new', array(
-	'as' => 'staff.labtask.new.result',
+	'as' => 'staff.result.new',
 	'uses' => 'StaffRequestsController@newResult'
 ));
 Route::post('staff/requests/{id}/{type}/result', array(
-	'as' => 'staff.labtask.create.result',
+	'as' => 'staff.result.create',
 	'uses' => 'StaffRequestsController@createResult'
 ));
 

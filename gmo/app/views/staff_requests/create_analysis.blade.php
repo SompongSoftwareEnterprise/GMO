@@ -16,35 +16,36 @@ Create Analysis Report
 
 	<div class="row">
 		<div class="col-xs-3 text-right"><strong>Sample Name</strong></div>
-		<div class="col-xs-9">Baby corn cut</div>
+		<div class="col-xs-9">{{ $certReqInfoForm['common_name'] }}</div>
 	</div>
 
 	<div class="row">
 		<div class="col-xs-3 text-right"><strong>Manufacturer or Shipper</strong></div>
-		<div class="col-xs-9">AGRO-ON(THAILAND) CO.,LTD</div>
+		<div class="col-xs-9">{{ $certReqForm['manufactory_name'] }}</div>
 	</div>
 
 	<div class="row">
 		<div class="col-xs-3 text-right"><strong>Address</strong></div>
 		<div class="col-xs-9"> <address>
-			795 Folsom Ave, Suite 600<br>
-			San Francisco, CA 94107<br>
-			<abbr title="Phone">P:</abbr> (123) 456-7890
+			{{ $certReqForm['manufactory_address1'] }}<br>
+			{{ $certReqForm['manufactory_address2'] }}<br>
+			{{ $certReqForm['manufactory_city'] }}, {{ $certReqForm['manufactory_province'] }}, {{ $certReqForm['manufactory_country'] }}, {{ $certReqForm['manufactory_zip'] }}<br>
+			<abbr title="Phone">Phone :</abbr>{{ $certReqForm['manufactory_phone'] }}
 		</address></div>
 	</div>
 	<br>
 
 	<div class="row">
 		<div class="col-xs-3 text-right"><strong>Vendor or Consignee</strong></div>
-		<div class="col-xs-9">AGRO-ON(THAILAND) CO.,LTD</div>
+		<div class="col-xs-9">{{ $certReqInfoForm['vendor_or_consignee'] }}</div>
 	</div>
 
 	<div class="row">
 		<div class="col-xs-3 text-right"><strong>Address</strong></div>
 		<div class="col-xs-9"> <address>
-			795 Folsom Ave, Suite 600<br>
-			San Francisco, CA 94107<br>
-			<abbr title="Phone">P:</abbr> (123) 456-7890
+			{{ $certReqInfoForm['address1'] }}<br>
+			{{ $certReqInfoForm['address2'] }}<br>
+			{{ $certReqInfoForm['city'] }}, {{ $certReqInfoForm['province'] }}, {{ $certReqInfoForm['country'] }}, {{ $certReqInfoForm['zip'] }}<br>
 		</address></div>
 	</div>
 
@@ -54,7 +55,7 @@ Create Analysis Report
 	<div class="row">
 		<div class="col-xs-3 text-right"><strong>Description of Product</strong></div>
 		<div class="col-xs-9">
-			BABY CORN CUT 6/108 OZ.  CANNED BABY CORN IN BRINE  ORIGIN: THALAND BABY CORN CUT 6/108 OZ.  CANNED BABY CORN IN BRINE  ORIGIN: THALAND BABY CORN CUT 6/108 OZ.  CANNED BABY CORN IN BRINE  ORIGIN: THALAND
+			{{ $certReqInfoForm['description_of_product'] }}
 		</div>
 	</div>
 
@@ -64,19 +65,19 @@ Create Analysis Report
 
 	<div class="row">
 		<div class="col-xs-3 text-right"><strong>Country of Origin</strong></div>
-		<div class="col-xs-9">THALAND</div>
+		<div class="col-xs-9">{{ $certReqForm['origin_of_plant'] }}</div>
 	</div>
 
 
 	<div class="row">
 		<div class="col-xs-3 text-right"><strong>Final Destination</strong></div>
-		<div class="col-xs-9">THALAND</div>
+		<div class="col-xs-9">{{ $certReqInfoForm['final_destination'] }}</div>
 	</div>
 
 
 	<div class="row">
 		<div class="col-xs-3 text-right"><strong>Port of Entry or Embarkation</strong></div>
-		<div class="col-xs-9">THALAND</div>
+		<div class="col-xs-9">{{ $certReqInfoForm['port_of_entry'] }}</div>
 	</div>
 
 	<hr>
@@ -88,6 +89,7 @@ Create Analysis Report
 
 	<br>
 
+	{{ Form::open(array('action' => array('StaffRequestsController@createResult', $certReqInfoForm['export_certificate_request_id'], 'analysis'), 'class' => 'form-horizontal')) }}
 	<form class="form-horizontal" role="form">
 		<div class="row">
 
@@ -172,8 +174,8 @@ Create Analysis Report
 <div class="form-group row">
 	<div class="col-xs-12 text-right">
 		<button type="button" class="btn btn-default">Back</button>
-		<button type="button" class="btn btn-danger">Reset</button>
-		<button type="button" class="btn btn-primary">Create Analysis</button>
+		<button type="reset" class="btn btn-danger">Reset</button>
+		<button type="submit" class="btn btn-primary">Create Analysis</button>
 	</div>
 </div>
 </form>

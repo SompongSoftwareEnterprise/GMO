@@ -4,7 +4,7 @@ class EntrepreneurRequestsController extends BaseController {
 
 	public function index() {
 		$entrepreneur = Entrepreneur::all()->first();
-		$certReqs = CertificateRequest::whereRaw('owner_id='.$entrepreneur->id)->get();
+		$certReqs = CertificateRequest::where('owner_id', '=', $entrepreneur->id)->first();
 		return View::make('requests/index')
 			->with(array('entrepreneur' => $entrepreneur,
 				'certReqs' => $certReqs
@@ -26,6 +26,11 @@ class EntrepreneurRequestsController extends BaseController {
 		$certReq = new CertificateRequest;
 		$certReq->status = 'Pending'; 
 		$certReq->reference_id = RunningNumber::increment('default');
+		/*if ($entrepreneur->is_agency == 1) {
+		}
+		else {
+
+		}*/
 		$certReq->owner_id = $entrepreneur->id;
 		$certReq->signer_id = $entrepreneur->id;
 		$certReq->save();
@@ -108,7 +113,7 @@ class EntrepreneurRequestsController extends BaseController {
 
 		$certReqForm->save();
 
-		return $this->index();	
+		return Redirect::('EntrepreneurRequestsController@index');
 	}
 
 	public function show($id) {
