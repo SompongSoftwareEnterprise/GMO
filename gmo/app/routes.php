@@ -72,3 +72,14 @@ Route::post('staff/requests/{id}/result', array(
 Route::get('/test/running_number', function() {
 	return 'NG' . RunningNumber::increment('default');
 });
+
+/*
+Route::get('/entrepreneur/account/agencies','EntrepreneurAgenciesController@agencies');
+Route::post('/entrepreneur/account/agencies','EntrepreneurAgenciesController@createAgencies');
+Route::post('/entrepreneur/account/agencies/{id}/delete','EntrepreneurAgenciesController@deleteAgencies');
+*/
+
+Route::get('/entrepreneur/account/{entrepreneurID}/{agencyID}','EntrepreneurAgenciesController@deleteAgencies');
+Route::get('/entrepreneur/account/{entrepreneurID}','EntrepreneurAgenciesController@createAgencies');
+
+Route::post('/entrepreneur/account/delete','EntrepreneurAgenciesController@delete');

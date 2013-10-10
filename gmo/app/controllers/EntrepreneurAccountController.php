@@ -16,16 +16,31 @@ class EntrepreneurAccountController extends BaseController {
 	*/
 
 	public function getCurrentEntrepreneur() {
-		return Entrepreneur::all()->first();
+//		return Entrepreneur::all()->first();
+                return  Entrepreneur::where('user_id','=','1001')->first();
 	}
 
 	public function __construct() {
 		$this->entrepreneur = $this->getCurrentEntrepreneur();
 	}
 
+
 	public function index() {
+
+		$id = 1001;
+                $agencyIDs = CustomerAgency::where('customer_id','=',$id)->get();
+
+                $agencies = array();
+
+                foreach($agencyIDs as $agencyID){
+                    $agency = Entrepreneur::where('user_id','=',$agencyID->agency_id)->first();
+//                    $tmp = array('agencyID' => $agency->user_id,'first_name' => $agency->first_name,'last_name' => $agency->last_name);
+                    array_push($agencies,$agency);
+                }
+
 		return View::make('account/index')
-			->with('entrepreneur', $this->entrepreneur);
+			->with('entrepreneur', $this->entrepreneur)
+                        ->with('agencies',$agencies);
 	}
 
 	public function editAccount(){
@@ -84,6 +99,4 @@ class EntrepreneurAccountController extends BaseController {
 		// return View::make('account/edit_account')
 		// 	->with('entrepreneur', $entrepreneur);
 	}
-
-	
 }
