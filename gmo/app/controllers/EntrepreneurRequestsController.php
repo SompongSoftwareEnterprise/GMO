@@ -4,7 +4,7 @@ class EntrepreneurRequestsController extends BaseController {
 
 	public function index() {
 		$entrepreneur = Entrepreneur::all()->first();
-		$certReqs = CertificateRequest::where('owner_id', '=', $entrepreneur->id)->first();
+		$certReqs = CertificateRequest::where('owner_id', '=', $entrepreneur->id)->get();
 		return View::make('requests/index')
 			->with(array('entrepreneur' => $entrepreneur,
 				'certReqs' => $certReqs
