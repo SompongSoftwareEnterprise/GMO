@@ -6,118 +6,15 @@ View All Requests
 
 @section('content')
 
+{{Form::open(array('action' => array('StaffRequestsController@createLabTask', $id), 'class' => 'form-horizontal'))}}
+
 <div class="panel-body ">
-	<div class="row">
-		<div class="col-xs-12">
-			<div class="bs-example bs-example-tabs">  
-
-				<div id="myTabContent" class="tab-content">
-						<div class="form-group">
-							<label for="productDetail" class="col-xs-3 control-label">Detail</label>
-							<div class="col-xs-4">
-								<input type="detailOfProduct" class="form-control" id="productDetail" name="product_detail" placeholder="ex. Product Detail">
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label for="methodOfExtractinfDNA" class="col-xs-3 control-label">Medthod Of Extracting DNA</label>
-							<div class="col-xs-4">
-								<input type="methodOfExtractingDNA" class="form-control" id="methodOfExtractinfDNA" name="method_of_extractinf_DNA" placeholder="ex. Boiling method">
-							</div>
-						</div>
 
 
-
-						<div class="form-group">
-							<label for="detailOfAnalysis" class="col-xs-3 control-label">Method Of Seperating Gene</label>
-							<div class="col-xs-8">
-								<div class="checkbox">
-									<label><input type="checkbox" id="PRC" name="PRC">PRC</label>
-								</div>
-								<div class="checkbox">
-									<label><input type="checkbox" id="realTime" name="real_time">Real-time</label>
-								</div>
-							</div>
-						</div>
-						<hr>
-
-
-						<div class="row">
-							<div class="col-sm-offset-1 col-xs-4">
-								<h3>Gene Analysis</h3>
-							</div>
-						</div>
-						<br>
-
-						<div class="form-group">
-							<label for="endogenous" class="col-xs-3 control-label">Endogenous</label>
-							<div class="col-xs-4">
-								<input type="endogenous" class="form-control" id="endogenous" name="endogenous" placeholder="">
-							</div>
-						</div>
-
-
-						<div class="form-group">
-
-							<div class="row">
-								<label class="col-xs-3 control-label">
-									Transgene
-								</label>
-								<div class="col-xs-3">
-									<input type="checkbox" id="CaMV35sPromoter" name="camv_35s_promoter">   CaMV 35S Promoter
-								</div>
-
-								<div class="col-xs-3">
-									<input type="checkbox" id="roundUpReady" name="roundup_ready">   Roundup Ready
-								</div>
-								<div class="col-xs-3">
-									<input type="checkbox" id="nk603" name="nk_603">   NK 603
-								</div>
-
-							</div>
-
-							<div class="row">
-								<div class="col-sm-offset-3 col-xs-3">
-									<input type="checkbox" id="mon810" name="Mon_810">   Mon 810
-								</div>
-
-								<div class="col-xs-3">
-									<input type="checkbox" id="bt176" name="bt_176">   Bt176
-								</div>
-
-								<div class="col-xs-3">
-									<input type="checkbox" id="nosTerminal" name="nos_terminal">   NOS Terminal
-								</div>
-							</div>
-
-						</div>
-
-					</div>
-				</div>
-				<br>
-				<div class="form-group">
-					<div class="col-sm-offset-8 col-sm-4">
-						<button type="button" class="btn btn-default">Back</button>
-						<button type="button" class="btn btn-danger">Reset</button>
-						<button type="button" class="btn btn-primary">Submit</button>
-					</div>
-				</div>
-
-
-
-			</form>
-
-
-
-
-		</div>
-	</div>
-=======
     <div class="row">
         <div class="col-xs-12">
             <div class="bs-example bs-example-tabs">  
 
-            {{Form::open(array('action' => 'StaffRequestsController@createLabTask'))}}
                 <div id="myTabContent" class="tab-content">
 
                     <!--  -->
@@ -128,7 +25,7 @@ View All Requests
                         </div>
                         <br>
 
-                        <form class="form-horizontal" role="form">
+                        <!-- <form class="form-horizontal" role="form"> -->
                             <div class="form-group">
                                 <label for="productCode" class="col-xs-3 control-label">Product Code</label>
                                 <div class="col-xs-4">
@@ -163,7 +60,7 @@ View All Requests
                                     </div>
                                 </div>
                             </div>
-                        </form>
+                        <!-- </form> -->
                         <hr>
 
 
@@ -174,7 +71,7 @@ View All Requests
                         </div>
                         <br>
 
-                        <form class="form-horizontal" role="form">
+                        <!-- <form class="form-horizontal" role="form"> -->
                             <div class="form-group">
                                 <label for="endogenous" class="col-xs-3 control-label">Endogenous</label>
                                 <div class="col-xs-4">
@@ -216,7 +113,7 @@ View All Requests
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    <!-- </form> -->
                     <hr>
                     <!--  -->
 
@@ -227,7 +124,7 @@ View All Requests
                     </div>
 
                     <br>
-                    <form class="form-horizontal" role="form">
+                    <!-- <form class="form-horizontal" role="form"> -->
 
                         <!-- List1 -->
                         <div class="project-detail">
@@ -444,11 +341,11 @@ View All Requests
                 <div class="form-group">
                     <div class="col-sm-offset-8 col-sm-4">
                         <button type="button" class="btn btn-default">Back</button>
-                        <button type="button" class="btn btn-danger">Reset</button>
-                        <button type="button" class="btn btn-primary">Submit</button>
+                        <button type="reset" class="btn btn-danger">Reset</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
                 </div>
-            </form>
+            <!-- </form> -->
 
 
 
@@ -456,5 +353,6 @@ View All Requests
         </div>
     </div>
 </div>
+{{Form::close()}}
 
 @endsection

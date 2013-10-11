@@ -24,7 +24,8 @@ class StaffRequestsController extends BaseController {
 	}
 
 	public function newLabTask($id) {
-		return View::make('staff_requests/create_lab_task');
+		return View::make('staff_requests/create_lab_task')
+			->with('id', $id);
 	}
 
 	public function createLabTask($id) {
@@ -35,7 +36,39 @@ class StaffRequestsController extends BaseController {
 		$labTask->product_code = Input::get('product_code');
 		$labTask->detail = Input::get('product_detail');
 		$labTask->dna_extraction_method = Input::get('method_of_extractinf_DNA');
-		$labTask->
+		$labTask->gene_separation_method = 'PRC';
+		$labTask->gene_of_analysis = Input::get('endogenous');
+		$labTask->transgene = 'MON 810';
+		$labTask->save();
+
+		$product = new LabTaskProduct;
+		foreach (Input::all() as $k => $v) {
+			$prefix = 'product_codepj';
+			if (substr($k, 0, strlen($prefix)) == $prefix) {
+				$number = substr($k, strlen($prefix));
+				$product->lab_task_id = $id;
+				$product->product_code = Input::get('product_codepj' . $number);
+				$product->product_name = Input::get('product_namepj' . $number);
+				$product->measure = Input::get('measurepj' . $number);
+				$product->volume = Input::get('volumepj' . $number);
+				$product->start = Input::get('dateStartpj' . $number) . "-" . Input::get('monthStartpj' . $number) . "-" . Input::get('yearStartpj' . $number);
+				$product->finish = Input::get('dateFinishpj' . $number) . "-" . Input::get('monthFinishpj' . $number) . "-" . Input::get('yearFinishpj' . $number);
+			}
+		}
+		$product->save();
+
+		$responsible = new LabTaskAssignment;
+		foreach (Input::all() as $k => $v) {
+			$prefix = 'responsiblerp';
+			if (substr($k, 0, strlen($prefix)) == $prefix) {
+				$number = substr($k, strlen($prefix));
+				$responsible->lab_task_id = $id;
+				$responsible->assignee = Input::get('responsiblerp' . $number);
+			}
+		}
+		$responsible->save();
+		return View::make('/staff_requests/update_lab_task');
+
 	}
 
 	public function newResult($id, $type) {
