@@ -13,8 +13,14 @@ class StaffRequestsController extends BaseController {
 		return View::make('staff_requests/view_request_information')->with('data',$data);
 	}
 
-	public function createReceipt(){
-		return View::Make('staff_requests/create_receipt');
+	public function createReceipt($id){
+		$idForm = CertificateRequest::find($id);
+		$idForm = CertificateRequestInfoForm::where('export_certificate_request_id', '=', $idForm->id)->get();
+		print_r($idForm);
+		if(count($idForm)>0) $checkForm = true;
+		else $checkForm = false;
+		return View::Make('staff_requests/create_receipt')
+			->with('checkForm', $checkForm);
 	}
 
 	public function newLabTask($id) {
@@ -22,7 +28,14 @@ class StaffRequestsController extends BaseController {
 	}
 
 	public function createLabTask($id) {
-
+		$labTask = new labTask;
+		$labTask->reference_id = 'LT'.RunningNumber::increment('default');
+		$labTask->export_certificate_request_id = $id;
+		$labTask->status = 'Pending';
+		$labTask->product_code = Input::get('product_code');
+		$labTask->detail = Input::get('product_detail');
+		$labTask->dna_extraction_method = Input::get('method_of_extractinf_DNA');
+		$labTask->
 	}
 
 	public function newResult($id, $type) {

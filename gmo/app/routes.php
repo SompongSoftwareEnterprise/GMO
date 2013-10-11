@@ -48,7 +48,7 @@ Route::get('/staff/requests/{id}', array(
 	'as' => 'staff.requests.show',
 	'uses' => 'StaffRequestsController@show'
 ));
-Route::post('/staff/requests/{id}/receipt', array(
+Route::get('/staff/requests/{id}/receipt', array(
 	'as' => 'staff.requests.receipt',
 	'uses' => 'StaffRequestsController@createReceipt'
 ));
