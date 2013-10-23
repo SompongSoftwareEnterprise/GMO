@@ -11,6 +11,11 @@
 |
 */
 
+Route::get('/test/message', function() {
+	return Message::make('Something is wrong, eh?', 'HomeController@homePage', 'Go Home')
+		->with('back', true);
+});
+
 Route::get('/', 'HomeController@homePage');
 
 // register
