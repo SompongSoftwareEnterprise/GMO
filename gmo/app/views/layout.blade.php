@@ -14,17 +14,18 @@
 <img class="logo" src = "/assets/img/logo.png">
 
 <div class="container">
+
 <nav class="navbar navbar-default " role="navigation">
   <div class="navbar-header">
   </div>
 
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse navbar-ex1-collapse">
+
     <ul class="nav navbar-nav">
-      <li class="active"><a href="#">HOME</a></li>
-      <li><a href="#">REQUEST</a></li>
-      <li><a href="#">AGENCY</a></li>
-      
+      <li class="active"><a href="{{ action('HomeController@homePage') }}">HOME</a></li>
+      <li><a href="{{ action('EntrepreneurRequestsController@index') }}">REQUEST</a></li>
+      <li><a href="{{ action('EntrepreneurAccountController@index') }}">AGENCY</a></li>
     </ul>
 
     <ul class="nav navbar-nav navbar-right">
@@ -42,6 +43,7 @@
       </li>
     </ul>
   </div><!-- /.navbar-collapse -->
+
 </nav>
 </div>
 
