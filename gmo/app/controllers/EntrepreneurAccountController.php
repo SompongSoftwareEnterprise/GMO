@@ -16,8 +16,8 @@ class EntrepreneurAccountController extends BaseController {
 	*/
 
 	public function getCurrentEntrepreneur() {
-//		return Entrepreneur::all()->first();
-                return  Entrepreneur::where('user_id','=','1001')->first();
+		return Entrepreneur::all()->first();
+		//return Entrepreneur::where('user_id','=','1001')->first();
 	}
 
 	public function __construct() {
