@@ -17,8 +17,18 @@ class StaffRequestsController extends BaseController {
 		$idForm = CertificateRequest::find($id);
 		$idForm = CertificateRequestInfoForm::where('export_certificate_request_id', '=', $idForm->id)->get();
 		print_r($idForm);
-		if(count($idForm)>0) $checkForm = true;
-		else $checkForm = false;
+		if(count($idForm)>0){
+			$checkForm = true;
+		} 
+		else {
+			$checkForm = false;
+		}
+		$receipt = new Receipt;
+		$receipt->export_certificate_request_id = $id;
+		if($checkForm)
+			$receipt->price = 100+150;
+		else
+			$receipt->price = 100;
 		return View::Make('staff_requests/create_receipt')
 			->with('checkForm', $checkForm);
 	}
