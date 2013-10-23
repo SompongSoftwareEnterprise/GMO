@@ -1,6 +1,6 @@
 <?php
 
-class EntrepreneurRequestsController extends BaseController {
+class EntrepreneurRequestsController extends AbstractEntrepreneurController {
 
 	public function index() {
 		$certReqs = CertificateRequest::where('owner_id', '=', $this->entrepreneur->id)->get();

@@ -1,6 +1,6 @@
 <?php
 
-class EntrepreneurAgenciesController extends BaseController {
+class EntrepreneurAgenciesController extends AbstractEntrepreneurController {
 
 	/*
 	|--------------------------------------------------------------------------
