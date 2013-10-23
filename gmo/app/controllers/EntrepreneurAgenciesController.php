@@ -14,18 +14,9 @@ class EntrepreneurAgenciesController extends BaseController {
 	|
 	*/
 
-	public function getCurrentEntrepreneur() {
-		return Entrepreneur::all()->first();
-	}
-
-	public function __construct() {
-		$this->entrepreneur = $this->getCurrentEntrepreneur();
-	}
-
         public function agencies(){
           return View::make('account/revoke_agency');
         }
-
 
         public function deleteAgencies($entrepreneurID,$agencyID){
           $agency = Entrepreneur::where('user_id','=',$agencyID)->first();

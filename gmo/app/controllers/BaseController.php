@@ -15,4 +15,13 @@ class BaseController extends Controller {
 		}
 	}
 
+	public function getCurrentEntrepreneur() {
+		// TODO: Implement code for Login System
+		return Entrepreneur::all()->first();
+	}
+
+	public function __construct() {
+		$this->entrepreneur = $this->getCurrentEntrepreneur();
+	}
+    
 }

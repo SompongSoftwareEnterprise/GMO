@@ -15,16 +15,6 @@ class EntrepreneurAccountController extends BaseController {
 	|
 	*/
 
-	public function getCurrentEntrepreneur() {
-		return Entrepreneur::all()->first();
-		//return Entrepreneur::where('user_id','=','1001')->first();
-	}
-
-	public function __construct() {
-		$this->entrepreneur = $this->getCurrentEntrepreneur();
-	}
-
-
 	public function index() {
 
 		$id = 1001;
@@ -40,7 +30,7 @@ class EntrepreneurAccountController extends BaseController {
 
 		return View::make('account/index')
 			->with('entrepreneur', $this->entrepreneur)
-                        ->with('agencies',$agencies);
+			->with('agencies',$agencies);
 	}
 
 	public function editAccount(){

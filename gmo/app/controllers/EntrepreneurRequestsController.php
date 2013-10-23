@@ -3,25 +3,22 @@
 class EntrepreneurRequestsController extends BaseController {
 
 	public function index() {
-		$entrepreneur = Entrepreneur::all()->first();
-		$certReqs = CertificateRequest::where('owner_id', '=', $entrepreneur->id)->get();
+		$certReqs = CertificateRequest::where('owner_id', '=', $this->entrepreneur->id)->get();
 		return View::make('requests/index')
-			->with(array('entrepreneur' => $entrepreneur,
+			->with(array(
+				'entrepreneur' => $this->entrepreneur,
 				'certReqs' => $certReqs
 			));
 	}
 
 	public function newRequests() {
-
-		$entrepreneur = Entrepreneur::all()->first();
-
 		return View::make('requests/create_certificate')
-				   ->with('entrepreneur', $entrepreneur);
+				   ->with('entrepreneur', $this->entrepreneur);
 	}
 
 	public function create() {
 
-		$entrepreneur = Entrepreneur::all()->first();
+		$entrepreneur = $this->entrepreneur;
 
 		$certReq = new CertificateRequest;
 		$certReq->status = 'Pending'; 
@@ -117,13 +114,10 @@ class EntrepreneurRequestsController extends BaseController {
 	}
 
 	public function show($id) {
-
-		$entrepreneur = Entrepreneur::all()->first();
 		$certificateRequest = CertificateRequest::find($id);
 		return View::make('requests/view_request_information')
 			->with(array('certReq' => $certificateRequest,
-						 'entrepreneur' => $entrepreneur));
-
+						 'entrepreneur' => $this->entrepreneur));
 	}
 
 }
