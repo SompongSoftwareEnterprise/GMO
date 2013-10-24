@@ -10,7 +10,9 @@ class StaffRequestsController extends BaseController {
 
 	public function show($id) {
 		$data = $this->createRequestData($id);
-		return View::make('staff_requests/view_request_information')->with('data',$data);
+		return View::make('staff_requests/view_request_information')
+			->with('data', $data)
+			->with('id', $id);
 	}
 
 	public function createReceipt($id){
@@ -108,8 +110,9 @@ class StaffRequestsController extends BaseController {
 	private function createRequestData($id) {
 		$data = array('Request ID' => '', 'Importer Name' => '', 'Requester'=> '',
 			'Sent Date' => '', 'Status' => '', 'Invoice' => '', 'Receipt' => '');
-		$request = CertificateRequest::where('reference_id','=',$id)->first();
-		$data['Request ID'] = $request['reference_id'];
+		$request = CertificateRequest::find($id);
+		$data['ID'] = $request['id'];
+		$data['Reference ID'] = $request['reference_id'];
 
 		$importer = Entrepreneur::find($request['owner_id']);
 		$requester = Entrepreneur::find($request['signer_id']);
@@ -138,7 +141,13 @@ class StaffRequestsController extends BaseController {
 		foreach ($requests as $request) {
 			$entrepreneur = Entrepreneur::find($request->owner_id);
 			$requestInfoFrom = CertificateRequestInfoForm::where('export_certificate_request_id','=',$request->id)->first();
-			$item = array('ID' => $request->reference_id,'Plant Name' => $requestInfoFrom->common_name,'Entrepreneur' => $entrepreneur->first_name,'Current Process' => $request->status);
+			$item = array(
+				'ID' => $request->id,
+				'Reference ID' => $request->reference_id,
+				'Plant Name' => $requestInfoFrom->common_name,
+				'Entrepreneur' => $entrepreneur->first_name,
+				'Current Process' => $request->status
+			);
 			array_push($items, $item);
 		}
 

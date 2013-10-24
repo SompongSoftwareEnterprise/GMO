@@ -21,7 +21,7 @@ View All Requests
 		</thead>
 		<tbody>
 			<tr >
-				<td>{{$data['Request ID']}}</td>
+				<td>{{$data['Reference ID']}}</td>
 				<td>{{$data['Importer Name']}}</td>
 				<td>{{$data['Requester']}}</td>
 				<td>{{$data['Sent Date']}}</td>
@@ -85,10 +85,10 @@ View All Requests
 
 			<br><br>
 			<a href="{{action('StaffRequestsController@createReceipt', $id)}}" class="btn btn-primary">Create Receipt</a>
-			<a href="{{action('StaffRequestsController@createLabTask', $id)}}" class="btn btn-primary">Create Lab Task</button>
-			<button type="button" class="btn btn-disabled">Create Analysis of Report</button>
+			<a href="{{action('StaffRequestsController@createLabTask', $id)}}" class="btn btn-primary">Create Lab Task</a>
+			<button type="button" disabled class="btn btn-disabled">Create Analysis of Report</button>
 
-			<button type="button" class="btn btn-disabLabTaskeate Certificate</button>
+			<button type="button" disabled class="btn btn-disabled">Create Certificate</button>
 
 		</div>
 	</div>

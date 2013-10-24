@@ -24,7 +24,7 @@ View All Requests
 		@else
 		@foreach ($tableData as $request) 
 		<tr>
-			<td><a href="{{action('StaffRequestsController@show',array('id' =>$request['ID']))}}"</a>{{$request['ID']}}</td>
+			<td><a href="{{action('StaffRequestsController@show',array('id' =>$request['ID']))}}"</a>{{$request['Reference ID']}}</td>
 			<td>{{$request['Plant Name']}}</td>
 			<td>{{$request['Entrepreneur']}}</td>
 			<td>{{$request['Current Process']}}</td>
