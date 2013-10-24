@@ -507,7 +507,7 @@ Create Certificate Request Form
 							</div>
 							<div class="form-group">
 								<div class="col-sm-offset-7 col-sm-5">
-									<button type="button" class="btn btn-default">Back</button>
+									<a href="{{ action('EntrepreneurRequestsController@index') }}" class="btn btn-default">Back</a>
 									<button type="reset" class="btn btn-danger">Reset</button>
 									<button type="submit" class="btn btn-primary">Submit</button>
 								</div>

@@ -177,9 +177,9 @@ Edit Account Information
 
 
 <div class="col-sm-offset-9 col-sm-5">
-	<button type="submit" class="btn btn-primary">Save</button>
+	<a href="{{ action('EntrepreneurAccountController@index') }}" class="btn btn-default">Back</a>
 	<button type="reset" class="btn btn-danger">Reset</button>
-	<button type="button" class="btn btn-default">Back</button>
+	<button type="submit" class="btn btn-primary">Save</button>
 </div>
 </div>
 
