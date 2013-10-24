@@ -11,6 +11,9 @@ Vagrant.configure("2") do |config|
     v.customize ["modifyvm", :id, "--name", "my-first-box"]
   end
 
+  config.vm.network "forwarded_port", guest: 80, host: 32080
+  config.vm.network "forwarded_port", guest: 3306, host: 32306
+  config.vm.network "forwarded_port", guest: 22, host: 32022
   
   config.vm.synced_folder "./", "/var/www", id: "vagrant-root", :mount_options => ["dmode=777","fmode=666"]
 
