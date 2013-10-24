@@ -7,7 +7,7 @@ Create Certificate Request Form
 @section('content')
 <div class="panel-body">
 
-	<form class="form-inline" role="search" name="searchForm">
+	<form class="form-inline" role="search" name="searchForm" id="entrepreneur_requests_search_form">
 		<div class="form-group">
 			<label class="sr-only" for="searchInput">Search Input</label>
 			<input type="text" class="form-control" id="searchInput" placeholder="Enter search keyword.." name="search_input">
@@ -15,17 +15,18 @@ Create Certificate Request Form
 
 
 		<div class="btn-group">
+			<input type="hidden" id="entrepreneur_requests_search_by" name="search_by" value="">
 			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" name="search-dropdown" id="searchDropdown">
-				Action <span class="caret"></span>
+				<span id="entrepreneur_requests_search_by_text">Action</span> <span class="caret"></span>
 			</button>
 			<ul class="dropdown-menu" role="menu">
-				<li><a href="#">Search by Request ID</a></li>
-				<li><a href="#">Search by Importer Name</a></li>
-				<li><a href="#">Search by Requester</a></li>
+				<li><a href="javascript://" data-set-input="search_by=request_id">Search by Request ID</a></li>
+				<li><a href="javascript://" data-set-input="search_by=importer_name">Search by Importer Name</a></li>
+				<li><a href="javascript://" data-set-input="search_by=requester">Search by Requester</a></li>
 			</ul>
 		</div>
 
-		<button type="submit" class="btn btn-primary">Search</button>
+		<button type="submit" id="entrepreneur_requests_search_button" class="btn btn-primary">Search</button>
 	</form>
 
 	<br>

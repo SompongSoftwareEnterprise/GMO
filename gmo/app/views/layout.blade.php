@@ -7,6 +7,7 @@
 	<link href="/bootstrap/css/bootstrap.css" rel="stylesheet">
 	<link href="/assets/css/common.css" rel="stylesheet">
 	<script src="/assets/js/jquery.min.js"></script>
+	<script src="/assets/js/common.js"></script>
 	<script src="/bootstrap/js/bootstrap.js"></script>
 </head>
 
