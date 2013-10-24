@@ -9,7 +9,7 @@ View All Requests
 <div class="panel-body">
 	<table class="table table-bordered">
 		<tr class="header">
-			<th>ID</th>
+			<th>Request ID</th>
 			<th>Plant Name</th>
 			<th>Entrepreneur</th>
 			<th>Current Process</th>
