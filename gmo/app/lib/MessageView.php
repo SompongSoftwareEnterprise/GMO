@@ -1,6 +1,6 @@
 <?php
 
-class Message {
+class MessageView {
 
 	public static function make($text, $action=null, $actionText=null, $actionIcon='arrow-right') {
 		return View::make('message')

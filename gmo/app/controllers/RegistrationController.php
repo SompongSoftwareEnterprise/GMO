@@ -99,7 +99,7 @@ class RegistrationController extends BaseController {
 		$entrepreneur->save();
 		
 		// TODO: send email
-		return Message::make('The user has been successfully registered', 'RegistrationController@index', 'Finish')
+		return MessageView::make('The user has been successfully registered', 'RegistrationController@index', 'Finish')
 			->with('back', false);
 		
 		

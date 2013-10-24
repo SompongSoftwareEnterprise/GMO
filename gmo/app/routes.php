@@ -12,7 +12,7 @@
 */
 
 Route::get('/test/message', function() {
-	return Message::make('Something is wrong, eh?', 'HomeController@homePage', 'Go Home')
+	return MessageView::make('Something is wrong, eh?', 'HomeController@homePage', 'Go Home')
 		->with('back', true);
 });
 
