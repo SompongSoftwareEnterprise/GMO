@@ -36,8 +36,9 @@ Create Certificate Request Form
 			{{ View::make('requests/table/header') }}
 		</thead>
 		<tbody>
-			<?php $row = View::make('requests/table/row'); ?>
+			<?php $row = null; ?>
 			@foreach($certReqs as $certReq)
+				<?php if ($row === null) $row = View::make('requests/table/row'); ?>
 				{{ $row->with('certReq', $certReq); }}
 			@endforeach
 		</tbody>
