@@ -42,9 +42,11 @@ class RegistrationController extends BaseController {
 			'address1' => 'required',
 			'city' => 'required',
 			'province' => 'required',
-			'zip' => 'required',
+			'zip' => 'required|numeric',
 			'email' => 'required|email',
-			'phone' => 'required',
+			'phone' => 'required|phone',
+			'fax' => 'phone',
+			'mobile' => 'phone',
 		);
 
 		if (Input::get('is_company', '0')) {
