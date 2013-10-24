@@ -70,7 +70,7 @@ class { 'php::pear':
 }
 
 
-
+/*
 $xhprofPath = '/var/www/xhprof'
 
 php::pecl::module { 'xhprof':
@@ -115,7 +115,7 @@ apache::vhost { 'xhprof':
     File["${xhprofPath}/xhprof_html"]
   ]
 }
-
+*/
 
 class { 'xdebug':
   service => 'apache',
