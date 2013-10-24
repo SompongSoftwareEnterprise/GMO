@@ -3,7 +3,7 @@
 class EntrepreneurRequestsController extends AbstractEntrepreneurController {
 
 	public function index() {
-		$certReqs = CertificateRequest::where('owner_id', '=', $this->entrepreneur->id)->get();
+		$certReqs = CertificateRequest::with('owner', 'signer')->where('owner_id', '=', $this->entrepreneur->id)->get();
 		return View::make('requests/index')
 			->with(array(
 				'entrepreneur' => $this->entrepreneur,

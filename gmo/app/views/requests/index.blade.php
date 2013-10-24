@@ -32,52 +32,13 @@ Create Certificate Request Form
 
 	<table class="table table-bordered">
 		<thead>
-			<tr class="Header">
-				<th>Request ID</th>
-				<th>Importer Name</th>
-				<th>Requester</th>
-				<th>Sent Date</th>
-				<th>Status</th>
-			</tr>
+			{{ View::make('requests/table/header') }}
 		</thead>
 		<tbody>
-			<?php foreach($certReqs as $certReq) { ?>
-				<tr>
-					<td><a href="/entrepreneur/requests/{{ $certReq->id }}">{{ $certReq->id }}</a></td>
-					<td>{{ $entrepreneur->first_name }}</td>
-					<td>{{ $certReq->signer_id }}</td>
-					<td>{{ $certReq->created_at }}</td>
-					<td>{{ $certReq->status }}</td>
-				</tr>
-			<?php } ?>
-			<!--<tr>
-				<td><a href="#">16</a></td>
-				<td>Jeremy</td>
-				<td>Bolshave Import Services</td>
-				<td>19/9/2013</td>
-				<td class="text-success">Complete</td>
-			</tr>
-			<tr>
-				<td><a href="#">17</a></td>
-				<td>Jeremy</td>
-				<td>Bolshave Import Services</td>
-				<td>24/9/2013</td>
-				<td class="text-warning">Pending</td>
-			</tr>
-			<tr>
-				<td><a href="#">20</a></td>
-				<td>Jeremy</td>
-				<td>Jeremy</td>
-				<td>24/9/2013</td>
-				<td class="text-muted">Failed</td>
-			</tr>
-			<tr>
-				<td><a href="#">26</a></td>
-				<td>Jeremy</td>
-				<td>Bolshave Import Services</td>
-				<td>24/9/2013</td>
-				<td class="text-danger">Document Needed</td>
-			</tr>-->
+			<?php $row = View::make('requests/table/row'); ?>
+			@foreach($certReqs as $certReq)
+				{{ $row->with('certReq', $certReq); }}
+			@endforeach
 		</tbody>
 	</table>
 

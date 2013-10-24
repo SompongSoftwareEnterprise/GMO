@@ -7,27 +7,15 @@ View Request Information
 @section('content')
 
 <div class="panel-body">
+	
 	<table class="table table-bordered">
 		<thead>
-			<tr class="Header">
-				<th>Request ID</th>
-				<th>Importer Name</th>
-				<th>Requester</th>
-				<th>Sent Date</th>
-				<th>Status</th>
-			</tr>
+			{{ View::make('requests/table/header') }}
 		</thead>
 		<tbody>
-			<tr>
-				<td><a href="#">{{ $certReq->id }}</a></td>
-				<td>{{ $entrepreneur->first_name }}</td>
-				<td>{{ $certReq->owner_id }}</td>
-				<td>{{ $certReq->created_at }}</td>
-				<td class="">{{ $certReq->status }}</td>
-			</tr>
+			{{ View::make('requests/table/row')->with('certReq', $certReq); }}
 		</tbody>
 	</table>
-
 	<br><br>
 
 	<div class="row">

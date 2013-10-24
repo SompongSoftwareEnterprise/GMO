@@ -23,6 +23,10 @@ class Entrepreneur extends Eloquent {
         );
         return $rules;
     }
+    
+    public function fullName() {
+		return $this->first_name . ' ' . $this->last_name;
+	}
 
 }
 
