@@ -1,6 +1,6 @@
 
 function url(path) {
-	return 'http://gmo.tsp.dt.in.th' + path
+	return 'http://localhost' + path
 }
 
 module.exports = url

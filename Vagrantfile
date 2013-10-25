@@ -32,7 +32,6 @@ controluser_password=awesome" > /etc/phpmyadmin.facts;'
     puppet.options = ['--verbose']
   end
 
-  config.vm.provision :shell, :inline =>
-    "sudo a2dissite default && sudo service apache2 reload"
+  config.vm.provision "shell", :path => 'post-puppet.sh', :privileged => false
 
 end
