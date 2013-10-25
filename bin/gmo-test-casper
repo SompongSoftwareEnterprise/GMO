@@ -1,0 +1,4 @@
+#!/bin/bash
+
+casperjs test /vagrant/gmo/app/tests/CasperTest/*Test.js --fail-fast
+
