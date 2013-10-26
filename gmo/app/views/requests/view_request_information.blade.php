@@ -29,12 +29,22 @@ View Request Information
 				</thead>
 				<tbody>
 					<tr>
-						<td>สทช. 1-1/1(<a href="#">Download</a>)</td>
-						<td class="text-success">Available</td>
+						<?php if ($certReqForm->status == 'Pending') { ?>
+							<td>สทช. 1-1/1</td>
+							<td class="text-warning">{{ $certReqForm->status }}</td>
+						<?php } else if ($certReqForm->status == 'Available') { ?>
+							<td>สทช. 1-1/1 (<a href="#">Download</a>)</td>
+							<td class="text-success">{{ $certReqForm->status }}</td>
+						<?php } ?>
 					</tr>
 					<tr>
-						<td>สทช. 1-1/2 </td>
-						<td class="text-danger">Document Needed</td>
+						<?php if ($certReqInfoForm->status == 'Pending') { ?>
+							<td>สทช. 1-1/2</td>
+							<td class="text-warning">{{ $certReqInfoForm->status }}</td>
+						<?php } else if ($certReqInfoForm->status == 'Available') { ?>
+							<td>สทช. 1-1/2 (<a href="#">Download)</a></td>
+							<td class="text-success">{{ $certReqInfoForm->status }}</td>
+						<?php } ?>
 					</tr>
 					<tr>
 						<td>Invoice</td>

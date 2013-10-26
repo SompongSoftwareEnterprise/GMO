@@ -21,7 +21,7 @@ class EntrepreneurRequestsController extends AbstractEntrepreneurController {
 		$entrepreneur = $this->entrepreneur;
 
 		$certReq = new CertificateRequest;
-		$certReq->status = 'Pending'; 
+		$certReq->status = 'Available'; 
 		$certReq->reference_id = RunningNumber::increment('default');
 		/*if ($entrepreneur->is_agency == 1) {
 		}
@@ -30,9 +30,16 @@ class EntrepreneurRequestsController extends AbstractEntrepreneurController {
 		}*/
 		$certReq->owner_id = $entrepreneur->id;
 		$certReq->signer_id = $entrepreneur->id;
-		$certReq->save();
+
+		$certReqFormValidator = Validator::make(Input::all(), CertificateRequestForm::getValidationRules());
 
 		$certReqForm = new CertificateRequestForm;
+
+		if ($certReqFormValidator->fails()) {
+			return Redirect::action('EntrepreneurRequestsController@newRequests')
+				->withErrors($certReqFormValidator)
+				->withInput();
+		}
 
 		$certReqForm->export_certificate_request_id = $certReq->id;
 		$certReqForm->manufactory_name = Input::get('manufactory_name');
@@ -93,7 +100,15 @@ class EntrepreneurRequestsController extends AbstractEntrepreneurController {
 
 		$certReqForm->save();
 
+		$certReqFormValidator = Validator::make(Input::all(), CertificateRequestInfoForm::getValidationRules());
+
 		$certReqForm = new CertificateRequestInfoForm;
+
+		if ($certReqFormValidator->fails()) {
+			return Redirect::action('EntrepreneurRequestsController@newRequests')
+				->withErrors($certReqFormValidator)
+				->withInput();
+		}
 
 		$certReqForm->export_certificate_request_id = $certReq->id;
 		$certReqForm->common_name = Input::get('common_name');
@@ -107,16 +122,23 @@ class EntrepreneurRequestsController extends AbstractEntrepreneurController {
 		$certReqForm->description_of_product = Input::get('description_of_product');
 		$certReqForm->final_destination = Input::get('final_destination');
 		$certReqForm->port_of_entry = Input::get('port_of_entry');
+		$certReqForm->status = 'Available';
 
 		$certReqForm->save();
+
+		$certReq->save();
 
 		return Redirect::action('EntrepreneurRequestsController@index');
 	}
 
 	public function show($id) {
 		$certificateRequest = CertificateRequest::find($id);
+		$certificateRequestForm = CertificateRequestForm::where('export_certificate_request_id', '=', $id)->first(); 
+		$certificateRequestInfoForm = CertificateRequestInfoForm::where('export_certificate_request_id', '=', $id)->first(); 
 		return View::make('requests/view_request_information')
 			->with(array('certReq' => $certificateRequest,
+						 'certReqForm' => $certificateRequestForm,
+						 'certReqInfoForm' => $certificateRequestInfoForm,
 						 'entrepreneur' => $this->entrepreneur));
 	}
 
