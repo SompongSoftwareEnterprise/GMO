@@ -1,7 +1,7 @@
 
 
 // TODO  implement login function by taking username and password and login to 'http://gmo.tsp.dt.in.th'
-function login(usr,pass) {
+function login(casper,usr,pass) {
 
 	return true;
 }

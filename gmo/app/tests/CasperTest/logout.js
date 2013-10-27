@@ -1,7 +1,7 @@
 
 // TODO  implement logout function from 'http://gmo.tsp.dt.in.th'
 
-function logout() {
+function logout(casper) {
 
 	return true;
 }
