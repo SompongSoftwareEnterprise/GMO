@@ -87,212 +87,275 @@ Create Certificate Request Form
 
 						<!-- Manufactory -->
 						<div class="form-group">
-							<label for="manufactoryName" class="col-xs-3 control-label ">
+							<!--<label for="manufactoryName" class="col-xs-3 control-label ">
 								Manufactory
-							</label>
+							</label>-->
+							{{ Form::label('manufactory_name', 'Manufactory', array('class' => 'col-xs-3', 'control-label')) }}
 							<div class="col-xs-8">
-								<input type="text" class="form-control" id="manufactoryName" name="manufactory_name" placeholder="Name (ex. Sompong Thepsoftware)">
+								{{ Form::text('manufactory_name', null, array('class' => 'form-control', 'placeholder' => 'Name (ex. Sompong Thepsoftware)')) }}
+								<!--<input type="text" class="form-control" id="manufactoryName" name="manufactory_name" placeholder="Name (ex. Sompong Thepsoftware)">-->
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="col-sm-offset-3 col-xs-8 ">
-								<input type="text" class="form-control" name="manufactory_address1" placeholder="Address Line 1">
+								{{ Form::text('address1', null, array('class' => 'form-control', 'placeholder' => 'Address Line 1')) }}
+								<!--<input type="text" class="form-control" name="manufactory_address1" placeholder="Address Line 1">-->
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="col-sm-offset-3 col-xs-8 ">
-								<input type="text" class="form-control" name="manufactory_address2"  placeholder="Address Line 2">
+								{{ Form::text('address2', null, array('class' => 'form-control', 'placeholder' => 'Address Line 2')) }}
+								<!--<input type="text" class="form-control" name="manufactory_address2"  placeholder="Address Line 2">-->
 							</div>
 						</div>
 
 						<div class="form-group">
 							<div class="col-sm-offset-3 col-xs-4">
-								<input type="text" class="form-control" name="manufactory_city" placeholder="Town/City">
+								{{ Form::text('manufactory_city', null, array('class' => 'form-control', 'placeholder' => 'Town/City')) }}
+								<!--<input type="text" class="form-control" name="manufactory_city" placeholder="Town/City">-->
 							</div>
 							<div class="col-xs-4 ">
-								<select class="form-control" name="manufactory_province">
+								{{ Form::select('manufactory_province', array('State/Province' => '', 'Bangkok' => 'Bangkok'), null, array('class' => 'form-control')) }}
+								<!--<select class="form-control" name="manufactory_province">
 									<option>State/Province</option>
 									<option>Bangkok</option>
 									<option>Pathumthani</option>
-								</select>
+								</select>-->
 							</div>
 						</div>
 
 						<div class="form-group">
 							<div class="col-sm-offset-3 col-xs-4">
-								<select class="form-control" name="manufactory_country">
+								{{ Form::select('manufactory_country', array(
+									'Country' => '',
+									'Thailand' => 'Thailand'
+									), null, 
+									array('class' => 'form-control')) }}
+								<!--<select class="form-control" name="manufactory_country">
 									<option>Country</option>
 									<option>Thailand</option>
 									<option>Laos</option>
-								</select>
+								</select>-->
 							</div>
 							<div class="col-xs-4 ">
-								<input type="text" class="form-control" name="manufactory_zip" placeholder="Zip Code (ex. 12345)">
+								{{ Form::text('manufactory_zip', null, array('class' => 'form-control', 'placeholder' => 'Zip Code (ex. 12345)')) }}
+								<!--<input type="text" class="form-control" name="manufactory_zip" placeholder="Zip Code (ex. 12345)">-->
 							</div>
 						</div>
 
 						<div class="form-group">
 							<div class="col-sm-offset-3 col-xs-4">
-								<input type="text" class="form-control" name="manufactory_phone" placeholder="Phone (ex. 0-2345-6789)">
+								{{ Form::text('manufactory_phone', null, array('class' => 'form-control', 'placeholder' => 'Phone (ex. 02-345-6789)')) }}
+								<!--<input type="text" class="form-control" name="manufactory_phone" placeholder="Phone (ex. 0-2345-6789)">-->
 							</div>
 							<div class=" col-xs-4 ">
-								<input type="text" class="form-control" name="manufactory_fax"  placeholder="Fax">
+								{{ Form::text('manufactory_fax', null, array('class' => 'form-control', 'placeholder' => 'Fax (ex. 02-345-6789)')) }}
+								<!--<input type="text" class="form-control" name="manufactory_fax"  placeholder="Fax">-->
 							</div>
 						</div>
 
 						<!-- Plant Warehouse -->
 						<div class="form-group">
-							<label for="plantWarehouseName" class="col-xs-3 control-label ">
+							<!--<label for="plantWarehouseName" class="col-xs-3 control-label ">
 								Plant Warehouse
-							</label>
+							</label>-->
+							{{ Form::label('warehouse_name', 'Manufactory', array('class' => 'col-xs-3', 'control-label')) }}
 							<div class="col-xs-8 ">
-								<input type="text" class="form-control" id="plantWarehouseName" name="warehouse_name" placeholder="Name (ex. Sompong Thepsoftware)">
+								{{ Form::text('warehouse_name', null, array('class' => 'form-control', 'placeholder' => 'Name (ex. Warehouse Bangkok)')) }}
+								<!--<input type="text" class="form-control" id="plantWarehouseName" name="warehouse_name" placeholder="Name (ex. Sompong Thepsoftware)">-->
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="col-sm-offset-3 col-xs-8 ">
-								<input type="text" class="form-control" name="warehouse_address1"  placeholder="Address Line 1">
+								{{ Form::text('warehouse_address1', null, array('class' => 'form-control', 'placeholder' => 'Address Line 1')) }}
+								<!--<input type="text" class="form-control" name="warehouse_address1"  placeholder="Address Line 1">-->
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="col-sm-offset-3 col-xs-8 ">
-								<input type="text" class="form-control" name="warehouse_address2" placeholder="Address Line 2">
+								{{ Form::text('warehouse_address2', null, array('class' => 'form-control', 'placeholder' => 'Address Line 2')) }}
+								<!--<input type="text" class="form-control" name="warehouse_address2" placeholder="Address Line 2">-->
 							</div>
 						</div>
 
 						<div class="form-group">
 							<div class="col-sm-offset-3 col-xs-4">
-								<input type="text" class="form-control" name="warehouse_city" placeholder="Town/City">
+								{{ Form::text('warehouse_city', null, array('class' => 'form-control', 'placeholder' => 'Town/City')) }}
+								<!--<input type="text" class="form-control" name="warehouse_city" placeholder="Town/City">-->
 							</div>
 							<div class="col-xs-4 ">
-								<select class="form-control" name="warehouse_province">
+								{{ Form::select('warehouse_province', array(
+									'' => 'State/Province',
+									'Bangkok' => 'Bangkok'
+									), null, 
+									array('class' => 'form-control')) }}
+								<!--<select class="form-control" name="warehouse_province">
 									<option>State/Province</option>
 									<option>Bangkok</option>
 									<option>Pathumthani</option>
-								</select>
+								</select>-->
 							</div>
 						</div>
 
 						<div class="form-group">
 							<div class="col-sm-offset-3 col-xs-4">
-								<select class="form-control" name="warehouse_country">
+								{{ Form::select('warehouse_country', array(
+									'' => 'Country',
+									'Thailand' => 'Thailand'
+									), null, 
+									array('class' => 'form-control')) }}
+								<!--<select class="form-control" name="warehouse_country">
 									<option>Country</option>
 									<option>Thailand</option>
 									<option>Laos</option>
-								</select>
+								</select>-->
 							</div>
 							<div class="col-xs-4 ">
-								<input type="text" class="form-control" name="warehouse_zip" placeholder="Zip Code (ex. 12345)">
+								{{ Form::text('warehouse_zip', null, array('class' => 'form-control', 'placeholder' => 'Zip Code (ex. 12345)')) }}
+								<!--<input type="text" class="form-control" name="warehouse_zip" placeholder="Zip Code (ex. 12345)">-->
 							</div>
 						</div>
 
 						<div class="form-group">
 							<div class="col-sm-offset-3 col-xs-4">
-								<input type="text" class="form-control" name="warehouse_phone" placeholder="Phone (ex. 0-2345-6789)">
+								{{ Form::text('warehouse_phone', null, array('class' => 'form-control', 'placeholder' => 'Phone (ex. 02-392-4892)')) }}
+								<!--<input type="text" class="form-control" name="warehouse_phone" placeholder="Phone (ex. 0-2345-6789)">-->
 							</div>
 							<div class=" col-xs-4 ">
-								<input type="text" class="form-control" name="warehouse_fax" placeholder="Fax">
+								{{ Form::text('warehouse_fax', null, array('class' => 'form-control', 'placeholder' => 'Fax (ex. 02-389-2934)')) }}
+								<!--<input type="text" class="form-control" name="warehouse_fax" placeholder="Fax">-->
 							</div>
 						</div>
 
 						<!-- Purpose -->
 						<div class="form-group">
-							<label class="col-xs-3 control-label">
+							<!--<label class="col-xs-3 control-label">
 								Purpose of Requesting a Certificate
-							</label>
+							</label>-->
+							{{ Form::label('purpose[]', 'Manufactory', array('class' => 'col-xs-3', 'control-label')) }}
 							<div class="col-xs-3">
-								<input type="checkbox" name="purpose[]" value="Export">&nbsp;&nbsp;Export
+								{{ Form::checkbox('purpose[]', 'Export') }}&nbsp;&nbsp;Export
+								<!--<input type="checkbox" name="purpose[]" value="Export">&nbsp;&nbsp;Export-->
 							</div>
 							<div class="col-xs-3">
-								<input type="checkbox" name="purpose[]" value="Import">&nbsp;&nbsp;Import
+								{{ Form::checkbox('purpose[]', 'Import') }}&nbsp;&nbsp;Import
+								<!--<input type="checkbox" name="purpose[]" value="Import">&nbsp;&nbsp;Import-->
 							</div>
 							<div class="col-xs-3">
-								<input type="checkbox" name="purpose[]" value="Research">&nbsp;&nbsp;Research
+								{{ Form::checkbox('purpose[]', 'Research') }}&nbsp;&nbsp;Research
+								<!--<input type="checkbox" name="purpose[]" value="Research">&nbsp;&nbsp;Research-->
 							</div>
 							<div class="col-xs-3">
-								<input type="checkbox" name="purpose[]" value="Industry">&nbsp;&nbsp;Industry
+								{{ Form::checkbox('purpose[]', 'Industry') }}&nbsp;&nbsp;Industry
+								<!--<input type="checkbox" name="purpose[]" value="Industry">&nbsp;&nbsp;Industry-->
 							</div>
 							<div class="col-xs-3">
-								<input type="checkbox" name="purpose[]" value="Comsumption">&nbsp;&nbsp;Comsumption
+								{{ Form::checkbox('purpose[]', 'Consumption') }}&nbsp;&nbsp;Consumption
+								<!--<input type="checkbox" name="purpose[]" value="Comsumption">&nbsp;&nbsp;Comsumption-->
 							</div>
 						</div>
 
 						<div class="form-group">
 							<div class="col-sm-offset-3 col-xs-2">
-								<input type="checkbox" name="other_checkbox" value="Other">&nbsp;&nbsp;Other
+								{{ Form::checkbox('purpose[]', 'Other') }}&nbsp;&nbsp;Other
+								<!--<input type="checkbox" name="other_checkbox" value="Other">&nbsp;&nbsp;Other-->
 							</div>
 							<div class="col-xs-6 ">
-								<input type="text" class="form-control" name="other">
+								{{ Form::text('other', null, array('class' => 'form-control')) }}
+								<!--<input type="text" class="form-control" name="other">-->
 							</div>
 						</div>
 
 						<!-- Contact -->
 						<div class="form-group">
-							<label for="contact" class="col-xs-3 control-label">
+							<!--<label for="contact" class="col-xs-3 control-label">
 								Contact
-							</label>
+							</label>-->
+							{{ Form::label('contact_name', 'Contact', array('class' => 'col-xs-3', 'control-label')) }}
 							<div class="col-xs-8 ">
-								<input type="text" class="form-control" id="contact" name="contact_name" placeholder="Name (ex. Sompong Thepsoftware)">
+								{{ Form::text('contact_name', null, array('class' => 'form-control', 'placeholder' => 'Name (ex. Sompong Thepsoftware)')) }}
+								<!--<input type="text" class="form-control" id="contact" name="contact_name" placeholder="Name (ex. Sompong Thepsoftware)">-->
 							</div>
 						</div>
 
 						<div class="form-group">
 							<div class="col-sm-offset-3 col-xs-4">
-								<input type="text" class="form-control" name="contact_phone" placeholder="Phone (ex. 0-2345-6789)">
+								{{ Form::text('contact_phone', null, array('class' => 'form-control', 'placeholder' => 'Phone (ex. 02-349-2893)')) }}
+								<!--<input type="text" class="form-control" name="contact_phone" placeholder="Phone (ex. 0-2345-6789)">-->
 							</div>
 							<div class=" col-xs-4 ">
-								<input type="email" class="form-control" name="contact_email" placeholder="E-mail">
+								{{ Form::text('contact_email', null, array('class' => 'form-control', 'placeholder' => 'E-mail')) }}
+								<!--<input type="email" class="form-control" name="contact_email" placeholder="E-mail">-->
 							</div>
 						</div>
 
 						<!-- Receiver -->
 						<div class="form-group">
-							<label for="receiverName" class="col-xs-3 control-label ">
+							<!--<label for="receiverName" class="col-xs-3 control-label ">
 								Receiver
-							</label>
-							<div class="col-xs-8 ">
-								<input type="text" class="form-control" id="receiverName" name="receiver_name" placeholder="Name (ex. Sompong Thepsoftware)">
+							</label>-->
+							{{ Form::label('receiver_name', 'Receiver', array('class' => 'col-xs-3', 'control-label')) }}
+							<div class="col-xs-8">
+								{{ Form::text('receiver_name', null, array('class' => 'form-control', 'placeholder' => 'Name (ex. Sompong Thepsoftware)')) }}
+								<!--<input type="text" class="form-control" id="receiverName" name="receiver_name" placeholder="Name (ex. Sompong Thepsoftware)">-->
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="col-sm-offset-3 col-xs-8 ">
-								<input type="text" class="form-control" name="receiver_address1" placeholder="Address Line 1">
+								{{ Form::text('receiver_address1', null, array('class' => 'form-control', 'placeholder' => 'Address Line 1')) }}
+								<!--<input type="text" class="form-control" name="receiver_address1" placeholder="Address Line 1">-->
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="col-sm-offset-3 col-xs-8 ">
-								<input type="text" class="form-control" name="receiver_address2" placeholder="Address Line 2">
+								{{ Form::text('receiver_address2', null, array('class' => 'form-control', 'placeholder' => 'Address Line 2')) }}
+								<!--<input type="text" class="form-control" name="receiver_address2" placeholder="Address Line 2">-->
 							</div>
 						</div>
 
 						<div class="form-group">
 							<div class="col-sm-offset-3 col-xs-4">
-								<input type="text" class="form-control" name="receiver_city" placeholder="Town/City">
+								{{ Form::text('receiver_city', null, array('class' => 'form-control', 'placeholder' => 'Town/City')) }}
+								<!--<input type="text" class="form-control" name="receiver_city" placeholder="Town/City">-->
 							</div>
 							<div class="col-xs-4 ">
-								<select class="form-control" name="receiver_province">
+								{{ Form::select('receiver_province', array(
+									'' => 'State/Province',
+									'Bangkok' => 'Bangkok'
+									), null, 
+									array('class' => 'form-control')) 
+								}}
+								<!--<select class="form-control" name="receiver_province">
 									<option>State/Province</option>
 									<option>Bangkok</option>
 									<option>Pathumthani</option>
-								</select>
+								</select>-->
 							</div>
 						</div>
 
 						<div class="form-group">
 							<div class="col-sm-offset-3 col-xs-4">
-								<select class="form-control" name="receiver_country">
+								{{ Form::select('receiver_country', array(
+									'' => 'Country',
+									'Thailand' => 'Thailand'
+									), null, 
+									array('class' => 'form-control')) 
+								}}
+								<!--<select class="form-control" name="receiver_country">
 									<option>Country</option>
 									<option>Thailand</option>
 									<option>Laos</option>
-								</select>
+								</select>-->
 							</div>
 							<div class="col-xs-4 ">
-								<input type="text" class="form-control" name="receiver_zip" placeholder="Zip Code (ex. 12345)">
+								{{ Form::text('receiver_zip', null, array('class' => 'form-control', 'placeholder' => 'Zip Code (ex. 12345)')) }}
+								<!--<input type="text" class="form-control" name="receiver_zip" placeholder="Zip Code (ex. 12345)">-->
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="col-sm-offset-3 col-xs-8 ">
-								<input type="text" class="form-control" name="origin_of_plant" placeholder="Origin of Plant">
+								{{ Form::text('origin_of_plant', null, array('class' => 'form-control', 'placeholder' => 'Origin of Plant')) }}
+								<!--<input type="text" class="form-control" name="origin_of_plant" placeholder="Origin of Plant">-->
 							</div>
 						</div>
 
