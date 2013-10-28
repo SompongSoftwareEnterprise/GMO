@@ -1,6 +1,8 @@
 #!/bin/bash
 
 
+cd /home/vagrant
+
 echo '#==> Disabling default Apache site, and reload'
 sudo a2dissite default && sudo service apache2 reload
 
