@@ -484,65 +484,87 @@ Create Certificate Request Form
 					<hr>
 					<form class="form-horizontal" role="form">
 						<div class="form-group">
-							<label for="commonName" class="col-xs-3 control-label ">
+							<!--<label for="commonName" class="col-xs-3 control-label ">
 								Common Name
-							</label>
+							</label>-->
+							{{ Form::label('common_name', 'Common Name', array('class' => 'col-xs-3', 'control-label')) }}
 							<div class="col-xs-8">
-								<input type="text" class="form-control" id="commonName" name="common_name" placeholder="Plant Name (ex. Onion)">
+								<!--<input type="text" class="form-control" id="commonName" name="common_name" placeholder="Plant Name (ex. Onion)">-->
+								{{ Form::text('common_name', null, array('class' => 'form-control', 'placeholder' => 'Plant Name (ex. Onion)')) }}
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="vendorOrConsigneeName" class="col-xs-3 control-label ">
-								Vendor or Consignee
-							</label>
+							<!-- <label for="vendorOrConsigneeName" class="col-xs-3 control-label "> -->
+							<!-- 	Vendor or Consignee -->
+							<!-- </label> -->
+							{{ Form::label('vendor_or_consignee', 'Vendor or Consignee', array('class' => 'col-xs-3', 'control-label')) }}
 							<div class="col-xs-8">
-								<input type="text" class="form-control" id="vendorOrConsigneeName" name="vendor_or_consignee" placeholder="Name (ex. Sompong Thepsoftware)">
+								{{ Form::text('vendor_or_consignee', null, array('class' => 'form-control', 'placeholder' => 'Name (ex. Sompong Thepsoftware)')) }}
+								<!-- <input type="text" class="form-control" id="vendorOrConsigneeName" name="vendor_or_consignee" placeholder="Name (ex. Sompong Thepsoftware)"> -->
 							</div>
 						</div>
 
 						<div class="form-group">
 							<div class="col-sm-offset-3 col-xs-8">
-								<input type="text" class="form-control" name="address1" placeholder="Address Line 1">
+								{{ Form::text('address1', null, array('class' => 'form-control', 'placeholder' => 'Address Line 1')) }}
+								<!-- <input type="text" class="form-control" name="address1" placeholder="Address Line 1"> -->
 							</div>
 						</div>
 
 						<div class="form-group">
 							<div class="col-sm-offset-3 col-xs-8">
-								<input type="text" class="form-control" name="address2" placeholder="Address Line 1">
+								{{ Form::text('address2', null, array('class' => 'form-control', 'placeholder' => 'Address Line 2')) }}
+								<!-- <input type="text" class="form-control" name="address2" placeholder="Address Line 1"> -->
 							</div>
 						</div>
 
 						<div class="form-group">	
 							<div class="col-sm-offset-3 col-xs-4">
+								{{ Form::text('city', null, array('class' => 'form-control', 'placeholder' => 'Town/City')) }}
 								<input type="text" class="form-control" name="city" placeholder="Town/City">
 							</div>
 							<div class=" col-xs-4">
-								<select class="form-control" name="province">
-									<option>State/Province</option>
-									<option>Bangkok</option>
-									<option>Pathumthani</option>
-								</select>
+								{{ Form::select('province', array(
+									'' => 'State/Province',
+									'Bangkok' => 'Bangkok'
+									), null, 
+									array('class' => 'form-control')) 
+								}}
+								<!-- <select class="form-control" name="province"> -->
+								<!-- 	<option>State/Province</option> -->
+								<!-- 	<option>Bangkok</option> -->
+								<!-- 	<option>Pathumthani</option> -->
+								<!-- </select> -->
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="col-sm-offset-3 col-xs-4">
-								<select class="form-control" name="country">
-									<option>Country</option>
-									<option>Thailand</option>
-									<option>Laos</option>
-								</select>
+								{{ Form::select('country', array(
+									'' => 'Country',
+									'Thailand' => 'Thailand'
+									), null, 
+									array('class' => 'form-control')) 
+								}}
+								<!-- <select class="form-control" name="country"> -->
+								<!-- 	<option>Country</option> -->
+								<!-- 	<option>Thailand</option> -->
+								<!-- 	<option>Laos</option> -->
+								<!-- </select> -->
 							</div>
 							<div class=" col-xs-4">
-								<input type="text" class="form-control" name="zip" placeholder="Zip Code (ex. 12345)">
+								{{ Form::text('zip', null, array('class' => 'form-control', 'placeholder' => 'Zip Code (ex. 12345)')) }}
+								<!-- <input type="text" class="form-control" name="zip" placeholder="Zip Code (ex. 12345)"> -->
 							</div>
 						</div>
 
 						<div class="form-group">
-							<label for="descriptionOfProduct" class="col-xs-3 control-label ">
-								Description of Product
-							</label>
+							<!-- <label for="descriptionOfProduct" class="col-xs-3 control-label "> -->
+							<!-- 	Description of Product -->
+							<!-- </label> -->
+							{{ Form::label('description_of_product', 'Description of Product', array('class' => 'col-xs-3', 'control-label')) }}
 							<div class="col-xs-8">
-								<textarea type="text" class="form-control" id="descriptionOfProduct" name="description_of_product" placeholder="Detail" style="height: 95px;"></textarea>
+								{{ Form::text('description_of_product', null, array('class' => 'form-control', 'placeholder' => 'Detail')) }}
+								<!-- <textarea type="text" class="form-control" id="descriptionOfProduct" name="description_of_product" placeholder="Detail" style="height: 95px;"></textarea> -->
 							</div>
 						</div>
 
@@ -550,22 +572,37 @@ Create Certificate Request Form
 							<label for="finalDestination" class="col-xs-3 control-label ">
 								Final Destination
 							</label>
+							{{ Form::label('final_destination', 'Final Destination', array('class' => 'col-xs-3', 'control-label')) }}
 							<div class="col-xs-8">
-								<select class="form-control" id="finalDestination" name="final_destination">
-									<option>State/Province</option>
-									<option>Bangkok</option>	
-								</select>
+								{{ Form::select('province', array(
+									'' => 'State/Province',
+									'Bangkok' => 'Bangkok'
+									), null, 
+									array('class' => 'form-control')) 
+								}}
+								<!-- <select class="form-control" id="finalDestination" name="final_destination"> -->
+								<!-- 	<option>State/Province</option> -->
+								<!-- 	<option>Bangkok</option>	 -->
+								<!-- </select> -->
 							</div>
 						</div>
 
 						<div class="form-group">
-							<label for="portOfEntryOrEmbarktion" class="col-xs-3 control-label ">
-								Port of Entry or Embarktion</label>
+							<!-- <label for="portOfEntryOrEmbarktion" class="col-xs-3 control-label "> -->
+								<!-- Port of Entry or Embarktion</label> -->
+							{{ Form::label('port_of_entry', 'Port of Entry or Embarktion', array('class' => 'col-xs-3', 'control-label')) }}
+
 								<div class="col-xs-8">
-									<select class="form-control" id="portOfEntryOrEmbarktion" name="port_of_entry">
-										<option>Country</option>
-										<option>Thailand</option>
-									</select>
+									{{ Form::select('country', array(
+										'' => 'Country',
+										'Thailand' => 'Thailand'
+										), null, 
+										array('class' => 'form-control')) 
+									}}
+									<!-- <select class="form-control" id="portOfEntryOrEmbarktion" name="port_of_entry"> -->
+									<!-- 	<option>Country</option> -->
+									<!-- 	<option>Thailand</option> -->
+									<!-- </select> -->
 								</div>
 							</div>
 							<div class="form-group">
