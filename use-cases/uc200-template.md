@@ -1,7 +1,12 @@
 
 
-UC200 - Example Use Cases
-=========================
+Use Case Name
+-------------
+Enter the use case name here
+
+XRef
+----
+Provide cross reference to other documents
 
 Level
 -----
@@ -10,6 +15,10 @@ Level
 Primary Actor
 -------------
 Who is the actor?
+
+Trigger
+-------
+What happened that this use case is triggered?
 
 Preconditions
 -------------
@@ -25,8 +34,8 @@ Basic Flow
 2. Who what.
 3. Who what.
 
-Extensions
-----------
+Alternate Flows
+---------------
 
 *a. At any time, what happened?
 
