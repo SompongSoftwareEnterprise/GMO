@@ -26,7 +26,7 @@ var dataToFill_inFrom1_correct = {
 	'warehouse_city' : 'Bangkok',
 	'warehouse_province' : 'Bangkok',
 	'warehouse_country' : 'Thailand',
-	'warehouse_zip' : '12345',
+	'warehouse_zip' : '1234',
 	'warehouse_phone' : '0-2345-6789',
 	'warehouse_fax' : '12345',
 	'purpose[]' : '[Export,Import]'
@@ -66,6 +66,7 @@ casper.test.begin('Enterprenuer make new request', function suite(test) {
 	}, function timeout() {
 		casper.test.fail("Time out after submit from");
 	},5000);
+
 
 	casper.then(function() {
 		
