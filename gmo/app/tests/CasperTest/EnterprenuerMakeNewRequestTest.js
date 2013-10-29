@@ -7,10 +7,13 @@
 
 
 var url = require('./url')
+var seed = require('./seed')
 var login = require('./login')
 var logout = require('./logout')
+var screenshot = require('./screenshot')
 
-var dataToFill_inFrom1_correct = {
+
+var dataToFill_inForm1_incomplete = {
 	'manufactory_name' : 'Sompong Software',
 	'manufactory_address1' : 'test address1',
 	'manufactory_address2' : 'test address1',
@@ -30,49 +33,40 @@ var dataToFill_inFrom1_correct = {
 	'warehouse_phone' : '0-2345-6789',
 	'warehouse_fax' : '12345',
 	'purpose[]' : '[Export,Import]'
-
 }
 
-var dataToFill_inFrom1_wrong = {}
 
-var dataToFill_inFrom2_correct = {}
-
-var dataToFill_inFrom2_wrong = {}
-
+casper.options.waitTimeout = 60000
 
 casper.test.begin('Enterprenuer make new request', function suite(test) {
 
-	casper.start(url('/'), function() {
+	casper.start()
+
+	casper.thenOpen(url('/'), function() {
 		casper.test.comment("Test description");
 		casper.test.comment("This Scenario test will test as customer to create new request");
 		casper.test.comment("and make sure that request working and appear in staff page correctly");
+	})
 
-		test.assertEquals(login(casper,'username','password'),true,'Logging in');
-
-	});
+	login.entrepreneur(casper, test)
 
 	// WARP !!   warp url to create new request page
 	casper.thenOpen(url('/entrepreneur/requests/new'), function() {
+		test.assertExists('form#new-request-form', 'Form exists');
+		casper.fill('form#new-request-form', dataToFill_inForm1_incomplete, false)
+		casper.click('#submit-button')
+	})
 
-		test.assertExists('form[action="http://gmo.tsp.dt.in.th/entrepreneur/requests"]', 'from exists');
-		casper.fill('form[action="http://gmo.tsp.dt.in.th/entrepreneur/requests"]', dataToFill_inFrom1_correct , true)
-
-	});
-
-	casper.waitFor(function check() {
-		return casper.getCurrentUrl() === 'http://gmo.tsp.dt.in.th/entrepreneur';
-	}, function then() {
-
-	}, function timeout() {
-		casper.test.fail("Time out after submit from");
-	},5000);
+	casper.waitUntilVisible('.error-box')
 
 	casper.then(function() {
-		
+		screenshot.capture(casper)
+		casper.test.comment(casper.getCurrentUrl())
+		test.assertExists('.error-box', 'An error box must show.')
 	})
 
 	casper.run(function() {
-		test.done();
-	});
+		test.done()
+	})
 
 });

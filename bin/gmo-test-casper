@@ -1,7 +1,21 @@
-#!/bin/bash
+#!/usr/bin/env ruby
 
-for TEST_FILE in /vagrant/gmo/app/tests/CasperTest/*Test.js
-do
-	casperjs test --fail-fast "$TEST_FILE"
-done
+available_files = Dir['/vagrant/gmo/app/tests/CasperTest/*Test.js']
+
+if ARGV.empty?
+	puts "Please enter testcase name, or 'all' to test all."
+	puts "Available tests:"
+	puts available_files.map { |file| '- ' + File.basename(file, '.js') }
+else
+	if ARGV == ['all']
+		test_files = available_files
+	else
+		test_files = ARGV.map { |arg|
+			available_files.find { |file| File.basename(file, '.js') == arg } or raise "Testcase not found"
+		}
+	end
+	test_files.each do |filename|
+		system "casperjs test #{filename} --fail-fast"
+	end
+end
 
