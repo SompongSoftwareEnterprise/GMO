@@ -6,11 +6,10 @@
 // and make sure that request working and appear in staff page correctly
 
 
-var url = require('./url')
-var seed = require('./seed')
-var login = require('./login')
-var logout = require('./logout')
-var screenshot = require('./screenshot')
+var url = require('./helpers/url')
+var login = require('./helpers/login')
+var logout = require('./helpers/logout')
+var screenshot = require('./helpers/screenshot')
 
 
 var dataToFill_inForm1_incomplete = {

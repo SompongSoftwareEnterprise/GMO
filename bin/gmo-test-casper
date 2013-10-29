@@ -1,6 +1,55 @@
 #!/usr/bin/env ruby
 
-available_files = Dir['/vagrant/gmo/app/tests/CasperTest/*Test.js']
+require 'yaml'
+
+
+def load_fixtures(filename)
+	fixtures = [ ]
+	File.open(filename) do |io|
+		YAML.each_document(io) do |doc|
+			read_fixture(doc, fixtures)
+		end
+	end
+	fixtures
+end
+
+def read_fixture(doc, fixtures)
+	if doc['table']
+		fixtures << doc
+	end
+end
+
+def fixtures_to_sql(fixtures)
+	fixtures.map { |fixture| fixture_to_sql(fixture) }
+end
+
+class String
+	def table_name
+		"`#{self}`"
+	end
+	def sql_escape
+		"'#{self.gsub('\'', '\\\'')}'"
+	end
+end
+
+def fixture_to_sql(fixture)
+	keys = fixture['data'].keys
+	columns = keys.map(&:table_name).join(', ')
+	values = keys.map { |k| fixture['data'][k] }.map(&:to_s).map(&:sql_escape).join(', ')
+	"INSERT INTO #{fixture['table']}\n\t(#{columns})\n\tVALUES (#{values});\n"
+end
+
+fixtures = load_fixtures('/vagrant/gmo/app/tests/casper/fixtures/entrepreneur-1.yml')
+
+puts fixtures_to_sql(fixtures)
+
+exit
+
+available_files = Dir['/vagrant/gmo/app/tests/casper/*Test.js']
+
+def run_test(filename)
+	# system "casperjs test #{filename} --fail-fast"
+end
 
 if ARGV.empty?
 	puts "Please enter testcase name, or 'all' to test all."
@@ -15,7 +64,7 @@ else
 		}
 	end
 	test_files.each do |filename|
-		system "casperjs test #{filename} --fail-fast"
+		run_test(filename)
 	end
 end
 

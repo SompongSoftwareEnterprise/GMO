@@ -1,5 +1,5 @@
 
-var url = require('./url')
+var url = require('./helpers/url')
 
 casper.test.begin('Register test as a customer', function suite(test) {
 
