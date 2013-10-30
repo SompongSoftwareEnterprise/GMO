@@ -43,7 +43,6 @@ Basic Flow
 
 Alternate Flows
 ---------------
-
 5a. The credential is not correct (either username does not exist or password is wrong)
 
 1. System presents the login page again, but also display the error message.
