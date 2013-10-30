@@ -16,7 +16,10 @@ Route::get('/test/message', function() {
 		->with('back', true);
 });
 
-Route::get('/', 'HomeController@homePage');
+Route::get('/', 'LoginController@index');
+Route::post('/login', 'LoginController@login');
+
+Route::get('/test/home', 'HomeController@homePage');
 
 // register
 Route::get('/staff/register',           'RegistrationController@index');
