@@ -44,7 +44,7 @@ Edit Account Information
 		<div class="col-sm-offset-1 col-xs-5">
 			<div class="form-group">
 				{{ Form::label('old-password', 'Old Password') }}
-				{{ Form::text('old_password', null, array('class' => 'form-control', 'placeholder' => 'ex. ********')) }}
+				{{ Form::password('old_password', null, array('class' => 'form-control', 'placeholder' => 'ex. ********')) }}
 			</div>
 		</div>
 		
@@ -52,8 +52,8 @@ Edit Account Information
 <!-- TODO change type to password -->
 			<div class="form-group">
 				{{ Form::label('password', 'New Password') }}
-				{{ Form::text('password', null, array('class' => 'form-control', 'placeholder' => 'new password')) }}
-				{{ Form::text('password-confirmation', null, array('type' => 'password', 'class' => 'form-control', 'placeholder' => 'confirm password')) }}
+				{{ Form::password('password', null, array('class' => 'form-control', 'placeholder' => 'new password')) }}
+				{{ Form::password('password_confirmation', null, array('type' => 'password', 'class' => 'form-control', 'placeholder' => 'confirm password')) }}
 			</div>
 		</div>
 		
@@ -79,7 +79,7 @@ Edit Account Information
 			<div class="form-group individual">
 				<label for="date_of_birth">Date of Birth</label>
 				<div class="row">
-					{{ Form::date('date_of_birth') }}
+					{{ Form::date('date_of_birth', InputDate::parse('date_of_birth')) }}
 				</div>
 			</div>
 		</div>

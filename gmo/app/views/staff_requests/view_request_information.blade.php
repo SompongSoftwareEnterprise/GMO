@@ -85,7 +85,7 @@ View All Requests
 
 			<br><br>
 			<a href="{{action('StaffRequestsController@createReceipt', $id)}}" class="btn btn-primary">Create Receipt</a>
-			<a href="{{action('StaffRequestsController@createLabTask', $id)}}" class="btn btn-primary">Create Lab Task</a>
+			<a href="{{action('StaffRequestsController@newLabTask')}}" class="btn btn-primary">Create Lab Task</a>
 			<button type="button" disabled class="btn btn-disabled">Create Analysis of Report</button>
 
 			<button type="button" disabled class="btn btn-disabled">Create Certificate</button>
