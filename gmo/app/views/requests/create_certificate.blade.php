@@ -521,7 +521,7 @@ Create Certificate Request Form
 						<div class="form-group">	
 							<div class="col-sm-offset-3 col-xs-4">
 								{{ Form::text('city', null, array('class' => 'form-control', 'placeholder' => 'Town/City')) }}
-								<input type="text" class="form-control" name="city" placeholder="Town/City">
+								<!-- <input type="text" class="form-control" name="city" placeholder="Town/City"> -->
 							</div>
 							<div class=" col-xs-4">
 								{{ Form::select('province', array(

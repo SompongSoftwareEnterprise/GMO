@@ -98,6 +98,20 @@ class EntrepreneurRequestsController extends AbstractEntrepreneurController {
 
 		$certReqForm->origin_of_plant = Input::get('origin_of_plant');
 
+		// example 
+		$certExample = new CertificateRequestExample;
+		foreach (Input::all() as $k => $v) {
+			$prefix = 'example_type_ex';		
+			if (substr($k, 0, strlen($prefix)) == $prefix) {
+				$number = substr($k, strlen($prefix));
+				$certExample->export_certificate_request_form_id = $id;
+				$certExample->type_of_example = Input::get('example_type_ex' . $number);
+				$certExample->quantity = Input::get('example_quantity_ex' . $number);
+				$certExample->detail = Input::get('example_detail_ex' . $number);
+			}
+		}
+		$certExample->save();
+
 		$certReqForm->save();
 
 		$certReqFormValidator = Validator::make(Input::all(), CertificateRequestInfoForm::getValidationRules());
