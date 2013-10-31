@@ -26,11 +26,13 @@ class Fixture
 
 	def read_doc(doc)
 		if doc['table']
-			doc['data'].tap do |data|
-				if data['password']
-					data['password_salt'] = md5("this is a salt")
-					data['password_hash'] = md5(md5(data['password']) + md5(data['password_salt']))
-					data.delete('password')
+			if doc['data']
+				doc['data'].tap do |data|
+					if data['password']
+						data['password_salt'] = md5("this is a salt")
+						data['password_hash'] = md5(md5(data['password']) + md5(data['password_salt']))
+						data.delete('password')
+					end
 				end
 			end
 			fixtures << doc
@@ -38,18 +40,26 @@ class Fixture
 	end
 
 	def to_sql
+
 		sql = []
 		tables = {}
+
 		fixtures.each do |fixture|
 			tables[fixture['table']] = true
 		end
+
 		sql << "SET FOREIGN_KEY_CHECKS=0;"
+
 		tables.keys.each do |table_name|
 			sql << "TRUNCATE #{table_name.table_name};"
 		end
+
 		sql << "SET FOREIGN_KEY_CHECKS=1;"
-		fixtures.map { |fixture| sql << fixture_to_sql(fixture) }
+
+		fixtures.select { |fixture| fixture['data'] }.map { |fixture| sql << fixture_to_sql(fixture) }
+
 		sql.join("\n\n")
+
 	end
 
 	def fixture_to_sql(fixture)

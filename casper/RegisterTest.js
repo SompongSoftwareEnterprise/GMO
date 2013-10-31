@@ -1,56 +1,69 @@
 
 var url = require('./helpers/url')
+var yaml = require('./helpers/yaml')
 
+var testdata = yaml('testdata/register.yml')
+
+/**
+ * Register test - Tests that the registration process is working and
+ * an entrepreneur is registered successfully and can login.
+ *
+ * @fixture fixtures/clear-users.yml
+ */
 casper.test.begin('Register test as a customer', function suite(test) {
 
-	casper.start(url('/'), function() {
+	casper.start(url('/staff/register'))
+	
+	casper.then(function() {
+		casper.click('#register-customer')
+	})
 
-		//check that register button exists
+	// When registering as company, lastname, sex, and date of birth
+	// must be disabled.
+	casper.then(function() {
 
-		// test.assertExists('.btn.btn-primary.btn-lg','Check button for register'); //  <=====   Sould we have id for this element ( ask at uni)
-		test.assertExists('#register','Check button for register');  //  <=====   think that we add id to it  (Fail assert)
-		casper.click('.btn.btn-primary.btn-lg');
+		test.comment('When checking "is company", some fields must be disabled')
+		casper.click('#is_company_checkbox')
+		test.assertExists('#last_name:disabled')
+		test.assertExists('input[name=sex]:disabled')
+		test.assertExists('#date_of_birth:disabled')
 
-	});
+		test.comment('When unchecking "is company", these fields must be re-enabled')
+		casper.click('#is_company_checkbox')
+		test.assertDoesntExist('#last_name:disabled')
+		test.assertDoesntExist('input[name=sex]:disabled')
+		test.assertDoesntExist('#date_of_birth:disabled')
+
+		test.comment('Now filling forms with few invalid data.')
+		casper.click('#is_company_checkbox')
+		casper.fill('form#register-form', testdata.customer_try1, true)
+
+		test.comment('Waiting for error box')
+
+	})
+
+	casper.waitForSelector('.error-box')
 
 	casper.then(function() {
 
-		// TODO now register as customer and agency element have the same information
-		// Should have ID ???????
+		// casper.echo(casper.fetchText('.error-box li'))
+		test.assertExists('.error-box', 'Error box is shown')
+		test.comment('Now completing the form with valid data.')
+		casper.fill('form#register-form', testdata.customer_try2, true)
 
-		test.assertExists('#register-customer','Check button for register as Customer')
+		test.comment('Waiting for success message box')
 
-	});
+	})
 
-	// HARD CODE !!!!!  ->  url register as customer
-	casper.thenOpen(url('/staff/register/customer'), function() {
+	casper.waitForSelector('.message-box')
 
-		// Check all element in from should exists
-		test.assertExists('input#is_company_checkbox[type=checkbox]', 'company checkbox element exists');
-		test.assertExists('input#first_name[type=text]', 'first name textbox element exists');
-		test.assertExists('input#last_name[type=text]', 'last name textbox element exists');
-
-		// This 2 element not have id !!
-		// Should we have id or select with name instead
-
-		// test.assertExists({
-		//     type: 'xpath',
-		//     path: '//input[@id="is_male_radio" and @type="radio"]' 
-		// },'Sex-male radio element exists');
-
-		// test.assertExists({
-		//     type: 'xpath', 
-		//     path: '//input[@id="is_female_radio" and @type="radio"]' 
-		// },'Sex-female radio element exists');
-
-		test.assertExists('input[name=date_of_birth__date][type=number]', 'date of birth - date number element exists');
-		test.assertExists('select[name=date_of_birth__month]',            'date of birth - month number element exists');
-		test.assertExists('input[name=date_of_birth__year][type=number]', 'date of birth - date number element exists');
-
-	});
+	casper.then(function() {
+		test.assertExists('.message-box', 'Message box is shown')
+		test.comment('Register finished.')
+	})
 
 	casper.run(function() {
-		test.done();
-	});
+		test.done()
+	})
 
-});
+})
