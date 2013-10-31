@@ -2,7 +2,6 @@
 
 require 'yaml'
 
-
 def load_fixtures(filename)
 	fixtures = [ ]
 	File.open(filename) do |io|
@@ -39,16 +38,14 @@ def fixture_to_sql(fixture)
 	"INSERT INTO #{fixture['table']}\n\t(#{columns})\n\tVALUES (#{values});\n"
 end
 
-fixtures = load_fixtures('/vagrant/gmo/app/tests/casper/fixtures/entrepreneur-1.yml')
-
+fixtures = load_fixtures('/vagrant/casper/fixtures/entrepreneur-1.yml')
 puts fixtures_to_sql(fixtures)
-
 exit
 
-available_files = Dir['/vagrant/gmo/app/tests/casper/*Test.js']
+available_files = Dir['/vagrant/casper/*Test.js']
 
 def run_test(filename)
-	# system "casperjs test #{filename} --fail-fast"
+	system "casperjs test #{filename} --fail-fast"
 end
 
 if ARGV.empty?
