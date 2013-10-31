@@ -14,7 +14,7 @@
 			<div class="panel-body text-center">
 				<p>If you are<br><strong>"Customer"</strong></p>
 				<p>
-					<a href="{{ action('RegistrationController@registerCustomer') }}" class="btn btn-primary btn-lg">Click Here</a>
+					<a href="{{ action('RegistrationController@registerCustomer') }}" class="btn btn-primary btn-lg" id="register-customer">Click Here</a>
 				</p>
 			</div>
 		</div>
@@ -27,7 +27,7 @@
 			<div class="panel-body text-center">
 				<p>If you are<br><strong>"Agency"</strong></p>
 				<p>
-					<a href="{{ action('RegistrationController@registerAgency') }}" class="btn btn-primary btn-lg">Click Here</a>
+					<a href="{{ action('RegistrationController@registerAgency') }}" class="btn btn-primary btn-lg" id="register-agency">Click Here</a>
 				</p>
 			</div>
 		</div>
