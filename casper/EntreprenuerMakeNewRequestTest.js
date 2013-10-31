@@ -1,16 +1,15 @@
 
-
-// Test description
-
-// This Scenario test will test as customer to create new request
-// and make sure that request working and appear in staff page correctly
-
+/**
+ * This Scenario test will test as customer to create new request
+ * and make sure that request working and appear in staff page correctly
+ *
+ * @fixture fixtures/entrepreneur-1.yml
+ */
 
 var url = require('./helpers/url')
 var login = require('./helpers/login')
 var logout = require('./helpers/logout')
 var screenshot = require('./helpers/screenshot')
-
 
 var dataToFill_inForm1_incomplete = {
 	'manufactory_name' : 'Sompong Software',
@@ -42,9 +41,6 @@ casper.test.begin('Enterprenuer make new request', function suite(test) {
 	casper.start()
 
 	casper.thenOpen(url('/'), function() {
-		casper.test.comment("Test description");
-		casper.test.comment("This Scenario test will test as customer to create new request");
-		casper.test.comment("and make sure that request working and appear in staff page correctly");
 	})
 
 	login.entrepreneur(casper, test)

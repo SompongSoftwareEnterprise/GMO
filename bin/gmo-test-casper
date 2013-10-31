@@ -1,25 +1,72 @@
 #!/usr/bin/env ruby
 
 require 'yaml'
+require 'digest'
 
-def load_fixtures(filename)
-	fixtures = [ ]
-	File.open(filename) do |io|
-		YAML.each_document(io) do |doc|
-			read_fixture(doc, fixtures)
+def md5(what)
+	Digest::MD5.hexdigest(what)
+end
+
+
+class Fixture
+
+	attr_reader :fixtures
+
+	def initialize
+		@fixtures = [ ]
+	end
+
+	def load(filename)
+		File.open(filename) do |io|
+			YAML.each_document(io) do |doc|
+				read_doc(doc)
+			end
 		end
 	end
-	fixtures
-end
 
-def read_fixture(doc, fixtures)
-	if doc['table']
-		fixtures << doc
+	def read_doc(doc)
+		if doc['table']
+			doc['data'].tap do |data|
+				if data['password']
+					data['password_salt'] = md5("this is a salt")
+					data['password_hash'] = md5(md5(data['password']) + md5(data['password_salt']))
+					data.delete('password')
+				end
+			end
+			fixtures << doc
+		end
 	end
-end
 
-def fixtures_to_sql(fixtures)
-	fixtures.map { |fixture| fixture_to_sql(fixture) }
+	def to_sql
+		sql = []
+		tables = {}
+		fixtures.each do |fixture|
+			tables[fixture['table']] = true
+		end
+		sql << "SET FOREIGN_KEY_CHECKS=0;"
+		tables.keys.each do |table_name|
+			sql << "TRUNCATE #{table_name.table_name};"
+		end
+		sql << "SET FOREIGN_KEY_CHECKS=1;"
+		fixtures.map { |fixture| sql << fixture_to_sql(fixture) }
+		sql.join("\n\n")
+	end
+
+	def fixture_to_sql(fixture)
+		keys = fixture['data'].keys
+		columns = keys.map(&:table_name).join(', ')
+		values = keys.map { |k| fixture['data'][k] }.map(&:to_s).map(&:sql_escape).join(', ')
+		"INSERT INTO #{fixture['table']}\n\t(#{columns})\n\tVALUES (#{values});"
+	end
+
+	def to_database
+		filename = '/tmp/fixture.sql'
+		File.open(filename, 'w') do |io|
+			io << to_sql
+		end
+		system "gmo-restore-database '#{filename}'"
+	end
+
 end
 
 class String
@@ -31,20 +78,27 @@ class String
 	end
 end
 
-def fixture_to_sql(fixture)
-	keys = fixture['data'].keys
-	columns = keys.map(&:table_name).join(', ')
-	values = keys.map { |k| fixture['data'][k] }.map(&:to_s).map(&:sql_escape).join(', ')
-	"INSERT INTO #{fixture['table']}\n\t(#{columns})\n\tVALUES (#{values});\n"
-end
-
-fixtures = load_fixtures('/vagrant/casper/fixtures/entrepreneur-1.yml')
-puts fixtures_to_sql(fixtures)
-exit
-
 available_files = Dir['/vagrant/casper/*Test.js']
 
+def color(x)
+	"\e[#{x}m#{yield}\e[0m"
+end
+
 def run_test(filename)
+	data = File.read(filename)
+	puts
+	puts "#{color('1;32') { '==> Running test:' }} #{File.basename filename}"
+	if data =~ /(\/\*\*(.*?)\*\/)/m
+		comment = $1
+		fixture = Fixture.new
+		comment.scan(/@fixture (\S+)/) do
+			fixture_filename = File.join(File.dirname(filename), $1)
+			puts "==> Loading fixture: #{fixture_filename}"
+			fixture.load(fixture_filename)
+		end
+		fixture.to_database
+		puts comment
+	end
 	system "casperjs test #{filename} --fail-fast"
 end
 
@@ -64,4 +118,13 @@ else
 		run_test(filename)
 	end
 end
+
+
+
+
+
+
+
+
+
 

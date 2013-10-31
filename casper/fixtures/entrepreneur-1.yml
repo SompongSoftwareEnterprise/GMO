@@ -3,8 +3,7 @@ table: users
 data:
     id: 1
     username: entre1
-    password_hash: ''
-    password_salt: ''
+    password: 'entrepassword'
     name: Wolfgang Gangwolf
     role: Customer
 
