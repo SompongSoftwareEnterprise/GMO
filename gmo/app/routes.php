@@ -11,6 +11,11 @@
 |
 */
 
+Route::post('/test/seed', function() {
+	App::make('DatabaseSeeder')->run();
+	return 'ok';
+});
+
 Route::get('/test/message', function() {
 	return MessageView::make('Something is wrong, eh?', 'HomeController@homePage', 'Go Home')
 		->with('back', true);

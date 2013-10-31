@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -e
+FILENAME="$1"
+mysql -ugmo -pgmo gmo < "$FILENAME"
+
+echo "============================================"
+echo "Database is restored from $FILENAME"
+echo "============================================"
+
+

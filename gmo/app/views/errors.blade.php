@@ -1,4 +1,4 @@
-<div class="panel panel-danger">
+<div class="panel panel-danger error-box">
 	<div class="panel-heading">
 		<h3 class="panel-title">An Error Has Occured!</h3>
 	</div>
