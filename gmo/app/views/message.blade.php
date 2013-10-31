@@ -11,7 +11,7 @@
 
 		<br><br><br>
 		
-		<div class="panel panel-default">
+		<div class="panel panel-default message-box">
 			<div class="panel-heading">
 				<h3 class="panel-title">{{ isset($title) ? $title : 'Message' }}</h3>
 			</div>
@@ -26,7 +26,7 @@
 				@endif
 				<div class="text-right">
 					@if (isset($action))
-						<a href="{{ action($action) }}" class="btn btn-primary">
+						<a href="{{ action($action) }}" class="btn btn-primary message-primary-action">
 							@if (isset($actionIcon))
 								<i class="glyphicon glyphicon-{{$actionIcon}}"></i>
 							@endif

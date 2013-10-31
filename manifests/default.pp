@@ -23,7 +23,8 @@ package { [
     'build-essential',
     'vim',
     'curl',
-    'git-core'
+    'git-core',
+    'ttf-thai-tlwg'
   ]:
   ensure  => 'installed',
 }

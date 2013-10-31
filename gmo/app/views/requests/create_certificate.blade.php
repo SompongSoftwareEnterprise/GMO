@@ -8,6 +8,8 @@ Create Certificate Request Form
 
 <div class="panel-body ">
 
+	{{ View::make('errors_row') }}
+
 	<div class="row">
 
 		<div class="col-xs-2">
@@ -24,7 +26,11 @@ Create Certificate Request Form
 				</button>
 			</div>
 		</div>
-		{{ Form::open(array('action' => array('EntrepreneurRequestsController@create'), 'class' => 'form-horizontal')) }}
+		{{ Form::open(array(
+			'action' => array('EntrepreneurRequestsController@create'),
+			'class' => 'form-horizontal',
+			'id' => 'new-request-form',
+		)) }}
 		<div id="form_1" class="col-xs-10">
 			<div class="panel panel-default">
 				<div class="panel-body text-left">
@@ -98,13 +104,13 @@ Create Certificate Request Form
 						</div>
 						<div class="form-group">
 							<div class="col-sm-offset-3 col-xs-8 ">
-								{{ Form::text('address1', null, array('class' => 'form-control', 'placeholder' => 'Address Line 1')) }}
+								{{ Form::text('manufactory_address1', null, array('class' => 'form-control', 'placeholder' => 'Address Line 1')) }}
 								<!--<input type="text" class="form-control" name="manufactory_address1" placeholder="Address Line 1">-->
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="col-sm-offset-3 col-xs-8 ">
-								{{ Form::text('address2', null, array('class' => 'form-control', 'placeholder' => 'Address Line 2')) }}
+								{{ Form::text('manufactory_address2', null, array('class' => 'form-control', 'placeholder' => 'Address Line 2')) }}
 								<!--<input type="text" class="form-control" name="manufactory_address2"  placeholder="Address Line 2">-->
 							</div>
 						</div>
@@ -609,7 +615,7 @@ Create Certificate Request Form
 								<div class="col-sm-offset-7 col-sm-5">
 									<a href="{{ action('EntrepreneurRequestsController@index') }}" class="btn btn-default">Back</a>
 									<button type="reset" class="btn btn-danger">Reset</button>
-									<button type="submit" class="btn btn-primary">Submit</button>
+									<button type="submit" class="btn btn-primary" id="submit-button">Submit</button>
 								</div>
 							</div>
 						<!-- </form> -->

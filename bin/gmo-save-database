@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -e
+FILENAME=/home/vagrant/backup-`date +'%Y%m%d%H%M%S'`.sql
+mysqldump -ugmo -pgmo gmo > "$FILENAME"
+
+echo "============================================"
+echo "Database is saved."
+echo "Use this command to restore the database:"
+echo "    gmo-restore-database $FILENAME"
+echo "============================================"
+
+

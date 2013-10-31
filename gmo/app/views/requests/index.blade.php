@@ -1,11 +1,11 @@
 @extends('layout')
 
 @section('title')
-Create Certificate Request Form
+View Certificate Request
 @endsection
 
 @section('content')
-<div class="panel-body">
+<div class="panel-body entrepreneur-page">
 
 	<form class="form-inline" role="search" name="searchForm" id="entrepreneur_requests_search_form">
 		<div class="form-group">
