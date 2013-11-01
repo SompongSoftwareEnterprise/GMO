@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('title')
-View All Requests
+View Requests Information
 @endsection
 
 @section('content')
@@ -12,7 +12,7 @@ View All Requests
 			<th>Request ID</th>
 			<th>Plant Name</th>
 			<th>Entrepreneur</th>
-			<th>Current Process</th>
+			<th>Status</th>
 		</tr>
 
 
@@ -24,7 +24,8 @@ View All Requests
 		@else
 		@foreach ($tableData as $request) 
 		<tr>
-			<td><a href="{{action('StaffRequestsController@show',array('id' =>$request['ID']))}}"</a>{{$request['Reference ID']}}</td>
+			<!-- <td><a href="{{action('StaffRequestsController@show',array('id' =>$request['ID']))}}"</a>{{$request['Reference ID']}}</td> -->
+			<td><a href="/staff/requests/{{ $request['ID'] }}">{{ $request['Reference ID'] }}</a></td>
 			<td>{{$request['Plant Name']}}</td>
 			<td>{{$request['Entrepreneur']}}</td>
 			<td>{{$request['Current Process']}}</td>

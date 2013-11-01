@@ -117,11 +117,11 @@ class StaffRequestsController extends BaseController {
 		$importer = Entrepreneur::find($request['owner_id']);
 		$requester = Entrepreneur::find($request['signer_id']);
 
-		$data['Importer Name'] = $importer['first_name'];
-		$data['Requester'] = $requester['first_name'];
+		$data['Importer Name'] = $importer['first_name'] . ' ' . $importer['last_name'];
+		$data['Requester'] = $requester['first_name'] . ' ' . $requester['last_name'];
 		$data['Sent Date'] = $request['created_at'];
 		$data['Status'] = $request['status'];
-		$data['Invoice'] = 'Available';
+		$data['Invoice'] = 'Pending';
 
 		$receipt = Receipt::where('export_certificate_request_id','=',$request->id)->get();
 		if(count($receipt) > 0) {

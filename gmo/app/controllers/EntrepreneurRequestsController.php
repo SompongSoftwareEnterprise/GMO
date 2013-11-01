@@ -97,6 +97,8 @@ class EntrepreneurRequestsController extends AbstractEntrepreneurController {
 
 		$certReqForm->origin_of_plant = Input::get('origin_of_plant');
 
+		$certReqForm->status = 'Available';
+
 		$certReqFormValidator = Validator::make(Input::all(), CertificateRequestInfoForm::getValidationRules());
 
 		$certReqInfoForm = new CertificateRequestInfoForm;
@@ -140,7 +142,7 @@ class EntrepreneurRequestsController extends AbstractEntrepreneurController {
 		}
 
 		$certReqForm->save();
-		$certReqForm->save();
+		$certReqInfoForm->save();
 
 		return Redirect::action('EntrepreneurRequestsController@index');
 	}

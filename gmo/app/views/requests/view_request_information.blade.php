@@ -13,7 +13,18 @@ View Request Information
 			{{ View::make('requests/table/header') }}
 		</thead>
 		<tbody>
-			{{ View::make('requests/table/row')->with('certReq', $certReq); }}
+			<tr>
+				<td>{{ $certReq->reference_id }}</a></td>
+				<td>{{ $certReq->owner->fullName() }}</td>
+				<td>{{ $certReq->signer->fullName() }}</td>
+				<td>{{ $certReq->created_at }}</td>
+				<?php if ($certReq->status == 'Pending') { ?>
+					<td class="text-warning">{{ $certReq->status }}</td>
+				<?php } else if ($certReq->status == 'Available') { ?>
+					<td class="text-success">{{ $certReq->status }}</td>
+				<?php } ?>
+			</tr>
+			<!-- {{ View::make('requests/table/row')->with('certReq', $certReq); }} -->
 		</tbody>
 	</table>
 	<br><br>
