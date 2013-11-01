@@ -8,9 +8,11 @@ User Type: Agency
 
 Go to website click this link http://gmo.tsp.dt.in.th/
 
-* If you did not regis the member from GMO website and you think this is a mistake from the system please inform at admin@gmo.com
-** If you have a question about using the website, feel free to ask us at xxxxx  or call 08976115334 
+* If you have not registered for a GMO Entrepreneur account and you think that
+  you received this email by mistake from the system, please inform us at admin@gmo.com
+** If you have a question about using the website, feel free to ask us at xxxxx or call 08976115334 
 --------------------------------------------------------------------------------------
+
 ยินดีต้อนรับสู่กรมวิชาการเกษตร คุณFirstName  LastName
 
 
@@ -21,5 +23,5 @@ Password: XXXXXXXX
 
 ไปยังหน้าเวปไซท์ คลิกที่ link นี้ http://gmo.tsp.dt.in.th/
 
-*ถ้าคุณไม่ได้สมัครเป็นสมาชิกกับเวปไซท์จีเอ็มโอและคิดว่านี่อาจจะเป็นข้อผิดพลาดของระบบ กรุณาแจ้งมาที่ admin@gmo.com
-**หากมีคำถามใดๆ เกี่ยวกับการใช้งาน ขอเชิญติดต่อเราผ่านทาง หน้า FAQ ครับที่ xxxxx หรือ โทร 084452356652334
+* ถ้าคุณไม่ได้ขึ้นทะเบียนผู้ประกอบการกับระบบจีเอ็มโอและคิดว่านี่อาจจะเป็นข้อผิดพลาดของระบบ กรุณาแจ้งมาที่ admin@gmo.com
+** หากมีคำถามใดๆ เกี่ยวกับการใช้งาน ขอเชิญติดต่อเราผ่านทาง หน้า FAQ ครับที่ xxxxx หรือ โทร 084452356652334
