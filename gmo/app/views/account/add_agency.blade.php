@@ -34,7 +34,9 @@ Account Information
       <br>
       <br>
       <hr>
-      @if($agency != null)
+	  @if($agency == null)
+		<h3>Agency ID not found</h3>
+      @elseif($agency != null)
 
       <div id = "info"  class = "container">
 
