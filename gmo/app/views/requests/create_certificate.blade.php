@@ -121,7 +121,10 @@ Create Certificate Request Form
 								<!--<input type="text" class="form-control" name="manufactory_city" placeholder="Town/City">-->
 							</div>
 							<div class="col-xs-4 ">
-								{{ Form::select('manufactory_province', array('State/Province' => '', 'Bangkok' => 'Bangkok'), null, array('class' => 'form-control')) }}
+								{{ Form::select('manufactory_province', 
+									array('' => 'State/Province',
+									'Bangkok' => 'Bangkok'), 
+									null, array('class' => 'form-control')) }}
 								<!--<select class="form-control" name="manufactory_province">
 									<option>State/Province</option>
 									<option>Bangkok</option>
@@ -133,7 +136,7 @@ Create Certificate Request Form
 						<div class="form-group">
 							<div class="col-sm-offset-3 col-xs-4">
 								{{ Form::select('manufactory_country', array(
-									'Country' => '',
+									'' => 'Country',
 									'Thailand' => 'Thailand'
 									), null, 
 									array('class' => 'form-control')) }}
@@ -238,7 +241,7 @@ Create Certificate Request Form
 							<!--<label class="col-xs-3 control-label">
 								Purpose of Requesting a Certificate
 							</label>-->
-							{{ Form::label('purpose[]', 'Manufactory', array('class' => 'col-xs-3', 'control-label')) }}
+							{{ Form::label('purpose', 'Manufactory', array('class' => 'col-xs-3', 'control-label')) }}
 							<div class="col-xs-3">
 								{{ Form::checkbox('purpose[]', 'Export') }}&nbsp;&nbsp;Export
 								<!--<input type="checkbox" name="purpose[]" value="Export">&nbsp;&nbsp;Export-->
@@ -580,7 +583,7 @@ Create Certificate Request Form
 							</label>
 							{{ Form::label('final_destination', 'Final Destination', array('class' => 'col-xs-3', 'control-label')) }}
 							<div class="col-xs-8">
-								{{ Form::select('province', array(
+								{{ Form::select('final_destination', array(
 									'' => 'State/Province',
 									'Bangkok' => 'Bangkok'
 									), null, 
@@ -599,7 +602,7 @@ Create Certificate Request Form
 							{{ Form::label('port_of_entry', 'Port of Entry or Embarktion', array('class' => 'col-xs-3', 'control-label')) }}
 
 								<div class="col-xs-8">
-									{{ Form::select('country', array(
+									{{ Form::select('port_of_entry', array(
 										'' => 'Country',
 										'Thailand' => 'Thailand'
 										), null, 
