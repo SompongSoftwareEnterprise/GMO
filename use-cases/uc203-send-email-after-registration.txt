@@ -10,7 +10,7 @@ LAU2
 
 Level
 -----
-main_function
+User goal
 
 Primary Actor
 -------------
