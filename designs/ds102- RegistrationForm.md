@@ -12,9 +12,9 @@ Low Level Design
 ![Screenshot](images/ds102-RegistrationForm-example.png )
 
 * Company Checkbox                                                            
-      -Checking Company Checkbox will apply registration form into company registration form (Figure 5.1.2.P2)    
+      - Checking Company Checkbox will apply registration form into company registration form (Figure 5.1.2.P2)    
   
-      -If user didn’t checking Company Checkbox registration will be person registration form (Figure 5.1.2.P1)
+      - If user didn’t checking Company Checkbox registration will be person registration form (Figure 5.1.2.P1)
     
 * Registration Form                           
       - If registration form is Company registration form, form will included                      
