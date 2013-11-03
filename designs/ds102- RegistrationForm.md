@@ -5,6 +5,10 @@ Registration Form
 High Level Design
 -----------------
 * At the beginning User (GMO Staff) will see form to input registration information, included First Name, Last Name, Gender, Nationality, Address, City, Country, Zip Code, Email, Phone, Fax, and Mobile Phone. (Figure 5.1.2.P1)
+* At the top of screen there’s the checkbox “Company” User will see another form input, included Name, Address, City, Country, Zip Code, Email, Phone, and Fax. (Figure 5.1.2.P2)
+* After input information User will ciick on “Submit” button to submit input information and move on into next step. (5.1.3)
+* When User click “Submit” button form will validate input data notify if User’s input is incorrect.
+* User will cilick on “Back” button to reset all input information and go back to step 5.1.1.
 
 
 Low Level Design
