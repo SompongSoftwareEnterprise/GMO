@@ -1,0 +1,29 @@
+Scenario Test For Cycle 1
+
+->	EntreprenuerMakeNewRequestTest.js
+		Test as the Entreprenuer who want to create new request
+
+		->	Login as Entreprenuer
+		->	go to make new request page
+		->	try fill invalid from and submit
+		->	fill complete from and submit
+		->	request much show in view all request page for Entreprenuer
+		->	logout and login as GMO staff
+		->	request that send by Entreprenuer much show in all requst for GMO staff
+
+		Test Data
+			->	Entreprenuer Account
+			->	GMO staff Account
+
+->	EntreprenuerEditAccountInformationTest.js
+		Test as Entreprenuer who want to edit thair account imfomation
+
+		->	Login as Entreprenuer
+		->	go to account infomation page and check that all data correctly
+		->	go to edit account infomation page
+		->	try to edit all account infomation then submit
+		-> 	back to account infomation page and check that it display
+			for new account infomation correctly
+
+		Test Data
+			->	Entreprenuer Account
