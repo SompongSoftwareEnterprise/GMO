@@ -15,13 +15,16 @@ Low Level Design
 ![Screenshot](images/ds107-EditAccountInformationPage.png)
 
 * Data Format
-      - All information in 6.2.4 has to show in label tag(read only).       
-      - Password information does not show.
-* Confirm Button
-      - Save all information into database and doing E-mail sending.
+      - Show all information header and its textbox.
+* Save Button
+      - Check Username and  Password is correctly.
+      - Check New Password is the same as Confirm new Password(if you do not want to change your password leave it.).
+      - Send all information to 6.2.5 Edit Account Information Confirmation Page.
+
+* Clear Button 
+      - Clear all data filled.
 * Back Button
-      - Redirect page to 6.2.4 Edit Account Information Page for changing some information.
-* E-mail sending
-      - All information include password will send to email.
+      - Redirect page to 6.2.3 Account Information Page.
+
  
 
