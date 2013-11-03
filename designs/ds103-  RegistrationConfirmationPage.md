@@ -17,4 +17,6 @@ Low Level Design
 
 * Confirm Button
       - Selecting Confirm button will create entrepreneur or agency account into the database and send account information to user via email.     
+      
+* Back Button
       - Selecting Back button will redirect user back to registration form page with fill-in fields with user information.
