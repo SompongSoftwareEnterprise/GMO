@@ -20,8 +20,8 @@ Low Level Design
 ![Screenshot](images/ds113-CreateReceiptForm.png)
 
 * Preview Receipt form
-			- Show Receipt form.
+	- Show Receipt form.
 * Back button
-			- Change panel back to ‘Figure 5.3.2.A’.
+	- Change panel back to ‘Figure 5.3.2.A’.
 * Print button
-			- GMO staff can print receipt.
+	- GMO staff can print receipt.
