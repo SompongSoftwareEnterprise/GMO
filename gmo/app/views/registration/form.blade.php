@@ -7,7 +7,7 @@ Registration
 @section('content')
 
 
-{{ Form::open(array('action' => 'RegistrationController@submitRegister')) }}
+{{ Form::open(array('action' => 'RegistrationController@submitRegister', 'id' => 'register-form')) }}
 
 	{{ Form::hidden('is_agency', $is_agency); }}
 

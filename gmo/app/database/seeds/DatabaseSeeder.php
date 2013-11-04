@@ -12,13 +12,20 @@ class DatabaseSeeder extends Seeder {
 		Eloquent::unguard();
 
 		$this->call('EntrepreneurSeeder');
+		$this->call('RequestSeeder');
 	}
 
 }
 
+
 class EntrepreneurSeeder extends Seeder {
 	
 	public function run() {
+
+		DB::table('customer_agency')->delete();
+		DB::table('entrepreneurs')->delete();
+		DB::table('users')->delete();
+
 		Entrepreneur::create(array(
 			'user_id' => User::create(array(
 				'username' => 'entre1',
@@ -45,6 +52,30 @@ class EntrepreneurSeeder extends Seeder {
 			'fax' => '02-345-6790',
 			'mobile' => '087-654-3210',
 		));
+
 	}
 	
 }
+
+class RequestSeeder extends Seeder {
+	public function run() {
+
+		$tablesToDelete = array(
+			'export_certificate_request_examples',
+			'export_certificate_request_forms',
+			'export_certificate_request_info_forms',
+			'export_certificate_requests',
+			'export_certificate_tests',
+			'export_certificates',
+			'receipts',
+			'lab_task_assignments',
+			'lab_task_products',
+			'lab_tasks',
+		);
+		foreach ($tablesToDelete as $tableName) {
+			DB::table($tableName)->delete();
+		}
+
+	}
+}
+

@@ -1,0 +1,19 @@
+
+customer_try1:
+    first_name:  'Sompong Plant Company'
+    country:     'Thailand'
+    address1:    '123/45 Pizza Hut'
+    address2:    'Ngamvongvan Road'
+    city:        'Chatuchak'
+    province:    'Bangkok'
+    zip:         '11221'
+    email:       'invalid email ja'
+    phone:       'also invalid phone'
+    fax:         '02-345-6780'
+    mobile:      '081-234-5678'
+
+customer_try2:
+    nationality: 'Thai'
+    email:       'sompong@sompongplant.co.th'
+    phone:       '02-345-6789'
+
