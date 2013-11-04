@@ -90,6 +90,8 @@ end
 
 available_files = Dir['/vagrant/casper/*Test.js']
 
+Dir.chdir "/vagrant/casper"
+
 def color(x)
 	"\e[#{x}m#{yield}\e[0m"
 end
