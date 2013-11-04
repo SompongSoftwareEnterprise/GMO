@@ -111,7 +111,7 @@ def run_test(filename)
 		fixture.to_database
 		puts comment
 	end
-	system "casperjs test #{filename} --fail-fast"
+	system "casperjs test #{filename} --fail-fast --xunit=/tmp/#{File.basename(filename, '.js')}.xml"
 end
 
 if ARGV.empty?
