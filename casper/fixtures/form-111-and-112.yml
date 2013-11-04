@@ -7,7 +7,7 @@ data:
     role: Customer
 
 ---
-table: entrepreneurs
+ttable: entrepreneurs
 data:
     id: 1
     user_id: 1
@@ -17,15 +17,19 @@ data:
     last_name: Gangwolf
     sex: M
     nationality: Thai
+    date_of_birth: '1987-11-11'
     address1: "123/45 Happy Meal, McDonald's, Starbucks"
     address2: "Carbonara, The Pizza Company, 11111"
     city: Lat Yao
     country: Thailand
+    email: wolfgang@gangwolf.co.th
     phone: 02-345-6789
     fax: 02-345-6790
     mobile: 087-654-3210
     province: Bangkok
     zip: 11111
+    created_at: '!!NOW!!'
+    updated_at: '!!NOW!!'
 
 ---
 table: export_certificate_request_forms (1-1/1)
