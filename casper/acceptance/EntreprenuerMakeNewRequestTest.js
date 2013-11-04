@@ -3,7 +3,7 @@
  * This Scenario test will test as customer to create new request
  * and make sure that request working and appear in staff page correctly
  *
- * @fixture fixtures/entrepreneur-1.yml
+ * @fixture entrepreneur-1
  */
 
 var url = require('./helpers/url')
