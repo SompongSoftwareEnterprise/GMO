@@ -27,6 +27,10 @@ High Level Design
 Low Level Design
 ----------------
 
+![Screenshot](images/ds109.1-RevokeAgency.png )
+
+![Screenshot](images/ds109.2-AddAgency.png)
+
 # Revork Agency 
 * If user click “Revoke” button, the system will pop up the confirmation dialog. 
 * If user confirms the dialog confirmation, system will delete the specific agency from the agency list of the user.

@@ -2,6 +2,10 @@ Use Case Name
 -------------
 Account Information Page
 
+XRef
+----
+uc106
+
 High Level Design
 -----------------
 * Entrepreneur will be able to view their information in this page , in this page have 2 buttons Edit Profile and Back.      
@@ -12,7 +16,7 @@ High Level Design
 Low Level Design
 ----------------
 
-![Screenshot](images/ds112-ds106-AccountInformation.png )
+![Screenshot](images/ds106-AccountInformation.png )
 
 * Basic information 
       - Customer can’t change anything in this page , only view.
@@ -21,7 +25,7 @@ Low Level Design
 * Back button
       - take customer to a previous page.
       
-![Screenshot](images/ds112-ds106-2-AccountInformation.png )
+![Screenshot](images/ds106-2-AccountInformation.png )
 
 * Registered agency table
       - This table have 3 columns.

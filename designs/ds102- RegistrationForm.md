@@ -47,7 +47,8 @@ Low Level Design
             + Fax :        
             + Mobile Phone :     
 * Submit Button    
-      - Selecting Submit button will send input information into registration confirmation page.     
+      - Selecting Submit button will send input information into registration confirmation page, generate the
+        username and password, and send the email containing the user information to the specified email address.
 * Back Button     
       - Selecting Back button will cancel/clear all input information and redirect user back to registration home page.   
 
