@@ -21,8 +21,8 @@ High Level Design
 * User will click the “Search” button to search for the desired agency.
 * System will show the information of the desired agency.
 * User will select the button
-      - User can add the selected agency by clicking the “Add” button.
-      - User can go back to the Account information page by clicking the “Back” button.
+    - User can add the selected agency by clicking the “Add” button.
+    - User can go back to the Account information page by clicking the “Back” button.
 
 Low Level Design
 ----------------
@@ -38,9 +38,9 @@ Low Level Design
 # Add Agency
 
 * If user click “Search” button, the system will search for agency with the specific ID.
-      - in case of id not found, system will present “agency id not found” instead.
+    - in case of id not found, system will present “agency id not found” instead.
 * If user clicks “Add” button after the success search, system will pop up the confirmation dialog.
-      - in case of confirming the confirmation dialog, system will add the specific agency as the new agency of user.
-      - in case of cancelling the confirmation dialog, confirmation dialog will automatically close and system will do nothing.
+    - in case of confirming the confirmation dialog, system will add the specific agency as the new agency of user.
+    - in case of cancelling the confirmation dialog, confirmation dialog will automatically close and system will do nothing.
 * If user clicks “Add” button before the success search, system will do nothing.
 
