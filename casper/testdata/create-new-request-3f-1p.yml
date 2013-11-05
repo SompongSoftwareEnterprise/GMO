@@ -1,0 +1,71 @@
+# Should Fail due to incorrect phone format
+try1:
+    # Form 1-1/1
+    manufactory_name: "Bolshave Export Services"
+    manufactory_address1: "3/1, 3rd Street"
+    manufactory_address2: "Saints District"
+    manufactory_city: "Steelport"
+    # Drop down, Need correct format # manufactory_province: "Bangkok"
+    # Drop down, Need correct format # manufactory_country: "Laos"
+    manufactory_zip: "11022"
+    manufactory_phone: "THIS IS SO WRONG"
+    manufactory_fax: "0825681223"
+    warehouse_name: "Bolshave Export Services's Warehouse"
+    warehouse_address1: "The Saints Club, 3/2, 3rd Street"
+    warehouse_address2: "Saints District"
+    warehouse_city: "Steelport"
+    # Drop down, Need correct format # warehouse_province: "Pathumthani"
+    # Drop down, Need correct format # warehouse_country: "Thailand"
+    warehouse_zip: "11022"
+    warehouse_phone: "0843755557"
+    warehouse_fax: "0825681223"
+    # Check box, Need correct format # purposes: "Research|Security|Classified"
+    contact_name: "Assisistance Professor Pavel"
+    contact_phone: "024446585"
+    contact_email: "we_are_one@we.are.many"
+    receiver_name: "Research Lab Storage"
+    receiver_address1: "SCP Foundation, 701, SCP Foundation Building"
+    receiver_address2: "7th District, Kabul River"
+    receiver_city: "Jalalabad"
+    # Drop down, Need correct format # receiver_province: "Pathumthani"
+    # Drop down, Need correct format # receiver_country: "Thailand"
+    origin_of_plant: "Thailand"
+	
+    # Still need a way to input more than one example #	
+
+    # Example Detail 1
+    type_of_example: "Generic Tropical Tomato"
+    quantity: "10000"
+    detail: "Many reports have been emerged after de-classification of SCP-504 with increasing velocity and lower joke tolerants"
+	
+    # Example Detail 2 locked until have way to input more than one example 
+    # type_of_example: "Biological Matter"
+    # quantity: "10"
+    # detail: "We have found some kind of 'processor' made from biological matters implanted to what seem to be the 'center' of infection."
+	
+    # Form 1-1/2
+    common_name: "SCP-504-1"
+    vendor_or_consignee: "Decommissioned Object Observation Room"
+    address1: "SCP Foundation, 705, SCP Foundation Building"
+    address2: "2nd District, Kabul River"
+    city: "Jalalabad"
+    # Drop down, Need correct format # province: "Eastern Afghanistan"
+    # Drop down, Need correct format # country: "Afghanistan"
+    zip: "10901"
+    description_of_product: "Send SCP-504-D for re-classification"
+    # Drop down, Need correct format # final_destination: "Afghanistan"
+    # Drop down, Need correct format # port_of_entry: "Thailand"
+
+# Should also Fail due to incorrect email format
+try2: 
+    manufactory_phone: "0843221548"
+    contact_email: "Now I'm become death, The destroyer of world."
+
+# Should also Fail due to incorrect quantity format
+try3:
+    contact_email: "Spuknik@Sattel.com
+    quantity: "you suppose to type an integer"
+
+# Should Pass at last
+try4:
+    quantity: "1000"
