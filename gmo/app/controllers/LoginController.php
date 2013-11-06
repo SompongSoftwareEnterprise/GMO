@@ -10,7 +10,7 @@ class LoginController extends BaseController {
 		$username = Input::get('username');
 		$password = Input::get('password');
 		$user = User::where('username', $username)->first();
-		if (Hasher::checkHash($password, $user->password_salt, $user->password_hash)) {
+		if ($user && Hasher::checkHash($password, $user->password_salt, $user->password_hash)) {
 			return Redirect::action('EntrepreneurRequestsController@index');
 		} else {
 			$bag = new Illuminate\Support\MessageBag;
