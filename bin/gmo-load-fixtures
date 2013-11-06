@@ -1,0 +1,126 @@
+#!/usr/bin/env ruby
+
+require 'yaml'
+require 'digest'
+
+def md5(what)
+	Digest::MD5.hexdigest(what)
+end
+
+
+class Fixture
+
+	attr_reader :fixtures
+
+	def initialize
+		@fixtures = [ ]
+	end
+
+	def load(filename)
+		File.open(filename) do |io|
+			YAML.each_document(io) do |doc|
+				read_doc(doc)
+			end
+		end
+	end
+
+	def read_doc(doc)
+		if doc['table']
+			if doc['data']
+				doc['data'].tap do |data|
+					if data['password']
+						data['password_salt'] = md5("this is a salt")
+						data['password_hash'] = md5(md5(data['password']) + md5(data['password_salt']))
+						data.delete('password')
+					end
+				end
+			end
+			fixtures << doc
+		end
+	end
+
+	def to_sql
+
+		sql = []
+		tables = {}
+
+		fixtures.each do |fixture|
+			tables[fixture['table']] = true
+		end
+
+		sql << "SET FOREIGN_KEY_CHECKS=0;"
+
+		tables.keys.each do |table_name|
+			sql << "TRUNCATE #{table_name.table_name};"
+		end
+
+		sql << "SET FOREIGN_KEY_CHECKS=1;"
+
+		fixtures.select { |fixture| fixture['data'] }.map { |fixture| sql << fixture_to_sql(fixture) }
+
+		sql.join("\n\n")
+
+	end
+
+	def fixture_to_sql(fixture)
+		keys = fixture['data'].keys
+		columns = keys.map(&:table_name).join(', ')
+		values = keys.map { |k| fixture['data'][k] }.map(&:to_s).map(&:sql_escape).join(', ')
+		"INSERT INTO #{fixture['table']}\n\t(#{columns})\n\tVALUES (#{values});"
+	end
+
+	def to_database
+		filename = '/tmp/fixture.sql'
+		File.open(filename, 'w') do |io|
+			io << to_sql
+		end
+		system "gmo-restore-database '#{filename}'"
+	end
+
+end
+
+class String
+	def table_name
+		"`#{self}`"
+	end
+	def sql_escape
+		"'#{self.gsub('\'', '\\\'')}'"
+	end
+end
+
+def fixture_name(filename)
+	File.basename(filename, '.yml')
+end
+
+Dir.chdir "/vagrant/casper/fixtures"
+
+available_files = Dir['*.yml']
+
+def color(x)
+	"\e[#{x}m#{yield}\e[0m"
+end
+
+if ARGV.empty?
+	puts "Please enter fixture names."
+	puts "Available fixtures:"
+	puts available_files.map { |file| '- ' + fixture_name(file) }
+else
+	fixture_files = ARGV.map { |arg|
+		available_files.find { |file| fixture_name(file) == arg } or raise "Fixture not found"
+	}
+	fixtures = Fixture.new
+	fixture_files.each do |filename|
+		fixtures.load(filename)
+	end
+	fixtures.to_database
+end
+
+
+
+
+
+
+
+
+
+

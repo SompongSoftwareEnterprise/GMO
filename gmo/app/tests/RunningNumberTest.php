@@ -5,6 +5,7 @@ class RunningNumberTest extends TestCase {
 	protected $database = true;
 	
 	public function testRunningNumber() {
+		$this->fixtures('clear-running-number');
 		$this->assertEquals('560001', RunningNumber::getNextNumber('default', 2013));
 		$this->assertEquals('560001', RunningNumber::getNextNumber('default', 2013));
 		$this->assertEquals('560001', RunningNumber::increment('default', 2013));
