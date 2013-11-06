@@ -24,7 +24,7 @@ function CasperAPI(casper) {
 	api.login = function(username, password) {
 		casper.thenOpen(url('/'))
 		casper.then(function() {
-			api.step('Login with "' + username + '" and "' + password + '"')
+			api.step('Login with username="' + username + '" and password="' + password + '"')
 		})
 		casper.then(function() {
 			casper.fill('#login-form', {
@@ -39,10 +39,11 @@ function CasperAPI(casper) {
 	}
 
 	/**
-	 * [Step] Specify a step to be performed.
+	 * [Util] Log a certain step.
 	 */
+	var stepNumber = 0
 	api.step = function(message) {
-		test.comment(message)
+		test.comment(++stepNumber + '. ' + message)
 	}
 
 	/**
@@ -78,7 +79,7 @@ function CasperAPI(casper) {
 	 */
 	api.fillAndSubmit = function(form, data, message) {
 		casper.then(function() {
-			test.comment(message.replace(':name', data))
+			api.step(message.replace(':name', data))
 			this.fill(form, yaml.testdata(data), true)
 		})
 	}
