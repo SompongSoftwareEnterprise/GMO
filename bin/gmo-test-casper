@@ -88,7 +88,13 @@ class String
 	end
 end
 
-available_files = Dir['/vagrant/casper/*Test.js']
+def test_name(file)
+	"#{File.basename File.dirname file}/#{File.basename file, '.js'}"
+end
+
+available_files = Dir['/vagrant/casper/*/*Test.js']
+
+Dir.chdir "/vagrant/casper"
 
 def color(x)
 	"\e[#{x}m#{yield}\e[0m"
@@ -102,26 +108,26 @@ def run_test(filename)
 		comment = $1
 		fixture = Fixture.new
 		comment.scan(/@fixture (\S+)/) do
-			fixture_filename = File.join(File.dirname(filename), $1)
+			fixture_filename = "fixtures/#{$1}.yml"
 			puts "==> Loading fixture: #{fixture_filename}"
 			fixture.load(fixture_filename)
 		end
 		fixture.to_database
 		puts comment
 	end
-	system "casperjs test #{filename} --fail-fast"
+	system "casperjs test #{filename} --fail-fast --xunit=/tmp/#{File.basename(filename, '.js')}.xml"
 end
 
 if ARGV.empty?
 	puts "Please enter testcase name, or 'all' to test all."
 	puts "Available tests:"
-	puts available_files.map { |file| '- ' + File.basename(file, '.js') }
+	puts available_files.map { |file| '- ' + test_name(file) }
 else
 	if ARGV == ['all']
 		test_files = available_files
 	else
 		test_files = ARGV.map { |arg|
-			available_files.find { |file| File.basename(file, '.js') == arg } or raise "Testcase not found"
+			available_files.find { |file| test_name(file) == arg } or raise "Testcase not found"
 		}
 	end
 	test_files.each do |filename|
