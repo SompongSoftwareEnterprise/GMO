@@ -1,0 +1,34 @@
+# This file declares several users. Each user has its own role.
+# In order to test that the login system redirects each user to the correct page.
+---
+table: users
+data:
+    id: 1
+    username: u1
+    password: p1
+    name: I am a Customer
+    role: Customer
+---
+table: users
+data:
+    id: 2
+    username: u2
+    password: p2
+    name: I am an Agency
+    role: Agency
+---
+table: users
+data:
+    id: 3
+    username: u3
+    password: p3
+    name: I am a Staff
+    role: GMO Staff
+---
+table: users
+data:
+    id: 4
+    username: u4
+    password: p4
+    name: I am a Lab Staff
+    role: Lab Staff
