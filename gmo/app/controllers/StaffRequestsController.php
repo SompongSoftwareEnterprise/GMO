@@ -2,6 +2,8 @@
 
 class StaffRequestsController extends BaseController {
 
+	protected $requireGMOStaff = true;
+
 	public function index() {
 		$requests = CertificateRequest::all();
 		$tableData = $this->createRequestTableData($requests);

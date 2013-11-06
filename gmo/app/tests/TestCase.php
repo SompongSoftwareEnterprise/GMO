@@ -26,8 +26,10 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase {
 	{
 		parent::setUp();
 		if ($this->database) {
+			/*
 			Artisan::call('migrate');
 			$this->seed();
+			*/
 			Mail::pretend(true);
 		}
 	}

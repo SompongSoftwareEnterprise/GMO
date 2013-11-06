@@ -7,7 +7,8 @@ class MessageView {
 			->with('text', $text)
 			->with('action', $action)
 			->with('actionText', $actionText)
-			->with('actionIcon', $actionIcon);
+			->with('actionIcon', $actionIcon)
+			->with('isMessageView', true);
 	}
 
 }

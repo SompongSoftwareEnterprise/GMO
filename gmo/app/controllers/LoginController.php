@@ -18,6 +18,7 @@ class LoginController extends BaseController {
 		$password = Input::get('password');
 		$user = User::where('username', $username)->first();
 		if ($user && Hasher::checkHash($password, $user->password_salt, $user->password_hash)) {
+			Session::put('user_id', $user->id);
 			return Redirect::action($this->target[$user->role]);
 		} else {
 			$bag = new Illuminate\Support\MessageBag;

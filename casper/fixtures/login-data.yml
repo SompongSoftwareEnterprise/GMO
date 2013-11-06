@@ -32,3 +32,56 @@ data:
     password: p4
     name: I am a Lab Staff
     role: Lab Staff
+
+
+# These datas are used to test linking between the user and an
+# entrepreneur.
+---
+table: entrepreneurs
+data:
+    id: 20
+    user_id: 1
+    is_agency: 0
+    is_company: 0
+    first_name: Wolfgang
+    last_name: Gangwolf
+    sex: M
+    nationality: Thai
+    date_of_birth: '1987-11-11'
+    address1: "123/45 Happy Meal, McDonald's, Starbucks"
+    address2: "Carbonara, The Pizza Company, 11111"
+    city: Lat Yao
+    country: Thailand
+    email: wolfgang@gangwolf.co.th
+    phone: 02-345-6789
+    fax: 02-345-6790
+    mobile: 087-654-3210
+    province: Bangkok
+    zip: 11111
+    created_at: '!!NOW!!'
+    updated_at: '!!NOW!!'
+---
+table: entrepreneurs
+data:
+    id: 25
+    user_id: 2
+    is_agency: 1
+    is_company: 0
+    first_name: Wolfgang2
+    last_name: Gangwolf2
+    sex: M
+    nationality: Thai
+    date_of_birth: '1987-11-11'
+    address1: "123/45 Happy Meal, McDonald's, Starbucks"
+    address2: "Carbonara, The Pizza Company, 11111"
+    city: Lat Yao
+    country: Thailand
+    email: wolfgang@gangwolf.co.th
+    phone: 02-345-6789
+    fax: 02-345-6790
+    mobile: 087-654-3210
+    province: Bangkok
+    zip: 11111
+    created_at: '!!NOW!!'
+    updated_at: '!!NOW!!'
+
