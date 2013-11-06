@@ -61,6 +61,19 @@ function CasperAPI(casper, test) {
 	}
 
 	/**
+	 * [Check] Check that the form has the correct value
+	 */
+	api.assertFormValue = function(form, name, value) {
+		casper.then(function() {
+			test.assertEquals(
+				casper.getFormValues(form)[name],
+				value,
+				'The field ' + name + ' in ' + form + ' must have value ' + value
+			)
+		})
+	}
+
+	/**
 	 * [Check] Wait for an element to exist.
 	 */
 	api.wait = function(selector, message) {
@@ -73,6 +86,7 @@ function CasperAPI(casper, test) {
 	 */
 	api.run = function(fn) {
 		casper.start()
+		casper.options.pageSettings.loadImages = false
 		fn(api)
 		casper.run(function() {
 			test.done()
