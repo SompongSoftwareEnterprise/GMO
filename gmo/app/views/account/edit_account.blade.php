@@ -6,9 +6,12 @@ Edit Account Information
 
 @section('content')
 
-{{ Form::model($entrepreneur, array('action' => 'EntrepreneurAccountController@saveAccount')) }}
+{{ Form::model($entrepreneur, array(
+	'action' => 'EntrepreneurAccountController@saveAccount',
+	'id' => 'edit-account-form'
+)) }}
 
-<div class="form-horizontal">
+<div>
 
 	{{ View::make('errors_row') }}
 
