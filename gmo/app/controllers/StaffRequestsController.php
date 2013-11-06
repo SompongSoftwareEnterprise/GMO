@@ -28,13 +28,17 @@ class StaffRequestsController extends BaseController {
 			$checkForm = false;
 		}
 
-		$receipt = new Receipt;
-		$receipt->export_certificate_request_id = $id;
-		if($checkForm)
-			$receipt->price = 100+150;
-		else
-			$receipt->price = 100;
-		$receipt->save();
+		$receipt = 
+		Receipt::where('export_certificate_request_id', '=', $id)->first();
+		if( !(count($receipt) > 0) ){
+			$receipt = new Receipt;
+			$receipt->export_certificate_request_id = $id;
+			if($checkForm)
+				$receipt->price = 100+150;
+			else
+				$receipt->price = 100;
+			$receipt->save();
+		}
 		return View::Make('staff_requests/create_receipt')
 			->with('checkForm', $checkForm);
 	}
@@ -69,8 +73,7 @@ class StaffRequestsController extends BaseController {
 		$labTask->save();
 
 		$product = new LabTaskProduct;
-		foreach (Input::all() as $k => $v) {
-			print_r(Input::all());	
+		foreach (Input::all() as $k => $v) {	
 			$prefix = 'product_codepj';
 			if (substr($k, 0, strlen($prefix)) == $prefix) {
 				$number = substr($k, strlen($prefix));

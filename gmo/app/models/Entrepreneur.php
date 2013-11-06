@@ -17,9 +17,9 @@ class Entrepreneur extends Eloquent {
 			'province' => 'required',
 			'zip' => 'required',
 			'phone' => 'required',
-			'old_password' => 'required',
-	        'password'  =>'Required|AlphaNum|Between:4,8',
-	        'password_confirmation'=>'AlphaNum|Between:4,8'
+			// 'old_password' => 'required',
+	  //       'password'  =>'Required|AlphaNum|Between:4,8',
+	  //       'password_confirmation'=>'AlphaNum|Between:4,8'
         );
         return $rules;
     }
