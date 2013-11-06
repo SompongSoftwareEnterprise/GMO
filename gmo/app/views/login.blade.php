@@ -10,7 +10,7 @@
 	<div class="col-xs-6 col-sm-offset-3">
 
 		@if($errors->any())
-			<div class="panel panel-danger">
+			<div class="panel panel-danger" id="login-errors">
 				<div class="panel-body">
 					<strong>Invalid username or password.</strong>
 				</div>
@@ -22,7 +22,7 @@
 				<h3 class="panel-title">Login</h3>
 			</div>
 			<div class="panel-body">
-				{{ Form::open(array('action' => 'LoginController@login', 'class' => 'form-horizontal')) }}
+				{{ Form::open(array('action' => 'LoginController@login', 'class' => 'form-horizontal', 'id' => 'login-form')) }}
 					<div class="form-group">
 						{{ Form::label('username', 'Username', array('class' => 'col-xs-4 control-label')) }}
 						<div class="col-xs-7">
