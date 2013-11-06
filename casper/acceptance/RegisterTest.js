@@ -5,7 +5,7 @@
  * @xref     uc101, ds101, ds102
  * @actors   GMO Staff
  * @pre      GMO staff is logged in.
- * @fixture  clear-users
+ * @fixture  only-gmo-staff
  */
 
 var suite = require('../helpers/suite')
@@ -14,6 +14,7 @@ var yaml = require('../helpers/yaml')
 
 suite('Test Register as Customer', function(test) {
 
+	test.login('staff', 'staff')
 	test.go('/staff/register',                     'Go to the register page.')
 
 	test.click('#register-customer',               'Click the register customer button')

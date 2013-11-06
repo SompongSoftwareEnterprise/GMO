@@ -20,7 +20,7 @@ def run_test(filename)
 	if data =~ /(\/\*\*(.*?)\*\/)/m
 		comment = $1
 		fixture_list = [ ]
-		comment.scan(/@fixture (\S+)/) do
+		comment.scan(/@fixture\s+(\S+)/) do
 			fixture_list << $1
 		end
 		if !fixture_list.empty?

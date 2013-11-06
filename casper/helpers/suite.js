@@ -12,8 +12,30 @@ function CasperAPI(casper) {
 	 * [Step] Navigate to the `path`.
 	 */
 	api.go = function(path, message) {
-		api.step(message)
+		casper.then(function() {
+			api.step(message)
+		})
 		casper.thenOpen(url(path))
+	}
+
+	/**
+	 * [Step] Login with specified `username` and `password`.
+	 */
+	api.login = function(username, password) {
+		casper.thenOpen(url('/'))
+		casper.then(function() {
+			api.step('Login with "' + username + '" and "' + password + '"')
+		})
+		casper.then(function() {
+			casper.fill('#login-form', {
+				username: username,
+				password: password
+			})
+			casper.click('#login-form .btn-primary')
+		})
+		casper.then(function() {
+			test.assertDoesntExist('#login-errors', 'Must login successfully')
+		})
 	}
 
 	/**
@@ -163,9 +185,9 @@ function ExportAPI() {
 		casper.echo('')
 		casper.echo('   | Field Name | Value |')
 		casper.echo('   | ---------- | ----- |')
-		var data = yaml.testdata(data)
-		for (var i in data) {
-			casper.echo('   | ' + i + ' | ' + data[i] + ' |')
+		var d = yaml.testdata(data)
+		for (var i in d) {
+			casper.echo('   | ' + i + ' | ' + d[i] + ' |')
 		}
 		casper.echo('')
 	}
@@ -184,8 +206,6 @@ function ExportAPI() {
 
 /*global casper*/
 module.exports = function suite(name, fn) {
-	
 	var api = CasperAPI(casper)
 	api.run(fn, name)
-
 }
