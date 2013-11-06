@@ -182,7 +182,7 @@ function ExportAPI() {
 		step(message)
 	}
 	api.fillAndSubmit = function(form, data, message) {
-		step(message.replace(':name', data))
+		step(message.replace(':name', '`' + data + '`'))
 		casper.echo('')
 		casper.echo('   | Field Name | Value |')
 		casper.echo('   | ---------- | ----- |')
