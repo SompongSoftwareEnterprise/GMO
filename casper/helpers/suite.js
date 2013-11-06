@@ -3,8 +3,9 @@
 var url = require('./url')
 var yaml = require('./yaml')
 
-function CasperAPI(casper, test) {
+function CasperAPI(casper) {
 	
+	var test = null
 	var api = { }
 
 	/**
@@ -61,6 +62,19 @@ function CasperAPI(casper, test) {
 	}
 
 	/**
+	 * [Check] Check that the form has the correct value
+	 */
+	api.assertFormValue = function(form, name, value) {
+		casper.then(function() {
+			test.assertEquals(
+				casper.getFormValues(form)[name],
+				value,
+				'The field ' + name + ' in ' + form + ' must have value ' + value
+			)
+		})
+	}
+
+	/**
 	 * [Check] Wait for an element to exist.
 	 */
 	api.wait = function(selector, message) {
@@ -71,17 +85,54 @@ function CasperAPI(casper, test) {
 	/**
 	 * This function will be run automatically.
 	 */
-	api.run = function(fn) {
-		casper.start()
-		fn(api)
-		casper.run(function() {
-			test.done()
+	api.run = function(fn, name) {
+
+		casper.test.begin('== ' + name + ' ==', function(tester) {
+
+			test = tester
+			casper.start()
+			casper.options.pageSettings.loadImages = false
+			fn(api)
+			casper.run(function() {
+				test.done()
+			})
+
 		})
+
 	}
 
 	return api
 
 }
+
+var screenshot = require('./screenshot')
+
+casper.test.on('fail', function(failure) {
+
+	console.log('[Capturing screenshot...]')
+	screenshot.capture(casper)
+	console.log('Screenshot saved at ' + screenshot.path)
+
+	var error = casper.evaluate(function getErrorMessage() {
+		function text(el) {
+			if (!el) return ''
+			return el.innerText.trim()
+		}
+		var excTitle = document.querySelector('.exc-title')
+		var excMessage = document.querySelector('.exc-message')
+		var file = document.querySelector('.frame-file')
+		if (!excTitle) return null
+		return text(excTitle) + ': ' + text(excMessage) + ' at ' +
+			text(file)
+			
+	})
+
+	if (error) {
+		console.log('Laravel has something to say:')
+		console.log(error)
+	}
+
+})
 
 function ExportAPI() {
 
@@ -121,7 +172,8 @@ function ExportAPI() {
 	api.wait = function(selector, message) {
 		api.assertExists(selector, message)
 	}
-	api.run = function(fn) {
+	api.run = function(fn, name) {
+		casper.echo('# ' + name)
 		fn(api)
 	}
 
@@ -133,11 +185,7 @@ function ExportAPI() {
 /*global casper*/
 module.exports = function suite(name, fn) {
 	
-	casper.test.begin(name, function(test) {
-
-		var api = CasperAPI(casper, test)
-		api.run(fn)
-
-	})
+	var api = CasperAPI(casper)
+	api.run(fn, name)
 
 }

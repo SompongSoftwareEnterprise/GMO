@@ -1,4 +1,3 @@
-
 Use Case Name
 -------------
 Login
@@ -25,12 +24,13 @@ Low Level Design
 
 ![Screenshot](ds202-login-example.png)
 
-| Component Name             | ID               |
-| -------------------------- | ---------------- |
-| Username field             | #username        |
-| Password field             | #password        |
-| Login button               | #login-button    |
-| Error message panel        | #login-errors    |
+| Component Name             | ID               | Name      |
+| -------------------------- | ---------------- | --------- |
+| Login form                 | #login-form      |           |
+| Username field             | #username        | username  |
+| Password field             | #password        | password  |
+| Login button               | #login-button    |           |
+| Error message panel        | #login-errors    |           |
 
 
 

@@ -2,6 +2,8 @@
 
 class RegistrationController extends BaseController {
 
+	protected $requireGMOStaff = true;
+	
 	/*
 	|--------------------------------------------------------------------------
 	| Default Home Controller

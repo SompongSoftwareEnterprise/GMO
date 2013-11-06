@@ -1,10 +1,5 @@
 #!/bin/bash
 
-MYSQL='mysql -uroot -pgmodb'
-
-echo 'DROP DATABASE gmo_test' | $MYSQL
-echo 'CREATE DATABASE gmo_test' | $MYSQL
 cd /vagrant/gmo
-vendor/bin/phpunit
-echo 'DROP DATABASE gmo_test' | $MYSQL
+vendor/bin/phpunit "$@"
 
