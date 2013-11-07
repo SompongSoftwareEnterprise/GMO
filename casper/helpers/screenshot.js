@@ -2,8 +2,9 @@
 
 var screenshot = { }
 
+screenshot.path = '/vagrant/capture/screenshot.png'
 screenshot.capture = function(casper) {
-	casper.capture('/vagrant/capture/screenshot.png')
+	casper.capture(screenshot.path)
 }
 
 module.exports = screenshot

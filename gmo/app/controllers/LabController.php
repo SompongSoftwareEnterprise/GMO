@@ -2,6 +2,8 @@
 
 class LabController extends BaseController {
 
+	protected $requireLabStaff = true;
+	
 	/*
 	|--------------------------------------------------------------------------
 	| Default Home Controller
