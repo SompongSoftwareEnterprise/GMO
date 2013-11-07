@@ -45,7 +45,7 @@ Receipt
 
 		<div class="form-group">
 			<div class="col-sm-offset-10 col-xs-2">
-				<button class="btn btn-default" type="button"> Back </button>
+				<a href="{{ action('StaffRequestsController@index') }}" class="btn btn-default"> Back </a>
 				<button class="btn btn-primary" type="button"> Print </button>
 			</div>
 		</div>

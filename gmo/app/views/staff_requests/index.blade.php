@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('title')
-View All Requests
+View Requests Information
 @endsection
 
 @section('content')
@@ -12,7 +12,7 @@ View All Requests
 			<th>Request ID</th>
 			<th>Plant Name</th>
 			<th>Entrepreneur</th>
-			<th>Current Process</th>
+			<th>Status</th>
 		</tr>
 
 
@@ -22,14 +22,19 @@ View All Requests
 			<div class="col-lg-12 text-center"><strong>No Data</strong></div>
 		</div>
 		@else
-		@foreach ($tableData as $request) 
-		<tr>
-			<td><a href="{{action('StaffRequestsController@show',array('id' =>$request['ID']))}}"</a>{{$request['Reference ID']}}</td>
-			<td>{{$request['Plant Name']}}</td>
-			<td>{{$request['Entrepreneur']}}</td>
-			<td>{{$request['Current Process']}}</td>
-		</tr>
-		@endforeach
+			@foreach ($tableData as $request) 
+			<tr>
+				<!-- <td><a href="{{action('StaffRequestsController@show',array('id' =>$request['ID']))}}"</a>{{$request['Reference ID']}}</td> -->
+				<td><a href="/staff/requests/{{ $request['ID'] }}">{{ $request['Reference ID'] }}</a></td>
+				<td>{{$request['Plant Name']}}</td>
+				<td>{{$request['Entrepreneur']}}</td>
+				@if ($request['Current Process'] == 'Available')
+					<td class="text-success">{{$request['Current Process']}}</td>
+				@else if ($request['Current Process'] == 'Pending')
+					<td class="text-warning">>{{$request['Current Process']}}</td>
+				@endif
+			</tr>
+			@endforeach
 		</table>
 		@endif
 </div>

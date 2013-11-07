@@ -22,7 +22,7 @@ class CertificateRequestForm extends Eloquent {
 			'warehouse_province' => 'required',
 			'warehouse_country' => 'required',
 			'warehouse_zip' => 'required',
-			'purposes' => 'required',
+			// 'purposes' => 'required',
 			'contact_name' => 'required',
 			'contact_phone' => 'required',
 			'contact_email' => 'required | email',

@@ -27,12 +27,18 @@ class StaffRequestsController extends BaseController {
 		else {
 			$checkForm = false;
 		}
-		$receipt = new Receipt;
-		$receipt->export_certificate_request_id = $id;
-		if($checkForm)
-			$receipt->price = 100+150;
-		else
-			$receipt->price = 100;
+
+		$receipt = 
+		Receipt::where('export_certificate_request_id', '=', $id)->first();
+		if( !(count($receipt) > 0) ){
+			$receipt = new Receipt;
+			$receipt->export_certificate_request_id = $id;
+			if($checkForm)
+				$receipt->price = 100+150;
+			else
+				$receipt->price = 100;
+			$receipt->save();
+		}
 		return View::Make('staff_requests/create_receipt')
 			->with('checkForm', $checkForm);
 	}
@@ -43,6 +49,17 @@ class StaffRequestsController extends BaseController {
 	}
 
 	public function createLabTask($id) {
+
+		//Check Validator rules
+		$validator = Validator::make(Input::all(), LabTask::getValidationRules());
+		if ($validator->fails()) {
+			return Redirect::action('StaffRequestsController@newLabTask')
+				->withErrors($validator)
+				->withInput();
+		}
+
+
+		//Save in database
 		$labTask = new labTask;
 		$labTask->reference_id = 'LT'.RunningNumber::increment('default');
 		$labTask->export_certificate_request_id = $id;
@@ -50,13 +67,13 @@ class StaffRequestsController extends BaseController {
 		$labTask->product_code = Input::get('product_code');
 		$labTask->detail = Input::get('product_detail');
 		$labTask->dna_extraction_method = Input::get('method_of_extractinf_DNA');
-		$labTask->gene_separation_method = 'PRC';
+		$labTask->gene_separation_method = Input::get('gene', '');
 		$labTask->gene_of_analysis = Input::get('endogenous');
-		$labTask->transgene = 'MON 810';
+		$labTask->transgene = Input::get('transgene', '');
 		$labTask->save();
 
 		$product = new LabTaskProduct;
-		foreach (Input::all() as $k => $v) {
+		foreach (Input::all() as $k => $v) {	
 			$prefix = 'product_codepj';
 			if (substr($k, 0, strlen($prefix)) == $prefix) {
 				$number = substr($k, strlen($prefix));
@@ -67,9 +84,10 @@ class StaffRequestsController extends BaseController {
 				$product->volume = Input::get('volumepj' . $number);
 				$product->start = Input::get('dateStartpj' . $number) . "-" . Input::get('monthStartpj' . $number) . "-" . Input::get('yearStartpj' . $number);
 				$product->finish = Input::get('dateFinishpj' . $number) . "-" . Input::get('monthFinishpj' . $number) . "-" . Input::get('yearFinishpj' . $number);
+				$product->save();
 			}
 		}
-		$product->save();
+		
 
 		$responsible = new LabTaskAssignment;
 		foreach (Input::all() as $k => $v) {
@@ -78,9 +96,10 @@ class StaffRequestsController extends BaseController {
 				$number = substr($k, strlen($prefix));
 				$responsible->lab_task_id = $id;
 				$responsible->assignee = Input::get('responsiblerp' . $number);
+				$responsible->save();
 			}
 		}
-		$responsible->save();
+		
 		return View::make('/staff_requests/update_lab_task');
 
 	}

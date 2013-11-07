@@ -121,7 +121,10 @@ Create Certificate Request Form
 								<!--<input type="text" class="form-control" name="manufactory_city" placeholder="Town/City">-->
 							</div>
 							<div class="col-xs-4 ">
-								{{ Form::select('manufactory_province', array('State/Province' => '', 'Bangkok' => 'Bangkok'), null, array('class' => 'form-control')) }}
+								{{ Form::select('manufactory_province', 
+									array('' => 'State/Province',
+									'Bangkok' => 'Bangkok'), 
+									null, array('class' => 'form-control')) }}
 								<!--<select class="form-control" name="manufactory_province">
 									<option>State/Province</option>
 									<option>Bangkok</option>
@@ -133,7 +136,7 @@ Create Certificate Request Form
 						<div class="form-group">
 							<div class="col-sm-offset-3 col-xs-4">
 								{{ Form::select('manufactory_country', array(
-									'Country' => '',
+									'' => 'Country',
 									'Thailand' => 'Thailand'
 									), null, 
 									array('class' => 'form-control')) }}
@@ -238,7 +241,7 @@ Create Certificate Request Form
 							<!--<label class="col-xs-3 control-label">
 								Purpose of Requesting a Certificate
 							</label>-->
-							{{ Form::label('purpose[]', 'Manufactory', array('class' => 'col-xs-3', 'control-label')) }}
+							{{ Form::label('purpose', 'Manufactory', array('class' => 'col-xs-3', 'control-label')) }}
 							<div class="col-xs-3">
 								{{ Form::checkbox('purpose[]', 'Export') }}&nbsp;&nbsp;Export
 								<!--<input type="checkbox" name="purpose[]" value="Export">&nbsp;&nbsp;Export-->
@@ -435,158 +438,17 @@ Create Certificate Request Form
 						-_>
 					<!--</form>-->
 				</div>
-			</div>
-		</div>
-
-		<div id="form_2" class="col-sm-offset-2 col-xs-10">
-			<div class="panel panel-default">
-				<div class="panel-body text-left">
-					<h2>&nbsp;&nbsp;สทช 1-1/2</h2>
-
-					<div class="row" style="margin-top: 30px;">
-						<label class="col-xs-3 control-label text-right">
-							Manufacture or Shipper 
-						</label>
-						<div class="col-xs-8 control-label">
-							{{ $entrepreneur->first_name }}
-							{{ $entrepreneur->last_name }}
-						</div>
-					</div>
-					<div class="row"> 
-						<label class="col-xs-3 control-label text-right">
-							Address 
-						</label>
-						<div class="col-xs-8 control-label">
-							{{ $entrepreneur->address1 }}<br>
-							{{ $entrepreneur->address2 }}<br>
-							{{ $entrepreneur->city }}, {{ $entrepreneur->province }}, {{ $entrepreneur->country }}, {{ $entrepreneur->zip }}<br>
-						</div>
-					</div>
-					<div class="row"> 
-						<label class="col-xs-3 control-label text-right">
-							Phone 
-						</label>
-						<div class="col-xs-8 control-label">
-							{{ $entrepreneur->phone }}
-						</div>
-					</div>
-					<div class="row"> 
-						<label class="col-xs-3 control-label text-right">
-							Mobile Phone 
-						</label>
-						<div class="col-xs-8 control-label">
-							{{ $entrepreneur->mobile }}
-						</div>
-					</div>
-					<div class="row"> 
-						<label class="col-xs-3 control-label text-right">
-							Fax 
-						</label>
-						<div class="col-xs-8 control-label">
-							{{ $entrepreneur->fax }}
-						</div>
-					</div>
-
-					<hr>
-					<form class="form-horizontal" role="form">
-						<div class="form-group">
-							<label for="commonName" class="col-xs-3 control-label ">
-								Common Name
-							</label>
-							<div class="col-xs-8">
-								<input type="text" class="form-control" id="commonName" name="common_name" placeholder="Plant Name (ex. Onion)">
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="vendorOrConsigneeName" class="col-xs-3 control-label ">
-								Vendor or Consignee
-							</label>
-							<div class="col-xs-8">
-								<input type="text" class="form-control" id="vendorOrConsigneeName" name="vendor_or_consignee" placeholder="Name (ex. Sompong Thepsoftware)">
-							</div>
-						</div>
-
-						<div class="form-group">
-							<div class="col-sm-offset-3 col-xs-8">
-								<input type="text" class="form-control" name="address1" placeholder="Address Line 1">
-							</div>
-						</div>
-
-						<div class="form-group">
-							<div class="col-sm-offset-3 col-xs-8">
-								<input type="text" class="form-control" name="address2" placeholder="Address Line 1">
-							</div>
-						</div>
-
-						<div class="form-group">	
-							<div class="col-sm-offset-3 col-xs-4">
-								<input type="text" class="form-control" name="city" placeholder="Town/City">
-							</div>
-							<div class=" col-xs-4">
-								<select class="form-control" name="province">
-									<option>State/Province</option>
-									<option>Bangkok</option>
-									<option>Pathumthani</option>
-								</select>
-							</div>
-						</div>
-						<div class="form-group">
-							<div class="col-sm-offset-3 col-xs-4">
-								<select class="form-control" name="country">
-									<option>Country</option>
-									<option>Thailand</option>
-									<option>Laos</option>
-								</select>
-							</div>
-							<div class=" col-xs-4">
-								<input type="text" class="form-control" name="zip" placeholder="Zip Code (ex. 12345)">
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label for="descriptionOfProduct" class="col-xs-3 control-label ">
-								Description of Product
-							</label>
-							<div class="col-xs-8">
-								<textarea type="text" class="form-control" id="descriptionOfProduct" name="description_of_product" placeholder="Detail" style="height: 95px;"></textarea>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label for="finalDestination" class="col-xs-3 control-label ">
-								Final Destination
-							</label>
-							<div class="col-xs-8">
-								<select class="form-control" id="finalDestination" name="final_destination">
-									<option>State/Province</option>
-									<option>Bangkok</option>	
-								</select>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label for="portOfEntryOrEmbarktion" class="col-xs-3 control-label ">
-								Port of Entry or Embarktion</label>
-								<div class="col-xs-8">
-									<select class="form-control" id="portOfEntryOrEmbarktion" name="port_of_entry">
-										<option>Country</option>
-										<option>Thailand</option>
-									</select>
-								</div>
-							</div>
-							<div class="form-group">
-								<div class="col-sm-offset-7 col-sm-5">
-									<a href="{{ action('EntrepreneurRequestsController@index') }}" class="btn btn-default">Back</a>
-									<button type="reset" class="btn btn-danger">Reset</button>
-									<button type="submit" class="btn btn-primary" id="submit-button">Submit</button>
-								</div>
-							</div>
-						<!-- </form> -->
-						</div>
+				<hr>
+				<div class="form-group">
+					<div class="col-sm-offset-7 col-sm-5">
+						<a href="{{ action('EntrepreneurRequestsController@index') }}" class="btn btn-default">Back</a>
+						<button type="reset" class="btn btn-danger">Reset</button>
+						<button type="submit" class="btn btn-primary" id="submit-button">Submit</button>
 					</div>
 				</div>
 			</div>
 		</div>
+		
 		{{ Form::close() }}
 	</div>
 </div>

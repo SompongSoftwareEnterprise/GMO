@@ -45,7 +45,15 @@ Route::get('/lab/labtasks', 'LabController@index');
 
 // entrepreneur request
 Route::get('/entrepreneur', 'EntrepreneurRequestsController@index');
-Route::get('/entrepreneur/requests/new', 'EntrepreneurRequestsController@newRequests');
+// Route::get('/entrepreneur/requests/new', 'EntrepreneurRequestsController@newRequests');
+Route::get('/entrepreneur/requests/new', array(
+	'as' => 'entrepreneur.new',
+	'uses' => 'EntrepreneurRequestsController@newRequests'
+));
+Route::get('/entrepreneur/requests/new/{id}', array(
+	'as' => 'entrepreneur.new.info',
+	'uses' => 'EntrepreneurRequestsController@newRequestsInfo'
+));
 Route::get('/entrepreneur/requests/{id}', array(
 	'as' => 'entrepreneur.requests.show',
 	'uses' => 'EntrepreneurRequestsController@show'
@@ -53,6 +61,10 @@ Route::get('/entrepreneur/requests/{id}', array(
 Route::post('/entrepreneur/requests', array(
 	'as' => 'entrepreneur.requests.create',
 	'uses' => 'EntrepreneurRequestsController@create'
+));
+Route::post('/entrepreneur/requests/{id}', array(
+	'as' => 'entrepreneur.requests.create.info',
+	'uses' => 'EntrepreneurRequestsController@createCertificateInfo'
 ));
 
 // gmo staff requests
