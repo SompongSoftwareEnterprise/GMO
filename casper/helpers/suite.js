@@ -8,9 +8,17 @@ casper.setFilter('echo.message', function alterEchoMessage(message) {
 	return message.replace(/<ref id=\d+>/g, '')
 })
 
+/**
+ * The test suite API.
+ * @constructor
+ */
 function CasperAPI(casper) {
 	
 	var test = null
+	
+	/**
+	 * @lends CasperAPI.prototype
+	 */
 	var api = { }
 
 	var nextRefId = 1
@@ -19,10 +27,12 @@ function CasperAPI(casper) {
 	}
 
 
+	var stepNumber = 0
+
 	/**
 	 * [Util] Define a step.
+	 * @function
 	 */
-	var stepNumber = 0
 	api.step = function(message) {
 		message += refId()
 		casper.then(function() {
@@ -145,7 +155,7 @@ function CasperAPI(casper) {
 
 	}
 
-	/**
+	/*
 	 * Monkey-patches CasperJS to save screenshot on each failure
 	 */
 	function setupTest() {
@@ -190,15 +200,16 @@ function getLaravelError() {
 }
 
 /**
- * Overrides a method in an object.  Usage:
+ * Overrides a method in an object.
  *
- *		override(someObject, 'method', function(_super) {
- *			// _super is a reference to the original function
- *			return function myFunction() {
- *				// when someObject.method is invoked, it will call myFunction instead.
- *				// you can call super like this: _super.apply(this, arguments)
- *			}
- *		})
+ * @example
+ * override(someObject, 'method', function(_super) {
+ *   // _super is a reference to the original function
+ *   return function myFunction() {
+ *     // when someObject.method is invoked, it will call myFunction instead.
+ *     // you can call super like this: _super.apply(this, arguments)
+ *   }
+ * })
  */
 function override(object, method, fn) {
 	object[method] = fn(object[method])
@@ -206,12 +217,13 @@ function override(object, method, fn) {
 
 /**
  * This function runs the specified function after the previous function
- * is run.  Usage:
+ * is run.
  *
- *		override(someObject, 'method', after(function myFunction() {
- *			// when someObject.method is invoked, it will call the original
- *			// function, and then myFunction is called afterwards.
- *		})
+ * @example
+ * override(someObject, 'method', after(function myFunction() {
+ *   // when someObject.method is invoked, it will call the original
+ *   // function, and then myFunction is called afterwards.
+ * })
  */
 function after(fn) {
 	return function(_super) {
