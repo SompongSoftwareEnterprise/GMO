@@ -64,6 +64,7 @@ data:
     receiver_city: "Jalalabad"
     receiver_province: "Eastern Afghanistan"
     receiver_country: "Afghanistan"
+    receiver_zip: "20203"
     origin_of_plant: "Thailand"
     timestamps: '!!NOW!!'
 	
