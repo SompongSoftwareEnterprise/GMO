@@ -49,6 +49,7 @@ View Request Information
 						<?php } ?>
 					</tr>
 					<tr>
+					<?php if ($certReqInfoForm != null) { ?>
 						<?php if ($certReqInfoForm->status == 'Pending') { ?>
 							<td>สทช. 1-1/2</td>
 							<td class="text-warning">{{ $certReqInfoForm->status }}</td>
@@ -56,6 +57,10 @@ View Request Information
 							<td>สทช. 1-1/2 (<a href="#">Download)</a></td>
 							<td class="text-success">{{ $certReqInfoForm->status }}</td>
 						<?php } ?>
+					<?php } else { ?>
+						<td>สทช. 1-1/2 (<a href="{{ action('EntrepreneurRequestsController@newRequestsInfo', array($certReq->id)) }}">Complete this Document</a>)</td>
+						<td class="text-danger">Document Needed</td>
+					<?php } ?>
 					</tr>
 					<tr>
 						<td>Invoice</td>
