@@ -11,6 +11,7 @@ var suite = require('../helpers/suite')
  */
 suite('Test Date of Birth Field', function(test) {
 
+	test.login('entre1', 'entrepassword')
 	test.go('/entrepreneur/edit_account',            'Go to edit account page.')
 
 	test.assertFormValue('#edit-account-form', 'date_of_birth__date',  '11')

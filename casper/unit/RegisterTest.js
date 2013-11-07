@@ -4,11 +4,14 @@ var suite = require('../helpers/suite')
 /**
  * To make sure that company checkboxes work!
  *
- * @xref    ds102
- * @actors  GMO Staff
+ * @xref     ds102
+ * @actors   GMO Staff
+ * @pre      GMO staff is logged in.
+ * @fixture  only-gmo-staff
  */
 suite('Test Company Checkbox', function(test) {
 
+	test.login('staff', 'staff')
 	test.go('/staff/register/customer',            'Go to the register page.')
 
 	test.click('#is_company_checkbox',             'Check the "is company" checkbox:')
