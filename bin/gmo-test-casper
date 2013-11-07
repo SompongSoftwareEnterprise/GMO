@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
+require 'date'
 
 def test_name(file)
 	"#{File.basename File.dirname file}/#{File.basename file, '.js'}"
@@ -20,7 +21,7 @@ def run_test(filename)
 	if data =~ /(\/\*\*(.*?)\*\/)/m
 		comment = $1
 		fixture_list = [ ]
-		comment.scan(/@fixture (\S+)/) do
+		comment.scan(/@fixture\s+(\S+)/) do
 			fixture_list << $1
 		end
 		if !fixture_list.empty?
@@ -28,7 +29,9 @@ def run_test(filename)
 		end
 		puts comment
 	end
-	system "casperjs test #{filename} --xunit=/tmp/#{File.basename(filename, '.js')}.xml"
+	out_basename = DateTime.now.strftime('%Y%m%d_%H%M%S_') + File.basename(filename, '.js')
+	out_filename = "/vagrant/casper/output/#{out_basename}.xml"
+	system "casperjs test --fail-fast #{filename} --xunit=#{out_filename}"
 end
 
 if ARGV.empty?
