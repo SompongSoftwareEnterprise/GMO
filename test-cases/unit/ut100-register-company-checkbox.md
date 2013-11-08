@@ -18,7 +18,7 @@ GMO Staff
 
 ## Preconditions
 
-* Initial database data: [only-gmo-staff](../casper/fixtures/only-gmo-staff.yml)
+* Initial database data: [only-gmo-staff](../../casper/fixtures/only-gmo-staff.yml)
 * GMO staff is logged in.
 
 

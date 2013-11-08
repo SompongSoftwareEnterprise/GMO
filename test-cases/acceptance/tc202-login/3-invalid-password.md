@@ -21,7 +21,7 @@ Any User
 
 1. Go to login page.
     * The errors box must not exist.
-2. Log in using data from [login-data-invalid-password](../../casper/testdata/login-data-invalid-password.yml)
+2. Log in using data from [login-data-invalid-password](../../../casper/testdata/login-data-invalid-password.yml)
     * The errors box must show.
 
 

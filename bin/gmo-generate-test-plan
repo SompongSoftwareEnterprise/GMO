@@ -194,7 +194,7 @@ class TestPlanGenerator
 		source_filename = test_plan.source_filename
 		@source_filename = source_filename
 		@project_root = source_filename.sub('/vagrant/casper/', '').
-			sub(/[^\/]*$/, '').gsub(/[^\/]+/, '..')
+			sub(/[^\/]*$/, '').gsub(/[^\/]+/, '..') + '../'
 		comments = extract_comments(source_filename)
 
 		title = "Test Plan: " + test_plan.name
@@ -279,7 +279,7 @@ def generate_test_report(test_filename)
 	source_filename = test_plans.first.source_filename
 
 	test_dir = File.dirname(source_filename.sub('/vagrant/casper/', ''))
-	output_dir = '/vagrant/test-plans/' + test_dir
+	output_dir = '/vagrant/test-cases/' + test_dir
 
 	FileUtils.mkdir_p output_dir
 
