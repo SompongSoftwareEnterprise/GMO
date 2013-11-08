@@ -1,6 +1,8 @@
 #!/usr/bin/env ruby
 require 'rexml/document'
+require 'fileutils'
 
+TEST_BASE = '/vagrant/casper'
 OUTPUT = '/vagrant/test-plan-report'
 
 
@@ -22,11 +24,12 @@ end
 
 class TestSuite
 	
-	attr_accessor :name
+	attr_accessor :name, :package
 	attr_reader :cases
 
-	def initialize(name)
+	def initialize(name, package)
 		@name = name
+		@package = package
 		@cases = []
 	end
 
@@ -69,7 +72,8 @@ def load_test_file(filename)
 
 	doc.elements.each('//testsuite') do |suite_el|
 		suite_name = suite_el.attributes['name']
-		suite = TestSuite.new(suite_name)
+		package_name = suite_el.attributes['package']
+		suite = TestSuite.new(suite_name, package_name)
 		test_file.suites << suite
 		suite_el.elements.each('testcase') do |testcase_el|
 			raw_name = testcase_el.attributes['name']
@@ -96,11 +100,12 @@ end
 
 class TestPlan
 	
-	attr_accessor :name
+	attr_accessor :name, :source_filename
 	attr_reader :steps
 
-	def initialize(name)
+	def initialize(name, source_filename)
 		@name = name
+		@source_filename = source_filename
 		@steps = [ ]
 	end
 
@@ -137,7 +142,7 @@ def load_test_plans(filename)
 
 	doc = REXML::Document.new(File::read(filename))
 	doc.elements.each('//plan') do |plan_el|
-		plan = TestPlan.new(plan_el.attributes['name'])
+		plan = TestPlan.new(plan_el.attributes['name'], plan_el.attributes['file'])
 		plans << plan
 		plan_el.elements.each('step') do |step_el|
 			step = TestStep.new(step_el.attributes['message'], step_el.attributes['id'].to_i)
@@ -153,45 +158,116 @@ def load_test_plans(filename)
 
 end
 
-def generate_test_report(arg)
+def extract_comments(source)
+	data = File.read(source)
+	output = { }
+	if data =~ /\/\*\*([\s\S]*?)\*\//
+		data = $1.lines.map { |line| line.sub(/^\s*\*[ ]?/, '') }.join
+		data = ['purpose'] + data.split(/@(\w+)\s+/)
+		data.each_slice(2) do |tag, content|
+			output[tag.to_sym] = content.strip
+		end
+	end
+	output
+end
 
-	test_file = load_test_file(arg)
-	test_plans = load_test_plans(arg.sub(/\.xml$/, '_plan.xml'))
 
-	out = $stdout
+class TestPlanGenerator
 
-	test_plans.each do |test_plan|
+	def initialize(plans, out)
+		@test_plans = plans
+		@out = out
+	end
 
-		suite = test_file.suite(test_plan.name)
+	def outputs(*args)
+		@out.puts(*args)
+	end
 
-		out.puts test_plan.name
-		out.puts '=' * test_plan.name.length
-		out.puts
+	def generate!
+		@test_plans.each do |test_plan|
+			generate_test_plan!(test_plan)
+		end
+	end
 
-		out.puts '## Test Report'
-		out.puts
-		out.puts "| Step | Result |"
-		out.puts "| ---- |:------:|"
-		test_plan.steps.each_with_index do |step, index|
-			out.puts "| #{index + 1}\\. #{step.message} | |"
-			step.checks.each_with_index do |check, check_index|
-				testcase = suite.testcase(check.id)
-				tag = "---"
-				if testcase
-					tag = "PASS"
-					if testcase.has_errors?
-						tag = "ERROR"
-					elsif testcase.has_failures?
-						tag = "FAIL"
-					end
+	def generate_test_plan!(test_plan)
+
+		source_filename = test_plan.source_filename
+		@source_filename = source_filename
+		@project_root = source_filename.sub('/vagrant/casper/', '').
+			sub(/[^\/]*$/, '').gsub(/[^\/]+/, '..')
+		comments = extract_comments(source_filename)
+
+		title = "Test Plan: " + test_plan.name
+
+		outputs title
+		outputs '=' * title.length
+		outputs
+
+		generate_sections_from_comments!(comments)
+
+		generate_test_procedure!(test_plan)
+	
+	end
+
+	def section(name)
+		outputs "## #{name}"
+		outputs
+		yield
+		outputs
+		outputs
+	end
+
+	def generate_sections_from_comments!(comments)
+		section "Purpose" do
+			outputs comments[:purpose]
+		end
+		section "XRef" do
+			outputs comments[:xref]
+		end
+		section "Actors" do
+			outputs comments[:actors]
+		end
+		section "Preconditions" do
+			outputs comments[:pre]
+		end if comments[:pre]
+	end
+
+	def format_text(message)
+		message.gsub(/<testdata ([^>]+)>/) {
+			"[#{$1}](#{@project_root}casper/testdata/#{$1}.md)"
+		}
+	end
+
+	def generate_test_procedure!(test_plan)
+		section "Test Procedure" do
+			test_plan.steps.each_with_index do |step, index|
+				outputs "#{index + 1}. #{format_text step.message}"
+				step.checks.each_with_index do |check, check_index|
+					outputs "    * #{format_text check.message}"
 				end
-				out.puts "| &nbsp; &nbsp; &bull; #{check.message} | #{tag} |"
 			end
 		end
+	end
 
-		out.puts
-		out.puts '## Errors'
+end
 
+
+def generate_test_report(test_filename)
+
+	plan_filename = test_filename.sub(/\.xml$/, '_plan.xml')
+	test_plans = load_test_plans(plan_filename)
+	source_filename = test_plans.first.source_filename
+
+	test_dir = File.dirname(source_filename.sub('/vagrant/casper/', ''))
+	output_dir = '/vagrant/test-plans/' + test_dir
+
+	FileUtils.mkdir_p output_dir
+
+	out_plan_filename = "#{output_dir}/#{File.basename(source_filename, '.js')}.md"
+	File.open(out_plan_filename, 'w') do |io|
+		plan_generator = TestPlanGenerator.new(test_plans, io)
+		plan_generator.generate!
+		puts "==> Test plan generated at #{out_plan_filename}"
 	end
 
 end

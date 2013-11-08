@@ -118,7 +118,7 @@ function CasperAPI(casper) {
 	 * [Step] Fill the form and click submit.
 	 */
 	api.fillAndSubmit = function(form, data, message) {
-		api.step(message.replace(':name', data))
+		api.step(message.replace(':name', '<testdata ' + data + '>'))
 		casper.then(function() {
 			this.fill(form, yaml.testdata(data), true)
 		})
@@ -154,6 +154,7 @@ function CasperAPI(casper) {
 
 			casper.start()
 			casper.options.pageSettings.loadImages = false
+
 			fn(api)
 
 			casper.run(function() {
@@ -208,7 +209,7 @@ function el(tag, attributes, content) {
 override(casper.test, 'saveResults', after(function(filepath) {
 	var planPath = filepath.replace(/(\.xml|)$/, '_plan.xml')
 	var xml = el('plans', { }, casper.test.suiteResults.map(function(suite) {
-		return '\n' + el('plan', { name: suite.name }, suite.plan.steps.map(function(step) {
+		return '\n' + el('plan', { name: suite.name, file: suite.file }, suite.plan.steps.map(function(step) {
 			return '\n\t' + el('step', { message: step.message, id: step.id }, step.checks.map(function(check) {
 				return '\n\t\t' + el('check', { message: check.message, id: check.id })
 			}).join(''))
