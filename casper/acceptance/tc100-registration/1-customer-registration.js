@@ -5,8 +5,7 @@
  *
  * @xref     uc101, ds101, ds102
  * @actors   GMO Staff
- * @pre
- *   * A GMO staff is logged in.
+ * @pre      A GMO staff is logged in.
  * @fixture  only-gmo-staff
  */
 

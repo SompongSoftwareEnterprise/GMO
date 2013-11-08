@@ -165,7 +165,7 @@ def extract_comments(source)
 		data = $1.lines.map { |line| line.sub(/^\s*\*[ ]?/, '') }.join
 		data = ['purpose'] + data.split(/@(\w+)\s+/)
 		data.each_slice(2) do |tag, content|
-			output[tag.to_sym] = content.strip
+			(output[tag.to_sym] ||= []) << content.strip
 		end
 	end
 	output
@@ -194,7 +194,7 @@ class TestPlanGenerator
 		source_filename = test_plan.source_filename
 		@source_filename = source_filename
 		@project_root = source_filename.sub('/vagrant/casper/', '').
-			sub(/[^\/]*$/, '').gsub(/[^\/]+/, '..') + '../'
+			sub(/[^\/]*$/, '').gsub(/[^\/]+/, '..')
 		comments = extract_comments(source_filename)
 
 		title = "Test Plan: " + test_plan.name
@@ -219,22 +219,42 @@ class TestPlanGenerator
 
 	def generate_sections_from_comments!(comments)
 		section "Purpose" do
-			outputs comments[:purpose]
+			if comments[:purpose]
+				outputs comments[:purpose].first
+			else
+				outputs "__THE PURPOSE OF THIS TEST CASE IS MISSING!__"
+			end
 		end
 		section "XRef" do
-			outputs comments[:xref]
+			if comments[:xref]
+				outputs comments[:xref].join(', ')
+			else
+				outputs "__THE CROSS-REFERENCES OF THIS TEST CASE IS MISSING!__"
+			end
 		end
 		section "Actors" do
-			outputs comments[:actors]
+			if comments[:actors]
+				outputs comments[:actors].join(', ')
+			else
+				outputs "__THE ACTORS OF THIS TEST CASE IS MISSING!__"
+			end
 		end
 		section "Preconditions" do
-			outputs comments[:pre]
+			preconditions = comments[:pre] || []
+			if comments[:fixture]
+				comments[:fixture].each do |fixture|
+					preconditions.unshift("Initial database data: [#{fixture}](#{@project_root}casper/fixtures/#{fixture}.yml)")
+				end
+			end
+			preconditions.each do |text|
+				outputs '* ' + text
+			end
 		end if comments[:pre]
 	end
 
 	def format_text(message)
 		message.gsub(/<testdata ([^>]+)>/) {
-			"[#{$1}](#{@project_root}casper/testdata/#{$1}.md)"
+			"[#{$1}](#{@project_root}casper/testdata/#{$1}.yml)"
 		}
 	end
 
