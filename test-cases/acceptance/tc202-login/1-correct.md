@@ -17,6 +17,11 @@ uc202, ds202
 Any User
 
 
+## Preconditions
+
+* Initial database data: [entrepreneur-1](../../../casper/fixtures/entrepreneur-1.yml)
+
+
 ## Test Procedure
 
 1. Go to login page.

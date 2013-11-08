@@ -249,7 +249,7 @@ class TestPlanGenerator
 			preconditions.each do |text|
 				outputs '* ' + text
 			end
-		end if comments[:pre]
+		end
 	end
 
 	def format_text(message)

@@ -18,6 +18,11 @@ ds102
 Entrepreneur
 
 
+## Preconditions
+
+* Initial database data: [entrepreneur-1](../../casper/fixtures/entrepreneur-1.yml)
+
+
 ## Test Procedure
 
 1. Login with username="entre1" and password="entrepassword"
