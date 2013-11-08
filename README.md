@@ -22,6 +22,7 @@ Repository Contents
 | manifests      | Contains the configuration files to generate provision a Vagrant virtual machine. |
 | modules        | Contains the scripts to provision a Vagrant virtual machine (Pupper). |
 | templates      | Contains the HTML templates |
+| __test-cases__ | Contains the Test Cases documents. |
 | __use-cases__  | Contains the Use Cases (Software Requirements Specification). |
 
 

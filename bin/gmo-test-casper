@@ -3,10 +3,11 @@
 require 'date'
 
 def test_name(file)
-	"#{File.basename File.dirname file}/#{File.basename file, '.js'}"
+	file.sub('/vagrant/casper/', '').sub(/\.js$/, '')
+	# "#{File.basename File.dirname file}/#{File.basename file, '.js'}"
 end
 
-available_files = Dir['/vagrant/casper/*/*Test.js']
+available_files = Dir['/vagrant/casper/unit/**/*.js'] + Dir['/vagrant/casper/acceptance/**/*.js']
 
 Dir.chdir "/vagrant/casper"
 
@@ -32,6 +33,7 @@ def run_test(filename)
 	out_basename = DateTime.now.strftime('%Y%m%d_%H%M%S_') + File.basename(filename, '.js')
 	out_filename = "/vagrant/casper/output/#{out_basename}.xml"
 	system "casperjs test --fail-fast #{filename} --xunit=#{out_filename}"
+	system "gmo-generate-test-plan #{out_filename}"
 end
 
 if ARGV.empty?
@@ -43,8 +45,10 @@ else
 		test_files = available_files
 	else
 		test_files = ARGV.map { |arg|
-			available_files.find { |file| test_name(file) == arg } or raise "Testcase not found"
-		}
+			available_files.select { |file|
+				test_name(file) =~ /^#{arg.gsub('*', '.*')}$/
+			}
+		}.flatten.uniq
 	end
 	test_files.each do |filename|
 		run_test(filename)

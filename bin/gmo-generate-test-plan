@@ -1,0 +1,311 @@
+#!/usr/bin/env ruby
+require 'rexml/document'
+require 'fileutils'
+
+TEST_BASE = '/vagrant/casper'
+OUTPUT = '/vagrant/test-plan-report'
+
+
+class TestFile
+
+	attr_accessor :name
+	attr_reader :suites
+
+	def initialize(name)
+		@name = name
+		@suites = []
+	end
+
+	def suite(name)
+		@suites.find { |suite| suite.name == name }
+	end
+
+end
+
+class TestSuite
+	
+	attr_accessor :name, :package
+	attr_reader :cases
+
+	def initialize(name, package)
+		@name = name
+		@package = package
+		@cases = []
+	end
+
+	def testcase(id)
+		@cases.find { |testcase| testcase.id == id }
+	end
+
+end
+
+class TestCase
+
+	attr_accessor :name, :id, :time
+	attr_reader :errors, :failures
+
+	def initialize(options)
+		@name = options[:name]
+		@id = options[:id]
+		@time = options[:time]
+		@errors = []
+		@failures = []
+	end
+
+	def has_errors?
+		!@errors.empty?
+	end
+	def has_failures?
+		!@failures.empty?
+	end
+
+end
+
+FailureMessage = Struct.new(:type, :text)
+
+
+def load_test_file(filename)
+
+	test_file = TestFile.new(filename)
+
+	doc = REXML::Document.new(File::read(filename))
+
+	doc.elements.each('//testsuite') do |suite_el|
+		suite_name = suite_el.attributes['name']
+		package_name = suite_el.attributes['package']
+		suite = TestSuite.new(suite_name, package_name)
+		test_file.suites << suite
+		suite_el.elements.each('testcase') do |testcase_el|
+			raw_name = testcase_el.attributes['name']
+			id   = nil
+			name = raw_name.sub(/<ref id=(\d+)>/) { id = $1.to_i; '' }
+			testcase = TestCase.new(
+				:name => name,
+				:id   => id,
+				:time => testcase_el.attributes['time'].to_f)
+			suite.cases << testcase
+			testcase_el.elements.each('error') do |error_el|
+				testcase.errors << FailureMessage.new(error_el.attributes['type'], error_el.text)
+			end
+			testcase_el.elements.each('failure') do |failure_el|
+				testcase.failures << FailureMessage.new(failure_el.attributes['type'], failure_el.text)
+			end
+		end
+	end
+
+	test_file
+
+end
+
+
+class TestPlan
+	
+	attr_accessor :name, :source_filename
+	attr_reader :steps
+
+	def initialize(name, source_filename)
+		@name = name
+		@source_filename = source_filename
+		@steps = [ ]
+	end
+
+end
+
+class TestStep
+	
+	attr_accessor :message, :id
+	attr_reader :checks
+
+	def initialize(message, id)
+		@message = message
+		@id = id
+		@checks = []
+	end
+
+end
+
+class Check
+	
+	attr_accessor :message, :id
+
+	def initialize(message, id)
+		@message = message
+		@id = id
+	end
+
+end
+
+
+def load_test_plans(filename)
+
+	plans = [ ]
+
+	doc = REXML::Document.new(File::read(filename))
+	doc.elements.each('//plan') do |plan_el|
+		plan = TestPlan.new(plan_el.attributes['name'], plan_el.attributes['file'])
+		plans << plan
+		plan_el.elements.each('step') do |step_el|
+			step = TestStep.new(step_el.attributes['message'], step_el.attributes['id'].to_i)
+			plan.steps << step
+			step_el.elements.each('check') do |check_el|
+				check = TestStep.new(check_el.attributes['message'], check_el.attributes['id'].to_i)
+				step.checks << check
+			end
+		end
+	end
+
+	plans
+
+end
+
+def extract_comments(source)
+	data = File.read(source)
+	output = { }
+	if data =~ /\/\*\*([\s\S]*?)\*\//
+		data = $1.lines.map { |line| line.sub(/^\s*\*[ ]?/, '') }.join
+		data = ['purpose'] + data.split(/@(\w+)\s+/)
+		data.each_slice(2) do |tag, content|
+			(output[tag.to_sym] ||= []) << content.strip
+		end
+	end
+	output
+end
+
+
+class TestPlanGenerator
+
+	def initialize(plans, out)
+		@test_plans = plans
+		@out = out
+	end
+
+	def outputs(*args)
+		@out.puts(*args)
+	end
+
+	def generate!
+		@test_plans.each do |test_plan|
+			generate_test_plan!(test_plan)
+		end
+	end
+
+	def generate_test_plan!(test_plan)
+
+		source_filename = test_plan.source_filename
+		@source_filename = source_filename
+		@project_root = source_filename.sub('/vagrant/casper/', '').
+			sub(/[^\/]*$/, '').gsub(/[^\/]+/, '..') + '../'
+		comments = extract_comments(source_filename)
+
+		title = "Test Plan: " + test_plan.name
+
+		outputs title
+		outputs '=' * title.length
+		outputs
+
+		generate_sections_from_comments!(comments)
+
+		generate_test_procedure!(test_plan)
+	
+	end
+
+	def section(name)
+		outputs "## #{name}"
+		outputs
+		yield
+		outputs
+		outputs
+	end
+
+	def generate_sections_from_comments!(comments)
+		section "Purpose" do
+			if comments[:purpose]
+				outputs comments[:purpose].first
+			else
+				outputs "__THE PURPOSE OF THIS TEST CASE IS MISSING!__"
+			end
+		end
+		section "XRef" do
+			if comments[:xref]
+				outputs comments[:xref].join(', ')
+			else
+				outputs "__THE CROSS-REFERENCES OF THIS TEST CASE IS MISSING!__"
+			end
+		end
+		section "Actors" do
+			if comments[:actors]
+				outputs comments[:actors].join(', ')
+			else
+				outputs "__THE ACTORS OF THIS TEST CASE IS MISSING!__"
+			end
+		end
+		section "Preconditions" do
+			preconditions = comments[:pre] || []
+			if comments[:fixture]
+				comments[:fixture].each do |fixture|
+					preconditions.unshift("Initial database data: [#{fixture}](#{@project_root}casper/fixtures/#{fixture}.yml)")
+				end
+			end
+			preconditions.each do |text|
+				outputs '* ' + text
+			end
+		end
+	end
+
+	def format_text(message)
+		message.gsub(/<testdata ([^>]+)>/) {
+			"[#{$1}](#{@project_root}casper/testdata/#{$1}.yml)"
+		}
+	end
+
+	def generate_test_procedure!(test_plan)
+		section "Test Procedure" do
+			test_plan.steps.each_with_index do |step, index|
+				outputs "#{index + 1}. #{format_text step.message}"
+				step.checks.each_with_index do |check, check_index|
+					outputs "    * #{format_text check.message}"
+				end
+			end
+		end
+	end
+
+end
+
+
+def generate_test_report(test_filename)
+
+	plan_filename = test_filename.sub(/\.xml$/, '_plan.xml')
+	test_plans = load_test_plans(plan_filename)
+	source_filename = test_plans.first.source_filename
+
+	test_dir = File.dirname(source_filename.sub('/vagrant/casper/', ''))
+	output_dir = '/vagrant/test-cases/' + test_dir
+
+	FileUtils.mkdir_p output_dir
+
+	out_plan_filename = "#{output_dir}/#{File.basename(source_filename, '.js')}.md"
+	File.open(out_plan_filename, 'w') do |io|
+		plan_generator = TestPlanGenerator.new(test_plans, io)
+		plan_generator.generate!
+		puts "==> Test plan generated at #{out_plan_filename}"
+	end
+
+end
+
+if ARGV.empty?
+	puts "What to generate?"
+else
+	ARGV.each do |arg|
+		generate_test_report(arg)
+	end
+end
+
+
+
+
+
+
+
+
+
+

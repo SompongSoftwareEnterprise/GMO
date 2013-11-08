@@ -3,10 +3,11 @@ var suite = require('../helpers/suite')
 
 /**
  * To make sure that the date of birth field gets pre-filled with the
- * data from the database.
+ * data from the database when editing the account, to make sure that
+ * issue 17 is fixed.
  *
  * @xref    ds102
- * @actors  GMO Staff
+ * @actors  Entrepreneur
  * @fixture entrepreneur-1
  */
 suite('Test Date of Birth Field', function(test) {
