@@ -16,6 +16,14 @@ class EntrepreneurRequestsController extends AbstractEntrepreneurController {
 				   ->with('entrepreneur', $this->entrepreneur);
 	}
 
+	public function newRequestsInfo($id) {
+		return View::make('requests/create_certificate_2')
+			->with(array(
+				'entrepreneur' => $this->entrepreneur,
+				'id' => $id
+			));
+	}
+
 	public function create() {
 
 		$entrepreneur = $this->entrepreneur;
@@ -36,12 +44,11 @@ class EntrepreneurRequestsController extends AbstractEntrepreneurController {
 		$certReqForm = new CertificateRequestForm;
 
 		if ($certReqFormValidator->fails()) {
-			return Redirect::action('EntrepreneurRequestsController@newRequests')
+			return Redirect::action('EntrepreneurRequestsController@newRequests', array(1))
 				->withErrors($certReqFormValidator)
 				->withInput();
 		}
 
-		$certReqForm->export_certificate_request_id = $certReq->id;
 		$certReqForm->manufactory_name = Input::get('manufactory_name');
 		$certReqForm->manufactory_address1 = Input::get('manufactory_address1');
 		$certReqForm->manufactory_address2 = Input::get('manufactory_address2');
@@ -98,11 +105,38 @@ class EntrepreneurRequestsController extends AbstractEntrepreneurController {
 
 		$certReqForm->origin_of_plant = Input::get('origin_of_plant');
 
+		$certReqForm->status = 'Available';
+
+
+
+		$certReq->save();
+
+		$certReqForm->export_certificate_request_id = $certReq->id;
+
+		// example 
+		foreach (Input::all() as $k => $v) {
+			$prefix = 'example_type_ex';		
+			if (substr($k, 0, strlen($prefix)) == $prefix) {
+				$number = substr($k, strlen($prefix));
+				$certExample = new CertificateRequestExample;
+				$certExample->export_certificate_request_form_id = $certReq->id;
+				$certExample->type_of_example = Input::get('example_type_ex' . $number);
+				$certExample->quantity = Input::get('example_quantity_ex' . $number);
+				$certExample->detail = Input::get('example_detail_ex' . $number);
+				$certExample->save();
+			}
+		}
+
 		$certReqForm->save();
+
+		return Redirect::action('EntrepreneurRequestsController@show', array($certReq->id));
+	}
+
+	public function createCertificateInfo($id) {
 
 		$certReqFormValidator = Validator::make(Input::all(), CertificateRequestInfoForm::getValidationRules());
 
-		$certReqForm = new CertificateRequestInfoForm;
+		$certReqInfoForm = new CertificateRequestInfoForm;
 
 		if ($certReqFormValidator->fails()) {
 			return Redirect::action('EntrepreneurRequestsController@newRequests')
@@ -110,23 +144,21 @@ class EntrepreneurRequestsController extends AbstractEntrepreneurController {
 				->withInput();
 		}
 
-		$certReqForm->export_certificate_request_id = $certReq->id;
-		$certReqForm->common_name = Input::get('common_name');
-		$certReqForm->vendor_or_consignee = Input::get('vendor_or_consignee');
-		$certReqForm->address1 = Input::get('address1');
-		$certReqForm->address2 = Input::get('address2');
-		$certReqForm->city = Input::get('city');		
-		$certReqForm->province = Input::get('province');
-		$certReqForm->country = Input::get('country');
-		$certReqForm->zip = Input::get('zip');
-		$certReqForm->description_of_product = Input::get('description_of_product');
-		$certReqForm->final_destination = Input::get('final_destination');
-		$certReqForm->port_of_entry = Input::get('port_of_entry');
-		$certReqForm->status = 'Available';
+		$certReqInfoForm->export_certificate_request_id = $id;
+		$certReqInfoForm->common_name = Input::get('common_name');
+		$certReqInfoForm->vendor_or_consignee = Input::get('vendor_or_consignee');
+		$certReqInfoForm->address1 = Input::get('address1');
+		$certReqInfoForm->address2 = Input::get('address2');
+		$certReqInfoForm->city = Input::get('city');		
+		$certReqInfoForm->province = Input::get('province');
+		$certReqInfoForm->country = Input::get('country');
+		$certReqInfoForm->zip = Input::get('zip');
+		$certReqInfoForm->description_of_product = Input::get('description_of_product');
+		$certReqInfoForm->final_destination = Input::get('final_destination');
+		$certReqInfoForm->port_of_entry = Input::get('port_of_entry');
+		$certReqInfoForm->status = 'Available';
 
-		$certReqForm->save();
-
-		$certReq->save();
+		$certReqInfoForm->save();
 
 		return Redirect::action('EntrepreneurRequestsController@index');
 	}
@@ -140,6 +172,10 @@ class EntrepreneurRequestsController extends AbstractEntrepreneurController {
 						 'certReqForm' => $certificateRequestForm,
 						 'certReqInfoForm' => $certificateRequestInfoForm,
 						 'entrepreneur' => $this->entrepreneur));
+	}
+
+	public function askForCertificateRequestInfo() {
+
 	}
 
 }

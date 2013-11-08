@@ -63,11 +63,18 @@ class EntrepreneurAccountController extends AbstractEntrepreneurController {
 		echo "$id";
 		$this->entrepreneur['first_name'] = Input::get('first_name');
 		$this->entrepreneur['last_name'] = Input::get('last_name');
+		
+		$this->entrepreneur['address1'] = Input::get('address1');
+		$this->entrepreneur['address2'] = Input::get('address2');
+		$this->entrepreneur['city'] = Input::get('city');
+		$this->entrepreneur['country'] = Input::get('country');
+		$this->entrepreneur['email'] = Input::get('email');
+		$this->entrepreneur['phone'] = Input::get('phone');
 		// $entrepreneur = $this->getEntrepreneur($input['id']);
-		// print_r($input);
+		// //print_r($input);
 		// $entrepreneur->first_name = $input['first_name'];
 		// $entrepreneur->last_name = $input['last_name'];
-		// // $entrepreneur->password = $input['password'];
+		// $entrepreneur->password = $input['password'];
 		// $entrepreneur->address1 = $input['address1'];
 		// $entrepreneur->address2 = $input['address2'];
 		// $entrepreneur->city = $input['city'];

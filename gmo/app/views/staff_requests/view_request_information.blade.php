@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('title')
-View All Requests
+View Requests Information
 @endsection
 
 @section('content')
@@ -26,15 +26,14 @@ View All Requests
 				<td>{{$data['Requester']}}</td>
 				<td>{{$data['Sent Date']}}</td>
 				@if($data['Status'] == 'Pending')
-				<td class="text-warning">Pending</td>
+					<td class="text-warning">Pending</td>
 				@elseif($data['Status'] == 'Document Needed')
-				<td class="text-danger">Document Needed</td>
+					<td class="text-danger">Document Needed</td>
 				@elseif($data['Status'] == 'Failed')
-				<td class="text-danger">Failed</td>
+					<td class="text-danger">Failed</td>
 				@else
-				<td class="text-success">Passed</td>
+					<td class="text-success">Passed</td>
 				@endif
-				<td></td>
 			</tr>
 		</tbody>
 	</table>
@@ -61,31 +60,31 @@ View All Requests
 					</tr>
 					<tr>						
 						@if($data['Invoice'] == 'Pending')
-						<td>Invoice</td>
-						<td class="text-warning">Pending</td>
+							<td>Invoice</td>
+							<td class="text-warning">Pending</td>
 						@else
-						<td>Invoice(<a href="#">Download</a>)</td>
-						<td class="text-success">Available</td>
+							<td>Invoice(<a href="#">Download</a>)</td>
+							<td class="text-success">Available</td>
 						@endif
 					</tr>
 					<tr>
 
 						@if($data['Receipt'] == 'Pending')
-						<td>Receipt</td>
-						<td class="text-warning">Pending</td>
+							<td>Receipt</td>
+							<td class="text-warning">Pending</td>
 						@else
-						<td>Receipt(<a href="#">Download</a>)</td>
-						<td class="text-success">Available</td>
+							<td>Receipt(<a href="#">Download</a>)</td>
+							<td class="text-success">Available</td>
 						@endif
 
 					</tr>
 
 				</tbody>
 			</table>
-
 			<br><br>
-			<a href="{{action('StaffRequestsController@createReceipt', $id)}}" class="btn btn-primary">Create Receipt</a>
-			<a href="{{action('StaffRequestsController@createLabTask', $id)}}" class="btn btn-primary">Create Lab Task</a>
+			<button type="button" class="btn btn-default"><a href="/staff/requests/{{ $data['ID'] }}/receipt">Create Receipt</a></button>
+			<button type="button" class="btn btn-default"><a href="/staff/requests/{{ $data['ID'] }}/labtask/new">Create Lab Task</a></button>
+
 			<button type="button" disabled class="btn btn-disabled">Create Analysis of Report</button>
 
 			<button type="button" disabled class="btn btn-disabled">Create Certificate</button>
