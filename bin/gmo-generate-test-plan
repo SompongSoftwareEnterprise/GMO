@@ -194,7 +194,7 @@ class TestPlanGenerator
 		source_filename = test_plan.source_filename
 		@source_filename = source_filename
 		@project_root = source_filename.sub('/vagrant/casper/', '').
-			sub(/[^\/]*$/, '').gsub(/[^\/]+/, '..')
+			sub(/[^\/]*$/, '').gsub(/[^\/]+/, '..') + '../'
 		comments = extract_comments(source_filename)
 
 		title = "Test Plan: " + test_plan.name

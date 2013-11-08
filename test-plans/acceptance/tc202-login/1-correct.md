@@ -21,7 +21,7 @@ Any User
 
 1. Go to login page.
     * The errors box must not exist.
-2. Log in using data from [login-data-correct](../../casper/testdata/login-data-correct.md)
+2. Log in using data from [login-data-correct](../../../casper/testdata/login-data-correct.md)
     * The entrepreneur home page must display.
 
 
