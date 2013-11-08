@@ -16,21 +16,21 @@ suite('Test Register as Customer', function(test) {
 	test.login('staff', 'staff')
 	test.go('/staff/register',                     'Go to the register page.')
 
-	test.click('#register-customer',               'Click the register customer button')
-	test.assertExists('form#register-form',        'A form must be shown.')
+	test.click('#register-customer',               'Click the register customer button.')
+	test.assertExists('form#register-form',        'A customer registration form must appear.')
 
-	test.click('#is_company_checkbox', 'Click the "is-company" checkbox.')
+	test.click('#is_company_checkbox', 'Check the "is company" checkbox.')
 	test.fillAndSubmit('form#register-form', 'register-customer-attempt1',
-		'Fill and submit the form with incomplete data from :name')
+		'Fill and submit the form with incomplete data from :name.')
 
 	test.wait('.error-box', 'An error box must be shown.')
 	test.fillAndSubmit('form#register-form', 'register-customer-attempt2',
-		'Complete the remaining/incorrect fields with the data from :name')
+		'Complete the remaining/incorrect fields with the data from :name.')
 
 	test.wait('.message-box', 'A message box that the registration is complete must be shown.')
-	test.click('.messagse-primary-action', 'Click the finish button')
+	test.click('.message-primary-action', 'Click the finish button.')
 
-	test.wait('#register-customer', 'The registration home page must be shown.')
+	test.wait('#register-customer', 'The user must be taken back to the register home page.')
 
 })
 
