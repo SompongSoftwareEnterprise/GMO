@@ -1,0 +1,215 @@
+#!/usr/bin/env ruby
+require 'rexml/document'
+
+OUTPUT = '/vagrant/test-plan-report'
+
+
+class TestFile
+
+	attr_accessor :name
+	attr_reader :suites
+
+	def initialize(name)
+		@name = name
+		@suites = []
+	end
+
+	def suite(name)
+		@suites.find { |suite| suite.name == name }
+	end
+
+end
+
+class TestSuite
+	
+	attr_accessor :name
+	attr_reader :cases
+
+	def initialize(name)
+		@name = name
+		@cases = []
+	end
+
+	def testcase(id)
+		@cases.find { |testcase| testcase.id == id }
+	end
+
+end
+
+class TestCase
+
+	attr_accessor :name, :id, :time
+	attr_reader :errors, :failures
+
+	def initialize(options)
+		@name = options[:name]
+		@id = options[:id]
+		@time = options[:time]
+		@errors = []
+		@failures = []
+	end
+
+	def has_errors?
+		!@errors.empty?
+	end
+	def has_failures?
+		!@failures.empty?
+	end
+
+end
+
+FailureMessage = Struct.new(:type, :text)
+
+
+def load_test_file(filename)
+
+	test_file = TestFile.new(filename)
+
+	doc = REXML::Document.new(File::read(filename))
+
+	doc.elements.each('//testsuite') do |suite_el|
+		suite_name = suite_el.attributes['name']
+		suite = TestSuite.new(suite_name)
+		test_file.suites << suite
+		suite_el.elements.each('testcase') do |testcase_el|
+			raw_name = testcase_el.attributes['name']
+			id   = nil
+			name = raw_name.sub(/<ref id=(\d+)>/) { id = $1.to_i; '' }
+			testcase = TestCase.new(
+				:name => name,
+				:id   => id,
+				:time => testcase_el.attributes['time'].to_f)
+			suite.cases << testcase
+			testcase_el.elements.each('error') do |error_el|
+				testcase.errors << FailureMessage.new(error_el.attributes['type'], error_el.text)
+			end
+			testcase_el.elements.each('failure') do |failure_el|
+				testcase.failures << FailureMessage.new(failure_el.attributes['type'], failure_el.text)
+			end
+		end
+	end
+
+	test_file
+
+end
+
+
+class TestPlan
+	
+	attr_accessor :name
+	attr_reader :steps
+
+	def initialize(name)
+		@name = name
+		@steps = [ ]
+	end
+
+end
+
+class TestStep
+	
+	attr_accessor :message, :id
+	attr_reader :checks
+
+	def initialize(message, id)
+		@message = message
+		@id = id
+		@checks = []
+	end
+
+end
+
+class Check
+	
+	attr_accessor :message, :id
+
+	def initialize(message, id)
+		@message = message
+		@id = id
+	end
+
+end
+
+
+def load_test_plans(filename)
+
+	plans = [ ]
+
+	doc = REXML::Document.new(File::read(filename))
+	doc.elements.each('//plan') do |plan_el|
+		plan = TestPlan.new(plan_el.attributes['name'])
+		plans << plan
+		plan_el.elements.each('step') do |step_el|
+			step = TestStep.new(step_el.attributes['message'], step_el.attributes['id'].to_i)
+			plan.steps << step
+			step_el.elements.each('check') do |check_el|
+				check = TestStep.new(check_el.attributes['message'], check_el.attributes['id'].to_i)
+				step.checks << check
+			end
+		end
+	end
+
+	plans
+
+end
+
+def generate_test_report(arg)
+
+	test_file = load_test_file(arg)
+	test_plans = load_test_plans(arg.sub(/\.xml$/, '_plan.xml'))
+
+	out = $stdout
+
+	test_plans.each do |test_plan|
+
+		suite = test_file.suite(test_plan.name)
+
+		out.puts test_plan.name
+		out.puts '=' * test_plan.name.length
+		out.puts
+
+		out.puts '## Test Report'
+		out.puts
+		out.puts "| Step | Result |"
+		out.puts "| ---- |:------:|"
+		test_plan.steps.each_with_index do |step, index|
+			out.puts "| #{index + 1}\\. #{step.message} | |"
+			step.checks.each_with_index do |check, check_index|
+				testcase = suite.testcase(check.id)
+				tag = "---"
+				if testcase
+					tag = "PASS"
+					if testcase.has_errors?
+						tag = "ERROR"
+					elsif testcase.has_failures?
+						tag = "FAIL"
+					end
+				end
+				out.puts "| &nbsp; &nbsp; &bull; #{check.message} | #{tag} |"
+			end
+		end
+
+		out.puts
+		out.puts '## Errors'
+
+	end
+
+end
+
+if ARGV.empty?
+	puts "What to generate?"
+else
+	ARGV.each do |arg|
+		generate_test_report(arg)
+	end
+end
+
+
+
+
+
+
+
+
+
+

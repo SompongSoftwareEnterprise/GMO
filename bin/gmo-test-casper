@@ -32,6 +32,7 @@ def run_test(filename)
 	out_basename = DateTime.now.strftime('%Y%m%d_%H%M%S_') + File.basename(filename, '.js')
 	out_filename = "/vagrant/casper/output/#{out_basename}.xml"
 	system "casperjs test --fail-fast #{filename} --xunit=#{out_filename}"
+	system "gmo-generate-test-plan #{out_filename}"
 end
 
 if ARGV.empty?

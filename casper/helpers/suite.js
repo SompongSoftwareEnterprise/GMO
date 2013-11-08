@@ -1,8 +1,12 @@
 
 
+var require = patchRequire(require)
 var url = require('./url')
 var yaml = require('./yaml')
 var screenshot = require('./screenshot')
+var fs = require('fs')
+var utils = require('utils')
+var f = utils.format
 
 casper.setFilter('echo.message', function alterEchoMessage(message) {
 	return message.replace(/<ref id=\d+>/g, '')
@@ -15,6 +19,8 @@ casper.setFilter('echo.message', function alterEchoMessage(message) {
 function CasperAPI(casper) {
 	
 	var test = null
+	var plan = { steps: [ ] }
+	var currentStep = null
 	
 	/**
 	 * @lends CasperAPI.prototype
@@ -34,6 +40,7 @@ function CasperAPI(casper) {
 	 * @function
 	 */
 	api.step = function(message) {
+		plan.steps.push(currentStep = { id: nextRefId, message: message, checks: [ ] })
 		message += refId()
 		casper.then(function() {
 			test.comment(++stepNumber + '. ' + message)
@@ -44,6 +51,7 @@ function CasperAPI(casper) {
 	 * [Util] Define a checking criteria.
 	 */
 	api.check = function(message, callback) {
+		currentStep.checks.push({ id: nextRefId, message: message  })
 		message += refId()
 		return function() {
 			callback(message)
@@ -147,6 +155,7 @@ function CasperAPI(casper) {
 			casper.start()
 			casper.options.pageSettings.loadImages = false
 			fn(api)
+
 			casper.run(function() {
 				test.done()
 			})
@@ -160,7 +169,7 @@ function CasperAPI(casper) {
 	 */
 	function setupTest() {
 
-		override(test.currentSuite, 'addFailure', after(function(failure, time) {
+		function handleFailure() {
 
 			console.log('[Capturing screenshot...]')
 			screenshot.capture(casper)
@@ -173,13 +182,45 @@ function CasperAPI(casper) {
 				console.log(error)
 			}
 
-		}))
+		}
+
+		override(test.currentSuite, 'addFailure', after(handleFailure))
+		override(test.currentSuite, 'addError',   after(handleFailure))
+		test.currentSuite.plan = plan
 
 	}
 
 	return api
 
 }
+
+
+function esc(text) {
+	return ('' + text).replace(/"/g, '&quot;')
+}
+
+function el(tag, attributes, content) {
+	return '<' + tag + Object.keys(attributes).map(function(key) {
+		return ' ' + key + '="' + esc(attributes[key]) + '"'
+	}).join('') + (content ? '>' + content + '</' + tag + '>' : '/>')
+}
+
+override(casper.test, 'saveResults', after(function(filepath) {
+	var planPath = filepath.replace(/(\.xml|)$/, '_plan.xml')
+	var xml = el('plans', { }, casper.test.suiteResults.map(function(suite) {
+		return '\n' + el('plan', { name: suite.name }, suite.plan.steps.map(function(step) {
+			return '\n\t' + el('step', { message: step.message, id: step.id }, step.checks.map(function(check) {
+				return '\n\t\t' + el('check', { message: check.message, id: check.id })
+			}).join(''))
+		}).join(''))
+	}).join(''))
+	try {
+		fs.write(planPath, xml, 'w');
+		this.casper.echo(f('Test plan saved in %s', planPath), 'INFO', 80);
+	} catch (e) {
+		this.casper.echo(f('Unable to write results to %s: %s', planPath, e), 'ERROR', 80);
+	}
+}))
 
 /**
  * Scrapes the Laravel error message from the web page.

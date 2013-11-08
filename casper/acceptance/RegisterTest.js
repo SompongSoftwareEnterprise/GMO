@@ -29,7 +29,7 @@ suite('Test Register as Customer', function(test) {
 		'Complete the remaining/incorrect fields with the data from :name')
 
 	test.wait('.message-box', 'A message box that the registration is complete must be shown.')
-	test.click('.message-primary-action', 'Click the finish button')
+	test.click('.messagse-primary-action', 'Click the finish button')
 
 	test.wait('#register-customer', 'The registration home page must be shown.')
 
