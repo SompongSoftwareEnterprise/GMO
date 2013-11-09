@@ -36,5 +36,9 @@ Entreprenuer
     * the filled field must be the same.
 
 6. Complete the remaining/incorrect fields with the data.
-7. Submit the form.
+
+7. Tick a checkbox,"I can guarantee that it is the truth".
+    * If user didn't tick, an error box must be shown.
+    
+8. Submit the form.
     * The user must be taken back to view request page.
