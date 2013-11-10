@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+
+applicable_files =
+	Dir['/vagrant/use-cases/**/*.md'] +
+	Dir['/vagrant/designs/**/*.md'] +
+	Dir['/vagrant/test-cases/**/*.md']
+
+applicable_files.each do |file|
+	puts "== #{file}"
+	p File.read(file).scan(/uc\d+|ds\d+|tc\d+|ut\d+/i)
+end
+
+
