@@ -3,7 +3,7 @@
  * To make sure that the registration process is working correctly and that
  * a customer can be registered.
  *
- * @xref     uc101, ds101, ds102
+ * @xref     uc101, ds101, ds102, uc203, ds203
  * @actors   GMO Staff
  * @pre      A GMO staff is logged in.
  * @fixture  only-gmo-staff
