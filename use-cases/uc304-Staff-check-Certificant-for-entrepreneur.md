@@ -28,8 +28,10 @@ Postconditions
 
 Basic Flow
 ----------
+
 1.Entrepreneur make a request for their Certificate.
-2.GMO staff select a document that match the same Entreprener.System will popup more information about selected document
+
+2.GMO staff select a document that match the same Entreprener.System will popup more information about selected document.
 
 Alternate Flows
 ---------------
