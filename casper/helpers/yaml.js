@@ -14,4 +14,8 @@ module.exports.testdata = function(name) {
 	return module.exports('testdata/' + name + '.yml')
 }
 
+module.exports.fixture = function(name) {
+	return module.exports('fixtures/' + name + '.yml')
+}
+
 

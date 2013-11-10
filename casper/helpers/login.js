@@ -2,7 +2,7 @@
 
 var login = { }
 
-login.entrepreneur = function(casper, test) {
+login.entrepreneur = function(casper, test,username,password) {
 
 	// TODO: remove this when login functionality is implemented
 	return
@@ -10,9 +10,9 @@ login.entrepreneur = function(casper, test) {
 	casper.then(function() {
 		test.assertExists('form#login-form', 'Login form must exist')
 		casper.fill('form#login-form', {
-			'username': 'en001',
-			'password': 'fakepass'
-		})
+			'username': username,
+			'password': password
+		},true)
 	})
 
 }
