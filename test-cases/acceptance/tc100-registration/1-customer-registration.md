@@ -9,7 +9,7 @@ a customer can be registered.
 
 ## XRef
 
-uc101, ds101, ds102
+uc101, ds101, ds102, uc203, ds203
 
 
 ## Actors
