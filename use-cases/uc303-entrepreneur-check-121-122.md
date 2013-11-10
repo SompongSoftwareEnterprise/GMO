@@ -31,7 +31,7 @@ Basic Flow
 ----------
 1. System show basic information of selected request in user included status of document สทช. 1-2/1, and สทช. 1-2/2.
 2. User can select (click on link) each document. System will popup more information about selected document
-    2a. User can download each document by click download button.
+3. User can download each document by click download button in popup content.
 
 Alternate Flows
 ---------------
