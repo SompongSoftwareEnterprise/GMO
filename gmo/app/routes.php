@@ -73,9 +73,9 @@ Route::get('/staff/requests/{id}', array(
 	'as' => 'staff.requests.show',
 	'uses' => 'StaffRequestsController@show'
 ));
-Route::get('/staff/requests/{id}/receipt', array(
-	'as' => 'staff.requests.receipt',
-	'uses' => 'StaffRequestsController@createReceipt'
+Route::get('/staff/requests/{id}/invoice', array(
+	'as' => 'staff.requests.invoice',
+	'uses' => 'StaffRequestsController@createInvoice'
 ));
 Route::get('staff/requests/{id}/labtask/new', array(
 	'as' => 'staff.labtask.new',

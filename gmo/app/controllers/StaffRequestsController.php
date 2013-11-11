@@ -17,7 +17,7 @@ class StaffRequestsController extends BaseController {
 			->with('id', $id);
 	}
 
-	public function createReceipt($id){
+	public function createInvoice($id){
 		$idForm = CertificateRequest::find($id);
 		$idForm = CertificateRequestInfoForm::where('export_certificate_request_id', '=', $idForm->id)->get();
 		print_r($idForm);
@@ -28,16 +28,16 @@ class StaffRequestsController extends BaseController {
 			$checkForm = false;
 		}
 
-		$receipt = 
-		Receipt::where('export_certificate_request_id', '=', $id)->first();
-		if( !(count($receipt) > 0) ){
-			$receipt = new Receipt;
-			$receipt->export_certificate_request_id = $id;
+		$invoice = 
+		Invoice::where('export_certificate_request_id', '=', $id)->first();
+		if( !(count($invoice) > 0) ){
+			$invoice = new Invoice;
+			$invoice->export_certificate_request_id = $id;
 			if($checkForm)
-				$receipt->price = 100+150;
+				$invoice->price = 100+150;
 			else
-				$receipt->price = 100;
-			$receipt->save();
+				$invoice->price = 100;
+			$invoice->save();
 		}
 		return View::Make('staff_requests/create_receipt')
 			->with('checkForm', $checkForm);

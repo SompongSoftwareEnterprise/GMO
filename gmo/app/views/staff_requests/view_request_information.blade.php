@@ -82,7 +82,7 @@ View Requests Information
 				</tbody>
 			</table>
 			<br><br>
-			<button type="button" class="btn btn-default"><a href="/staff/requests/{{ $data['ID'] }}/receipt">Create Receipt</a></button>
+			<button type="button" class="btn btn-default"><a href="/staff/requests/{{ $data['ID'] }}/invoice">Create Invoice</a></button>
 			<button type="button" class="btn btn-default"><a href="/staff/requests/{{ $data['ID'] }}/labtask/new">Create Lab Task</a></button>
 
 			<button type="button" disabled class="btn btn-disabled">Create Analysis of Report</button>
