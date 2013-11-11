@@ -1,12 +1,10 @@
-﻿
-
-Use Case Name
+﻿Use Case Name
 ---------------
 Upload Lab Result
 
 XRef
 ----
-
+uc119
 
 Level
 -----
@@ -22,38 +20,28 @@ Lab staff wishes to upload a lab result on the system
 
 Preconditions
 -------------
-Lab staff already log in
+1. Lab staff already log in.
+2. Lab staff has a lab-result file to be uploaded.
 
 Postconditions
 --------------
-The system contains file about lab result
+The request contain a lab result.
 
 Basic Flow
 ----------
-1. Who what.
-2. Who what.
-3. Who what.
+1. Lab staff enters to lab-request page.
+2. Lab staff enters to the request  which perform file uploading.
+3. Lab staff clicks "Browse" button to select the file from directory.
+4. Lab staff clicks "Upload" button to perform file uploading.
 
 Alternate Flows
 ---------------
-*a. At any time, what happened?
-
-1. Who what.
-2. Who what.
-3. Who what.
-
-2a. At step 2, what happened?
-
-Special Requirements
-	--------------------
-Non-functional requirements
 
 Frequency of Occurrence
 -----------------------
 Usually
 
-Open Issues
------------
-1. List the open issues, if any.
-
-
+Exception
+---------
+1. Uploading fail
+2. Type of the file is not word or PDF.
