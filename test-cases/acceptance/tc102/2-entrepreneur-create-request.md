@@ -22,12 +22,11 @@ Entrepreneur
 
 1. Login as Entrepreneur.
 	* Must login successfully.
-2. Click the REQUEST to view all of the request.
-3. Click the RequestID that Entrepreneur want to submit the 1-1/2 form.
-4. Click the complete this document link after สทช. 1/1-2
+2. Click the RequestID that Entrepreneur want to submit the 1-1/2 form.
+3. Click the complete this document link after สทช. 1/1-2
 	* A certificate request 1-1/2 form must appear.
-5. Fill and submit an incomplete form.
+4. Fill and submit an incomplete form.
 	* An error box must be shown.
-6. Complete the remaining/incorrect fields.
-7. Submit the form.
+5. Complete the remaining/incorrect fields.
+6. Submit the form.
 	* Entrepreneur must be taken to view request detail page.
