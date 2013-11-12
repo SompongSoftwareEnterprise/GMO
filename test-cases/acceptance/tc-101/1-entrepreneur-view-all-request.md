@@ -22,5 +22,4 @@ Entrepreneur
 
 1. Login as Entrepreneur.
 	* Must login successfully.
-2. Click on REQUEST to view all of the request.
-3. System show all of the request that created and sent by this Entrepreneur.
+2. System show all of the request that created and sent by this Entrepreneur.

@@ -23,7 +23,6 @@ Entrepreneur
 
 1. Login as Entrepreneur.
 	* Must login successfully.
-2. Click on REQUEST to view all of the request.
-3. Click on the RequestID that want to check.
-4. The status of "สทช. 1-1/1" should be "Available".
-5. The status of "สทช. 1-1/2" should be "Document Needed".
+2. Click on the RequestID that want to check.
+3. The status of "สทช. 1-1/1" should be "Available".
+4. The status of "สทช. 1-1/2" should be "Document Needed".
