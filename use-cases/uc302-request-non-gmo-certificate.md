@@ -2,7 +2,7 @@
 
 Use Case Name
 -------------
-Request a non GMO Certificate (1-1/1 & 1-1/2)
+Request a non GMO Certificate (1-2/1 & 1-2/2)
 
 XRef
 ----
@@ -36,16 +36,12 @@ Basic Flow
 3. Customer or Agency fills in a form.
 4. Entrepreneur selects "Submit" button.
 5. System validates a form.
-a. If a form filled out incorrectly, System notifies Customer or Agency to correct it.
-6. System presents a Confirmation Page.
-7. Customer or Agency verifies data on a Confirmation Page.
-a. If a form filled out incorrectly, Customer or Agency selects "Back" button to back to Step 3 with a filled form.
-8. System presents View Request Information page.
+6. System presents View Request Information page.
 
 
 Alternate Flows
 ---------------
-None
+5a. A form filled out incorrectly, System notifies Customer or Agency to correct it.
 
 Frequency of Occurrence
 -----------------------
