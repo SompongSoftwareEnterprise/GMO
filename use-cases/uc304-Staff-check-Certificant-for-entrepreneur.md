@@ -1,6 +1,6 @@
 Use Case Name
 -------------
-Staff check Certificate for entrepreneur (1-1/1 & 1-1/2)
+Staff check Certificate for entrepreneur (1-2/1 & 1-2/2)
 
 XRef
 ----
