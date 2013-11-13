@@ -10,7 +10,7 @@ class Document
 	attr_reader :file, :id, :contents, :references
 
 	def self.get_id(name)
-		if name =~ /(tc\d+)[^\/]+\/(\d+)/
+		if name =~ /(tc\d+)[^\/]*\/(\d+)/
 			"#{$1}-#{$2}"
 		else
 			name.scan(PATTERN)[0]
