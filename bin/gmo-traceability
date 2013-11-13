@@ -113,7 +113,7 @@ class TracabilityMatrixPrinter
 		printed = []
 		@docs.use_cases.each do |uc|
 			puts "  <tr>"
-			puts "    <td>#{link_to uc}"
+			puts "    <td valign='top'>#{link_to uc}"
 			children = @docs.children[uc.id] || []
 			printed += children
 			print_row(children)
@@ -133,7 +133,7 @@ class TracabilityMatrixPrinter
 	def print_row(list)
 
 		[:design?, :acceptance_test?, :other?].each do |type|
-			docs = list.select(&type)
+			docs = list.select(&type).uniq
 			if docs.empty?
 				puts "    <td>"
 			else
