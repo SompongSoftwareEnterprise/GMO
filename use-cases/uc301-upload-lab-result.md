@@ -46,6 +46,7 @@ Basic Flow
 15. Lab staff uploads Gene Analysis file by clicks "Upload" text next from status "pending".
 16. Lab staff selects the file from directory dialog to perform uploading.
 17. The system changes status "pending" to "uploaded" on Gene Analysis status.
+18. The system allows lets the Head of the Lab to submit the result (PASS or FAIL).
 
 Alternate Flows
 ---------------
@@ -56,5 +57,5 @@ Usually
 
 Exception
 ---------
-1. Uploading fail
+1. Uploading fail.
 2. Type of the file is not word or PDF.
