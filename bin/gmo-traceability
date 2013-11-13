@@ -99,7 +99,7 @@ class TracabilityMatrixPrinter
 	end
 
 	def puts(*what)
-		@out.puts *what
+		@out.puts(*what)
 	end
 
 	def print!
@@ -107,7 +107,7 @@ class TracabilityMatrixPrinter
 		print_preamble!
 
 		puts "<table>"
-		puts "  <tr><th>Use Case<th>Design<th>Acceptance Test<th>Unit Test"
+		puts "  <tr><th>Use Case<th>Design<th>Acceptance<br>Test<th>Others"
 
 		# separate the use cases from the other docs
 		printed = []

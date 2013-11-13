@@ -5,7 +5,7 @@ This traceability matrix lets you trace all the documents
 back and forth from the requirements to the test cases.
 
 <table>
-  <tr><th>Use Case<th>Design<th>Acceptance Test<th>Unit Test
+  <tr><th>Use Case<th>Design<th>Acceptance<br>Test<th>Others
   <tr>
     <td valign='top'><a href="../use-cases/uc101-registeration.md">uc101</a>
     <td valign='top'>
