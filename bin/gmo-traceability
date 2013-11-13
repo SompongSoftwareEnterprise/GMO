@@ -148,7 +148,7 @@ class TracabilityMatrixPrinter
 	end
 
 	def link_to(doc)
-		"[#{doc.id}](#{doc.file.sub('/vagrant/', '../')})"
+		"<a href=\"#{doc.file.sub('/vagrant/', '../')}\">#{doc.id}</a>"
 	end
 
 	def print_preamble!
