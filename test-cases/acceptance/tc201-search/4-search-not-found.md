@@ -7,7 +7,7 @@ To make sure that the process to search a request (by any option) is working cor
 
 ## XRef
 
-uc-201, ds-201
+uc201, ds201
 
 ## Actors
 

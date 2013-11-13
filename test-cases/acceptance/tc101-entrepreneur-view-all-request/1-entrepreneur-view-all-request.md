@@ -7,7 +7,7 @@ To make sure that all certificate request data show correctly.
 
 ## XRef
 
-uc-105
+uc105
 
 ## Actors
 
