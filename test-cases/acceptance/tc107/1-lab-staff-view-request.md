@@ -22,10 +22,10 @@ Lab Staff
 * Initial database data: Lab Staff user data
 * Initial database data: Complete Lab request that have status 'Pending'
 * Initial database data: Complete Lab request that have status 'DNA Extraction'
-* Initial database data: Conplete Lab request that have status 'Volume & Concentration Measurement'
-* Initial database data: Conplete Lab request that have status 'Endrogenous Gene Analysis'
-* Initial database data: Conplete Lab request that have status 'Gene Analysis'
-* Initial database data: Conplete Lab request that have status 'Waiting For Approval'
+* Initial database data: Complete Lab request that have status 'Volume & Concentration Measurement'
+* Initial database data: Complete Lab request that have status 'Endrogenous Gene Analysis'
+* Initial database data: Complete Lab request that have status 'Gene Analysis'
+* Initial database data: Complete Lab request that have status 'Waiting For Approval'
 
 
 ## Test Procedure
