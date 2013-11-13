@@ -73,19 +73,29 @@ class RegistrationController extends BaseController {
 				->withInput();
 			
 		}
-		
+
+		$is_agency = Input::get('is_agency') == '1';
+
 		// save data
-		$username = 'user' . time();    // TODO
-		$password = 'none';             // TODO
+		// we generate a nonsense username, and edit it later after we know its id
+		$username = 'tmpuser' . time() . mt_rand();
+		$password = PasswordGenerator::generate();
 		
 		$user = new User;
 		$user->username = $username;
-		// TODO: hash password
+		$user->password_salt = Hasher::makeSalt();
+		$user->password_hash = Hasher::makeHash($password, $user->password_salt);
+		$user->role = $role = $is_agency ? 'Agency' : 'Customer';
+		$user->save();
+
+		$user->username = $username = sprintf("user%05d", $user->id);
 		$user->save();
 		
 		$entrepreneur = new Entrepreneur;
-		$entrepreneur->first_name = Input::get('first_name');
-		$entrepreneur->last_name = Input::get('last_name', '');
+		$entrepreneur->first_name = $first_name = Input::get('first_name');
+		$entrepreneur->last_name  = $last_name  = Input::get('last_name', '');
+		$entrepreneur->is_agency  = $is_agency ? 1 : 0;
+		$entrepreneur->email      = $email = Input::get('email');
 		$entrepreneur->sex = Input::get('sex', '');
 		$entrepreneur->date_of_birth = InputDate::parse('date_of_birth');
 		$entrepreneur->nationality = Input::get('nationality');
@@ -95,17 +105,45 @@ class RegistrationController extends BaseController {
 		$entrepreneur->city = Input::get('city');
 		$entrepreneur->province = Input::get('province');
 		$entrepreneur->zip = Input::get('zip');
-		$entrepreneur->email = Input::get('email');
 		$entrepreneur->phone = Input::get('phone');
 		$entrepreneur->fax = Input::get('fax');
 		$entrepreneur->mobile = Input::get('mobile');
 		$entrepreneur->user_id = $user->id;
 		$entrepreneur->save();
+
+		$message = <<<EMAIL
+Welcome to Department of Agriculture, $first_name  $last_name
+
+Your account information :
+Username: $username
+Password: $password
+User Type: $role
+
+Go to website click this link http://gmo.tsp.dt.in.th/
+
+* If you have not registered for a GMO Entrepreneur account and you think that
+  you received this email by mistake from the system, please inform us at admin@gmo.com
+** If you have a question about using the website, feel free to ask us at http://gmo.tsp.dt.in.th/ or call 08976115334 
+--------------------------------------------------------------------------------------
+
+ยินดีต้อนรับสู่กรมวิชาการเกษตร คุณ $first_name  $last_name
+
+
+รายละเอียด account ของคุณ:
+Username: $username
+Password: $password
+ประเภทผู้ใช้งาน คือ $role
+
+ไปยังหน้าเวปไซท์ คลิกที่ link นี้ http://gmo.tsp.dt.in.th/
+
+* ถ้าคุณไม่ได้ขึ้นทะเบียนผู้ประกอบการกับระบบจีเอ็มโอและคิดว่านี่อาจจะเป็นข้อผิดพลาดของระบบ กรุณาแจ้งมาที่ admin@gmo.com
+** หากมีคำถามใดๆ เกี่ยวกับการใช้งาน ขอเชิญติดต่อเราผ่านทาง หน้า FAQ ครับที่ http://gmo.tsp.dt.in.th/ หรือ โทร 084452356652334
+EMAIL;
 		
-		// TODO: send email
 		return MessageView::make('The user has been successfully registered', 'RegistrationController@index', 'Finish')
-			->with('back', false);
-		
+			->with('back', false)
+			->with('extraHtml', '<pre id="email-message" data-to="' . $email . '"><b>To: </b>' . $email . '<br>' .
+				htmlspecialchars($message) . '</pre>');
 		
 	}
 	
