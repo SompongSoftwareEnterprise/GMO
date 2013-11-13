@@ -1,0 +1,39 @@
+company_thai:   'บริษัท สมปองละมุนภัณฑ์ จำกัด'
+address_thai:   '55/5 เขตจตุจักร กรุงเทพฯ 10900'
+company_eng:    'บริษัท สมปองละมุนภัณฑ์ จำก
+address_eng:    '55/5 เขตจตุจักร กรุงเทพฯ 10900'
+purpose:        ''
+contact_name:    'Somsri'
+contact_number:  '02-444-4444'
+
+plant_name_thai_1:  'ข้าวหอมมะลิ'
+plant_name_eng_1:   'THAI HOM MALI RICE'
+plant_name_sci_1:   'ORYZA SATIVA'
+cert_amount_1:      1
+export_to_1:        'USA,EUROPE,ASIA'
+export_qty_1:       20
+export_val_1:       500000
+
+plant_name_thai_2:  'ข้าวขาว'
+plant_name_eng_2:   'THAI WHITE RICE'
+plant_name_sci_2:   'ORYZA SATIVA'
+cert_amount_2:      1
+export_to_2:        'USA,EUROPE,ASIA'
+export_qty_1:       50
+export_val_2:       'Invalid export value'
+
+plant_name_thai_3:  'ข้าวกล้องเขียว'
+plant_name_eng_3:   'GREEN RICE'
+plant_name_sci_3:   'ORYZA SATIVA'
+cert_amount_3:      'Invalid Certificate Amount'
+export_to_3:        'USA,EUROPE,ASIA'
+export_qty_3:       'Invalid Quantity Export'
+export_val_3:       1000000
+
+plant_name_thai_4:  'ข้าวกล้องแดง'
+plant_name_eng_4:   'RED RICE'
+plant_name_sci_4:   'ORYZA SATIVA'
+cert_amount_4:      1
+export_to_4:        'USA,EUROPE,ASIA'
+export_qty_4:       30
+export_val_4:       1000000

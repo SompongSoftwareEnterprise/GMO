@@ -125,6 +125,15 @@ function CasperAPI(casper) {
 	}
 
 	/**
+	 * [Util] Saves a screenshot
+	 */
+	api.screenshot = function() {
+		casper.then(function() {
+			captureScreenshot()
+		})
+	}
+
+	/**
 	 * [Check] Check that the form has the correct value
 	 */
 	api.assertFormValue = function(form, name, value) {
@@ -165,16 +174,20 @@ function CasperAPI(casper) {
 
 	}
 
+	function captureScreenshot() {
+		console.log('[Capturing screenshot...]')
+		screenshot.capture(casper)
+		console.log('Screenshot saved at ' + screenshot.path)
+	}
+
 	/*
 	 * Monkey-patches CasperJS to save screenshot on each failure
 	 */
 	function setupTest() {
 
 		function handleFailure() {
-
-			console.log('[Capturing screenshot...]')
-			screenshot.capture(casper)
-			console.log('Screenshot saved at ' + screenshot.path)
+	
+			captureScreenshot()
 
 			var error = getLaravelError()
 
