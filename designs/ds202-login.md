@@ -22,7 +22,7 @@ again, but with error message panel visible.
 Low Level Design
 ----------------
 
-![Screenshot](ds202-login-example.png)
+![Screenshot](images/ds202-login-example.png)
 
 | Component Name             | ID               | Name      |
 | -------------------------- | ---------------- | --------- |
