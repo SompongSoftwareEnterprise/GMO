@@ -122,7 +122,7 @@ class TracabilityMatrixPrinter
 		leftover = (@docs.other_docs - printed).select { |doc| doc.id }
 		if leftover.length > 0
 			puts "  <tr>"
-			puts "    <td>(missing reference)"
+			puts "    <td valign='top'>(missing reference)"
 			print_row(leftover)
 		end
 
@@ -137,11 +137,10 @@ class TracabilityMatrixPrinter
 			if docs.empty?
 				puts "    <td>"
 			else
-				puts "    <td><ul>"
+				puts "    <td valign='top'>"
 				docs.each do |doc|
-					puts "      <li>#{link_to doc}"
+					puts "      #{link_to doc}#{doc != docs.last ? '<br>' : ''}"
 				end
-				puts "      </ul>"
 			end
 		end
 
