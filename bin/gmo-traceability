@@ -163,9 +163,10 @@ class TracabilityMatrixPrinter
 end
 
 docs = Documents.new
-printer = TracabilityMatrixPrinter.new(docs, $stdout)
-
-printer.print!
+File.open('/vagrant/docs/traceability-matrix.md', 'w') do |io|
+	printer = TracabilityMatrixPrinter.new(docs, io)
+	printer.print!
+end
 
 
 
