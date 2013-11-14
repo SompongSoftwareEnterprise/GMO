@@ -48,13 +48,16 @@ echo "\n\n<table>";
 foreach ($actorMap as $actor => $useCases) {
 	usort($useCases, 'uc_sort');
 	$links = array();
+	$count = count($useCases);
 	foreach ($useCases as $useCase) {
 		$link = str_replace('../use-cases/', '', $useCase->filename);
 		$name = basename($useCase->filename, '.md');
-		$links[] = "<a href=\"$link\">$name</a>";
+		$useCaseName = trim($useCase->section('~use case name~i')->text());
+		$level = trim($useCase->section('~level~i')->text());
+		$links[] = "<td valign=top><a href=\"$link\">$name</a><td valign=top>$useCaseName<td>$level";
 	}
-	echo "<tr>\n  <td valign=top><strong>$actor</strong>\n  <td>\n";
-	echo "    " . implode("<br>\n    ", $links) . "\n";
+	echo "<tr>\n  <td valign=top rowspan=$count><strong>$actor</strong>\n";
+	echo "    " . implode("<tr>\n    ", $links) . "\n";
 }
 
 echo "</table>";
