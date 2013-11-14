@@ -1,0 +1,64 @@
+#!/usr/bin/env php
+<?php
+
+chdir(dirname(__FILE__));
+
+require '../scripts/Doc.php';
+
+$actorMap = array();
+
+foreach (glob('../use-cases/uc*.md') as $file) {
+
+	// read file
+	$doc = Doc::read($file);
+
+	$primaryActors = $doc->section('~primary actors?~i');
+
+	if ($primaryActors->count() == 0) {
+		$actors = array('(missing)');
+	} else {
+		echo $file . "\n";
+		$actors = array_map('trim', preg_split('~,(?: and )?| and ~i', $primaryActors->text()));
+	}
+
+	foreach ($actors as $actor) {
+		if (!isset($actorMap[$actor])) $actorMap[$actor] = array();
+		$actorMap[$actor][] = $doc;
+	}
+
+}
+
+function uc_sort($a, $b) {
+	return strnatcasecmp($a->filename, $b->filename);
+}
+
+ksort($actorMap);
+
+ob_start();
+
+echo <<<PREAMBLE
+Use Cases
+=========
+
+This folder contains the use case models. Here is a summary of the use-cases.
+PREAMBLE;
+
+echo "\n\n<table>";
+
+foreach ($actorMap as $actor => $useCases) {
+	usort($useCases, 'uc_sort');
+	$links = array();
+	foreach ($useCases as $useCase) {
+		$link = str_replace('../use-cases/', '', $useCase->filename);
+		$name = basename($useCase->filename, '.md');
+		$links[] = "<a href=\"$link\">$name</a>";
+	}
+	echo "<tr>\n  <td valign=top><strong>$actor</strong>\n  <td>\n";
+	echo "    " . implode("<br>\n    ", $links) . "\n";
+}
+
+echo "</table>";
+
+file_put_contents('../use-cases/README.md', ob_get_clean());
+
+

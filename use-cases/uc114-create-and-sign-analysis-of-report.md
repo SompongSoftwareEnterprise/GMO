@@ -12,7 +12,7 @@ User goal
 
 Primary Actor
 -------------
-GMO staff
+GMO Staff
 
 Trigger
 -------

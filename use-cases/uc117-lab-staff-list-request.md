@@ -12,7 +12,7 @@ User goal
 
 Primary Actor
 -------------
-Lab staff
+Lab Staff
 
 Trigger
 -------

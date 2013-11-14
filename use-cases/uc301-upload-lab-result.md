@@ -1,4 +1,4 @@
-﻿Use Case Name
+Use Case Name
 ---------------
 Upload Lab Result
 
@@ -12,7 +12,7 @@ User goal
 
 Primary Actor
 -------------
-Lab staff
+Lab Staff
 
 Trigger
 -------

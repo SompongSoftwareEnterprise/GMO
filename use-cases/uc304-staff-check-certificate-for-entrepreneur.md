@@ -12,7 +12,7 @@ User goal
 
 Primary Actor
 -------------
-Entrepreneur, and Agency
+GMO Staff
 
 Trigger
 -------
