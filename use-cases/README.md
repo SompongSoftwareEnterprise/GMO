@@ -20,7 +20,7 @@ This folder contains the use case models. Here is a summary of the use-cases.
     <td valign=top><a href="uc201-search-for-request.md">uc201-search-for-request</a><td valign=top>Search for Requests<td>Subfunction<tr>
     <td valign=top><a href="uc203-send-email-after-registration.md">uc203-send-email-after-registration</a><td valign=top>Send Email After Registration<td>User goal<tr>
     <td valign=top><a href="uc302-request-non-gmo-certificate.md">uc302-request-non-gmo-certificate</a><td valign=top>Request a Domestic Non-GMO Certificate (1-2/1 & 1-2/2)<td>User goal<tr>
-    <td valign=top><a href="uc303-entrepreneur-check-121-122.md">uc303-entrepreneur-check-121-122</a><td valign=top>Entrepreneur Check 1-2/1, and 1-2/2 (à¸ªà¸à¸. 1-2/1, and à¸ªà¸à¸. 1-2/2)<td>User goal
+    <td valign=top><a href="uc303-entrepreneur-check-121-122.md">uc303-entrepreneur-check-121-122</a><td valign=top>Entrepreneur Check 1-2/1, and 1-2/2 (สทช. 1-2/1, and สทช. 1-2/2)<td>User goal
 <tr>
   <td valign=top rowspan=10><strong>GMO Staff</strong>
     <td valign=top><a href="uc108-staff-list-all-request.md">uc108-staff-list-all-request</a><td valign=top>List All Requests<td>User goal<tr>

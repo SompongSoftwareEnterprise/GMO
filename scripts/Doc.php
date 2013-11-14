@@ -35,7 +35,7 @@ class Doc {
 
 	public static function read($filename) {
 		$data = Markdown::defaultTransform(file_get_contents($filename));
-		$crawler = new Crawler($data);
+		$crawler = new Crawler('<meta charset=utf-8>' . $data);
 		return new Doc($filename, $crawler);
 	}
 
