@@ -3,7 +3,9 @@ Use Cases
 
 This folder contains the use case models. Here is a summary of the use-cases.
 
-<table><tr>
+<table>
+<thead><tr><th>Actor<th>Use Case<th>Name<th>Level</thead>
+<tbody><tr>
   <td valign=top rowspan=1><strong>Any User</strong>
     <td valign=top><a href="uc202-login.md">uc202-login</a><td valign=top>Login<td>User goal
 <tr>

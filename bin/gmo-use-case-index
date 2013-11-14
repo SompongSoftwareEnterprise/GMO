@@ -44,6 +44,7 @@ This folder contains the use case models. Here is a summary of the use-cases.
 PREAMBLE;
 
 echo "\n\n<table>";
+echo "\n<thead><tr><th>Actor<th>Use Case<th>Name<th>Level</thead>\n<tbody>";
 
 foreach ($actorMap as $actor => $useCases) {
 	usort($useCases, 'uc_sort');
