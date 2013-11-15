@@ -15,11 +15,18 @@ Configuration Identification Plan
 * Standards
 
 
+### Items on Google Drive
+
+ไฟล์บางชนิด ไม่สะดวกที่จะเก็บไว้ใน GitHub เลยเก็บไว้บน Google Drive แทน ดังนี้:
+
+* Project Plan
+
+
 Configuration Items and File Naming
 -----------------------------------
 
 | ชนิดไฟล์         | โฟลเดอร์ / ชื่อไฟล์                  |
-| -------------- | ----------------- | ---------------------- |
+| -------------- | -------------------------------- |
 | Requirements   | use-cases / uc201-use-case-name.md |
 | Design         | designs / ds201-design-name.md   |
 | Unit Test Script       | casper / unit / ut000-test-case-name.js |
@@ -31,6 +38,14 @@ Configuration Items and File Naming
 | Acceptance Test Case | test-cases / acceptance / tc111 / 1-test-case-name.js |
 
 \* - follows the naming conventions in Laravel
+
+
+### On Google Drive
+
+| ชนิดไฟล์         | โฟลเดอร์ / ชื่อไฟล์                  |
+| -------------- | -------------------------------- |
+| Project Plan   | Plan/Cycle 2.2 Plan (v2, as of 2013-11-11) |
+
 
 File Versioning
 ---------------
