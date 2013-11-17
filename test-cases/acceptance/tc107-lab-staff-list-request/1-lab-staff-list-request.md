@@ -27,7 +27,5 @@ Lab Staff
 2. Login with username="lab" and password="lab"
     * Must login successfully
     * Request table in Lab request page must be found.
-3. Log in using data from [login-data-invalid-user](../../../casper/testdata/login-data-invalid-user.yml)
-    * The errors box must show.
 
 
