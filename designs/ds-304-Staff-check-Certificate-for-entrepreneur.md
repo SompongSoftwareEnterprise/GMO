@@ -17,11 +17,11 @@ other table is show that how many Document is Available if GMO staff want to loo
 
 Low Level Design
 ----------------
-1
--
+1.
+--
 ![Screenshot](images/ds304-ViewRequestsInformation2.png)
 ![Screenshot](images/ds304-ViewRequestsInformation3.png)
-2
--
+2.
+--
 ![Screenshot](images/ds304-ViewRequestsInformation.png)
 
