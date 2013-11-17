@@ -20,8 +20,8 @@ Low Level Design
 1
 -
 ![Screenshot](images/ds304-ViewRequestsInformation2.png)
+![Screenshot](images/ds304-ViewRequestsInformation3.png)
 2
 -
-![Screenshot](images/ds304-ViewRequestsInformation3.png)
 ![Screenshot](images/ds304-ViewRequestsInformation.png)
 
