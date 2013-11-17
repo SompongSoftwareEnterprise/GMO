@@ -68,7 +68,7 @@ function CasperAPI(casper) {
 	}
 
 	api.assertTable = function(tableID,records) {
-		casper.then(function{
+		casper.then(function(){
 			record_data = casper.evaluate(function(id) {
 				var header = []
 				document.querySelectorAll(tableID + ' thead tr th').forEach(function(head) {
