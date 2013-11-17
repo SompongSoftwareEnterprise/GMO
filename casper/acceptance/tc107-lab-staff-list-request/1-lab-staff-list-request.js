@@ -1,5 +1,6 @@
 
 var suite = require('../../helpers/suite')
+// var yaml = require('./yaml')
 
 /**
  * To make sure that all lab request data persent correctly.

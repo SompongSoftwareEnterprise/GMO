@@ -1,4 +1,4 @@
-Test Plan: Test Lab Staff View All Request
+Test Plan: Test Login with Invalid Username
 ===========================================
 
 ## Purpose
@@ -18,22 +18,16 @@ Lab Staff
 
 ## Preconditions
 
-* A Lab staff is logged in.
-* Initial database data: Lab Staff user data
-* Initial database data: Complete Lab request that have status 'Pending'
-* Initial database data: Complete Lab request that have status 'DNA Extraction'
-* Initial database data: Complete Lab request that have status 'Volume & Concentration Measurement'
-* Initial database data: Complete Lab request that have status 'Endrogenous Gene Analysis'
-* Initial database data: Complete Lab request that have status 'Gene Analysis'
-* Initial database data: Complete Lab request that have status 'Waiting For Approval'
+* Initial database data: [tc107-1-lab-staff-list-request](../../../casper/fixtures/tc107-1-lab-staff-list-request.yml)
 
 
 ## Test Procedure
 
-1. Login as Lab Staff
+1. Go to login page.
+2. Login with username="lab" and password="lab"
     * Must login successfully
-2. Go to view all request page for lab staff
-	* Check all request data (from database that Initial) present correctly
-3. Click in each request id (This action will happen (number of request) time)
-	* Request information must show with correctly information
+    * Request table in Lab request page must be found.
+3. Log in using data from [login-data-invalid-user](../../../casper/testdata/login-data-invalid-user.yml)
+    * The errors box must show.
+
 
