@@ -1,29 +1,27 @@
-Lab Staff
+5. Lab Staff
 ======
 
 This section explains how to use each features of Lab Staff user. 
 
-Getting Started
+5.1 Getting Started
 ------
 
-To start using GMO application, Open your browser and enter URL “http://gmo.tsp.dt.in.th/”. You will see login screen - figure 2.1.A.
+To start using GMO application, Open your browser and enter URL “http://gmo.tsp.dt.in.th/”. You will see login screen - figure 5.1.A.
 
 ![Screenshot](images/login.png)
-Figure 2.1.A - GMO Login Page
+Figure 5.1.A - GMO Login Page
 
-Next step,  Fill-in your account information (username, and password). If input information is correct you’re go forward to step 2.2. But if your input is incorrect … or contact สทช. for more information and help.
+Next step,  Fill-in your account information (username, and password). If input information is correct, go forward to step 2.2. But if your input is incorrect try enter login information again  or contact สทช. for help and more information.
 
-View the List of All Lab Task
+5.2 View the List of All Lab Task
 ------
 
-* Enter to the page by clicks on the Request list tab.
-* The page will show list of all request. (Figure 5.1)
 * You can see the ID of the task, Name of task, due date of task and status of the task that perform in which process.
 
 ![Screenshot](images/lab-task-list.jpg)
 Figure 5.1 - lab task list page
 
-See the Info of Each Specific Lab Task
+5.3 See the Info of Each Specific Lab Task
 ------
 
 * Enter to the Lab task page.( From 5.1 ) Then clicks on the Task ID which you want to look its info.
@@ -33,7 +31,7 @@ See the Info of Each Specific Lab Task
 ![Screenshot](images/lab-task-info.jpg)
 Figure 5.2 - Task information
 
-Upload the Lab's Info or Lab Result
+5.4 Upload the Lab's Info or Lab Result
 ------
 
 * Enter to the page by click on Lab upload document tab.
@@ -42,7 +40,7 @@ Upload the Lab's Info or Lab Result
 ![Screenshot](images/upload-lab-result.jpg)
 Figure 5.3 - document uploading
 
-To Confirm the Lab Examination
+5.5 To Confirm the Lab Examination
 ------
 
 * Only Head of the lab identity can perform this operation.
