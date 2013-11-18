@@ -38,7 +38,7 @@ To view your account information click on account tab on page header, choose “
 
 In view account information page you will see all your account information - figure 2.4.B, In the bottom of this page you can click on “Edit” button to edit your account information into step 2.5. Also you can see all dependency with you agencies - figure 2.4.C, you can click on ID of agency to manage specific agency, or click on “Add” button to add agency into step 2.6.
 
-![Screenshot](images/view-account-information.png)
+![Screenshot](images/agency-view-account-information.png)
 Figure 2.4.B - View Account Information (Account Tab)
 
 Edit Account Information
