@@ -199,6 +199,37 @@ class StaffRequestsController extends BaseController {
 		return Redirect::action('StaffRequestsController@index');
 	}
 
+	public function uploadLabTask(){
+		return View::make('labtask/view-lab-task');
+	}
+
+	public function uploadLabTaskFile()
+	{
+		//Check Validator rules
+		$validator = Validator::make(Input::all(), LabTaskUpload::getValidationRules());
+		if ($validator->fails()) {
+			return Redirect::action('StaffRequestsController@uploadLabTask')
+				->withErrors($validator)
+				->withInput();
+		}
+
+		$file = Input::file('file'); // your file upload input field in the form should be named 'file'
+
+        $destinationPath = 'public/uploads/'.str_random(8);
+        // $filename = $file->getClientOriginalName();
+        $filename = $file['name'];
+        //$extension =$file->getClientOriginalExtension(); //if you need extension of the file
+        $uploadSuccess = Input::file('file')->move($destinationPath, $filename);
+
+
+
+        if( $uploadSuccess ) {
+        	//DO ST   
+        } else {
+           //DO ST
+        }
+	}
+
 }
 
 ?>

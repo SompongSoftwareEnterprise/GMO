@@ -110,3 +110,5 @@ Route::get('/entrepreneur/account/{entrepreneurID}','EntrepreneurAgenciesControl
 Route::post('/entrepreneur/account/search','EntrepreneurAgenciesController@createAgenciesBySearch');
 Route::post('/entrepreneur/account/create','EntrepreneurAgenciesController@create');
 Route::post('/entrepreneur/account/delete','EntrepreneurAgenciesController@delete');
+
+Route::get('/test/uploadLab', 'StaffRequestsController@uploadLabTask');
