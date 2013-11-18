@@ -9,7 +9,7 @@ To start using GMO application, Open your browser and enter URL “http://gmo.ts
 ![Screenshot](images/login.png)
 Figure 4.1.A - GMO Login Page
 
-Next step,  Fill-in your account information (username, and password). If input information is correct you’re go forward to step 4.2. But if your input is incorrect … or contact สทช. for more information and help.
+Next step,  Fill-in your account information (username, and password). If input information is correct, go forward to step 2.2. But if your input is incorrect try enter login information again  or contact สทช. for help and more information.
 
 4.2 View All Request Page
 ------
