@@ -50,6 +50,7 @@ data:
 
 ---
 table: lab_task_products
+name: my_lab_task_product
 data:
     id: 1
     lab_task_id: 1
@@ -62,6 +63,7 @@ data:
 
 ---
 table: lab_tasks
+name: my_lab_task
 data:
     id: 1
     reference_id: 1

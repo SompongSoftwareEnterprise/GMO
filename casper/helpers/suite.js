@@ -81,7 +81,7 @@ function CasperAPI(casper) {
 			Object.keys(row).forEach(function(key) {
 				var value = row[key]
 				checks.push(api.check('Table row #' + (index + 1) + ' must have ' + key + ' = ' + value, function(message) {
-					test.assertEquals(actual[index][key], value, message)
+					test.assertEquals(actual[index][key] + '', value + '', message)
 				}))
 			})
 		})
