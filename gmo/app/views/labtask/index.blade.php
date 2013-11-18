@@ -28,7 +28,7 @@ Registration
 					</thead>
 
 
-					@if(count($items[1]) == 0)
+					@if(count($items[0]) == 0)
 					<table>
 					</table>
 					<div class="row">

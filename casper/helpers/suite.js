@@ -67,34 +67,58 @@ function CasperAPI(casper) {
 		casper.thenOpen(url(path))
 	}
 
-	api.assertTable = function(tableID,records) {
+	api.assertTable = function(tableID, expected) {
+
+		var actual
+
+		var checks = [ ]
+
+		checks.push(api.check('Table must have ' + expected.length + ' rows.', function(message) {
+			test.assertEquals(actual.length, expected.length, message)
+		}))
+
+		expected.forEach(function(row, index) {
+			Object.keys(row).forEach(function(key) {
+				var value = row[key]
+				checks.push(api.check('Table row #' + (index + 1) + ' must have ' + key + ' = ' + value, function(message) {
+					test.assertEquals(actual[index][key], value, message)
+				}))
+			})
+		})
+
 		casper.then(function(){
-			record_data = casper.evaluate(function(id) {
+
+			actual = casper.evaluate(function(id) {
+
 				var header = []
-				document.querySelectorAll(tableID + ' thead tr th').forEach(function(head) {
-	    			header.push(head.innerHTML)
-				});
+				var table = document.querySelector(id)
+
+				var headers = [].slice.call(table.querySelectorAll('thead tr th'))
+				headers.forEach(function(head) {
+	    			header.push(head.textContent.trim())
+				})
 
 				var result = []
-				document.querySelectorAll(tableID + ' tbody tr').forEach(function(tr) {
+				var rows = [].slice.call(table.querySelectorAll('tbody tr'))
+
+				rows.forEach(function(tr) {
 	    			var data = {}
-	    			tr = tr.querySelectorAll('td')
-	    			test.assertEquals(header.length,tr.length,'number of header\'s attributes and number of element in each record must be equal')
-	    			for (var i = 0; i <= header.length; i++) {
-	    				data[header[i]] = tr[i]
-	    			};
+	    			var tds = [].slice.call(tr.querySelectorAll('td'))
+					var i = 0
+					tds.forEach(function(td) {
+	    				data[header[i]] = td.textContent.trim()
+						i ++
+					})
 	    			result.push(data)
-				});
+				})
 
 				return result
-			},tableID)
 
-			test.assertEquals(records.length,record_data.length,'number of test data and available data must be equal')
-			for (var i = 0; i <= records.length; i++) {
-				for(var key in record_data){
-					test.assertEquals(records[i][key],record_data[i][key],'row ' + (i+1) + 'header ' + key + " data must be present correctly")
-				}
-			};
+			}, tableID)
+
+			checks.forEach(function(check) {
+				check()
+			})
 
 		})
 

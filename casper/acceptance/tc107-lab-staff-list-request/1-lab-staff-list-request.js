@@ -13,6 +13,8 @@ suite('Test Login with Invalid Username', function(test) {
 
 	test.go('/', 'Go to login page.')
 	test.login('lab', 'lab')
-	test.wait('#myTabContent',  'Request table in Lab request page must be found.')
+	test.assertTable('table', [
+		{ 'Task ID' : '1', 'Task Name' : 'product_name_1', 'Due Date' : '2013-01-08', 'Status' : 'Pending' }
+	])
 
 })
