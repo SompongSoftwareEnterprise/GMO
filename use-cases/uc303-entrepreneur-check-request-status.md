@@ -4,7 +4,7 @@ Entrepreneur check Request status
 
 XRef
 ----
-* LAU2, TO-BE p.12-13
+* LAU2, TO-BE p.7-9
 
 Level
 -----
@@ -16,26 +16,23 @@ Entrepreneur
 
 Trigger
 -------
-The user wishes check status of specific request.
+Entrepreneur wishes to see status of their request.
 
 Preconditions
 -------------
-* The user successfully login to system.
-* The user is at the application homepage (View all requests page).
+* Entrepreneur has already selected the request.
 
 Postconditions
 --------------
-The user recieve status of specific request.
+Entrepreneur is able to see the status of desired request.
 
 Basic Flow
 ----------
-1. User select request from requests list.
-2. User able to view request information, and status.
-    * Request information included see more in [uc-107]().
-    * Status have 3 types.
-        * Approved
-        * Pending - (Process Detail)
-        * Declined
+1. Entrepreneur selects to Review requests.
+2. The system shows a list of request that they had already sent.
+3. Entrepreneur selects the desired request.
+4. System shows the status of the desired request.
+
 
 Alternate Flows
 ---------------
