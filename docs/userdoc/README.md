@@ -1,4 +1,4 @@
-GMO<br>Software Requirements Specification (SRS)<br>Cycle 2.2
+GMO<br>User Documentation<br>Cycle 2.2
 ======
 
 Version 1.2
