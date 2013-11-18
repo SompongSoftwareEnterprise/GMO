@@ -34,6 +34,7 @@ Table of Contents
     * [Edit Account Information]
     * [Create Certificate Request]
 * [GMO Staff](4-gmo-staff.md)
+    * [Getting Started]
     * [View All Request Page]
     * [Review Requests Page]
     * [Create Receipt]
@@ -41,6 +42,7 @@ Table of Contents
     * [Create Certificate Form Page]
     * [Create Lab Task Form]
 * [Lab Staff](5-lab-staff.md)
+    * [Getting Started]
     * [To View the List of all Lab Task]
     * [To See Each Specific Lab Task]
     * [To Upload the Lab's Info or Lab Result]
