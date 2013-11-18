@@ -1,8 +1,7 @@
-
 GMO<br>Software Requirements Specification (SRS)<br>Cycle 2.2
 ======
 
-Version 2.9
+Version 1.2
 -----------
 
 ### Revision History
@@ -11,18 +10,38 @@ Version 2.9
 | ---- | ------- | ----------- | ------ |
 | 2013-09-13 | 1.0 | First draft version of SRS. | The Team |
 | 2013-09-17 | 1.1 | Improvements after partial inspection. | The Team |
-| 2013-09-25 | 1.2 | Final version of SRS | The Team |
-| 2013-09-27 | 2.0 | Approved and Reviewed by Engineers, and Authorized Customers. | The Team |
-| 2013-11-14 | 2.9 | Moved to GitHub, Added [Use Case Summary](../../use-cases/), Added [Traceability Matrix](../traceability-matrix.md) | The Team |
-
+| 2013-09-25 | 1.2 | Transfer and partial revision. | Lattasit |
 
 Table of Contents
 -----------------
 
-1. [Introduction](1-introduction.md)
-2. [Overall Description](2-overall-description.md)
-3. [Functional Requirements (Use Cases)](../../use-cases/)
-4. [Non-Functional Requirements](4-nonfunctional-requirements.md)
-
-
-
+* [Introduction](1-introduction.md)
+    * [Overview]
+    * [Requisition]
+* [Entrepreneur] 
+    * [Getting Started]
+    * [View All Requestd Status]
+    * [View Requested Information]
+    * [View Account Information]
+    * [Edit Account Information]
+    * [Manage Agency]
+    * [Create Certificate Request]
+* [Agency]
+    * [Getting Started]
+    * [View All Requestd Status]
+    * [View Requested Information]
+    * [View Account Information]
+    * [Edit Account Information]
+    * [Create Certificate Request]
+* [GMO Staff]
+    * [View All Request Page]
+    * [Review Requests Page]
+    * [Create Receipt]
+    * [Create Analysis of Report Page]
+    * [Create Certificate Form Page]
+    * [Create Lab Task Form]
+* [Lab Staff]
+    * [To View the List of all Lab Task]
+    * [To See Each Specific Lab Task]
+    * [To Upload the Lab's Info or Lab Result]
+    * [To Confirm the Lab Examination]
