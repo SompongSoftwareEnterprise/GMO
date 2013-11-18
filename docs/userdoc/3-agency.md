@@ -14,7 +14,7 @@ Next step,  Fill-in your account information (username, and password). If input 
 View All Requested Status
 ------
 
-In this step, after you logged you enter “view all requested page” - figure 2.2.A. In this page you will see all of your requests for certificate in simple and clean table. You can track some request informations, and also can search for specific information by input keyword inside input box in the top. 
+In this step, after you logged you enter “view all requested page” - figure 2.2.A. In this page you will see all of your requests for certificate in simple and clean table. You can track request informations, and search for specific request by input keyword inside input box in the top. 
 
 ![Screenshot](images/view-all-request.png)
 Figure 2.2.A - View All Requested
@@ -28,7 +28,7 @@ View Requested Information
 ![Screenshot](images/view-request-information.png)
 Figure 2.3.A - View Specific Requested
 
-You  can check or review request information in this page (Figure 3.3).
+You  can check or review information about selected request in this page (Figure 3.3).
 
 
 View Account Information
