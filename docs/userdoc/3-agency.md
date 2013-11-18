@@ -7,7 +7,7 @@ Getting Started
 To start using GMO application, Open your browser and enter URL “http://gmo.tsp.dt.in.th/”. You will see login screen - figure 2.1.A.
 
 ![Screenshot](images/login.png)
-Figure 2.1.A - GMO Login Page (Next Cycle)
+Figure 2.1.A - GMO Login Page
 
 Next step,  Fill-in your account information (username, and password). If input information is correct you’re go forward to step 2.2. But if your input is incorrect … or contact สทช. for more information and help.
 
