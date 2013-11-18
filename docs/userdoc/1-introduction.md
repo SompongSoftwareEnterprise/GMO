@@ -1,7 +1,7 @@
-Introduction
+1. Introduction
 ======
 
-Overview
+1.1 Overview
 ------
 
 According to the current operation of Department of Agriculture, Thailand (DOA) is inconvenience such as Customers have to go to DOA for sending the documents, Staffs have to deal with a lot of document and etc. We tried to improve the operation by developing the GMO website.
@@ -12,7 +12,7 @@ The GMO website has been developed under project e-government system for proceed
 
 This application reduces redundancy of data and the use of paper. It makes you can perform and track your tasks conveniently via GMO website from everywhere and everytime. 
 
-Requisition
+1.2 Requisition
 ------
 * There are 4 types of users : Entrepreneur, Agency, GMO Staff and Lab staff.
 * Customers (entrepreneur and agency) need to have own account for logging in to the system  (if not you have register by yourself at DOA).
