@@ -18,7 +18,7 @@ Table of Contents
 * [Introduction](1-introduction.md)
     * [Overview]
     * [Requisition]
-* [Entrepreneur] 
+* [Entrepreneur](2-entrepreneur.md)
     * [Getting Started]
     * [View All Requestd Status]
     * [View Requested Information]
@@ -26,21 +26,21 @@ Table of Contents
     * [Edit Account Information]
     * [Manage Agency]
     * [Create Certificate Request]
-* [Agency]
+* [Agency](3-agency.md)
     * [Getting Started]
     * [View All Requestd Status]
     * [View Requested Information]
     * [View Account Information]
     * [Edit Account Information]
     * [Create Certificate Request]
-* [GMO Staff]
+* [GMO Staff](4-gmo-staff.md)
     * [View All Request Page]
     * [Review Requests Page]
     * [Create Receipt]
     * [Create Analysis of Report Page]
     * [Create Certificate Form Page]
     * [Create Lab Task Form]
-* [Lab Staff]
+* [Lab Staff](5-lab-staff.md)
     * [To View the List of all Lab Task]
     * [To See Each Specific Lab Task]
     * [To Upload the Lab's Info or Lab Result]
