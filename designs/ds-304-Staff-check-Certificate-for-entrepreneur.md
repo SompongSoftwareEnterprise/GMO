@@ -21,7 +21,11 @@ Low Level Design
 --
 ![Screenshot](images/ds304-ViewRequestsInformation2.png)
 ![Screenshot](images/ds304-ViewRequestsInformation3.png)
+
+  * In this Page user can only click on a ID that in a Requested ID column after click on a ID the application will take user to a next page(2).
+
 2.
 --
 ![Screenshot](images/ds304-ViewRequestsInformation.png)
 
+  * In this Page user can look up in each documents by click on a 'download' that in a brackets following the documents name.
