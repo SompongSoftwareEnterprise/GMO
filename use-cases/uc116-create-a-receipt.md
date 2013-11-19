@@ -1,6 +1,6 @@
 Use Case Name
 -------------
-Create an receipt
+Create a receipt
 
 XRef
 ----
@@ -12,7 +12,7 @@ User goal
 
 Primary Actor
 -------------
-GMO staff
+GMO Staff
 
 Trigger
 -------

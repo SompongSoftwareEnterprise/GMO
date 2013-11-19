@@ -1,16 +1,14 @@
-
-
 Use Case Name
 -------------
-View request detail
+Entrepreneur check Request status
 
 XRef
 ----
-TO-BE p.3-4,5-6,7-8
+* LAU2, TO-BE p.7-9
 
 Level
 -----
-Subfunction
+User goal
 
 Primary Actor
 -------------
@@ -18,15 +16,15 @@ Entrepreneur
 
 Trigger
 -------
-Entrepreneur wishes to see status of their requests.
+Entrepreneur wishes to see status of their request.
 
 Preconditions
 -------------
-Entrepreneur has already selected the request.
+* Entrepreneur has already selected the request.
 
 Postconditions
 --------------
-Entrepreneur is able to see the status of the desired request.
+Entrepreneur is able to see the status of desired request.
 
 Basic Flow
 ----------
@@ -40,10 +38,7 @@ Alternate Flows
 ---------------
 -
 
-Exception Paths
---------------------
--
 
-Other
--------
--
+Frequency of Occurrence
+-----------------------
+Frequent.

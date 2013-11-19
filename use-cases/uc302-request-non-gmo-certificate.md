@@ -13,7 +13,7 @@ User goal
 
 Primary Actor
 -------------
-Customer and Agency
+Entrepreneur
 
 Trigger
 -------

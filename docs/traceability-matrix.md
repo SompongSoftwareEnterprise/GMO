@@ -141,11 +141,6 @@ back and forth from the requirements to the test cases.
     <td>
     <td>
   <tr>
-    <td valign='top'><a href="../use-cases/uc200-template.md">uc200</a>
-    <td>
-    <td>
-    <td>
-  <tr>
     <td valign='top'><a href="../use-cases/uc201-search-for-request.md">uc201</a>
     <td valign='top'>
       <a href="../designs/ds201-search-for-request.md">ds201</a>
@@ -192,7 +187,7 @@ back and forth from the requirements to the test cases.
       <a href="../test-cases/acceptance/tc303-entrepreneur-check-121-122/1-entrepreneur-check-121-122.md">tc303-1</a>
     <td>
   <tr>
-    <td valign='top'><a href="../use-cases/uc304-Staff-check-Certificant-for-entrepreneur.md">uc304</a>
+    <td valign='top'><a href="../use-cases/uc304-staff-check-certificate-for-entrepreneur.md">uc304</a>
     <td>
     <td valign='top'>
       <a href="../test-cases/acceptance/tc304-Staff-check-Certificant-for-entrepreneur/1-request-for-entrepreneur-documents.md">tc304-1</a>
