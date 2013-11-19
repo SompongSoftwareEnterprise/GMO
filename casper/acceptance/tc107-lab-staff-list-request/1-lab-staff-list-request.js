@@ -1,4 +1,3 @@
-
 var suite = require('../../helpers/suite')
 var yaml = require('../../helpers/yaml')
 
