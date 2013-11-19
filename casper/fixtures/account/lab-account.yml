@@ -1,0 +1,8 @@
+---
+table: users
+data:
+    id: 976933527
+    username: "lab"
+    password: "lab"
+    name: "I am a Lab Staff"
+    role: "Lab Staff"

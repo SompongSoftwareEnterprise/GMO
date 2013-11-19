@@ -18,7 +18,11 @@ Lab Staff
 
 ## Preconditions
 
-* Initial database data: [tc107-1-lab-staff-list-request](../../../casper/fixtures/tc107-1-lab-staff-list-request.yml)
+* Initial database data: [lab-task/lab-task-dna-extraction
+ 			lab-task/lab-task-pending
+ 			account/lab-account](../../../casper/fixtures/lab-task/lab-task-dna-extraction
+ 			lab-task/lab-task-pending
+ 			account/lab-account.yml)
 
 
 ## Test Procedure
