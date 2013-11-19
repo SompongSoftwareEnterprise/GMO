@@ -1,0 +1,46 @@
+---
+table: lab_task_assignments
+data:
+    id: 703581582
+    lab_task_id: 302928536
+    assignee: Kanin
+
+---
+table: lab_task_products
+name: my_lab_task_product
+data:
+    id: 562385971
+    lab_task_id: 302928536
+    product_code: product_code_1
+    product_name: product_name_1
+    measure: 20
+    volume: 20
+    start: '2013-01-01'
+    finish: '2013-01-08'
+
+---
+table: lab_tasks
+name: my_lab_task
+data:
+    id: 302928536
+    reference_id: 1525
+    export_certificate_request_id: 560167379
+    status: Pending
+    detail: This is a detail_1
+    dna_extraction_method: method1
+    gene_separation_method: PRC
+    endogenous: endogenous_1
+    transgene: transgene_1
+    created_at: '2013-01-01 13:00:00'
+    updated_at: '2013-01-01 13:00:00'
+
+---
+table: export_certificate_requests
+data:
+    id: 560167379
+    status: Pending
+    reference_id: 9353
+    created_at: '!!NOW!!'
+    updated_at: '!!NOW!!'
+    owner_id: 1
+    signer_id: 1
