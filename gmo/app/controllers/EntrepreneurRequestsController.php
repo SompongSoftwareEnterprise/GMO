@@ -53,11 +53,14 @@ class EntrepreneurRequestsController extends AbstractEntrepreneurController {
 		$certReq = new CertificateRequest;
 		$certReq->status = 'Available'; 
 		$certReq->reference_id = RunningNumber::increment('default');
+		
 		/*if ($entrepreneur->is_agency == 1) {
+			$customerAgency = CustomerAgency::where('agency_id', '=', $this->entrepreneur->id)->get();
 		}
 		else {
 
 		}*/
+
 		$certReq->owner_id = $entrepreneur->id;
 		$certReq->signer_id = $entrepreneur->id;
 
@@ -66,7 +69,7 @@ class EntrepreneurRequestsController extends AbstractEntrepreneurController {
 		$certReqForm = new CertificateRequestForm;
 
 		if ($certReqFormValidator->fails()) {
-			return Redirect::action('EntrepreneurRequestsController@newRequests', array(1))
+			return Redirect::action('EntrepreneurRequestsController@newRequests')
 				->withErrors($certReqFormValidator)
 				->withInput();
 		}
@@ -161,7 +164,7 @@ class EntrepreneurRequestsController extends AbstractEntrepreneurController {
 		$certReqInfoForm = new CertificateRequestInfoForm;
 
 		if ($certReqFormValidator->fails()) {
-			return Redirect::action('EntrepreneurRequestsController@newRequests')
+			return Redirect::action('EntrepreneurRequestsController@newRequestsInfo', array($id))
 				->withErrors($certReqFormValidator)
 				->withInput();
 		}

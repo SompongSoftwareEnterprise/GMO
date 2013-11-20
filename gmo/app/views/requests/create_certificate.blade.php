@@ -12,26 +12,26 @@ Create Certificate Request Form
 
 	<div class="row">
 
-		<div class="col-xs-2">
-			<div class="btn-group-vertical">
-				<button type="button" class="btn btn-active" data-toggle="#">
-					<a href="#form_1">
-						<span class="glyphicon glyphicon-file"></span>สทช 1-1/1
-					</a>
-				</button>
-				<button type="button" class="btn btn-default" data-toggle="form_1">
-					<a href="#form_2">
-						<span class="glyphicon glyphicon-file"></span>สทช 1-1/2
-					</a>
-				</button>
-			</div>
-		</div>
+		<!-- <div class="col-xs-2"> -->
+		<!-- 	<div class="btn-group-vertical"> -->
+		<!-- 		<button type="button" class="btn btn-active" data-toggle="#"> -->
+		<!-- 			<a href="#form_1"> -->
+		<!-- 				<span class="glyphicon glyphicon-file"></span>สทช 1-1/1 -->
+		<!-- 			</a> -->
+		<!-- 		</button> -->
+		<!-- 		<button type="button" class="btn btn-default" data-toggle="form_1"> -->
+		<!-- 			<a href="#form_2"> -->
+		<!-- 				<span class="glyphicon glyphicon-file"></span>สทช 1-1/2 -->
+		<!-- 			</a> -->
+		<!-- 		</button> -->
+		<!-- 	</div> -->
+		<!-- </div> -->
 		{{ Form::open(array(
 			'action' => array('EntrepreneurRequestsController@create'),
 			'class' => 'form-horizontal',
 			'id' => 'new-request-form',
 		)) }}
-		<div id="form_1" class="col-xs-10">
+		<div id="form_1" class="col-xs-12">
 			<div class="panel panel-default">
 				<div class="panel-body text-left">
 					<h2>&nbsp;&nbsp;สทช 1-1/1</h2>
@@ -92,7 +92,7 @@ Create Certificate Request Form
 					<!--<form class="form-horizontal" role="form">-->
 
 						<!-- Manufactory -->
-						<div class="form-group">
+						<div class="form-group" style="text-align: right;">
 							<!--<label for="manufactoryName" class="col-xs-3 control-label ">
 								Manufactory
 							</label>-->
@@ -164,11 +164,11 @@ Create Certificate Request Form
 						</div>
 
 						<!-- Plant Warehouse -->
-						<div class="form-group">
+						<div class="form-group" style="text-align: right;">
 							<!--<label for="plantWarehouseName" class="col-xs-3 control-label ">
 								Plant Warehouse
 							</label>-->
-							{{ Form::label('warehouse_name', 'Manufactory', array('class' => 'col-xs-3', 'control-label')) }}
+							{{ Form::label('warehouse_name', 'Warehouse', array('class' => 'col-xs-3', 'control-label')) }}
 							<div class="col-xs-8 ">
 								{{ Form::text('warehouse_name', null, array('class' => 'form-control', 'placeholder' => 'Name (ex. Warehouse Bangkok)')) }}
 								<!--<input type="text" class="form-control" id="plantWarehouseName" name="warehouse_name" placeholder="Name (ex. Sompong Thepsoftware)">-->
@@ -237,28 +237,28 @@ Create Certificate Request Form
 						</div>
 
 						<!-- Purpose -->
-						<div class="form-group">
+						<div class="form-group" style="text-align: right;">
 							<!--<label class="col-xs-3 control-label">
 								Purpose of Requesting a Certificate
 							</label>-->
-							{{ Form::label('purpose', 'Manufactory', array('class' => 'col-xs-3', 'control-label')) }}
-							<div class="col-xs-3">
+							{{ Form::label('purpose', 'Purpose', array('class' => 'col-xs-3', 'control-label')) }}
+							<div class="col-xs-2" style="text-align: left;">
 								{{ Form::checkbox('purpose[]', 'Export') }}&nbsp;&nbsp;Export
 								<!--<input type="checkbox" name="purpose[]" value="Export">&nbsp;&nbsp;Export-->
 							</div>
-							<div class="col-xs-3">
+							<div class="col-xs-2" style="text-align: left;">
 								{{ Form::checkbox('purpose[]', 'Import') }}&nbsp;&nbsp;Import
 								<!--<input type="checkbox" name="purpose[]" value="Import">&nbsp;&nbsp;Import-->
 							</div>
-							<div class="col-xs-3">
+							<div class="col-xs-2" style="text-align: left;">
 								{{ Form::checkbox('purpose[]', 'Research') }}&nbsp;&nbsp;Research
 								<!--<input type="checkbox" name="purpose[]" value="Research">&nbsp;&nbsp;Research-->
 							</div>
-							<div class="col-xs-3">
+							<div class="col-xs-2" style="text-align: left;">
 								{{ Form::checkbox('purpose[]', 'Industry') }}&nbsp;&nbsp;Industry
 								<!--<input type="checkbox" name="purpose[]" value="Industry">&nbsp;&nbsp;Industry-->
 							</div>
-							<div class="col-xs-3">
+							<div class="col-xs-2" style="text-align: left;">
 								{{ Form::checkbox('purpose[]', 'Consumption') }}&nbsp;&nbsp;Consumption
 								<!--<input type="checkbox" name="purpose[]" value="Comsumption">&nbsp;&nbsp;Comsumption-->
 							</div>
@@ -276,7 +276,7 @@ Create Certificate Request Form
 						</div>
 
 						<!-- Contact -->
-						<div class="form-group">
+						<div class="form-group" style="text-align: right;">
 							<!--<label for="contact" class="col-xs-3 control-label">
 								Contact
 							</label>-->
@@ -299,7 +299,7 @@ Create Certificate Request Form
 						</div>
 
 						<!-- Receiver -->
-						<div class="form-group">
+						<div class="form-group" style="text-align: right;">
 							<!--<label for="receiverName" class="col-xs-3 control-label ">
 								Receiver
 							</label>-->
@@ -378,22 +378,26 @@ Create Certificate Request Form
 								<label for="exampleType_ex1" class="col-xs-3 control-label">
 									Example Detail # <span data-gmo-example="number">1</span>
 								</label>
+								<!-- {{ Form::label('example_type_ex1', 'Example Detail # ', array('class' => 'col-xs-3 control-label')) }} -->
 								<div class="col-xs-6">
-									<input type="text" class="form-control" id="exampleType_ex1" name="example_type_ex1" placeholder="Type of Example">
+									<!-- <input type="text" class="form-control" id="exampleType_ex1" name="example_type_ex1" placeholder="Type of Example"> -->
+									{{ Form::text('example_type_ex1', null, array('class' => 'form-control', 'placeholder' => 'Type of Example')) }}
 								</div>
 								<div class="col-xs-2 ">
-									<input type="number" class="form-control" placeholder="Quantity" name="example_quantity_ex1">
+									<!-- <input type="number" class="form-control" placeholder="Quantity" name="example_quantity_ex1"> -->
+									{{ Form::text('example_quantity_ex1', null, array('class' => 'form-control', 'placeholder' => 'Quantity')) }}
 								</div>
 							</div>
 
 							<div class="form-group">
 								<div class="col-sm-offset-3 col-xs-8 ">
-									<textarea class="form-control" placeholder="Detail" style="height: 95px" name="example_detail_ex1"></textarea>
+									<!-- <textarea class="form-control" placeholder="Detail" style="height: 95px" name="example_detail_ex1"></textarea> -->
+									{{ Form::text('example_detail_ex1', null, array('class' => 'form-control', 'placeholder' => 'Detail')) }}
 								</div>
 							</div>
 
 							<div class="form-group">
-								<div class="col-sm-offset-7 col-xs-5">
+								<div class="col-sm-offset-8 col-xs-4">
 									<button data-gmo-example="remove" type="button" class="btn btn-danger">Remove</button>
 									<button data-gmo-example="add" type="button" class="btn btn-primary">Add Example</button>
 								</div>
@@ -440,7 +444,7 @@ Create Certificate Request Form
 				</div>
 				<hr>
 				<div class="form-group">
-					<div class="col-sm-offset-7 col-sm-5">
+					<div class="col-sm-offset-8 col-sm-4">
 						<a href="{{ action('EntrepreneurRequestsController@index') }}" class="btn btn-default">Back</a>
 						<button type="reset" class="btn btn-danger">Reset</button>
 						<button type="submit" class="btn btn-primary" id="submit-button">Submit</button>

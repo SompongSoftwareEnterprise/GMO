@@ -12,20 +12,20 @@ Create Certificate Request Form
 
 	<div class="row">
 
-		<div class="col-xs-2">
-			<div class="btn-group-vertical">
-				<button type="button" class="btn btn-active" data-toggle="#">
-					<a href="#form_1">
-						<span class="glyphicon glyphicon-file"></span>สทช 1-1/1
-					</a>
-				</button>
-				<button type="button" class="btn btn-default" data-toggle="form_1">
-					<a href="#form_2">
-						<span class="glyphicon glyphicon-file"></span>สทช 1-1/2
-					</a>
-				</button>
-			</div>
-		</div>
+		<!-- <div class="col-xs-2"> -->
+		<!-- 	<div class="btn-group-vertical"> -->
+		<!-- 		<button type="button" class="btn btn-active" data-toggle="#"> -->
+		<!-- 			<a href="#form_1"> -->
+		<!-- 				<span class="glyphicon glyphicon-file"></span>สทช 1-1/1 -->
+		<!-- 			</a> -->
+		<!-- 		</button> -->
+		<!-- 		<button type="button" class="btn btn-default" data-toggle="form_1"> -->
+		<!-- 			<a href="#form_2"> -->
+		<!-- 				<span class="glyphicon glyphicon-file"></span>สทช 1-1/2 -->
+		<!-- 			</a> -->
+		<!-- 		</button> -->
+		<!-- 	</div> -->
+		<!-- </div> -->
 
 		{{ Form::open(array(
 			'action' => array('EntrepreneurRequestsController@createCertificateInfo', 
@@ -34,7 +34,7 @@ $id),
 			'id' => 'new-request-form',
 			))
 		}}
-		<div id="form_2" class="col-sm-offset-2 col-xs-10">
+		<div id="form_2" class="col-xs-12">
 			<div class="panel panel-default">
 				<div class="panel-body text-left">
 					<h2>&nbsp;&nbsp;สทช 1-1/2</h2>
@@ -85,7 +85,7 @@ $id),
 
 					<hr>
 					<form class="form-horizontal" role="form">
-						<div class="form-group">
+						<div class="form-group" style="text-align: right;">
 							<!--<label for="commonName" class="col-xs-3 control-label ">
 								Common Name
 							</label>-->
@@ -95,7 +95,7 @@ $id),
 								{{ Form::text('common_name', null, array('class' => 'form-control', 'placeholder' => 'Plant Name (ex. Onion)')) }}
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group" style="text-align: right;">
 							<!-- <label for="vendorOrConsigneeName" class="col-xs-3 control-label "> -->
 							<!-- 	Vendor or Consignee -->
 							<!-- </label> -->
@@ -159,7 +159,7 @@ $id),
 							</div>
 						</div>
 
-						<div class="form-group">
+						<div class="form-group" style="text-align: right;">
 							<!-- <label for="descriptionOfProduct" class="col-xs-3 control-label "> -->
 							<!-- 	Description of Product -->
 							<!-- </label> -->
@@ -170,7 +170,7 @@ $id),
 							</div>
 						</div>
 
-						<div class="form-group">
+						<div class="form-group" style="text-align: right;">
 							<!-- <label for="finalDestination" class="col-xs-3 control-label "> -->
 							<!-- 	Final Destination -->
 							<!-- </label> -->
@@ -190,7 +190,7 @@ $id),
 							</div>
 						</div>
 
-						<div class="form-group">
+						<div class="form-group" style="text-align: right;">
 							<!-- <label for="portOfEntryOrEmbarktion" class="col-xs-3 control-label "> -->
 								<!-- Port of Entry or Embarktion</label> -->
 							{{ Form::label('port_of_entry', 'Port of Entry or Embarktion', array('class' => 'col-xs-3', 'control-label')) }}
@@ -209,7 +209,7 @@ $id),
 								</div>
 							</div>
 							<div class="form-group">
-								<div class="col-sm-offset-7 col-sm-5">
+								<div class="col-sm-offset-8 col-sm-4">
 									<a href="{{ action('EntrepreneurRequestsController@index') }}" class="btn btn-default">Back</a>
 									<button type="reset" class="btn btn-danger">Reset</button>
 									<button type="submit" class="btn btn-primary" id="submit-button">Submit</button>
