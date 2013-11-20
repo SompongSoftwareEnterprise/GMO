@@ -45,6 +45,7 @@ Route::get('/lab/labtasks', 'LabController@index');
 
 // entrepreneur request
 Route::get('/entrepreneur', 'EntrepreneurRequestsController@index');
+Route::post('/entrepreneur/search', 'EntrepreneurRequestsController@search');
 // Route::get('/entrepreneur/requests/new', 'EntrepreneurRequestsController@newRequests');
 Route::get('/entrepreneur/requests/new', array(
 	'as' => 'entrepreneur.new',
