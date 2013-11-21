@@ -40,17 +40,17 @@ Low Level Design
 		* Upload link - appear after status text which is pending.
 		* Download link - appear after Upload link.
 
-| Component Name                                                           | ID/Class                   | Name         |
-| --------------------------- | ------------------------------------------- | -------------------------- |                   |
-| DNA Extraction status label                                             |#subject-status-1       |                   |
-| DNA Extraction Upload link                                            |#subject-upload-1     |                   |
-| DNA Extraction Download link                                       |#subject-download-1 | 	  |
-| Volume & Concentration Measurement status label         |#subject-status-2        |	  |
-| Volume & Concentration Measurement Upload link        |#subject-upload-2      |	  |
-| Volume & Concentration Measurement Download link   |#subject-download-2  | 	  |  
-| Endrogenous Gene Analysis status label                           |#subject-status-3        |	  |
-| Endrogenous Gene Analysis Upload link                          |#subject-upload-3      |                |
-| Endrogenous Gene Analysis Download link                     |#subject-download-3 | 	  |
-| Gene Analysis status label                                                 |#subject-status4         |	  |
-| Gene Analysis Upload link 	                                      |#subject-upload-4   	  | 	  |
-| Gene Analysis Download link                                           |#subject-download-4 | 	  |
+| Component Name                                                              | ID/Class                                                                    | Name                                                                        |
+| ------------------------------------------------------------------------ | ---------------------------------------------------------------- |------------------------------------------------------------------ |
+| DNA Extraction status                                     	   |# dnaExtractionStatus                                               |  dna-extraction-status                                                 |
+| DNA Extraction Upload                                        	   |# dnaExtractionUpload                                             |  dna-extraction-upload                                               |
+| DNA Extraction Download                                    	   |# dnaExtractionDownload                                        | dna-extraction-download	                         |
+| Volume & Concentration Measurement status                   |# volumeAndConcentrationMeasurementStatus        | volume-and-concentration-measuremen-status	       |
+| Volume & Concentration Measurement Upload                |# volumeAndConcentrationMeasurementUpload      | volume-and-concentration-measurement-upload       |
+| Volume & Concentration Measurement Download           |# volumeAndConcentrationMeasurementDownload  | volume-and-concentration-measurement-download  |  
+| Endrogenous Gene Analysis status                                    |# endrogenousGeneAnalysisStatus                            | endrogenous-gene-analysis-status	                         |
+| Endrogenous Gene Analysis Upload                                 |# endrogenousGeneAnalysisUpload                           | endrogenous-gene-analysis-upload                          |
+| Endrogenous Gene Analysis Download                            |# endrogenousGeneAnalysisDownload                      | endrogenous-gene-analysis-download	       |
+| Gene Analysis status                                                          |# geneAnalysisStatus                                                 | gene-analysis-status 	                                           |
+| Gene Analysis Upload                                                       |# geneAnalysisUpload  	                               | gene-analysis-upload	                                           |
+| Gene Analysis Download                                                  |# geneAnalysisDownload                                          | gene-analysis-download	                                           |
