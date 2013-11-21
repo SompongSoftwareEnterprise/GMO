@@ -67,6 +67,31 @@ Route::post('/entrepreneur/requests/{id}', array(
 	'uses' => 'EntrepreneurRequestsController@createCertificateInfo'
 ));
 
+
+    //domestic request
+Route::get('/entrepreneur/dmt-requests/new', array(
+    'as' => 'entrepreneur.dmt.new',
+    'uses' => 'EntrepreneurDomesticRequestsController@newRequests'
+));
+Route::get('/entrepreneur/dmt-requests/new/{id}', array(
+	'as' => 'entrepreneur.dmt.new.info',
+	'uses' => 'EntrepreneurDomesticRequestsController@newRequestsInfo'
+));
+Route::get('/entrepreneur/dmt-requests/{id}', array(
+	'as' => 'entrepreneur.dmt.requests.show',
+	'uses' => 'EntrepreneurDomesticRequestsController@show'
+));
+Route::post('/entrepreneur/dmt-requests', array(
+	'as' => 'entrepreneur.dmt.requests.create',
+	'uses' => 'EntrepreneurDomesticRequestsController@create'
+));
+Route::post('/entrepreneur/dmt-requests/{id}', array(
+	'as' => 'entrepreneur.dmt.requests.create.info',
+	'uses' => 'EntrepreneurDomesticRequestsController@createCertificateInfo'
+));
+    
+
+
 // gmo staff requests
 Route::get('/staff', 'StaffRequestsController@index');
 Route::get('/staff/requests/{id}', array(
