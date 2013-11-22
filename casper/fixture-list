@@ -1,0 +1,26 @@
+- Entrepreneur
+	-Agency
+		-request111
+			-request112
+	-request111 -status 'passed'
+		-request112
+	-request111 -status 'failed'
+		-request112
+	-request111 -status 'pending'
+		-request112
+		-labtask - status Pending
+		-labtask - status DNA Extraction
+		-labtask - status Volume & Concentration Measurement
+		-labtask - status Endrogenous Gene Analysis
+		-labtask - status Gene Analysis
+		-labtask - status Waiting For Approval
+
+
+- Entrepreneur without agencies
+- Agency
+
+
+- GMO Staff
+
+- Lab Staff user data
+
