@@ -28,13 +28,15 @@ back and forth from the requirements to the test cases.
     <td valign='top'><a href="../use-cases/uc103-add-agency.md">uc103</a>
     <td valign='top'>
       <a href="../designs/ds109-agency-management-page.md">ds109</a>
-    <td>
+    <td valign='top'>
+      <a href="../test-cases/acceptance/tc104-edit-agency/1-edit-agency.md">tc104-1</a>
     <td>
   <tr>
     <td valign='top'><a href="../use-cases/uc104-revoke-agency-permission.md">uc104</a>
     <td valign='top'>
       <a href="../designs/ds109-agency-management-page.md">ds109</a>
-    <td>
+    <td valign='top'>
+      <a href="../test-cases/acceptance/tc104-edit-agency/1-edit-agency.md">tc104-1</a>
     <td>
   <tr>
     <td valign='top'><a href="../use-cases/uc105-entrepreneur-view-all-request.md">uc105</a>
@@ -175,21 +177,30 @@ back and forth from the requirements to the test cases.
     <td>
   <tr>
     <td valign='top'><a href="../use-cases/uc302-request-non-gmo-certificate.md">uc302</a>
-    <td>
     <td valign='top'>
-      <a href="../test-cases/acceptance/tc302-request-non-gmo-certificate/1-domestic-non-gmo-request-customer.md">tc302-1</a><br>
-      <a href="../test-cases/acceptance/tc302-request-non-gmo-certificate/2-domestic-non-gmo-request-agency.md">tc302-2</a>
+      <a href="../designs/ds302-dmt-non-gmo-agency-form.md">ds302</a><br>
+      <a href="../designs/ds302-dmt-non-gmo-customer-form.md">ds302</a>
+    <td valign='top'>
+      <a href="../test-cases/acceptance/tc302-domestic-non-gmo-certificate-request/1-domestic-non-gmo-request-customer.md">tc302-1</a><br>
+      <a href="../test-cases/acceptance/tc302-domestic-non-gmo-certificate-request/2-domestic-non-gmo-request-agency.md">tc302-2</a>
     <td>
   <tr>
-    <td valign='top'><a href="../use-cases/uc303-entrepreneur-check-121-122.md">uc303</a>
-    <td>
+    <td valign='top'><a href="../use-cases/uc303-entrepreneur-check-request-status.md">uc303</a>
     <td valign='top'>
-      <a href="../test-cases/acceptance/tc303-entrepreneur-check-121-122/1-entrepreneur-check-121-122.md">tc303-1</a>
+      <a href="../designs/ds303-entrepreneur-check-request-status.md">ds303</a>
+    <td valign='top'>
+      <a href="../test-cases/acceptance/tc303-entrepreneur-check-request-status/1-entrepreneur-check-request-status.md">tc303-1</a>
     <td>
   <tr>
     <td valign='top'><a href="../use-cases/uc304-staff-check-certificate-for-entrepreneur.md">uc304</a>
     <td>
     <td valign='top'>
       <a href="../test-cases/acceptance/tc304-Staff-check-Certificant-for-entrepreneur/1-request-for-entrepreneur-documents.md">tc304-1</a>
+    <td>
+  <tr>
+    <td valign='top'>(missing reference)
+    <td>
+    <td valign='top'>
+      <a href="../test-cases/acceptance/tc104-edit-agency/2-edit-agency.md">tc104-2</a>
     <td>
 </table>
