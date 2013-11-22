@@ -1,0 +1,89 @@
+---
+table: users
+data:
+    id: 2
+    username: "lab"
+    password: "lab"
+    name: "I am a Lab Staff"
+    role: "Lab Staff"
+
+---
+table: users
+data:
+    id: 1
+    username: "entre1"
+    password: "entre1"
+    name: "I am entre1"
+    role: "Customer"
+
+---
+table: entrepreneurs
+data:
+    id: 1
+    user_id: 1
+    is_agency: 0
+    is_company: 0
+    first_name: Wolfgang
+    last_name: Gangwolf
+    sex: M
+    nationality: Thai
+    date_of_birth: '1987-11-11'
+    address1: "123/45 Happy Meal, McDonald's, Starbucks"
+    address2: "Carbonara, The Pizza Company, 11111"
+    city: Lat Yao
+    country: Thailand
+    email: wolfgang@gangwolf.co.th
+    phone: 02-345-6789
+    fax: 02-345-6790
+    mobile: 087-654-3210
+    province: Bangkok
+    zip: 11111
+    created_at: '!!NOW!!'
+    updated_at: '!!NOW!!'
+
+---
+table: lab_task_assignments
+data:
+    id: 1
+    lab_task_id: 1
+    assignee: Kanin
+
+---
+table: lab_task_products
+name: my_lab_task_product
+data:
+    id: 1
+    lab_task_id: 1
+    product_code: product_code_1
+    product_name: product_name_1
+    measure: 20
+    volume: 20
+    start: '2013-01-01'
+    finish: '2013-01-08'
+
+---
+table: lab_tasks
+name: my_lab_task
+data:
+    id: 1
+    reference_id: 1
+    export_certificate_request_id: 1
+    status: Pending
+    detail: This is a detail_1
+    dna_extraction_method: method1
+    gene_separation_method: PRC
+    endogenous: endogenous_1
+    transgene: transgene_1
+    created_at: '2013-01-01 13:00:00'
+    updated_at: '2013-01-01 13:00:00'
+
+---
+table: export_certificate_requests
+data:
+    id: 1
+    status: Pending
+    reference_id: 1
+    created_at: '!!NOW!!'
+    updated_at: '!!NOW!!'
+    owner_id: 1
+    signer_id: 1

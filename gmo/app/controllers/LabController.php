@@ -50,7 +50,8 @@ class LabController extends BaseController {
 		$items_waiting_for_approval = $this->getTableItem($labtasks_waiting_for_approval);
 
 
-		return View::make('labtask/index')->with('items',array($items_not_finish,$items_waiting_for_approval));
+		return View::make('labtask/index')->with('items',
+			array($items_not_finish,$items_waiting_for_approval));
 	}
 
 	private function getTaskStatus($status) {
