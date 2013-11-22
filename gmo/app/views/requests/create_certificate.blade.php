@@ -91,6 +91,21 @@ Create Certificate Request Form
 					<!-- form -->
 					<!--<form class="form-horizontal" role="form">-->
 
+					<?php if ($entrepreneur->is_agency == 1) { ?>
+						<!-- owner id -->
+						<div class="form-group" style="text-align: right;">
+							{{ Form::label('owner_id', 'Owner ID', array('class' => 'col-xs-3', 'control-label')) }}
+							<div class="col-xs-8">
+								<select class="form-control" name="owner_id">
+									<option>Owner ID</option>
+									<?php for($i = 0; $i < sizeof($customerAgency); $i++) { ?>
+										<option>{{ $customerAgency[$i]->customer_id }}</option>
+									<?php } ?>
+								</select>
+							</div>
+						</div>
+					<?php } ?>
+
 						<!-- Manufactory -->
 						<div class="form-group" style="text-align: right;">
 							<!--<label for="manufactoryName" class="col-xs-3 control-label ">
