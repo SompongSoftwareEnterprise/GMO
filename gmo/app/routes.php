@@ -73,10 +73,10 @@ Route::get('/entrepreneur/dmt-requests/new', array(
     'as' => 'entrepreneur.dmt.new',
     'uses' => 'EntrepreneurDomesticRequestsController@newRequests'
 ));
-Route::get('/entrepreneur/dmt-requests/new/{id}', array(
-	'as' => 'entrepreneur.dmt.new.info',
-	'uses' => 'EntrepreneurDomesticRequestsController@newRequestsInfo'
-));
+//Route::get('/entrepreneur/dmt-requests/new/{id}', array(
+//	'as' => 'entrepreneur.dmt.new.info',
+//	'uses' => 'EntrepreneurDomesticRequestsController@newRequestsInfo'
+//));
 Route::get('/entrepreneur/dmt-requests/{id}', array(
 	'as' => 'entrepreneur.dmt.requests.show',
 	'uses' => 'EntrepreneurDomesticRequestsController@show'

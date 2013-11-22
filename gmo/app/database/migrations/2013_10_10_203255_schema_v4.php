@@ -36,7 +36,6 @@ class SchemaV4 extends Migration {
 		    $table->string('name');
 		});
 
-
 		Schema::table('export_certificate_request_forms', function($table){
 		    $table->dropColumn('status');
 		});
