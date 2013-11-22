@@ -1,0 +1,36 @@
+---
+table: users
+data:
+    id: 5557
+    username: agen2
+    password: 'agenpassword'
+    name: DebugAgen2
+    role: Agency
+
+---
+table: entrepreneurs
+data:
+    id: 3
+    user_id: 5557
+    is_agncy: 1
+    is_company: 0
+    first_name: DebugAgenB
+    last_name: AgenDebug
+    sex: M
+    nationality: Thai
+    date_of_birth: '1987-11-11'
+    address1: "123/45 Happy Meal, McDonald's, Starbucks"
+    address2: "Carbonara, The Pizza Company, 11111"
+    city: Lat Yao
+    country: Thailand
+    email: wolfgang@gangwolf.co.th
+    phone: 02-345-6789
+    fax: 02-345-6790
+    mobile: 087-654-3210
+    province: Bangkok
+    zip: 11111
+    created_at: '!!NOW!!'
+    updated_at: '!!NOW!!'
+
+
+

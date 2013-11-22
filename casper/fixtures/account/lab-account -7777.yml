@@ -1,0 +1,8 @@
+---
+table: users
+data:
+    id: 7777
+    username: "lab"
+    password: "lab"
+    name: DebugLab1
+    role: "Lab Staff"

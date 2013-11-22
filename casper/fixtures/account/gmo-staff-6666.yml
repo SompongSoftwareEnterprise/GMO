@@ -1,0 +1,10 @@
+# This test fixture contains only a GMO staff, in order to test the
+# register system
+---
+table: users
+data:
+    id: 6666
+    username: staff
+    password: staff
+    name: DebugStaff1
+    role: GMO Staff

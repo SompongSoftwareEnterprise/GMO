@@ -1,0 +1,34 @@
+---
+table: users
+data:
+    id: 5558
+    username: entre2
+    password: 'entrepassword'
+    name: DebugEntre2
+    role: Customer
+
+---
+table: entrepreneurs
+data:
+    id: 4
+    user_id: 5558
+    is_agency: 0
+    is_company: 0
+    first_name: DebugEntreB
+    last_name: EntreDebug
+    sex: F
+    nationality: Immigrant
+    date_of_birth: '1987-1-1'
+    address1: "123/45 Sadly Meal, McDonald's, Starbucks"
+    address2: "Carbonara, The Pizza Company, 11111"
+    city: Lat Yao
+    country: Thailand
+    email: wolfgang@gangwolf.co.th
+    phone: 02-345-6789
+    fax: 02-345-6790
+    mobile: 087-654-3210
+    province: Bangkok
+    zip: 11111
+    created_at: '!!NOW!!'
+    updated_at: '!!NOW!!'
+

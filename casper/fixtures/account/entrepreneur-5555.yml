@@ -1,0 +1,45 @@
+---
+table: users
+data:
+    id: 5555
+    username: entre1
+    password: 'entrepassword'
+    name: DebugEntre1
+    role: Customer
+
+---
+table: entrepreneurs
+data:
+    id: 1
+    user_id: 5555
+    is_agency: 0
+    is_company: 0
+    first_name: DebugEntreA
+    last_name: EntreDebug
+    sex: M
+    nationality: Thai
+    date_of_birth: '1987-11-11'
+    address1: "123/45 Happy Meal, McDonald's, Starbucks"
+    address2: "Carbonara, The Pizza Company, 11111"
+    city: Lat Yao
+    country: Thailand
+    email: wolfgang@gangwolf.co.th
+    phone: 02-345-6789
+    fax: 02-345-6790
+    mobile: 087-654-3210
+    province: Bangkok
+    zip: 11111
+    created_at: '!!NOW!!'
+    updated_at: '!!NOW!!'
+
+---
+table: customer_agency
+data:
+    id: 1
+    customer_id: 5555
+    agency_id: 5556
+    created_at: '!!NOW!!'
+    updated_at: '!!NOW!!'
+
+
+
