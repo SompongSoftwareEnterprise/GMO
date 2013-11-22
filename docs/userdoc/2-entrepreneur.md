@@ -54,14 +54,14 @@ Figure 2.5.A - Edit Account Information
 2.6 Manage Agency
 ------
 
-### Add Agency <xref id="uc103" />
+### 2.6.1 Add Agency <xref id="uc103" />
 
 After you click on “Add” button in step 2.4 you will see add agency page - figure 2.6.A. In this page you can enter your agency ID to search for agency, system will show agency information for you and you can click “Add Agency” button to add this agency.
 
 ![Screenshot](images/entrepreneur-add-agency.png)
 Figure 2.6.A - Add Agency
 
-### Revoke Agency <xref id="uc104" />
+### 2.6.2 Revoke Agency <xref id="uc104" />
 
 
 After you click on ID of agency in step 2.4 you will see specific agency information page - figure 2.6.B thats show you agency information. You can click on “Revoke Agency” button to revoke this agency from your account.
