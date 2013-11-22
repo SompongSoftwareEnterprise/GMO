@@ -40,7 +40,7 @@ Figure 5.2 - Task information
 ![Screenshot](images/upload-lab-result.jpg)
 Figure 5.3 - document uploading
 
-5.5 To Confirm the Lab Examination
+5.5 To Confirm the Lab Examination <xref id="uc301" />
 ------
 
 * Only Head of the lab identity can perform this operation.
