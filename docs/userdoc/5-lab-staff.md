@@ -3,7 +3,7 @@
 
 This section explains how to use each features of Lab Staff user. 
 
-5.1 Getting Started
+5.1 Getting Started <xref id="uc202" />
 ------
 
 To start using GMO application, Open your browser and enter URL “http://gmo.tsp.dt.in.th/”. You will see login screen - figure 5.1.A.
@@ -13,7 +13,7 @@ Figure 5.1.A - GMO Login Page
 
 Next step,  Fill-in your account information (username, and password). If input information is correct, go forward to step 2.2. But if your input is incorrect try enter login information again  or contact สทช. for help and more information.
 
-5.2 View the List of All Lab Task
+5.2 View the List of All Lab Task <xref id="uc117" />
 ------
 
 * You can see the ID of the task, Name of task, due date of task and status of the task that perform in which process.
@@ -21,7 +21,7 @@ Next step,  Fill-in your account information (username, and password). If input 
 ![Screenshot](images/lab-task-list.jpg)
 Figure 5.1 - lab task list page
 
-5.3 See the Info of Each Specific Lab Task
+5.3 See the Info of Each Specific Lab Task <xref id="uc118" />
 ------
 
 * Enter to the Lab task page.( From 5.1 ) Then clicks on the Task ID which you want to look its info.
@@ -31,7 +31,7 @@ Figure 5.1 - lab task list page
 ![Screenshot](images/lab-task-info.jpg)
 Figure 5.2 - Task information
 
-5.4 Upload the Lab's Info or Lab Result
+5.4 Upload the Lab's Info or Lab Result <xref id="uc301" />
 ------
 
 * Enter to the page by click on Lab upload document tab.
@@ -40,7 +40,7 @@ Figure 5.2 - Task information
 ![Screenshot](images/upload-lab-result.jpg)
 Figure 5.3 - document uploading
 
-5.5 To Confirm the Lab Examination
+5.5 To Confirm the Lab Examination <xref id="uc301" />
 ------
 
 * Only Head of the lab identity can perform this operation.

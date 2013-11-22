@@ -1,7 +1,7 @@
 4. GMO Staff
 ======
 
-4.1 Getting Started
+4.1 Getting Started <xref id="uc202" />
 ------
 
 To start using GMO application, Open your browser and enter URL “http://gmo.tsp.dt.in.th/”. You will see login screen - figure 4.1.A.
@@ -11,7 +11,7 @@ Figure 4.1.A - GMO Login Page
 
 Next step,  Fill-in your account information (username, and password). If input information is correct, go forward to step 2.2. But if your input is incorrect try enter login information again  or contact สทช. for help and more information.
 
-4.2 View All Request Page
+4.2 View All Request Page <xref id="uc108" />
 ------
 
 ![Screenshot](images/gmo-view-all-request.png)
@@ -20,7 +20,7 @@ Figure 4.1 - View all request
 * you can view all Requests from all the Entrepreneur and all the basic information (Figure 4.1)
 * you can view specific request information by clicking on id in an ID column.
 
-4.3 Review Requests
+4.3 Review Requests <xref id="uc108" />
 ------
 
 ![Screenshot](images/gmo-review-request.png)
@@ -34,7 +34,7 @@ Figure 4.2 - Review Requests
 * You will be able to Create Receipt, Create Lab Task, Analysis of Report, Certificate by pressing respected button.
 * To go back to view all request list clicks on the Back button.
 
-4.4 Create Receipt
+4.4 Create Receipt <xref id="uc116" />
 ------
 
 This page will show after click on a Create Receipt Button on a View all Review Requests Page. (Figure 4.2) 
@@ -46,7 +46,7 @@ Figure 4.3 - Create Receipt
 * Click ‘Print’(blue button) to print a receipt.
 * Click ‘Back’ to back to the view request page.
 
-4.5 Create Analysis of Report Page
+4.5 Create Analysis of Report Page <xref id="uc114" />
 ------
 
 ![Screenshot](images/gmo-create-analysis.png)
@@ -56,7 +56,7 @@ Figure 4.4 - Create Analysis of Report
 * you have to fill the Test Result if have more than 2 Tests you can click on ‘Add Test’(Blue button) to add more test like Test # 3 and more.
 * you can clear all the information in case type in wrong by clicking on a ‘Reset’(Red Button) to reset everything in text box.
 
-4.6 Create Certificate Form Page
+4.6 Create Certificate Form Page <xref id="uc113" />
 ------
 
 ![Screenshot](images/gmo-create-certificate.png)
@@ -64,7 +64,7 @@ Figure 4.5 - Create Certificate Form
 
 This page fill everything like a previous page in Figure 4.4 but this page is about to create a certification form not analysis.
 
-4.7 Create Lab Task Form Page
+4.7 Create Lab Task Form Page <xref id="uc110" />
 ------
 
 ![Screenshot](images/create-lab-task-1.png)
