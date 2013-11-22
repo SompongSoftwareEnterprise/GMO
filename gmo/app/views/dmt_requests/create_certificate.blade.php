@@ -1,4 +1,8 @@
-@extends('layout') @section('title') Create Certificate Request Form @endsection @section('content')
+@extends('layout')
+@section('title') 
+    Create Certificate Request Form 
+@endsection 
+@section('content')
 
 <div class="panel-body ">
 
