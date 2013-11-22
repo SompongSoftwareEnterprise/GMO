@@ -18,13 +18,13 @@ Entrepreneur
 
 ## Preconditions
 
-* Initial database data: [entrepreneur-1
-			form-111-1](../../../casper/fixtures/entrepreneur-1
-			form-111-1.yml)
+* Initial database data: [certificate_request/form-111-1](../../../casper/fixtures/certificate_request/form-111-1.yml)
+* Initial database data: [account/entrepreneur-1](../../../casper/fixtures/account/entrepreneur-1.yml)
 
 
 ## Test Procedure
 
-1. kuy
+1. kak
+2. kak
 
 
