@@ -67,6 +67,40 @@ function CasperAPI(casper) {
 		casper.thenOpen(url(path))
 	}
 
+	api.assertTable = function(tableID,records) {
+		casper.then(function(){
+			record_data = casper.evaluate(function(id) {
+				var header = []
+				document.querySelectorAll(tableID + ' thead tr th').forEach(function(head) {
+	    			header.push(head.innerHTML)
+				});
+
+				var result = []
+				document.querySelectorAll(tableID + ' tbody tr').forEach(function(tr) {
+	    			var data = {}
+	    			tr = tr.querySelectorAll('td')
+	    			test.assertEquals(header.length,tr.length,'number of header\'s attributes and number of element in each record must be equal')
+	    			for (var i = 0; i <= header.length; i++) {
+	    				data[header[i]] = tr[i]
+	    			};
+	    			result.push(data)
+				});
+
+				return result
+			},tableID)
+
+			test.assertEquals(records.length,record_data.length,'number of test data and available data must be equal')
+			for (var i = 0; i <= records.length; i++) {
+				for(var key in record_data){
+					test.assertEquals(records[i][key],record_data[i][key],'row ' + (i+1) + 'header ' + key + " data must be present correctly")
+				}
+			};
+
+		})
+
+	}
+
+
 	/**
 	 * [Step] Login with specified `username` and `password`.
 	 */
