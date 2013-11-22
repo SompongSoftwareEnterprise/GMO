@@ -20,7 +20,9 @@ module.exports.all = function(filename) {
 	jsyaml.loadAll(fileData, function(doc) {
 		output.push(doc)
 	})
+	return output
 }
+
 module.exports.fixture = function(name) {
 	return module.exports.all('fixtures/' + name + '.yml')
 }
