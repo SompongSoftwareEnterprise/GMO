@@ -6,8 +6,13 @@ View Certificate Request
 
 @section('content')
 <div class="panel-body entrepreneur-page">
-
-	<form class="form-inline" role="search" name="searchForm" id="entrepreneur_requests_search_form">
+	{{ Form::open(array(
+			'action' => array('EntrepreneurRequestsController@search'),
+			'class' => 'form-inline',
+			'name' => 'searchForm',
+			'id' => 'entrepreneur_requests_search_form'
+		)) }}
+	<!-- <form class="form-inline" role="search" name="searchForm" id="entrepreneur_requests_search_form"> -->
 		<div class="form-group">
 			<label class="sr-only" for="searchInput">Search Input</label>
 			<input type="text" class="form-control" id="searchInput" placeholder="Enter search keyword.." name="search_input">
@@ -27,7 +32,8 @@ View Certificate Request
 		</div>
 
 		<button type="submit" id="entrepreneur_requests_search_button" class="btn btn-primary">Search</button>
-	</form>
+	<!-- </form> -->
+	{{Form::close()}}
 
 	<br>
 
