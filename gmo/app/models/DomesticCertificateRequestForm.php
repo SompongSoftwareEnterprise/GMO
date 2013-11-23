@@ -7,7 +7,6 @@ class DomesticCertificateRequestForm extends Eloquent {
 	public static function getValidationRules() {
 		$rules = array(
 			
-			'rep_of' => 'required',
 			'company_th' => 'required',
 			'address_th' => 'required',
 			'address_th2' => 'required',
@@ -26,7 +25,7 @@ class DomesticCertificateRequestForm extends Eloquent {
 		return $rules;
 	}
 
-	
+
 
 }
 	

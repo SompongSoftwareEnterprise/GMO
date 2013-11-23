@@ -9,39 +9,24 @@
     {{ View::make('errors_row') }}
 
     <div class="row">
-
-        <div class="col-xs-2">
-            <div class="btn-group-vertical">
-                <button type="button" class="btn btn-active" data-toggle="#">
-                    <a href="#form_1">
-                        <span class="glyphicon glyphicon-file"></span>สทช 1-2/1
-                    </a>
-                </button>
-                <button type="button" class="btn btn-default" data-toggle="form_1">
-                    <a href="#form_2">
-                        <span class="glyphicon glyphicon-file"></span>สทช 1-2/2
-                    </a>
-                </button>
-            </div>
-        </div>
         {{ Form::open(array( 'action' => array('EntrepreneurDomesticRequestsController@create'), 'class' => 'form-horizontal', 'id' => 'new-request-form', )) }}
-        <div id="form_1" class="col-xs-10">
+        <div id="form_1" class="col-xs-12">
             <div class="panel panel-default">
                 <div class="panel-body text-left">
-                    <h2>&nbsp;&nbsp;สทช 1-2/1</h2>
+                    <h3 class="col-sm-offset-1">สทช 1-2/1</h3>
                     <div class="row" style="margin-top: 30px;">
-                        <label class="col-xs-3 control-label text-right">
+                        <label class="col-xs-3 text-right">
                             Name
                         </label>
-                        <div class="col-xs-8 control-label text-left">
+                        <div class="col-xs-8 text-left">
                             {{ $entrepreneur->first_name }} {{ $entrepreneur->last_name }}
                         </div>
                     </div>
                     <div class="row">
-                        <label class="col-xs-3 control-label text-right">
+                        <label class="col-xs-3 text-right">
                             Address
                         </label>
-                        <div class="col-xs-8  control-label  text-left">
+                        <div class="col-xs-8 text-left">
                             {{ $entrepreneur->address1 }}
                             <br>{{ $entrepreneur->address2 }}
                             <br>{{ $entrepreneur->city }}, {{ $entrepreneur->province }}, {{ $entrepreneur->country }}, {{ $entrepreneur->zip }}
@@ -49,26 +34,26 @@
                         </div>
                     </div>
                     <div class="row">
-                        <label class="col-xs-3 control-label text-right">
+                        <label class="col-xs-3 text-right">
                             Phone
                         </label>
-                        <div class="col-xs-8  control-label  text-left">
+                        <div class="col-xs-8 text-left">
                             {{ $entrepreneur->phone }}
                         </div>
                     </div>
                     <div class="row">
-                        <label class="col-xs-3 control-label text-right">
+                        <label class="col-xs-3 text-right">
                             Mobile Phone
                         </label>
-                        <div class="col-xs-8  control-label  text-left">
+                        <div class="col-xs-8 text-left">
                             {{ $entrepreneur->mobile }}
                         </div>
                     </div>
                     <div class="row">
-                        <label class="col-xs-3 control-label text-right">
+                        <label class="col-xs-3 text-right">
                             Fax
                         </label>
-                        <div class="col-xs-8  control-label  text-left">
+                        <div class="col-xs-8 text-left">
                             {{ $entrepreneur->fax }}
                         </div>
                     </div>
@@ -82,6 +67,7 @@
                         {{ Form::label('rep_of', 'Representative of', array('class' => 'col-xs-3 control-label text-right')) }}
                         <div class="col-xs-8">
                              {{ Form::select('rep_of', array('' => 'Representative of', 'C0023' => 'C0023 - Sompong'), null, array('class' => 'form-control')) }}
+                          
                         </div>
                     </div>
                     
@@ -206,21 +192,24 @@
 
                     <div class="form-group">
                         <div class="col-sm-offset-3 col-xs-8">
-                            {{ Form::text('contact_number', null, array('class' => 'col-xs-3 control-label text-right', 'placeholder' => 'Phone (ex. 02-349-2893)')) }}
+                            {{ Form::text('contact_number', null, array('class' => 'form-control', 'placeholder' => 'Phone (ex. 02-349-2893)')) }}
                             <!--<input type="text" class="form-control" name="contact_phone" placeholder="Phone (ex. 0-2345-6789)">-->
                         </div>
                     </div>
                     
                     <div class="form-group">
-                        <div class="col-sm-offset-3 col-xs-8">
+                        <label for="purpose" class="col-xs-3 control-label">
+                                Purpose
+                        </label>
+                        <div class="col-xs-8">
                             {{ Form::text('purpose', null, array('class' => 'form-control', 'placeholder' => 'Purpose for certificate request')) }}
                         </div>
                     </div>
 
-
+                    <br><br>
                     <!-- Examples -->
                     <div class="col-sm-offset-1">
-                        <h3>สทช 1-2/2</h3>
+                        <h3 class="col-sm-offset-1">สทช 1-2/2</h3>
                     </div>
                     <hr>
                     <div class="example-detail">
@@ -249,13 +238,17 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="col-sm-offset-3 col-xs-4">
+                            <!-- <div class="col-sm-offset-3 col-xs-4">
                                 <select name="export_to_ex1" class="form-control">
                                     <option>Export Country</option>
                                     <option>Thailand</option>
                                     <option>Sweden</option>
                                 </select>
+                            </div> -->
+                            <div class="col-sm-offset-3 col-xs-4 ">
+                                <input type="text" class="form-control" name="export_to_ex1" placeholder="Export To (ex. USA,EUROPE,ASIA)">
                             </div>
+
                             <div class="col-xs-4 ">
                                 <input type="number" class="form-control" name="export_qty_ex1" placeholder="Export Quantity">
                             </div>
@@ -272,6 +265,7 @@
                                 <button data-gmo-example="add" type="button" class="btn btn-primary">Add Plant</button>
                             </div>
                         </div>
+
                     </div>
                 <script>
 
@@ -279,12 +273,16 @@
                        if (<?php echo $entrepreneur->is_agency; ?> != 1) {
                             $('#represent').hide();
                        } 
+
+                       if(!input.checked){
+                            alert('not tick');
+                       }
                     });
                             $(function() {
                                 var template = $('.example-detail').html()
                                 $(document).on('click', '[data-gmo-example="remove"]', function(e) {
                                     if ($('.example-detail').length == 1) {
-                                        alert('Cannot remove last example')
+                                        alert('Cannot remove last plant')
                                     } else {
                                         $(this).closest('.example-detail').remove()
                                         updateNumber()
@@ -332,12 +330,6 @@
     {{ Form::close() }}
 </div>
 </div>
-
-<style type="text/css">
-    .control-label {
-    		text-align: left;
-    	}
-</style>
 
 @endsection
 

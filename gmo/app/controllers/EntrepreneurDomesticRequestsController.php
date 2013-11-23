@@ -24,14 +24,21 @@ class EntrepreneurDomesticRequestsController extends AbstractEntrepreneurControl
     
 
 		$certReqFormValidator = Validator::make(Input::all(), DomesticCertificateRequestForm::getValidationRules());
+		$certReqExampleValidator = Validator::make(Input::all(), DomesticCertificateRequestExample::getValidationRules());
 		
         $certReqForm = new DomesticCertificateRequestForm;
 
-		if ($certReqFormValidator->fails()) {
+		if ($certReqFormValidator->fails() ) {
 			return Redirect::action('EntrepreneurDomesticRequestsController@newRequests')
 				->withErrors($certReqFormValidator)
 				->withInput();
-		}
+		} 
+
+		// if ($certReqExampleValidator->fails()) {
+		// 	return Redirect::action('EntrepreneurDomesticRequestsController@newRequests')
+		// 		->withErrors($certReqExampleValidator)
+		// 		->withInput();
+		// }
 
 
         $certReqForm->rep_of = Input::get('rep_of');
@@ -50,6 +57,10 @@ class EntrepreneurDomesticRequestsController extends AbstractEntrepreneurControl
         $certReqForm->contact_name = Input::get('contact_name');
         $certReqForm->contact_number = Input::get('contact_number');
 		
+
+
+
+
 		// $certReqForm->status = 'Available';
         $certReq->save();
         $certReqForm->domestic_certificate_request_id = $certReq->id;
@@ -78,6 +89,17 @@ class EntrepreneurDomesticRequestsController extends AbstractEntrepreneurControl
 
 		// return Redirect::action('EntrepreneurDomesticRequestsController@show', array($certReq->id));
 	}
+
+	public function createCustomerByAgency() {
+
+	  // queries the clients db table, orders by client_name and lists client_name and id
+	  $customer = DB::table('customer_agency')->orderBy('client_name', 'asc')->lists('client_name','id');
+
+	  	// $customer = DB::select('select customer_id from customer_agency where agency_id = ' . $entrepreneur->id);
+
+	    return View::make('dmt_requests/create_certificate.createCustomerByAgency', array('customer' => $customer));
+	}
+
 
 	public function show($id) {
 		$certificateRequest = DomesticCertificateRequest::find($id);
