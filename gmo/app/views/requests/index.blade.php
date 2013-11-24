@@ -44,10 +44,12 @@ View Certificate Request
 		<tbody>
 			<?php $row = null; ?>
 			@foreach($certReqs as $certReq)
+				<!-- <?php print_r($certReq); ?> -->
 				<tr>
 					<td><a href="/entrepreneur/requests/{{ $certReq->reference_id }}">{{ $certReq->reference_id }}</a></td>
-					<td>{{ $certReq->first_name }} {{ $certReq->last_name }}</td>
-					<td>{{ $signer->first_name }} {{ $signer->last_name }}</td>
+					<td>{{ $certReq->owner_first_name }} {{ $certReq->owner_last_name }}</td>
+					<td>{{ $certReq->signer_first_name }} {{ $certReq->signer_last_name }}</td>
+					<!-- <td>{{ $certReq->first_name }}</td> -->
 					<td>{{ $certReq->created_at }}</td>
 					<?php if ($certReq->status == 'Pending') { ?>
 					<td class="text-warning">{{ $certReq->status }}</td>
