@@ -15,8 +15,8 @@ View Request Information
 		<tbody>
 			<tr>
 				<td>{{ $certReq->reference_id }}</a></td>
-				<td>{{ $certReq->owner->fullName() }}</td>
-				<td>{{ $certReq->signer->fullName() }}</td>
+				<td>{{ $owner->first_name }} {{ $owner->last_name }}</td>
+				<td>{{ $signer->first_name }} {{ $signer->last_name }}</td>
 				<td>{{ $certReq->created_at }}</td>
 				<?php if ($certReq->status == 'Pending') { ?>
 					<td class="text-warning">{{ $certReq->status }}</td>
@@ -58,7 +58,7 @@ View Request Information
 							<td class="text-success">{{ $certReqInfoForm->status }}</td>
 						<?php } ?>
 					<?php } else { ?>
-						<td>สทช. 1-1/2 (<a href="{{ action('EntrepreneurRequestsController@newRequestsInfo', array($certReq->id)) }}">Complete this Document</a>)</td>
+						<td>สทช. 1-1/2 (<a href="{{ action('EntrepreneurRequestsController@newRequestsInfo', array($certReq->reference_id)) }}">Complete this Document</a>)</td>
 						<td class="text-danger">Document Needed</td>
 					<?php } ?>
 					</tr>

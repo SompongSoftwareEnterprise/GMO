@@ -1,7 +1,8 @@
 <tr>
-	<td><a href="/entrepreneur/requests/{{ $certReq->id }}">{{ $certReq->reference_id }}</a></td>
-	<td>{{ $certReq->owner->fullName() }}</td>
-	<td>{{ $certReq->signer->fullName() }}</td>
+	<td><a href="/entrepreneur/requests/{{ $certReq->reference_id }}">{{ $certReq->reference_id }}</a></td>
+
+	<td>{{ $certReq->owner_id }}</td>
+	<td>{{ $certReq->signer_id }}</td>
 	<td>{{ $certReq->created_at }}</td>
 	<?php if ($certReq->status == 'Pending') { ?>
 		<td class="text-warning">{{ $certReq->status }}</td>

@@ -38,10 +38,8 @@ Route::get('/entrepreneur/account',    		'EntrepreneurAccountController@index');
 Route::get('/entrepreneur/edit_account', 'EntrepreneurAccountController@editAccount');
 Route::post('/entrepreneur/save_account', 'EntrepreneurAccountController@saveAccount');
 
-Route::get('/lab/labtasks', 'LabTaskController@index');
 Route::get('/lab', 'LabController@index');
 Route::get('/lab/task/{id}', 'LabController@show');
-Route::get('/lab/labtasks', 'LabController@index');
 
 // entrepreneur request
 Route::get('/entrepreneur', 'EntrepreneurRequestsController@index');
