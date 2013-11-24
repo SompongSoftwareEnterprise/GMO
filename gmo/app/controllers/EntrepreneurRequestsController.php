@@ -20,13 +20,15 @@ class EntrepreneurRequestsController extends AbstractEntrepreneurController {
 		$searchInput = Input::get('search_input');
 		if($searchBy == 'request_id') {
 			$certReqs = CertificateRequest::join('entrepreneurs', 'owner_id', '=', 'entrepreneurs.user_id')
-											->where('signer_id', '=', $this->entrepreneur->id)
+											->where('signer_id', '=', $this->entrepreneur->user_id)
 											->where('reference_id', 'like', '%'.$searchInput.'%')	
 											->get();
+			$signer = Entrepreneur::where('user_id', '=', $this->entrepreneur->user_id)->first();
 			return View::make('requests/index')
 				->with(array(
 					'entrepreneur' => $this->entrepreneur,
-					'certReqs' => $certReqs
+					'certReqs' => $certReqs,
+					'signer' => $signer
 				));
 		}
 		else {
