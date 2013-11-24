@@ -31,11 +31,33 @@ class EntrepreneurRequestsController extends AbstractEntrepreneurController {
 					'signer' => $signer
 				));
 		}
-		else {
+
+		else if($searchBy == 'importer_name'){
+			$certReqs = CertificateRequest::join('entrepreneurs', 'owner_id', '=', 'entrepreneurs.user_id')
+											->where('signer_id', '=', $this->entrepreneur->user_id)
+											->where('entrepreneurs.first_name','like','%'.$searchInput.'%')
+											->orWhere('entrepreneurs.last_name','like','%'.$searchInput.'%')
+											->get();
+			$signer = Entrepreneur::where('user_id', '=', $this->entrepreneur->user_id)->first();
 			return View::make('requests/index')
 				->with(array(
 					'entrepreneur' => $this->entrepreneur,
-					'certReqs' => $certReqs
+					'certReqs' => $certReqs,
+					'signer' => $signer
+				));
+		}										
+		else {
+			$certReqs = CertificateRequest::join('entrepreneurs', 'owner_id', '=', 'entrepreneurs.user_id')
+											->where('signer_id', '=', $this->entrepreneur->user_id)
+											->where('entrepreneurs.first_name','like','%'.$searchInput.'%')
+											->orWhere('entrepreneurs.last_name','like','%'.$searchInput.'%')
+											->get();
+			$signer = Entrepreneur::where('user_id', '=', $this->entrepreneur->user_id)->first();
+			return View::make('requests/index')
+				->with(array(
+					'entrepreneur' => $this->entrepreneur,
+					'certReqs' => $certReqs,
+					'signer' => $signer
 				));
 		}
 	}
