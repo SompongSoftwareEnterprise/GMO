@@ -44,7 +44,9 @@ View Certificate Request
 		<tbody>
 			<?php $row = null; ?>
 			@foreach($certReqs as $certReq)
-				<?php if ($row === null) $row = View::make('requests/table/row'); ?>
+				<?php if ($row === null)
+					$row = View::make('requests/table/row'); 
+				?>
 				{{ $row->with('certReq', $certReq); }}
 			@endforeach
 		</tbody>
