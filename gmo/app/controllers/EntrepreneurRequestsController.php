@@ -33,46 +33,108 @@ class EntrepreneurRequestsController extends AbstractEntrepreneurController {
 		$searchBy = Input::get('search_by');
 		$searchInput = Input::get('search_input');
 		if($searchBy == 'request_id') {
-			$certReqs = CertificateRequest::join('entrepreneurs', 'owner_id', '=', 'entrepreneurs.user_id')
-											->where('signer_id', '=', $this->entrepreneur->user_id)
-											->where('reference_id', 'like', '%'.$searchInput.'%')	
-											->get();
-			$signer = Entrepreneur::where('user_id', '=', $this->entrepreneur->user_id)->first();
-			return View::make('requests/index')
+			// $certReqs = CertificateRequest::join('entrepreneurs', 'owner_id', '=', 'entrepreneurs.user_id')
+			// 								->where('signer_id', '=', $this->entrepreneur->user_id)
+			// 								->where('reference_id', 'like', '%'.$searchInput.'%')	
+			// 								->get();
+			// $signer = Entrepreneur::where('user_id', '=', $this->entrepreneur->user_id)->first();
+			// return View::make('requests/index')
+			// 	->with(array(
+			// 		'entrepreneur' => $this->entrepreneur,
+			// 		'certReqs' => $certReqs,
+			// 		'signer' => $signer
+			// 	));
+			if ($this->entrepreneur->is_agency == 1) {
+				$certReqs = CertificateRequest::select('owner.first_name as owner_first_name', 'owner.last_name as owner_last_name', 'signer.first_name as signer_first_name', 'signer.last_name as signer_last_name', 'export_certificate_requests.*')
+												->join('entrepreneurs as owner', 'owner_id', '=', 'owner.user_id')
+												->join('entrepreneurs as signer', 'signer_id', '=', 'signer.user_id')
+												->where('signer_id', '=', $this->entrepreneur->user_id)
+												->where('reference_id', 'like', '%'.$searchInput.'%')
+												->get();
+				return View::make('requests/index')
 				->with(array(
 					'entrepreneur' => $this->entrepreneur,
-					'certReqs' => $certReqs,
-					'signer' => $signer
+					'certReqs' => $certReqs
 				));
+			}
+			else {
+				$certReqs = CertificateRequest::select('owner.first_name as owner_first_name', 'owner.last_name as owner_last_name', 'signer.first_name as signer_first_name', 'signer.last_name as signer_last_name', 'export_certificate_requests.*')
+												->join('entrepreneurs as owner', 'owner_id', '=', 'owner.user_id')
+												->join('entrepreneurs as signer', 'signer_id', '=', 'signer.user_id')
+												->where('owner_id', '=', $this->entrepreneur->user_id)
+												->where('reference_id', 'like', '%'.$searchInput.'%')
+												->get();
+				return View::make('requests/index')
+				->with(array(
+					'entrepreneur' => $this->entrepreneur,
+					'certReqs' => $certReqs
+				));
+			}
 		}
 
 		else if($searchBy == 'importer_name'){
-			$certReqs = CertificateRequest::join('entrepreneurs', 'owner_id', '=', 'entrepreneurs.user_id')
-											->where('signer_id', '=', $this->entrepreneur->user_id)
-											->where('entrepreneurs.first_name','like','%'.$searchInput.'%')
-											->orWhere('entrepreneurs.last_name','like','%'.$searchInput.'%')
-											->get();
-			$signer = Entrepreneur::where('user_id', '=', $this->entrepreneur->user_id)->first();
-			return View::make('requests/index')
+			if ($this->entrepreneur->is_agency == 1) {
+				$certReqs = CertificateRequest::select('owner.first_name as owner_first_name', 'owner.last_name as owner_last_name', 'signer.first_name as signer_first_name', 'signer.last_name as signer_last_name', 'export_certificate_requests.*')
+												->join('entrepreneurs as owner', 'owner_id', '=', 'owner.user_id')
+												->join('entrepreneurs as signer', 'signer_id', '=', 'signer.user_id')
+												->where('signer_id', '=', $this->entrepreneur->user_id)
+												->where('owner.first_name','like','%'.$searchInput.'%')
+			 									->orWhere('signer_id', '=', $this->entrepreneur->user_id)
+			 									->where('owner.last_name','like','%'.$searchInput.'%')
+												->get();
+				return View::make('requests/index')
 				->with(array(
 					'entrepreneur' => $this->entrepreneur,
-					'certReqs' => $certReqs,
-					'signer' => $signer
+					'certReqs' => $certReqs
 				));
+			}
+			else {
+				$certReqs = CertificateRequest::select('owner.first_name as owner_first_name', 'owner.last_name as owner_last_name', 'signer.first_name as signer_first_name', 'signer.last_name as signer_last_name', 'export_certificate_requests.*')
+												->join('entrepreneurs as owner', 'owner_id', '=', 'owner.user_id')
+												->join('entrepreneurs as signer', 'signer_id', '=', 'signer.user_id')
+												->where('owner_id', '=', $this->entrepreneur->user_id)
+												->where('owner.first_name','like','%'.$searchInput.'%')
+			 									->orWhere('owner_id', '=', $this->entrepreneur->user_id)
+			 									->where('owner.last_name','like','%'.$searchInput.'%')
+												->get();
+				return View::make('requests/index')
+				->with(array(
+					'entrepreneur' => $this->entrepreneur,
+					'certReqs' => $certReqs
+				));
+			}
 		}										
 		else {
-			$certReqs = CertificateRequest::join('entrepreneurs', 'owner_id', '=', 'entrepreneurs.user_id')
-											->where('signer_id', '=', $this->entrepreneur->user_id)
-											->where('entrepreneurs.first_name','like','%'.$searchInput.'%')
-											->orWhere('entrepreneurs.last_name','like','%'.$searchInput.'%')
-											->get();
-			$signer = Entrepreneur::where('user_id', '=', $this->entrepreneur->user_id)->first();
-			return View::make('requests/index')
+			if ($this->entrepreneur->is_agency == 1) {
+				$certReqs = CertificateRequest::select('owner.first_name as owner_first_name', 'owner.last_name as owner_last_name', 'signer.first_name as signer_first_name', 'signer.last_name as signer_last_name', 'export_certificate_requests.*')
+												->join('entrepreneurs as owner', 'owner_id', '=', 'owner.user_id')
+												->join('entrepreneurs as signer', 'signer_id', '=', 'signer.user_id')
+												->where('signer_id', '=', $this->entrepreneur->user_id)
+												->where('signer.first_name','like','%'.$searchInput.'%')
+			 									->orWhere('signer_id', '=', $this->entrepreneur->user_id)
+			 									->where('signer.last_name','like','%'.$searchInput.'%')
+												->get();
+				return View::make('requests/index')
 				->with(array(
 					'entrepreneur' => $this->entrepreneur,
-					'certReqs' => $certReqs,
-					'signer' => $signer
+					'certReqs' => $certReqs
 				));
+			}
+			else {
+				$certReqs = CertificateRequest::select('owner.first_name as owner_first_name', 'owner.last_name as owner_last_name', 'signer.first_name as signer_first_name', 'signer.last_name as signer_last_name', 'export_certificate_requests.*')
+												->join('entrepreneurs as owner', 'owner_id', '=', 'owner.user_id')
+												->join('entrepreneurs as signer', 'signer_id', '=', 'signer.user_id')
+												->where('owner_id', '=', $this->entrepreneur->user_id)
+												->where('signer.first_name','like','%'.$searchInput.'%')
+												->orWhere('owner_id', '=', $this->entrepreneur->user_id)
+			 									->where('signer.last_name','like','%'.$searchInput.'%')
+												->get();
+				return View::make('requests/index')
+				->with(array(
+					'entrepreneur' => $this->entrepreneur,
+					'certReqs' => $certReqs
+				));
+			}
 		}
 	}
 

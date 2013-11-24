@@ -44,7 +44,6 @@ View Certificate Request
 		<tbody>
 			<?php $row = null; ?>
 			@foreach($certReqs as $certReq)
-				<!-- <?php print_r($certReq); ?> -->
 				<tr>
 					<td><a href="/entrepreneur/requests/{{ $certReq->reference_id }}">{{ $certReq->reference_id }}</a></td>
 					<td>{{ $certReq->owner_first_name }} {{ $certReq->owner_last_name }}</td>
