@@ -63,13 +63,29 @@
                     <!--<form class="form-horizontal" role="form">-->
                 
                     <!-- Company THAI -->
-                    <div class="form-group" id="represent">
+                    <!-- <div class="form-group" id="represent">
                         {{ Form::label('rep_of', 'Representative of', array('class' => 'col-xs-3 control-label text-right')) }}
                         <div class="col-xs-8">
                              {{ Form::select('rep_of', array('' => 'Representative of', 'C0023' => 'C0023 - Sompong'), null, array('class' => 'form-control')) }}
                           
                         </div>
-                    </div>
+                    </div> -->
+
+                    <?php if ($entrepreneur->is_agency == 1) { ?>
+                        <!-- owner id -->
+                        <div class="form-group" style="text-align: right;">
+                            {{ Form::label('owner_id', 'Owner ID', array('class' => 'col-xs-3', 'control-label')) }}
+                            <div class="col-xs-8">
+                                <select class="form-control" name="owner_id">
+                                    <option>Owner ID</option>
+                                    <?php for($i = 0; $i < sizeof($customerAgency); $i++) { ?>
+                                        <option>{{ $customerAgency[$i]->customer_id }}</option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </div>
+                    <?php } ?>
+                    
                     
                     <div class="form-group">
                         <!--<label for="manufactoryName" class="col-xs-3 control-label ">
@@ -209,7 +225,7 @@
                     <br><br>
                     <!-- Examples -->
                     <div class="col-sm-offset-1">
-                        <h3 class="col-sm-offset-1">สทช 1-2/2</h3>
+                        <h3>สทช 1-2/2</h3>
                     </div>
                     <hr>
                     <div class="example-detail">
@@ -269,15 +285,12 @@
                     </div>
                 <script>
 
-                    $(document).ready(function() {
-                       if (<?php echo $entrepreneur->is_agency; ?> != 1) {
-                            $('#represent').hide();
-                       } 
+                    // $(document).ready(function() {
+                    //    if (<?php echo $entrepreneur->is_agency; ?> != 1) {
+                    //         $('#represent').hide();
+                    //    } 
 
-                       if(!input.checked){
-                            alert('not tick');
-                       }
-                    });
+                    // });
                             $(function() {
                                 var template = $('.example-detail').html()
                                 $(document).on('click', '[data-gmo-example="remove"]', function(e) {

@@ -40,45 +40,45 @@ $id),
 					<h2>&nbsp;&nbsp;สทช 1-1/2</h2>
 
 					<div class="row" style="margin-top: 30px;">
-						<label class="col-xs-3 control-label text-right">
+						<label class="col-xs-3 text-right">
 							Manufacture or Shipper 
 						</label>
-						<div class="col-xs-8 control-label">
+						<div class="col-xs-8">
 							{{ $entrepreneur->first_name }}
 							{{ $entrepreneur->last_name }}
 						</div>
 					</div>
 					<div class="row"> 
-						<label class="col-xs-3 control-label text-right">
+						<label class="col-xs-3 text-right">
 							Address 
 						</label>
-						<div class="col-xs-8 control-label">
+						<div class="col-xs-8">
 							{{ $entrepreneur->address1 }}<br>
 							{{ $entrepreneur->address2 }}<br>
 							{{ $entrepreneur->city }}, {{ $entrepreneur->province }}, {{ $entrepreneur->country }}, {{ $entrepreneur->zip }}<br>
 						</div>
 					</div>
 					<div class="row"> 
-						<label class="col-xs-3 control-label text-right">
+						<label class="col-xs-3 text-right">
 							Phone 
 						</label>
-						<div class="col-xs-8 control-label">
+						<div class="col-xs-8">
 							{{ $entrepreneur->phone }}
 						</div>
 					</div>
 					<div class="row"> 
-						<label class="col-xs-3 control-label text-right">
+						<label class="col-xs-3 text-right">
 							Mobile Phone 
 						</label>
-						<div class="col-xs-8 control-label">
+						<div class="col-xs-8">
 							{{ $entrepreneur->mobile }}
 						</div>
 					</div>
 					<div class="row"> 
-						<label class="col-xs-3 control-label text-right">
+						<label class="col-xs-3 text-right">
 							Fax 
 						</label>
-						<div class="col-xs-8 control-label">
+						<div class="col-xs-8">
 							{{ $entrepreneur->fax }}
 						</div>
 					</div>

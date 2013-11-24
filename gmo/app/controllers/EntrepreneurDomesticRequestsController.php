@@ -7,6 +7,16 @@ class EntrepreneurDomesticRequestsController extends AbstractEntrepreneurControl
 	} 
 
 	public function newRequests() {
+		if($this->entrepreneur->is_agency == 1){
+			$entrepreneur = $this->entrepreneur;
+			$customerAgency = CustomerAgency::where('agency_id','=',
+				$entrepreneur->user_id)->get();
+			return View::make('dmt_requests/create_certificate')
+				->with(array(
+					'entrepreneur' => $this->entrepreneur,
+					'customerAgency' => $customerAgency
+					));
+		}
 		return View::make('dmt_requests/create_certificate')
 					->with('entrepreneur', $this->entrepreneur);
 	}
@@ -19,12 +29,19 @@ class EntrepreneurDomesticRequestsController extends AbstractEntrepreneurControl
 	    $certReq->status = 'Available'; 
 		$certReq->reference_id = RunningNumber::increment('default');
 		
-        $certReq->owner_id = $entrepreneur->id;
+		if ($entrepreneur->is_agency == 1) {
+			$certReq->owner_id = Input::get('owner_id');
+		}
+		else {
+			$certReq->owner_id = $entrepreneur->user_id;
+		}
+		
+        // $certReq->owner_id = $entrepreneur->id;
 		$certReq->signer_id = $entrepreneur->id;
     
 
 		$certReqFormValidator = Validator::make(Input::all(), DomesticCertificateRequestForm::getValidationRules());
-		$certReqExampleValidator = Validator::make(Input::all(), DomesticCertificateRequestExample::getValidationRules());
+		// $certReqExampleValidator = Validator::make(Input::all(), DomesticCertificateRequestExample::getValidationRules());
 		
         $certReqForm = new DomesticCertificateRequestForm;
 
@@ -41,7 +58,7 @@ class EntrepreneurDomesticRequestsController extends AbstractEntrepreneurControl
 		// }
 
 
-        $certReqForm->rep_of = Input::get('rep_of');
+//        $certReqForm->rep_of = Input::get('rep_of');
         $certReqForm->company_th = Input::get('company_th');
         $certReqForm->address_th = Input::get('address_th');
         $certReqForm->address_th2 = Input::get('address_th2');
@@ -88,16 +105,6 @@ class EntrepreneurDomesticRequestsController extends AbstractEntrepreneurControl
 		$certReqForm->save();
 
 		// return Redirect::action('EntrepreneurDomesticRequestsController@show', array($certReq->id));
-	}
-
-	public function createCustomerByAgency() {
-
-	  // queries the clients db table, orders by client_name and lists client_name and id
-	  $customer = DB::table('customer_agency')->orderBy('client_name', 'asc')->lists('client_name','id');
-
-	  	// $customer = DB::select('select customer_id from customer_agency where agency_id = ' . $entrepreneur->id);
-
-	    return View::make('dmt_requests/create_certificate.createCustomerByAgency', array('customer' => $customer));
 	}
 
 
