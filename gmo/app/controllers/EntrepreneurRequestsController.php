@@ -6,12 +6,12 @@ class EntrepreneurRequestsController extends AbstractEntrepreneurController {
 		$certReqs = CertificateRequest::join('entrepreneurs', 'owner_id', '=', 'entrepreneurs.user_id')
 										->where('signer_id', '=', $this->entrepreneur->user_id)
 										->get();
-		// $signer = Entrepreneur::where('user_id', '=', $this->entrepreneur->user_id)->first();
+		$signer = Entrepreneur::where('user_id', '=', $this->entrepreneur->user_id)->first();
 		return View::make('requests/index')
 			->with(array(
 				'entrepreneur' => $this->entrepreneur,
-				'certReqs' => $certReqs
-				// 'signer' => $signer
+				'certReqs' => $certReqs,
+				'signer' => $signer
 			));
 	}
 
