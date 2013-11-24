@@ -15,8 +15,10 @@ View Request Information
 		<tbody>
 			<tr>
 				<td>{{ $certReq->reference_id }}</a></td>
-				<td>{{ $owner->first_name }} {{ $owner->last_name }}</td>
-				<td>{{ $signer->first_name }} {{ $signer->last_name }}</td>
+				<!-- <td>{{ $owner->first_name }} {{ $owner->last_name }}</td>
+				<td>{{ $signer->first_name }} {{ $signer->last_name }}</td> -->
+				<td>{{ $owner->user_id }}</td>
+				<td>{{ $signer->user_id }}</td>
 				<td>{{ $certReq->created_at }}</td>
 				<?php if ($certReq->status == 'Pending') { ?>
 					<td class="text-warning">{{ $certReq->status }}</td>
