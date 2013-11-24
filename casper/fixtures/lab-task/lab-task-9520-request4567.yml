@@ -1,0 +1,39 @@
+# Lab Task
+# Importer Name : Entrepreneur 5555
+# Requester : Entrepreneur 5555
+# Request ID : 4567
+# Status : Volume & Concentration Measurement
+---
+table: lab_tasks
+data:
+    id: 9520
+    # reference_id: WHAT IS REF ID
+    export_certificate_request_id: 4567
+    # In Web Form There Existed "Product Code", I assumed that one on Table lab_task_products store the code
+    status: "Volume & Concentration Measurement"
+    detail: "Dummy Detail"
+    dna_extraction_method: "Anti-Memetic Extraction"
+    gene_separation_method: "PRC"
+    endogenous: "I have no knowledge of gene so this is a dummy name"
+    transgene: "CaMV 35s Promoter"
+    created_at: '!!NOW!!'
+    updated_at: '!!NOW!!'
+    
+---
+table: lab_task_products
+data:
+    id: 1111
+    lab_task_id: 9520
+    product_code: 2323
+    product_name: "SCP-504"
+    measure: 58
+    volume: 68
+    start: "!!NOW!!"
+    finish: "!!NOW!!"
+    
+---
+table: lab_task_assignments
+data:
+    id: 1111
+    lab_task_id: 9520
+    assignee: "Dr.Clef"

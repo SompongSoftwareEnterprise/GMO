@@ -1,0 +1,65 @@
+# Certificate Request Form 111
+# Importer Name : Entrepreneur 5555
+# Requester : Entrepreneur 5555
+# Status : Passed
+---
+table: export_certificates_request
+data:
+    id: 2345
+    status: "Passed"
+    # reference_id: Who is this, Requester?
+    created_at: '!!NOW!!'
+    updated_at: '!!NOW!!'
+    # owner_id:  Who is this, Importer?
+    # signer_id: Who is this, Lab Head?
+---
+table: export_certificate_request_forms # (1-1/1)
+data:
+    id: 8010
+    export_certificate_request_id: 2345
+    manufactory_name: "Andromeda Biotech Corporation"
+    manufactory_address1: "90/55, Moo 5"
+    manufactory_address2: "San Klang"
+    manufactory_city: "San Kamphaeng"
+    manufactory_province: "Pathumthani"
+    manufactory_country: "Laos"
+    manufactory_zip: "50130"
+    manufactory_phone: "0843777777"
+    manufactory_fax: "0843778588"
+    warehouse_name: "Anomalous Object Warehouse"
+    warehouse_address1: "SCP Foundation, 53/50, Ngamwongwan 64"
+    warehouse_address2: "Lad Yao"
+    warehouse_city: "Jatujak"
+    warehouse_province: "Bangkok"
+    warehouse_country: "Thailand"
+    warehouse_zip: "10900"
+    warehouse_phone: "0843782000"
+    warehouse_fax: "0843772080"
+    purposes: "Research|Industry|Security"
+    contact_name: "Dr.Kondracki"
+    contact_phone: "024446585"
+    contact_email: "scp_k1145563656@Doj2VqhSe4k3D.net"
+    receiver_name: "Decommissioned Object Warehouse"
+    receiver_address1: "SCP Foundation, 724, SCP Foundation Building"
+    receiver_address2: "8th District, Kabul River"
+    receiver_city: "Jalalabad"
+    receiver_province: "Eastern Afghanistan"
+    receiver_country: "Afghanistan"
+    # receiver_zip: THERE EXISTED AN RECEIVER ZIP, BUT THE TABLE HAVE NO SUCH NAME
+    origin_of_plant: "Thailand"
+    timestamps: '!!NOW!!'
+    created_at: '!!NOW!!'
+    updated_at: '!!NOW!!'
+    status: "Passed"
+	
+---
+table: export_certificate_request_examples
+data:
+    id: 1
+    export_certificate_request_form_id: 8010
+    type_of_example: "Generic Tropical Tomato"
+    quantity: 5000
+    detail: "When a poor attempt at humor is made verbally within human hearing range of SCP-504's tomatoes, they instantly accelerate to a speed of at least 100 miles per hour"
+    created_at: '!!NOW!!'
+    updated_at: '!!NOW!!'
+	

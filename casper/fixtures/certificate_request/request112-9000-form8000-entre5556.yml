@@ -1,0 +1,19 @@
+---
+table: export_certificate_request_info_forms # (1-1/2)
+data:
+    id: 8000
+    export_certificate_request_id: 1234
+    common_name: "SCP-504"
+    vendor_or_consignee: "Decommissioned Object Cafeteria"
+    address1: "SCP Foundation, 724, SCP Foundation Building"
+    address2: "8th District, Kabul River"
+    city: "Jalalabad"
+    province: "Eastern Afghanistan"
+    country: "Afghanistan"
+    zip: "10900"
+    description_of_product: "SCP-504 'Critical Tomatoes' was reported to lost all of its anomality."
+    final_destination: "Afghanistan"
+    port_of_entry: "Thailand"
+    created_at: '!!NOW!!'
+    updated_at: '!!NOW!!'
+    status: 'Pending'

@@ -1,3 +1,4 @@
+# Entrepreneur without agency
 ---
 table: users
 data:
@@ -15,7 +16,7 @@ data:
     is_agency: 0
     is_company: 0
     first_name: DebugEntreB
-    last_name: EntreDebug
+    last_name: EntrenoAgency
     sex: F
     nationality: Immigrant
     date_of_birth: '1987-1-1'
