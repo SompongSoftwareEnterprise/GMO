@@ -19,8 +19,7 @@ class EntrepreneurRequestsController extends AbstractEntrepreneurController {
 		$searchBy = Input::get('search_by');
 		$searchInput = Input::get('search_input');
 		if($searchBy == 'request_id') {
-			$certReqs = CertificateRequest::join('entrepreneurs', 'owner_id', '=', 'entrepreneurs.user_id')
-																	->where('signer_id', '=', $this->entrepreneur->user_id)
+			$certReqs = CertificateRequest::with('owner','signer')->where('owner_id', '=', $this->entrepreneur->id)
 																	->where('reference_id','LIKE','%'.$searchInput.'%')	
 																	->get();
 			return View::make('requests/index')
@@ -29,17 +28,6 @@ class EntrepreneurRequestsController extends AbstractEntrepreneurController {
 					'certReqs' => $certReqs
 				));
 		}
-
-		// else if($searchBy == 'importer_name'){
-		// 	$certReqs = CertificateRequest::with('owner','signer')->where('owner')
-
-
-		// 	return View::make('requests/index')
-		// 		->with(array(
-		// 			'entrepreneur' => $this->entrepreneur,
-		// 			'certReqs' => $certReqs
-		// 		));
-		// }
 		else {
 			return View::make('requests/index')
 				->with(array(
