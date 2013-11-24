@@ -44,10 +44,17 @@ View Certificate Request
 		<tbody>
 			<?php $row = null; ?>
 			@foreach($certReqs as $certReq)
-				<?php if ($row === null)
-					$row = View::make('requests/table/row'); 
-				?>
-				{{ $row->with('certReq', $certReq); }}
+				<tr>
+					<td><a href="/entrepreneur/requests/{{ $certReq->reference_id }}">{{ $certReq->reference_id }}</a></td>
+					<td>{{ $certReq->first_name }} {{ $certReq->last_name }}</td>
+					<td>{{ $signer->first_name }} {{ $signer->last_name }}</td>
+					<td>{{ $certReq->created_at }}</td>
+					<?php if ($certReq->status == 'Pending') { ?>
+					<td class="text-warning">{{ $certReq->status }}</td>
+					<?php } else if ($certReq->status == 'Available') { ?>
+					<td class="text-success">{{ $certReq->status }}</td>
+					<?php } ?>
+				</tr>
 			@endforeach
 		</tbody>
 	</table>
