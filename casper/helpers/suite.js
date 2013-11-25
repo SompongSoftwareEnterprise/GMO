@@ -67,6 +67,15 @@ function CasperAPI(casper) {
 		casper.thenOpen(url(path))
 	}
 
+	api.clickTableLink = function(ref_id,message) {
+
+		api.step(message)
+		casper.then(function(ref_id) {
+			casper.clickLabel(ref_id,'a')
+		},ref_id)
+
+	}
+
 	api.assertTable = function(tableID, expected) {
 
 		var actual
