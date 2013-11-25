@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('title')
-Registration
+Lab Task
 @endsection
 
 @section('content')
