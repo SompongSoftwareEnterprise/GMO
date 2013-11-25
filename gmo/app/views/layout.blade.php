@@ -14,6 +14,8 @@
 
 <body>
 
+{{ View::make('debug') }}
+
 <img class="logo pull-center" src = "/assets/img/logo_gmo.png">
 
 <div class="container">
