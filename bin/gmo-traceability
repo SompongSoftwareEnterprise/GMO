@@ -1,0 +1,181 @@
+#!/usr/bin/env ruby
+
+require 'cgi'
+
+
+class Document
+
+	PATTERN = /uc\d+|ds\d+|tc\d+|ut\d+|issue\d+/i
+	
+	attr_reader :file, :id, :contents, :references
+
+	def self.get_id(name)
+		if name =~ /(tc\d+)[^\/]*\/(\d+)/
+			"#{$1}-#{$2}"
+		else
+			name.scan(PATTERN)[0]
+		end
+	end
+
+	def use_case?
+		@id && @id.start_with?('uc')
+	end
+	def design?
+		@id && @id.start_with?('ds')
+	end
+	def acceptance_test?
+		@id && @id.start_with?('tc')
+	end
+	def other?
+		![use_case?, design?, acceptance_test?].any?
+	end
+
+	def initialize(file)
+		@file = file
+		@id = self.class.get_id(file)
+		@contents = File.read(file)
+		@references = @contents.scan(PATTERN).select { |c| c != @id }
+	end
+
+	def to_s
+		"[#{@id}] #{@file}"
+	end
+
+end
+
+class Documents
+
+	attr_reader :children
+
+	include Enumerable
+
+	def applicable_files
+		Dir['/vagrant/use-cases/**/*.md'] +
+		Dir['/vagrant/designs/**/*.md'] +
+		Dir['/vagrant/test-cases/**/*.md']
+	end
+
+	def initialize
+		@documents = applicable_files.map { |file| Document.new(file) }
+		@children = { }
+		other_docs.each do |doc|
+			add_children(doc, doc)
+		end
+	end
+
+	def [](id)
+		@documents.find { |doc| doc.id == id }
+	end
+
+	def add_children(doc, current)
+		if current.use_case?
+			(@children[current.id] ||= []) << doc
+		else
+			current.references.each do |ref|
+				add_children(doc, self[ref])
+			end
+		end
+	end
+
+	def each(&block)
+		@documents.each(&block)
+	end
+
+	def use_cases
+		select { |doc| doc.use_case? }
+	end
+
+	def other_docs
+		select { |doc| doc.id && !doc.use_case? }
+	end
+
+end
+
+class TracabilityMatrixPrinter
+
+	def initialize(docs, out)
+		@docs = docs
+		@out = out
+	end
+
+	def puts(*what)
+		@out.puts(*what)
+	end
+
+	def print!
+
+		print_preamble!
+
+		puts "<table>"
+		puts "  <tr><th>Use Case<th>Design<th>Acceptance<br>Test<th>Others"
+
+		# separate the use cases from the other docs
+		printed = []
+		@docs.use_cases.each do |uc|
+			puts "  <tr>"
+			puts "    <td valign='top'>#{link_to uc}"
+			children = @docs.children[uc.id] || []
+			printed += children
+			print_row(children)
+		end
+
+		leftover = (@docs.other_docs - printed).select { |doc| doc.id }
+		if leftover.length > 0
+			puts "  <tr>"
+			puts "    <td valign='top'>(missing reference)"
+			print_row(leftover)
+		end
+
+		puts "</table>"
+
+	end
+
+	def print_row(list)
+
+		[:design?, :acceptance_test?, :other?].each do |type|
+			docs = list.select(&type).uniq
+			if docs.empty?
+				puts "    <td>"
+			else
+				puts "    <td valign='top'>"
+				docs.each do |doc|
+					puts "      #{link_to doc}#{doc != docs.last ? '<br>' : ''}"
+				end
+			end
+		end
+
+	end
+
+	def link_to(doc)
+		"<a href=\"#{doc.file.sub('/vagrant/', '../')}\">#{doc.id}</a>"
+	end
+
+	def print_preamble!
+		puts "Traceability Matrix"
+		puts "==================="
+		puts ""
+		puts "This traceability matrix lets you trace all the documents"
+		puts "back and forth from the requirements to the test cases."
+		puts ""
+	end
+
+end
+
+docs = Documents.new
+File.open('/vagrant/docs/traceability-matrix.md', 'w') do |io|
+	printer = TracabilityMatrixPrinter.new(docs, io)
+	printer.print!
+end
+
+
+
+
+
+
+
+
+
+
+
+
+

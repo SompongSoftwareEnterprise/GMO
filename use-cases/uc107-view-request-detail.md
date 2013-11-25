@@ -14,7 +14,7 @@ Subfunction
 
 Primary Actor
 -------------
-Entreprenuer
+Entrepreneur
 
 Trigger
 -------

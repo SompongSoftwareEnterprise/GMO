@@ -14,7 +14,7 @@ User goal
 
 Primary Actor
 -------------
-Any kind of user of the system
+Any User
 
 Trigger
 -------

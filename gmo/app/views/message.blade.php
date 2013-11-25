@@ -38,9 +38,13 @@
 		</div>
 		
 		<br><br><br>
-		
+
 	</div>
-	
+
 </div>
+
+@if (isset($extraHtml))
+	{{$extraHtml}}
+@endif
 
 @endsection
