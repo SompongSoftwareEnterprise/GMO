@@ -7,7 +7,7 @@ class Document
 
 	PATTERN = /uc\d+|ds\d+|tc\d+|ut\d+|issue\d+/i
 	
-	attr_reader :file, :id, :contents, :references
+	attr_reader :file, :contents, :references
 
 	def self.get_id(name)
 		if name =~ /(tc\d+)[^\/]*\/(\d+)/
@@ -17,17 +17,32 @@ class Document
 		end
 	end
 
+	def id
+		@id
+	end
 	def use_case?
-		@id && @id.start_with?('uc')
+		id && id.start_with?('uc')
 	end
 	def design?
-		@id && @id.start_with?('ds')
+		id && id.start_with?('ds')
 	end
 	def acceptance_test?
-		@id && @id.start_with?('tc')
+		id && id.start_with?('tc')
 	end
+
 	def other?
 		![use_case?, design?, acceptance_test?].any?
+	end
+
+	def type
+		return :use_case if use_case?
+		return :design if design?
+		return :acceptance_test if acceptance_test?
+		return :other if other?
+	end
+
+	def href
+		file.sub('/vagrant/', '../')
 	end
 
 	def initialize(file)
@@ -91,10 +106,57 @@ class Documents
 
 end
 
+class UserDocSection
+
+	attr_reader :href, :section, :references, :id
+
+	def initialize(href, section, section_number, references)
+		@href = href
+		@section = section
+		@references = references
+		@id = section_number
+	end
+
+	def type
+		:userdoc
+	end
+
+	def href
+		@href
+	end
+
+end
+
+class UserDocSections
+
+	def initialize
+		@sections = []
+		files = Dir['/vagrant/docs/userdoc/**/*.md']
+		files.each do |file|
+			data = File.read(file)
+			data.scan(/^(?:#* )?(([\d\.]+).*)<xref id="([^"]+)/) do
+				section_number = $2
+				section_name = $1
+				xref = $3
+				slug = "#{section_name.downcase.gsub('.', '').gsub(/[^\w]+/, '-')}"
+				href = "userdoc/#{File.basename(file)}##{slug}"
+				@sections << UserDocSection.new(href, slug, section_number, [xref])
+			end
+		end
+	end
+
+	def for(id)
+		@sections.select { |doc| doc.references.include? id }
+	end
+
+end
+
+
 class TracabilityMatrixPrinter
 
-	def initialize(docs, out)
+	def initialize(docs, userdocs, out)
 		@docs = docs
+		@userdocs = userdocs
 		@out = out
 	end
 
@@ -107,7 +169,7 @@ class TracabilityMatrixPrinter
 		print_preamble!
 
 		puts "<table>"
-		puts "  <tr><th>Use Case<th>Design<th>Acceptance<br>Test<th>Others"
+		puts "  <tr><th>Use Case<th>Design<th>Acceptance<br>Test<th>User<br>Documentation<th>Others"
 
 		# separate the use cases from the other docs
 		printed = []
@@ -115,6 +177,7 @@ class TracabilityMatrixPrinter
 			puts "  <tr>"
 			puts "    <td valign='top'>#{link_to uc}"
 			children = @docs.children[uc.id] || []
+			children += @userdocs.for(uc.id)
 			printed += children
 			print_row(children)
 		end
@@ -132,8 +195,8 @@ class TracabilityMatrixPrinter
 
 	def print_row(list)
 
-		[:design?, :acceptance_test?, :other?].each do |type|
-			docs = list.select(&type).uniq
+		[:design, :acceptance_test, :userdoc, :other].each do |type|
+			docs = list.select { |doc| doc.type == type }.uniq
 			if docs.empty?
 				puts "    <td>"
 			else
@@ -147,7 +210,7 @@ class TracabilityMatrixPrinter
 	end
 
 	def link_to(doc)
-		"<a href=\"#{doc.file.sub('/vagrant/', '../')}\">#{doc.id}</a>"
+		"<a href=\"#{doc.href}\">#{doc.id}</a>"
 	end
 
 	def print_preamble!
@@ -162,8 +225,9 @@ class TracabilityMatrixPrinter
 end
 
 docs = Documents.new
+userdocs = UserDocSections.new
 File.open('/vagrant/docs/traceability-matrix.md', 'w') do |io|
-	printer = TracabilityMatrixPrinter.new(docs, io)
+	printer = TracabilityMatrixPrinter.new(docs, userdocs, io)
 	printer.print!
 end
 
