@@ -47,7 +47,21 @@ class EntrepreneurAccountController extends AbstractEntrepreneurController {
 	}
 
 	public function saveAccount(){
-		$validator = Validator::make(Input::all(), Entrepreneur::getValidationRules());
+
+		$rules = Entrepreneur::getValidationRules();
+		
+		// validate old password
+		$rules += array(
+			// a validation rule to check old password.
+			// the code is in "gmo/app/validators.php".
+			'old_password' => 'old_password:' . $this->entrepreneur->user->password_salt . ',' . $this->entrepreneur->user->password_hash,
+			'password' => 'confirmed'
+		);
+
+		unset($rules['first_name']);
+		unset($rules['last_name']);
+
+		$validator = Validator::make(Input::all(), $rules);
 
 		// $user = this->getUser(1);
 
@@ -58,9 +72,7 @@ class EntrepreneurAccountController extends AbstractEntrepreneurController {
 				->withInput();
 		}
 
-		print_r(Input::all());
 		$id = $this->entrepreneur['id'];
-		echo "$id";
 		$this->entrepreneur['first_name'] = Input::get('first_name');
 		$this->entrepreneur['last_name'] = Input::get('last_name');
 		
@@ -83,10 +95,16 @@ class EntrepreneurAccountController extends AbstractEntrepreneurController {
 		// $entrepreneur->phone = $input['phone'];
 		$this->entrepreneur->save();
 
-		echo 'pass for sure';
+		if (Input::get('password')) {
+			$user = $this->entrepreneur->user;
+			$user->password_hash = Hasher::makeHash(Input::get('password'), $user->password_salt);
+			$user->save();
+		}
 
-		return View::make('account/update_account')
-				->with('status',true);
+
+		return MessageView::make('Your account information has been updated.',
+			'EntrepreneurAccountController@index', 'Finish')
+			->with('back', false);
 
 		// return Model::make('Entrepreneur')
 		// 	->with('entrepreneur',$entrepreneur);
