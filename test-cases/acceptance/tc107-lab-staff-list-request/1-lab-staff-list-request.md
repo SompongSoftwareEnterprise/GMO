@@ -18,11 +18,7 @@ Lab Staff
 
 ## Preconditions
 
-* Initial database data: [lab-task/lab-task-dna-extraction
- 			lab-task/lab-task-pending
- 			account/lab-account](../../../casper/fixtures/lab-task/lab-task-dna-extraction
- 			lab-task/lab-task-pending
- 			account/lab-account.yml)
+* Initial database data: [account/lab-account](../../../casper/fixtures/account/lab-account.yml)
 
 
 ## Test Procedure

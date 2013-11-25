@@ -1,5 +1,6 @@
 ---
 table: export_certificate_request_info_forms # (1-1/2)
+name: export_certificate_request_info_form # (1-1/2)
 data:
     id: 8000
     export_certificate_request_id: 1234

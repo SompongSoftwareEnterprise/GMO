@@ -2,7 +2,8 @@
 # Importer Name : Entrepreneur 5555
 # Requester : Agency 5556
 ---
-table: export_certificates_request
+table: export_certificate_requests
+name: my_export_certificate_request
 data:
     id: 1234
     status: "Pending"
@@ -13,6 +14,7 @@ data:
     signer_id: 5556
 ---
 table: export_certificate_request_forms # (1-1/1)
+name: my_export_certificate_request_form
 data:
     id: 8000
     export_certificate_request_id: 1234
@@ -53,6 +55,7 @@ data:
 	
 ---
 table: export_certificate_request_examples
+name: my_export_certificate_request_example
 data:
     id: 1
     export_certificate_request_form_id: 8000
