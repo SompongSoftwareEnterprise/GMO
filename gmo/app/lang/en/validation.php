@@ -69,6 +69,7 @@ return array(
 	"unique"           => "The :attribute has already been taken.",
 	"url"              => "The :attribute format is invalid.",
 	"phone"            => "The :attribute number must be in a correct phone number format.",
+	"old_password"            => "Old password is incorrect.",
 
 	/*
 	|--------------------------------------------------------------------------

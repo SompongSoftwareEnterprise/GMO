@@ -6,8 +6,13 @@ View Certificate Request
 
 @section('content')
 <div class="panel-body entrepreneur-page">
-
-	<form class="form-inline" role="search" name="searchForm" id="entrepreneur_requests_search_form">
+	{{ Form::open(array(
+			'action' => array('EntrepreneurRequestsController@search'),
+			'class' => 'form-inline',
+			'name' => 'searchForm',
+			'id' => 'entrepreneur_requests_search_form'
+		)) }}
+	<!-- <form class="form-inline" role="search" name="searchForm" id="entrepreneur_requests_search_form"> -->
 		<div class="form-group">
 			<label class="sr-only" for="searchInput">Search Input</label>
 			<input type="text" class="form-control" id="searchInput" placeholder="Enter search keyword.." name="search_input">
@@ -27,7 +32,8 @@ View Certificate Request
 		</div>
 
 		<button type="submit" id="entrepreneur_requests_search_button" class="btn btn-primary">Search</button>
-	</form>
+	<!-- </form> -->
+	{{Form::close()}}
 
 	<br>
 
@@ -38,8 +44,18 @@ View Certificate Request
 		<tbody>
 			<?php $row = null; ?>
 			@foreach($certReqs as $certReq)
-				<?php if ($row === null) $row = View::make('requests/table/row'); ?>
-				{{ $row->with('certReq', $certReq); }}
+				<tr>
+					<td><a href="/entrepreneur/requests/{{ $certReq->reference_id }}">{{ $certReq->reference_id }}</a></td>
+					<td>{{ $certReq->owner_first_name }} {{ $certReq->owner_last_name }}</td>
+					<td>{{ $certReq->signer_first_name }} {{ $certReq->signer_last_name }}</td>
+					<!-- <td>{{ $certReq->first_name }}</td> -->
+					<td>{{ $certReq->created_at }}</td>
+					<?php if ($certReq->status == 'Pending') { ?>
+					<td class="text-warning">{{ $certReq->status }}</td>
+					<?php } else if ($certReq->status == 'Available') { ?>
+					<td class="text-success">{{ $certReq->status }}</td>
+					<?php } ?>
+				</tr>
 			@endforeach
 		</tbody>
 	</table>

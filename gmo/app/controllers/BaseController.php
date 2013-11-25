@@ -60,6 +60,8 @@ class BaseController extends Controller {
 
 	public function __construct() {
 		$this->entrepreneur = $this->getCurrentEntrepreneur();
+		$this->user = $this->getCurrentUser();
+		View::share('user_name', $this->user ? $this->user->name : 'Guest');
 		$this->beforeFilter(function() {
 			return $this->checkLogin();
 		});

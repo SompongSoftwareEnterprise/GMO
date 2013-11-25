@@ -15,7 +15,7 @@ $(function() {
 	function updateSearchBy() {
 		var $this = $(this)
 		var value = $this.val()
-		var text = 'Action'
+		var text = 'Search by ...'
 		$('#entrepreneur_requests_search_form [data-set-input="search_by=' + value + '"]').each(function() {
 			text = $(this).text()
 		})

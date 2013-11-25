@@ -1,0 +1,19 @@
+
+
+#sompong-debugger-menu {
+	position: fixed;
+	top: 0; right: 40px;
+	z-index: 100000;
+}
+
+#sompong-debugger {
+	position: fixed;
+	top: 40px; right: 40px;
+	z-index: 100000;
+}
+
+.debug-button {
+	background: black;
+	border-color: #999;
+	color: white;
+}
