@@ -1,6 +1,7 @@
 # Agency linked with no one
 ---
 table: users
+name: my_user
 data:
     id: 5557
     username: agen2
@@ -10,6 +11,7 @@ data:
 
 ---
 table: entrepreneurs
+name: my_entrepreneur
 data:
     id: 3
     user_id: 5557

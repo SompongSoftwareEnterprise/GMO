@@ -1,5 +1,6 @@
 ---
 table: users
+name: my_user
 data:
     id: 7777
     username: "lab"

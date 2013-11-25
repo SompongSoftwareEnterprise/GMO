@@ -5,6 +5,7 @@
 # Status : Gene Analysis
 ---
 table: lab_tasks
+name: my_lab_task
 data:
     id: 9530
     reference_id: 5553
@@ -21,6 +22,7 @@ data:
     
 ---
 table: lab_task_products
+name: my_lab_task_product
 data:
     id: 1111
     lab_task_id: 9530
@@ -33,6 +35,7 @@ data:
     
 ---
 table: lab_task_assignments
+name: my_lab_task_assignment
 data:
     id: 1111
     lab_task_id: 9530
