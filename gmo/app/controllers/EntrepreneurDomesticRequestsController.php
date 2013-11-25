@@ -37,7 +37,7 @@ class EntrepreneurDomesticRequestsController extends AbstractEntrepreneurControl
 		}
 		
         // $certReq->owner_id = $entrepreneur->id;
-		$certReq->signer_id = $entrepreneur->id;
+		$certReq->signer_id = $entrepreneur->user_id;
     
 
 		$certReqFormValidator = Validator::make(Input::all(), DomesticCertificateRequestForm::getValidationRules());
@@ -57,7 +57,12 @@ class EntrepreneurDomesticRequestsController extends AbstractEntrepreneurControl
 		// 		->withInput();
 		// }
 
-
+        if ($entrepreneur->is_agency == 1) {
+			$certReqForm->owner_id = Input::get('owner_id');
+		}
+		else {
+			$certReqForm->owner_id = $entrepreneur->user_id;
+		}
 //        $certReqForm->rep_of = Input::get('rep_of');
         $certReqForm->company_th = Input::get('company_th');
         $certReqForm->address_th = Input::get('address_th');
@@ -80,7 +85,9 @@ class EntrepreneurDomesticRequestsController extends AbstractEntrepreneurControl
 
 		// $certReqForm->status = 'Available';
         $certReq->save();
-        $certReqForm->domestic_certificate_request_id = $certReq->id;
+        
+//        $certReqForm->domestic_certificate_request_id = $certReq->id;
+        $certReqForm->domestic_certificate_request_id = $certReq->reference_id;
         
         // example 
 		foreach (Input::all() as $k => $v) {
@@ -90,7 +97,7 @@ class EntrepreneurDomesticRequestsController extends AbstractEntrepreneurControl
 				
 				$certExample = new DomesticCertificateRequestExample;
 				
-				$certExample->domestic_certificate_request_id = $certReq->id;
+				$certExample->domestic_certificate_request_id = $certReq->reference_id;
 				$certExample->plant_name_th = Input::get('plant_name_th_' . $number);
 				$certExample->plant_name_eng = Input::get('plant_name_eng_' . $number);
 				$certExample->plant_name_sci = Input::get('plant_name_sci_' . $number);
