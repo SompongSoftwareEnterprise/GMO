@@ -41,10 +41,17 @@ Low Level Design
 | ------------------------- | ----------------------| --------------------- |
 | Domestic Request Form     | #dmt-req-form         |                       |
 | Representative Of         | #rep-of               | rep_of                |
-| Company Name (Thai)       | #company-th           | company_th            |
-| Company Address (Thai)    | #address-th           | address_th            |
-| Company Name (Eng)        | #company-eng          | company_eng           |
-| Company Address (Eng)     | #address-eng          | address_eng           |
+| Company Name (TH)         | #company-th           | company_th            |
+| Address Line 1 (TH)       | #address-th           | address_th            |
+| Address Line 2 (TH)       | #address-th2          | address_th2           |
+| City (TH)                 | #city-th              | city_th               |
+| Province (TH)             | #province-th          | province_th           |
+| Company Name (Eng)        | #company-en           | company_en            |
+| Address Line 1 (Eng)      | #address-en           | address_en            |
+| Address Line 2 (Eng)      | #address-en2          | address_en2           |
+| City (Eng)                | #city-en              | city_en               |
+| Province (Eng)            | #province-en          | province_en           |
+| Zip code                  | #zip                  | zip                   |
 | Purpose                   | #purpose              | purpose               |
 | Contact Name              | #contact-name         | contact-name          |
 | Contact Number            | #contact-number       | contact-number        |
