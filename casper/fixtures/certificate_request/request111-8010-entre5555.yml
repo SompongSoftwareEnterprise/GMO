@@ -7,11 +7,11 @@ table: export_certificates_request
 data:
     id: 2345
     status: "Passed"
-    # reference_id: Who is this, Requester?
+    reference_id: 5562
     created_at: '!!NOW!!'
     updated_at: '!!NOW!!'
-    # owner_id:  Who is this, Importer?
-    # signer_id: Who is this, Lab Head?
+    owner_id:   5555
+    signer_id: 5555
 ---
 table: export_certificate_request_forms # (1-1/1)
 data:
