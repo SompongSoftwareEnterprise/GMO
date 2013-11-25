@@ -25,6 +25,9 @@ Entrepreneur
 | GET | /entrepreneur/account/agencies | EntrepreneurAgenciesController#agencies |
 | POST | /entrepreneur/account/agencies | EntrepreneurAgenciesController#createAgency |
 | POST | /entrepreneur/account/agencies/:id/delete | EntrepreneurAgenciesController#deleteAgency |
+| GET | /entrepreneur/dmt-requests/new | EntrepreneurDomesticRequestsController#newRequests |
+| POST | /entrepreneur/dmt-requests/:form_id | EntrepreneurDomesticRequestsController#create |
+| GET | /entrepreneur/dmt-requests/:id | EntrepreneurDomesticRequestsController#show |
 
 Staff
 -------------
