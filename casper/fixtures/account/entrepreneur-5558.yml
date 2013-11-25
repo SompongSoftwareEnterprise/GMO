@@ -1,6 +1,7 @@
 # Entrepreneur without agency
 ---
 table: users
+name: my_user
 data:
     id: 5558
     username: entre2
@@ -10,6 +11,7 @@ data:
 
 ---
 table: entrepreneurs
+name: my_entrepreneur
 data:
     id: 4
     user_id: 5558

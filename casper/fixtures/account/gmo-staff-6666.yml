@@ -2,6 +2,7 @@
 # register system
 ---
 table: users
+name: my_user
 data:
     id: 6666
     username: staff
