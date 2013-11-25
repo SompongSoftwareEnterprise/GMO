@@ -89,12 +89,12 @@ class String
 end
 
 def fixture_name(filename)
-	File.basename(filename, '.yml')
+	filename[0...-4]
 end
 
 Dir.chdir "/vagrant/casper/fixtures"
 
-available_files = Dir['*.yml']
+available_files = Dir['**/*.yml']
 
 def color(x)
 	"\e[#{x}m#{yield}\e[0m"
