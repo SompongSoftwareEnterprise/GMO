@@ -6,7 +6,7 @@ data:
     id: 5555
     username: entre1
     password: 'entrepassword'
-    name: DebugEntre1
+    name: DebugEntreA EntreDebug 
     role: Customer
 
 ---

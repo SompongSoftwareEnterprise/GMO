@@ -69,7 +69,6 @@ data:
     receiver_country: "Afghanistan"
     receiver_zip: "20202"
     origin_of_plant: "Thailand"
-    timestamps: '!!NOW!!'
 	
 ---
 table: export_certificate_request_examples
@@ -80,7 +79,6 @@ data:
     type_of_example: "Generic Tropical Tomato"
     quantity: 5000
     detail: "When a poor attempt at humor is made verbally within human hearing range of SCP-504's tomatoes, they instantly accelerate to a speed of at least 100 miles per hour"
-    timestamps: '!!NOW!!'
 	
 ---
 table: export_certificate_request_info_forms # (1-1/2)
@@ -99,4 +97,3 @@ data:
     description_of_product: "SCP-504 'Critical Tomatoes' was reported to lost all of its anomality."
     final_destination: "Afghanistan"
     port_of_entry: "Thailand"
-    timestamps: '!!NOW!!'

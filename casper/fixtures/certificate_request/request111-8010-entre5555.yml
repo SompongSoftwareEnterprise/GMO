@@ -3,7 +3,7 @@
 # Requester : Entrepreneur 5555
 # Status : Passed
 ---
-table: export_certificates_request
+table: export_certificate_requests
 name: my_export_certificate_request
 data:
     id: 2345
@@ -49,7 +49,6 @@ data:
     receiver_country: "Afghanistan"
     # receiver_zip: THERE EXISTED AN RECEIVER ZIP, BUT THE TABLE HAVE NO SUCH NAME
     origin_of_plant: "Thailand"
-    timestamps: '!!NOW!!'
     created_at: '!!NOW!!'
     updated_at: '!!NOW!!'
     status: "Passed"

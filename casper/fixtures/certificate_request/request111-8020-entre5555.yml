@@ -49,7 +49,6 @@ data:
     receiver_country: "Afghanistan"
     # receiver_zip: THERE EXISTED AN RECEIVER ZIP, BUT THE TABLE HAVE NO SUCH NAME
     origin_of_plant: "Thailand"
-    timestamps: '!!NOW!!'
     created_at: '!!NOW!!'
     updated_at: '!!NOW!!'
     status: "Failed"

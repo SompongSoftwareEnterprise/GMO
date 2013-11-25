@@ -6,7 +6,6 @@ var yaml = require('../../helpers/yaml')
  *
  * @actors  Entrepreneur
  * @fixture	account/entrepreneur-5555
- * @fixture	certificate_request/request111-8010-entre5555
  * @xref    uc105
  */
 
@@ -21,15 +20,6 @@ suite('Test that all certificate request data show correctly.', function(test) {
 
 	console.log( user.my_entrepreneur.data.first_name + ' ' + user.my_entrepreneur.data.last_name )
 
-	test.assertTable('table', [
-		{
-			'Request ID' :    certificate.my_export_certificate_request.data.reference_id,
-			'Importer' :  user.my_entrepreneur.data.first_name + ' ' + user.my_entrepreneur.data.last_name,
-			'Requester' :   user.my_entrepreneur.data.first_name + ' ' + user.my_entrepreneur.data.last_name,
-
-			'Sent Date' :    certificate.my_export_certificate_request.data.create_at ,
-			'Status' :     certificate.my_export_certificate_request.data.status
-		}
-	])
+	test.assertTable('table', [{}])
 
 })
