@@ -9,7 +9,7 @@ class CertificateRequestInfoForm extends Eloquent {
 			'common_name' => 'required',
 			'vendor_or_consignee' => 'required',
 			'address1' => 'required',
-			'address2' => 'required',
+			// 'address2' => 'required',
 			'city' => 'required',
 			'province' => 'required',
 			'country' => 'required',

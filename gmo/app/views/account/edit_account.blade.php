@@ -49,7 +49,7 @@ Edit Account Information
 		<div class="col-sm-offset-1 col-xs-5">
 			<div class="form-group">
 				{{ Form::label('old-password', 'Old Password') }}
-				{{ Form::password('old_password', null, array('class' => 'form-control', 'placeholder' => 'ex. ********')) }}
+				{{ Form::password('old_password', array('class' => 'form-control', 'placeholder' => 'ex. ********')) }}
 			</div>
 		</div>
 		
@@ -57,8 +57,8 @@ Edit Account Information
 <!-- TODO change type to password -->
 			<div class="form-group">
 				{{ Form::label('password', 'New Password') }}
-				{{ Form::password('password', null, array('class' => 'form-control', 'placeholder' => 'new password')) }}
-				{{ Form::password('password_confirmation', null, array('type' => 'password', 'class' => 'form-control', 'placeholder' => 'confirm password')) }}
+				{{ Form::password('password', array('class' => 'form-control', 'placeholder' => 'new password')) }}
+				{{ Form::password('password_confirmation', array('type' => 'password', 'class' => 'form-control', 'placeholder' => 'confirm password')) }}
 			</div>
 		</div>
 		

@@ -14,7 +14,7 @@ User goal
 
 Primary Actor
 -------------
-Entreprenuer
+Entrepreneur
 
 Trigger
 -------

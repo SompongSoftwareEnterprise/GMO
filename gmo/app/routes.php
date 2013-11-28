@@ -38,13 +38,12 @@ Route::get('/entrepreneur/account',    		'EntrepreneurAccountController@index');
 Route::get('/entrepreneur/edit_account', 'EntrepreneurAccountController@editAccount');
 Route::post('/entrepreneur/save_account', 'EntrepreneurAccountController@saveAccount');
 
-Route::get('/lab/labtasks', 'LabTaskController@index');
 Route::get('/lab', 'LabController@index');
 Route::get('/lab/task/{id}', 'LabController@show');
-Route::get('/lab/labtasks', 'LabController@index');
 
 // entrepreneur request
 Route::get('/entrepreneur', 'EntrepreneurRequestsController@index');
+Route::post('/entrepreneur/search', 'EntrepreneurRequestsController@search');
 // Route::get('/entrepreneur/requests/new', 'EntrepreneurRequestsController@newRequests');
 Route::get('/entrepreneur/requests/new', array(
 	'as' => 'entrepreneur.new',
@@ -66,6 +65,31 @@ Route::post('/entrepreneur/requests/{id}', array(
 	'as' => 'entrepreneur.requests.create.info',
 	'uses' => 'EntrepreneurRequestsController@createCertificateInfo'
 ));
+
+
+//domestic request
+Route::get('/entrepreneur/dmt-requests/new', array(
+    'as' => 'entrepreneur.dmt.new',
+    'uses' => 'EntrepreneurDomesticRequestsController@newRequests'
+));
+//Route::get('/entrepreneur/dmt-requests/new/{id}', array(
+//	'as' => 'entrepreneur.dmt.new.info',
+//	'uses' => 'EntrepreneurDomesticRequestsController@newRequestsInfo'
+//));
+Route::get('/entrepreneur/dmt-requests/{id}', array(
+	'as' => 'entrepreneur.dmt.requests.show',
+	'uses' => 'EntrepreneurDomesticRequestsController@show'
+));
+Route::post('/entrepreneur/dmt-requests', array(
+	'as' => 'entrepreneur.dmt.requests.create',
+	'uses' => 'EntrepreneurDomesticRequestsController@create'
+));
+Route::post('/entrepreneur/dmt-requests/{id}', array(
+	'as' => 'entrepreneur.dmt.requests.create.info',
+	'uses' => 'EntrepreneurDomesticRequestsController@createCertificateInfo'
+));
+    
+
 
 // gmo staff requests
 Route::get('/staff', 'StaffRequestsController@index');

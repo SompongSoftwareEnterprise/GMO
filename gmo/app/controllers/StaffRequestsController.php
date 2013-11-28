@@ -165,8 +165,8 @@ class StaffRequestsController extends BaseController {
 			$item = array(
 				'ID' => $request->id,
 				'Reference ID' => $request->reference_id,
-				'Plant Name' => $requestInfoFrom->common_name,
-				'Entrepreneur' => $entrepreneur->first_name,
+				'Plant Name' => $requestInfoFrom ? $requestInfoFrom->common_name : '-',
+				'Entrepreneur' => $entrepreneur ? $entrepreneur->first_name : '(missing)',
 				'Current Process' => $request->status
 			);
 			array_push($items, $item);

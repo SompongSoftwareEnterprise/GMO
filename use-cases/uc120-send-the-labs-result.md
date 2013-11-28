@@ -12,7 +12,7 @@ User goal
 
 Primary Actor
 -------------
-Head of lab staff
+Head of Lab
 
 Trigger
 -------
