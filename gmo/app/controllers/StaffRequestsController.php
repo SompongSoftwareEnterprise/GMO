@@ -5,12 +5,14 @@ class StaffRequestsController extends BaseController {
 	protected $requireGMOStaff = true;
 
 	public function index() {
-		$requests = CertificateRequest::all();
-		$tableData = $this->createRequestTableData($requests);
+		$request1_1 = CertificateRequest::all();
+		$request1_2 = DomesticCertificateRequest::all();
+		$tableData = $this->createRequestTableData($request1_1,$request1_2);
 		return View::make('staff_requests/index')->with('tableData',$tableData);
 	}
 
 	public function show($id) {
+
 		$data = $this->createRequestData($id);
 		return View::make('staff_requests/view_request_information')
 			->with('data', $data)
@@ -131,15 +133,16 @@ class StaffRequestsController extends BaseController {
 	private function createRequestData($id) {
 		$data = array('Request ID' => '', 'Importer Name' => '', 'Requester'=> '',
 			'Sent Date' => '', 'Status' => '', 'Invoice' => '', 'Receipt' => '');
-		$request = CertificateRequest::find($id);
+		$request = CertificateRequest::where('reference_id', '=', $id)->first();
+		if($request == null) $request =  DomesticCertificateRequest::where('reference_id', '=', $id)->first();
 		$data['ID'] = $request['id'];
 		$data['Reference ID'] = $request['reference_id'];
 
-		$importer = Entrepreneur::find($request['owner_id']);
-		$requester = Entrepreneur::find($request['signer_id']);
+		$importer = User::find($request['owner_id']);
+		$requester = User::find($request['signer_id']);
 
-		$data['Importer Name'] = $importer['first_name'];
-		$data['Requester'] = $requester['first_name'];
+		$data['Importer Name'] = $importer['name'];
+		$data['Requester'] = $requester['name'];
 		$data['Sent Date'] = $request['created_at'];
 		$data['Status'] = $request['status'];
 		$data['Invoice'] = 'Available';
@@ -157,20 +160,38 @@ class StaffRequestsController extends BaseController {
 
 	}
 
-	private function createRequestTableData($requests) {
+	private function createRequestTableData($request1_1, $request1_2) {
 		$items = array();
-		foreach ($requests as $request) {
-			$entrepreneur = Entrepreneur::find($request->owner_id);
+
+		// get request 1-1 data
+		foreach ($request1_1 as $request) {
+			$user = User::find($request->signer_id);
 			$requestInfoFrom = CertificateRequestInfoForm::where('export_certificate_request_id','=',$request->id)->first();
 			$item = array(
 				'ID' => $request->id,
 				'Reference ID' => $request->reference_id,
 				'Plant Name' => $requestInfoFrom ? $requestInfoFrom->common_name : '-',
-				'Entrepreneur' => $entrepreneur ? $entrepreneur->first_name : '(missing)',
+				'Entrepreneur' => $user ? $user->name : '(missing)',
 				'Current Process' => $request->status
 			);
 			array_push($items, $item);
 		}
+
+
+		// get request 1-2 data
+		foreach ($request1_2 as $request) {
+			$user = User::find($request->signer_id);
+			$requestInfoFrom = DomesticCertificateRequestForm::where('domestic_certificate_request_id','=',$request->id)->first();
+			$item = array(
+				'ID' => $request->id,
+				'Reference ID' => $request->reference_id,
+				'Plant Name' => '-',
+				'Entrepreneur' => $user ? $user->name : '(missing)',
+				'Current Process' => $request->status
+			);
+			array_push($items, $item);
+		}
+
 
 		return $items;
 	}
