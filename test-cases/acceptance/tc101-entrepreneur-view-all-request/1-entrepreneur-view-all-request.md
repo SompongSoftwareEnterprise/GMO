@@ -30,7 +30,7 @@ Entrepreneur
     * Entrepreneur-view-all-request page must be loaded.
     * Table must have 1 rows.
     * Table row #1 must have Request ID = 5562
-    * Table row #1 must have Importer Name = DebugEntreA EntreDebug
+    * Table row #1 must have Importer = DebugEntreA EntreDebug
     * Table row #1 must have Requester = DebugEntreA EntreDebug
     * Table row #1 must have Sent Date = undefined
     * Table row #1 must have Status = Passed
