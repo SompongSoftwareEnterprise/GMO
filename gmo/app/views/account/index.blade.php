@@ -121,7 +121,7 @@ Account Information
           </div>
         </div>
         <div class="text-right">
-          <a href="{{action('EntrepreneurAgenciesController@createAgencies', array('entrepreneurID' => $entrepreneur->user_id))}}" class="btn btn-primary">Add</a>
+          <a id = "add-agency"href="{{action('EntrepreneurAgenciesController@createAgencies', array('entrepreneurID' => $entrepreneur->user_id))}}" class="btn btn-primary">Add</a>
         </div>
       </div>
 

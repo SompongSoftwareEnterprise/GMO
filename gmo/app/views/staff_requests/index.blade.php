@@ -8,12 +8,14 @@ View Requests Information
 
 <div class="panel-body">
 	<table class="table table-bordered">
-		<tr class="header">
-			<th>Request ID</th>
-			<th>Plant Name</th>
-			<th>Entrepreneur</th>
-			<th>Status</th>
-		</tr>
+		<thead>
+				<tr class="header">
+					<th>Request ID</th>
+					<th>Plant Name</th>
+					<th>Entrepreneur</th>
+					<th>Status</th>
+				</tr>
+		</thead>
 
 
 		@if(count($tableData) == 0)

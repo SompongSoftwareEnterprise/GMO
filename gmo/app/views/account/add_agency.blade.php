@@ -6,7 +6,7 @@ Account Information
 
 @section('content')
 
-    <div class = "container">
+    <div id = "add-agency-page" class = "container">
 <!--      <form class = "inline-form text-center"> -->
         {{ Form::open(array('action' => 'EntrepreneurAgenciesController@createAgenciesBySearch', 'class' => 'form-inline text-right', 'value' => $agencyID) ) }}
               <input type ='hidden' name = 'customer_id' value = {{$entrepreneurID}} >
@@ -16,11 +16,11 @@ Account Information
           </div>
           @if($agencyID == null)
           <div class = "col-xs-3">
-            <input type = "text" name = "agency_id" class = "form-control" placeholder = "ex. 0000000001">
+            <input id = "agency-search-box" type = "text" name = "agency_id" class = "form-control" placeholder = "ex. 0000000001">
           </div>
           @else
           <div class = "col-xs-3">
-            <input type = "text" name = "agency_id" value = {{$agencyID}} class = "form-control" placeholder = "ex. 0000000001">
+            <input id = "agency-search-box" type = "text" name = "agency_id" value = {{$agencyID}} class = "form-control" placeholder = "ex. 0000000001">
           </div>
           @endif
 

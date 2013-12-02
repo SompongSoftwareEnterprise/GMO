@@ -1,5 +1,5 @@
-Test Plan: Test Add Agency
-===========================================
+Test Plan:  To make sure that the status of request is shown correctly.
+=======================================================================
 
 ## Purpose
 
@@ -18,20 +18,17 @@ Entrepreneur
 
 ## Preconditions
 
-* A entrepreneur is logged in.
-* Initial database data: Entrepreneur user data (without authorized agencies)
-* Initial database data: Agency user data
-
+* Initial database data: [account/agency-5556](../../../casper/fixtures/account/agency-5556.yml)
+* Initial database data: [account/entrepreneur-5558](../../../casper/fixtures/account/entrepreneur-5558.yml)
 
 
 ## Test Procedure
 
-1. Login as entrepreneuru
+1. Go to login page.
+2. Login with username="entre2" and password="entrepassword"
     * Must login successfully
-2. Go to AGENCY header to view all authorized agencies.
-   * Check that no agency is shown.
-3. Click Add Agency button
-   * Direct to the Add agency page correctly
-4. fill the id of desired agency, and then click search button.
-   * in case of unexisted agency id, text ,"Agency Id not found" apear
-   * otherwise, List of all information of desired agency correctly.
+    * Entrepreneur-view-all-request page must be loaded.
+3. Click AGENCY header
+    * Table must have 0 rows.
+
+
