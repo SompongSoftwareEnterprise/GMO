@@ -63,7 +63,7 @@ View Certificate Request
 	<br>
 
 	<a href="/entrepreneur/requests/new">
-		<button type="button" class="btn btn-default">Make New Request</button>
+		<button id="make-new-request-button" type="button" class="btn btn-default">Make New Request</button>
 	</a>
 
 </div>

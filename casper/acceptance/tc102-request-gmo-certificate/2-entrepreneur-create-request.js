@@ -2,16 +2,15 @@ var suite = require('../../helpers/suite')
 var yaml = require('../../helpers/yaml')
 
 /**
- * To make sure that the status of request is shown correctly.
+ * To make sure that the process to create certificate 1-1/2 is working correctly and request is saved to the DB.
  *
  * @actors  Entrepreneur
  * @fixture	account/entrepreneur-5555
  * @fixture	certificate_request/request111-8010-entre5555
- * @fixture	certificate_request/request112-9010-form8010-entre5555
- * @xref    uc107
+ * @xref    uc106
  */
 
-suite(' To make sure that the status of request is shown correctly.', function(test) {
+suite('To test that the process to create certificate 1-1/2 is working correctly and request is saved to the DB.', function(test) {
 
 	//In progress
 
@@ -24,17 +23,11 @@ suite(' To make sure that the status of request is shown correctly.', function(t
 
 	test.clickTableLink(certificate.my_export_certificate_request.data.reference_id ,"go to the request detail page of requset id: " + certificate.my_export_certificate_request.data.reference_id)
 
-	test.wait("#document_status","Request-detail page must be load")
+	test.clickTableLink('Complete this Document','Click this link to 1-1/2 request page')
 
-	
-	test.assertTable('#document_status', [
-		{
-			'Document' :    'สทช. 1-1/1',
-			'Status' :		'Available'
-		},
-		{
-			'Document' :    'สทช. 1-1/2',
-			'Status' :		'Available'
-		}
-	])
+	test.wait('#new-request-form','Create-Request-From page must be shown')
+
+	test.fillAndSubmit('#new-request-form','create-new-request-112','fill 1-1/2 form with the correct data')
+
+	test.wait('table','View-Request-Information page must be shown')
 })

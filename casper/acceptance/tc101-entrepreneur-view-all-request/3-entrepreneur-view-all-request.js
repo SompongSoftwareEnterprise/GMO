@@ -21,11 +21,19 @@ suite(' To make sure that the status of request is shown correctly.', function(t
 	test.login(user.my_user.data.username,user.my_user.data.password)
 	test.wait("table","Entrepreneur-view-all-request page must be loaded.")
 
-	console.log(certificate.my_export_certificate_request.data.reference_id)
-	//test.clickTableLink(certificate.my_export_certificate_request.data.reference_id ,"go to the request detail page of requset id: " + certificate.my_export_certificate_request.data.reference_id)
-	test.clickTableLink('5562',"go to the request detail page of requset id: " + certificate.my_export_certificate_request.data.reference_id)
+	test.clickTableLink(certificate.my_export_certificate_request.data.reference_id ,"go to the request detail page of requset id: " + certificate.my_export_certificate_request.data.reference_id)
 
-	test.wait("table","Request-detail page must be load")
+	test.wait("#document_status","Request-detail page must be load")
 
-
+	
+	test.assertTable('#document_status', [
+		{
+			'Document' :    'สทช. 1-1/1',
+			'Status' :		'Available'
+		},
+		{
+			'Document' :    'สทช. 1-1/2',
+			'Status' :		'Document Needed'
+		}
+	])
 })
