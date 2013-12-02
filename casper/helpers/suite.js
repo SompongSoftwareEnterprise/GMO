@@ -69,10 +69,11 @@ function CasperAPI(casper) {
 
 	api.clickTableLink = function(ref_id,message) {
 
+		//console.log(ref_id)
 		api.step(message)
-		casper.then(function(ref_id) {
+		casper.then(function() {
 			casper.clickLabel(ref_id,'a')
-		},ref_id)
+		})
 
 	}
 
