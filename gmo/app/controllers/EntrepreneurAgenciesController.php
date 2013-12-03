@@ -33,7 +33,8 @@ class EntrepreneurAgenciesController extends AbstractEntrepreneurController {
           $user = CustomerAgency::where('customer_id','=',$customerID)->where('agency_id','=',$agencyID)->first();
           print_r($user);
           $user->delete();
-          return Redirect::action('EntrepreneurAccountController@index');
+		  return Redirect::action('EntrepreneurAccountController@index')
+			  ->with('from_edit_page','true');
 
         }
 
@@ -73,7 +74,8 @@ class EntrepreneurAgenciesController extends AbstractEntrepreneurController {
               array('customer_id' => $customerID , 'agency_id' => $agencyID)
             );
           }
-          return Redirect::action('EntrepreneurAccountController@index');
+		  return Redirect::action('EntrepreneurAccountController@index')
+			  ->with('from_edit_page',true);
         }
 
 }
