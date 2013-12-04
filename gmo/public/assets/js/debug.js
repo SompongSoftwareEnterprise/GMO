@@ -1,20 +1,59 @@
 
 $(function() {
 
-autofill('Registration 1', '#register-form',
+void function(login) {
+	
+	login('Customer', 'user0001', 'passwordcustomer0001')
+	login('Agency', 'user0002', 'passwordagency0002')
+	login('GMO Staff', 'staff18473', 'passwordstaff18473')
+	login('Lab Staff', 'lab72812', 'passwordlab72812')
+
+}(function login(accountType, username, password) {
+
+	autofill('Login as ' + accountType, '#login-form',
+	{
+		"username": username,
+		"password": password,
+		"#login-form .btn.btn-primary.btn-lg": true
+	})
+
+})
+
+autofill('Registration Customer', '#register-form',
 {
-  "is_company": true,
-  "first_name": "Sompong Plant Company",
-  "country": "Thailand",
-  "address1": "123/45 Pizza Hut",
-  "address2": "Ngamvongvan Road",
-  "city": "Chatuchak",
-  "province": "Bangkok",
-  "zip": "11221",
-  "email": "sompongplant@sompongplant.co.th",
-  "phone": "also invalid phone",
-  "fax": "02-345-6780",
-  "mobile": "081-234-5678"
+	"is_company": false,
+	"first_name": "Sompong",
+	"last_name": "Somchai",
+	"input[type=radio][value='M']": true,
+	"date_of_birth__date": '22',
+	"date_of_birth__month": '4',
+	"date_of_birth__year": '2525',
+	"country": "Thailand",
+	"address1": "123/45 Pizza Hut",
+	"address2": "Ngamvongvan Road",
+	"city": "Chatuchak",
+	"province": "Bangkok",
+	"zip": "11221",
+	"email": "sompongsoftwarecustomer@mailinator.com",
+	"phone": "also invalid phone",
+	"fax": "02-345-6780",
+	"mobile": "081-234-5678"
+})
+
+autofill('Registration Agency', '#register-form',
+{
+	"is_company": true,
+	"first_name": "Colorful Plant Agencies, Inc.",
+	"country": "Thailand",
+	"address1": "123/46 Lolcode",
+	"address2": "Vibhavadi Road",
+	"city": "Chatuchak",
+	"province": "Bangkok",
+	"zip": "11223",
+	"email": "sompongsoftwareagency@mailinator.com",
+	"phone": "02-333-4444",
+	"fax": "02-345-6780",
+	"mobile": "081-234-5678"
 })
 
 autofill('Certificate Request 1', '#new-request-form',
@@ -107,7 +146,13 @@ function autofill(name, selector, data) {
 			inputs.forEach(function(input) {
 				var value = data[input.name]
 				frames.push(function() { input.focus(); })
-				if (input.type == 'checkbox') {
+				if (input.nodeName.toLowerCase() == 'button' ||
+					input.type == 'button' ||
+					input.type == 'submit') {
+					frames.push(function() {
+						input.click()
+					})
+				} else if (input.type == 'checkbox' || input.type == 'radio') {
 					frames.push(function() {
 						if (input.checked != value) input.click()
 					})
