@@ -23,8 +23,8 @@ class StaffRequestsController extends BaseController {
 		if($form == '11') {
 			$request = CertificateRequest::where('reference_id', '=', $id)->first();
 			$user = User::find($request->signer_id);
-			$form = CertificateRequestForm::where('reference_id', '=', $id)->first();
-			$example = CertificateRequestExample::where('reference_id', '=', $id)->get();
+			$form = CertificateRequestForm::where('export_certificate_request_id', '=', $id)->first();
+			$example = CertificateRequestExample::where('export_certificate_request_id', '=', $id)->get();
 			$entrepreneur = Entrepreneur::where('user_id', '=', $user['id'])->first();
 			return View::make('view-form-1-1-1')->with('entrepreneur',$entrepreneur)->with('ex_cert',$form)->with('example',$example);
 		}
