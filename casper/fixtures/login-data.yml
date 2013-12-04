@@ -4,32 +4,32 @@
 table: users
 data:
     id: 1
-    username: u1
-    password: p1
+    username: user0001
+    password: passwordcustomer0001
     name: I am a Customer
     role: Customer
 ---
 table: users
 data:
     id: 2
-    username: u2
-    password: p2
+    username: user0002
+    password: passwordagency0002
     name: I am an Agency
     role: Agency
 ---
 table: users
 data:
     id: 3
-    username: u3
-    password: p3
+    username: staff18473
+    password: passwordstaff18473
     name: I am a Staff
     role: GMO Staff
 ---
 table: users
 data:
     id: 4
-    username: u4
-    password: p4
+    username: lab72812
+    password: passwordlab72812
     name: I am a Lab Staff
     role: Lab Staff
 

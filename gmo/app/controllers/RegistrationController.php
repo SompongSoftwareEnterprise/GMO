@@ -1,5 +1,7 @@
 <?php
 
+use Mailgun\Mailgun;
+
 class RegistrationController extends BaseController {
 
 	protected $requireGMOStaff = true;
@@ -111,6 +113,19 @@ class RegistrationController extends BaseController {
 		$entrepreneur->user_id = $user->id;
 		$entrepreneur->save();
 
+		if ($entrepreneur->is_agency) {
+			$agency_th = <<<EMAIL
+Agency ID: {$user->id}
+* ผู้ประกอบการจะต้องใช้ Agency ID เพื่ออนุญาตให้คุณสามารถดำเนินการแทนผู้ประกอบการ
+EMAIL;
+			$agency_en = <<<EMAIL
+Agency ID: {$user->id}
+* A customer will use your Agency ID to grant you permission to work on their behalf.
+EMAIL;
+		} else {
+			$agency_th = $agency_en = '';
+		}
+
 		$message = <<<EMAIL
 Welcome to Department of Agriculture, $first_name  $last_name
 
@@ -118,6 +133,7 @@ Your account information :
 Username: $username
 Password: $password
 User Type: $role
+$agency_en
 
 Go to website click this link http://gmo.tsp.dt.in.th/
 
@@ -133,6 +149,7 @@ Go to website click this link http://gmo.tsp.dt.in.th/
 Username: $username
 Password: $password
 ประเภทผู้ใช้งาน คือ $role
+$agency_th
 
 ไปยังหน้าเวปไซท์ คลิกที่ link นี้ http://gmo.tsp.dt.in.th/
 
@@ -140,10 +157,19 @@ Password: $password
 ** หากมีคำถามใดๆ เกี่ยวกับการใช้งาน ขอเชิญติดต่อเราผ่านทาง หน้า FAQ ครับที่ http://gmo.tsp.dt.in.th/ หรือ โทร 084452356652334
 EMAIL;
 		
+		// This API key is for use in TSP Project only
+		// and will be reset after development has finished.
+		$mg = new Mailgun("key-6v-ukw5th6q7j5fftodmgie2y1rxza-5");
+		$mg->sendMessage("sandbox7761.mailgun.org", array(
+			'from' => 'gmo@sandbox7761.mailgun.org',
+			'to' => $email,
+			'subject' => 'GMO Registration Completed',
+			'text' => $message));
+		
 		return MessageView::make('The user has been successfully registered', 'RegistrationController@index', 'Finish')
 			->with('back', false)
-			->with('extraHtml', '<pre id="email-message" data-to="' . $email . '"><b>To: </b>' . $email . '<br>' .
-				htmlspecialchars($message) . '</pre>');
+			->with('extraHtml', '<pre id="email-message" data-to="' . $email . '"><b>Email Sent To: </b>' . $email .
+				'</pre>');
 		
 	}
 	

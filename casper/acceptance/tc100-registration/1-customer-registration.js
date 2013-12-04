@@ -28,7 +28,7 @@ suite('Test Register as Customer', function(test) {
 		'Complete the remaining/incorrect fields with the data from :name.')
 
 	test.wait('.message-box', 'A message box that the registration is complete must be shown.')
-	test.assertExists('#email-message[data-to="sompong@sompongplant.co.th"]', 'An email message must be sent to "sompong@sompongplant.co.th"')
+	test.assertExists('#email-message[data-to="sompongplant@mailinator.com"]', 'An email message must be sent to "sompongplant@mailinator.com"')
 	test.click('.message-primary-action', 'Click the finish button.')
 
 	test.wait('#register-customer', 'The user must be taken back to the register home page.')
