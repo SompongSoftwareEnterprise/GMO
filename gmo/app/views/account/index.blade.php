@@ -116,6 +116,18 @@ Account Information
                   </tr>
                 @endforeach
 
+                @if(empty($agencies))
+                  <tr class="info">
+                    <td colspan="2" class="text-center">
+						<br>
+						You do not have any agencies.<br><br>
+						<a class="btn btn-primary" href="{{action('EntrepreneurAgenciesController@createAgencies', array('entrepreneurID' => $entrepreneur->user_id))}}">Add Agency</a>
+						<br>
+						<br>
+					</td>
+                  </tr>
+				@endif
+
               </tbody>
             </table>
           </div>
