@@ -101,7 +101,7 @@ autofill('Certificate Request Example2', '#dmt-new-request-form',
     "plant_name_sci_ex2":   "ORYZA SATIVA",
     "cert_amount_ex2":      "1",
     "export_to_ex2":        "USA,EUROPE,ASIA",
-    "export_qty_ex1":       "50",
+    "export_qty_ex2":       "50",
     "export_val_ex2":       "Invalid export value",
 })
 
