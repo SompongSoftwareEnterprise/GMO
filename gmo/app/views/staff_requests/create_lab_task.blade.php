@@ -3,7 +3,7 @@
 View All Requests
 @endsection
 @section('content')
-{{Form::open(array('action' => array('StaffRequestsController@createLabTask', $id), 'class' => 'form-horizontal'))}}
+{{Form::open(array('action' => array('StaffRequestsController@createLabTask', $id), 'class' => 'form-horizontal', 'id' => 'create-lab-task-form'))}}
 <div class="panel-body ">
     <div class="row">
         <div class="col-xs-12">
