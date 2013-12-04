@@ -134,3 +134,9 @@ Route::get('/entrepreneur/account/{entrepreneurID}','EntrepreneurAgenciesControl
 Route::post('/entrepreneur/account/search','EntrepreneurAgenciesController@createAgenciesBySearch');
 Route::post('/entrepreneur/account/create','EntrepreneurAgenciesController@create');
 Route::post('/entrepreneur/account/delete','EntrepreneurAgenciesController@delete');
+
+//View & Upload Lab Task
+Route::get('/lab/test', 'LabController@viewLabResult');
+Route::post('/lab/test', 'LabController@uploadLabResult');
+Route::pattern('filename', '.+');
+Route::get('/lab/test/load/{filename}', 'LabController@downloadLabResult');
