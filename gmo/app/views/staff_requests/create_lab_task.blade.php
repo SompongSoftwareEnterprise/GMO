@@ -5,6 +5,9 @@ View All Requests
 @section('content')
 {{Form::open(array('action' => array('StaffRequestsController@createLabTask', $id), 'class' => 'form-horizontal', 'id' => 'create-lab-task-form'))}}
 <div class="panel-body ">
+
+    {{ View::make('errors_row') }}
+
     <div class="row">
         <div class="col-xs-12">
             <div class="bs-example bs-example-tabs">  
@@ -17,32 +20,36 @@ View All Requests
                         </div>
                         <br>
                         <!-- <form class="form-horizontal" role="form"> -->
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label for="productCode" class="col-xs-3 control-label">Product Code</label>
                                 <div class="col-xs-4">
                                     <input type="codeOfProduct" class="form-control" id="productCode" name="product_code" placeholder="ex. 111122223333">
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="form-group">
                                 <label for="productDetail" class="col-xs-3 control-label">Detail</label>
                                 <div class="col-xs-4">
+                                    <!-- {{ Form::text('product_detail') }} -->
                                     <input type="detailOfProduct" class="form-control" id="productDetail" name="product_detail" placeholder="ex. Product Detail">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="methodOfExtractinfDNA" class="col-xs-3 control-label">Medthod Of Extracting DNA</label>
                                 <div class="col-xs-4">
+
+                                    <!-- {{ Form::text('method_of_extractinf_DNA') }} -->
                                     <input type="methodOfExtractingDNA" class="form-control" id="methodOfExtractinfDNA" name="method_of_extractinf_DNA" placeholder="ex. Boiling method">
+                                    
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="detailOfAnalysis" class="col-xs-3 control-label">Method Of Seperating Gene</label>
                                 <div class="col-xs-8">
                                     <div class="checkbox">
-                                        <label> {{ Form::checkbox('transgene', 'PRC') }} PRC </label>
+                                        <label> {{ Form::checkbox('method_of_seperate_gene', 'PRC') }} PRC </label>
                                     </div>
                                     <div class="checkbox">
-                                         <label> {{ Form::checkbox('transgene', 'real_time') }} Real-time </label>
+                                         <label> {{ Form::checkbox('method_of_seperate_gene', 'real_time') }} Real-time </label>
                                     </div>
                                 </div>
                             </div>
@@ -190,7 +197,7 @@ View All Requests
                                         <button data-gmo-project="remove" type="button" class="btn btn-danger">Delete</button>
                                     </div>
                                     <div class="col-xs-2">
-                                        <button data-gmo-project="add" type="button" class="btn btn-primary text-left">Add Project</button>
+                                        <button data-gmo-project="add" type="button" class="btn btn-primary text-left">Add Product</button>
                                     </div>
                                 </div>
                             </div>

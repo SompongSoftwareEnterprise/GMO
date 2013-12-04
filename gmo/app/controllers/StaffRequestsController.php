@@ -56,10 +56,10 @@ class StaffRequestsController extends BaseController {
 		}
 
 		$receipt = 
-		Receipt::where('export_certificate_request_id', '=', $id)->first();
+		Receipt::where('request_reference_id', '=', $id)->first();
 		if( !(count($receipt) > 0) ){
 			$receipt = new Receipt;
-			$receipt->export_certificate_request_id = $id;
+			$receipt->request_reference_id = $id;
 			if($checkForm)
 				$receipt->price = 100+150;
 			else
@@ -80,22 +80,23 @@ class StaffRequestsController extends BaseController {
 		//Check Validator rules
 		$validator = Validator::make(Input::all(), LabTask::getValidationRules());
 		if ($validator->fails()) {
-			return Redirect::action('StaffRequestsController@newLabTask')
+			return Redirect::action('StaffRequestsController@newLabTask', $id)
 				->withErrors($validator)
 				->withInput();
 		}
-
 
 		//Save in database
 		$labTask = new labTask;
 		$labTask->reference_id = 'LT'.RunningNumber::increment('default');
 		$labTask->export_certificate_request_id = $id;
 		$labTask->status = 'Pending';
-		$labTask->product_code = Input::get('product_code');
+		// $labTask->product_code = Input::get('product_code');
 		$labTask->detail = Input::get('product_detail');
 		$labTask->dna_extraction_method = Input::get('method_of_extractinf_DNA');
-		$labTask->gene_separation_method = Input::get('gene', '');
-		$labTask->gene_of_analysis = Input::get('endogenous');
+
+		$labTask->gene_separation_method = Input::get('method_of_seperate_gene', '');
+		$labTask->endogenous = Input::get('endogenous');
+		// $labTask->gene_of_analysis = Input::get('endogenous');
 		$labTask->transgene = Input::get('transgene', '');
 		$labTask->save();
 
