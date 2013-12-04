@@ -32,7 +32,7 @@ View Requests Information
 				@elseif($data['Status'] == 'Failed')
 					<td class="text-danger">Failed</td>
 				@else
-					<td class="text-success">Passed</td>
+					<td class="text-success">{{$data['Status']}}</td>
 				@endif
 			</tr>
 		</tbody>
