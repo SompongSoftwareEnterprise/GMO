@@ -12,7 +12,9 @@ Account Information
 	<div class="col-sm-12">
 		<div class="bs-example bs-example-tabs">
 			<ul id="myTab" class="nav nav-tabs">
-				@if ($from_edit_page!=null)
+				@if ($entrepreneur->is_agency=='1')
+				<li class="active"><a href="#accountInformation" data-toggle="tab">Account information</a></li>
+				@elseif ($from_edit_page!=null)
 				<li><a href="#accountInformation" data-toggle="tab">Account information</a></li>
 				<li class="active"><a href="#agency" data-toggle="tab">Agency</a></li>
 				@else
@@ -102,6 +104,7 @@ Account Information
 			</div>
 
 
+@if($entrepreneur->is_agency=='0')
 
 			<!-- Agency tab -->
 			@if($from_edit_page != null)
@@ -149,6 +152,7 @@ Account Information
 					<a href="{{action('EntrepreneurAgenciesController@createAgencies', array('entrepreneurID' => $entrepreneur->user_id))}}" class="btn btn-primary">Add</a>
 				</div>
 			</div>
+@endif
 
 		</div>
 	</div>
