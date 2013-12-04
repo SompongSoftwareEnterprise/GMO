@@ -132,7 +132,7 @@ class StaffRequestsController extends BaseController {
 
 	private function createRequestData($id) {
 		$data = array('Request ID' => '', 'Importer Name' => '', 'Requester'=> '',
-			'Sent Date' => '', 'Status' => '', 'Invoice' => '', 'Receipt' => '', 'Request From' => '1');
+			'Sent Date' => '', 'Status' => '', 'Invoice' => '', 'Receipt' => '', 'Request From' => '1', 'Info From' => '');
 		$request = CertificateRequest::where('reference_id', '=', $id)->first();
 		$info = null;
 		if($request == null) {
@@ -142,6 +142,9 @@ class StaffRequestsController extends BaseController {
 		}
 		else {
 			$info = CertificateRequestInfoForm::where('export_certificate_request_id', '=', $request['reference_id'])->first();
+		}
+		if($info) {
+			$data['Info From'] = '2';
 		}
 		$data['ID'] = $request['id'];
 		$data['Reference ID'] = $request['reference_id'];

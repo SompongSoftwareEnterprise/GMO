@@ -82,11 +82,11 @@ View Requests Information
 
 					@else
 					<tr>
-						<td>สทช. 1-1/1(<a href="#">view</a>)</td>
+						<td>สทช. 1-2/1(<a href="#">view</a>)</td>
 						<td class="text-success">Available</td>
 					</tr>
 					<tr>
-						<td>สทช. 1-1/2(<a href="#">Download</a>) </td>
+						<td>สทช. 1-2/2(<a href="#">Download</a>) </td>
 						<td class="text-success">Available</td>
 					</tr>
 					<tr>						
