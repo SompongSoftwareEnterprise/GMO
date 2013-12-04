@@ -4,3 +4,4 @@
 *.swn
 .vagrant
 /scripts/vendor
+/gmo/public/uploads/
