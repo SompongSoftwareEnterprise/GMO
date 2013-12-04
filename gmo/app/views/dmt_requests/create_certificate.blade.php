@@ -9,7 +9,7 @@
     {{ View::make('errors_row') }}
 
     <div class="row">
-        {{ Form::open(array( 'action' => array('EntrepreneurDomesticRequestsController@create'), 'class' => 'form-horizontal', 'id' => 'new-request-form', )) }}
+        {{ Form::open(array( 'action' => array('EntrepreneurDomesticRequestsController@create'), 'class' => 'form-horizontal', 'id' => 'dmt-new-request-form', )) }}
         <div id="form_1" class="col-xs-12">
             <div class="panel panel-default">
                 <div class="panel-body text-left">
@@ -77,9 +77,9 @@
                             {{ Form::label('owner_id', 'Owner ID', array('class' => 'col-xs-3', 'control-label')) }}
                             <div class="col-xs-8">
                                 <select class="form-control" name="owner_id">
-                                    <option>Owner ID</option>
+                                    <option>Owner</option>
                                     <?php for($i = 0; $i < sizeof($customerAgency); $i++) { ?>
-                                        <option>{{ $customerAgency[$i]->customer_id }}</option>
+                                        <option value="{{ $customerAgency[$i]->customer_id }}">Owner ID {{ $customerAgency[$i]->customer_id }} - {{ $customerAgency[$i]->first_name }} {{ $customerAgency[$i]->last_name }}</option>
                                     <?php } ?>
                                 </select>
                             </div>
@@ -116,7 +116,7 @@
                             <!--<input type="text" class="form-control" name="manufactory_city" placeholder="Town/City">-->
                         </div>
                         <div class="col-xs-4 ">
-                            {{ Form::select('province_th', array('' => 'จังหวัด', 'Bangkok' => 'กรุงเทพมหานคร'), null, array('class' => 'form-control')) }}
+                            {{ Form::select('province_th', array('' => 'จังหวัด', 'กรุงเทพมหานคร' => 'กรุงเทพมหานคร'), null, array('class' => 'form-control')) }}
                             <!--<select class="form-control" name="manufactory_province">
 									<option>State/Province</option>
 									<option>Bangkok</option>
@@ -127,7 +127,7 @@
 
                     <div class="form-group">
                         <div class="col-sm-offset-3 col-xs-4">
-                            {{ Form::select('country_th', array( '' => 'ประเทศ', 'Thailand' => 'ไทย' ), null, array('class' => 'form-control')) }}
+                            {{ Form::select('country_th', array( '' => 'ประเทศ', 'ไทย' => 'ไทย' ), null, array('class' => 'form-control')) }}
                             <!--<select class="form-control" name="manufactory_country">
 									<option>Country</option>
 									<option>Thailand</option>

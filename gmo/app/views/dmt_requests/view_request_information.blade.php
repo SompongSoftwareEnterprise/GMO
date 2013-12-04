@@ -14,17 +14,16 @@ View Request Information
 		</thead>
 		<tbody>
 			<tr>
-				<td>{{ $certReq->reference_id }}</a></td>
-				<td>{{ $certReq->owner->fullName() }}</td>
-				<td>{{ $certReq->signer->fullName() }}</td>
-				<td>{{ $certReq->created_at }}</td>
-				<?php if ($certReq->status == 'Pending') { ?>
-					<td class="text-warning">{{ $certReq->status }}</td>
-				<?php } else if ($certReq->status == 'Available') { ?>
-					<td class="text-success">{{ $certReq->status }}</td>
+				<td>{{ $dmtCertReq->reference_id }}</a></td>
+				<td>{{ $owner['first_name'] }} {{ $owner['last_name'] }}</td>
+				<td>{{ $signer['first_name'] }} {{ $signer['last_name'] }}</td>
+				<td>{{ $dmtCertReq->created_at }}</td>
+				<?php if ($dmtCertReq->status == 'Pending') { ?>
+					<td class="text-warning">{{ $dmtCertReq->status }}</td>
+				<?php } else if ($dmtCertReq->status == 'Available') { ?>
+					<td class="text-success">{{ $dmtCertReq->status }}</td>
 				<?php } ?>
 			</tr>
-			<!-- {{ View::make('requests/table/row')->with('certReq', $certReq); }} -->
 		</tbody>
 	</table>
 	<br><br>
@@ -40,27 +39,13 @@ View Request Information
 				</thead>
 				<tbody>
 					<tr>
-						<?php if ($certReqForm->status == 'Pending') { ?>
-							<td>สทช. 1-1/1</td>
-							<td class="text-warning">{{ $certReqForm->status }}</td>
-						<?php } else if ($certReqForm->status == 'Available') { ?>
-							<td>สทช. 1-1/1 (<a href="#">Download</a>)</td>
-							<td class="text-success">{{ $certReqForm->status }}</td>
+						<?php if ($dmtCertReqForm->status == 'Pending') { ?>
+							<td>สทช. 1-2/1 & สทช. 1-2/2</td>
+							<td class="text-warning">{{ $dmtCertReqForm->status }}</td>
+						<?php } else if ($dmtCertReqForm->status == 'Available') { ?>
+							<td>สทช. 1-2/1 & สทช. 1-2/2 (<a href="#">View</a>)</td>
+							<td class="text-success">{{ $dmtCertReqForm->status }}</td>
 						<?php } ?>
-					</tr>
-					<tr>
-					<?php if ($certReqInfoForm != null) { ?>
-						<?php if ($certReqInfoForm->status == 'Pending') { ?>
-							<td>สทช. 1-1/2</td>
-							<td class="text-warning">{{ $certReqInfoForm->status }}</td>
-						<?php } else if ($certReqInfoForm->status == 'Available') { ?>
-							<td>สทช. 1-1/2 (<a href="#">Download)</a></td>
-							<td class="text-success">{{ $certReqInfoForm->status }}</td>
-						<?php } ?>
-					<?php } else { ?>
-						<td>สทช. 1-1/2 (<a href="{{ action('EntrepreneurRequestsController@newRequestsInfo', array($certReq->id)) }}">Complete this Document</a>)</td>
-						<td class="text-danger">Document Needed</td>
-					<?php } ?>
 					</tr>
 					<tr>
 						<td>Invoice</td>
@@ -70,7 +55,10 @@ View Request Information
 						<td>Receipt</td>
 						<td class="text-warning">Pending</td>
 					</tr>
-
+					<tr>
+						<td>Certificate</td>
+						<td class="text-warning">Pending</td>
+					</tr>
 				</tbody>
 			</table>
 		</div>
