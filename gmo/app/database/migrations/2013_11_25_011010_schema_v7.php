@@ -24,7 +24,9 @@ class SchemaV7 extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('domestic_certificate_request_forms');
+		Schema::table('domestic_certificate_request_forms', function($table) {
+		    $table->renameColumn('owner_id', 'rep_of');
+		});
 	}
 
 }

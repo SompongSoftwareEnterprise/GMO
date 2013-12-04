@@ -31,8 +31,17 @@ class SchemaV6 extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('domestic_certificate_request_forms');
-		Schema::drop('domestic_certificate_request_examples');
+		Schema::table('domestic_certificate_request_forms', function($table) {
+			$table->dropColumn('created_at');
+			$table->dropColumn('updated_at');
+		    $table->renameColumn('domestic_certificate_request_id', 'domestic_certificate_request');
+		});
+
+		Schema::table('domestic_certificate_request_examples', function($table) {
+			$table->dropColumn('created_at');
+			$table->dropColumn('updated_at');
+		    $table->renameColumn('domestic_certificate_request_id', 'domestic_certificate_request');
+		});
 	}
 
 }

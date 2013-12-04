@@ -21,7 +21,7 @@ class SchemaV5 extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('domestic_certificate_requests');
+		Schema::rename('domestic_certificate_requests', 'domestic_certificate_request');
 	}
 
 }
