@@ -15,8 +15,8 @@ View Request Information
 		<tbody>
 			<tr>
 				<td>{{ $certReq->reference_id }}</a></td>
-				<td>{{ $owner->first_name }} {{ $owner->last_name }}</td>
-				<td>{{ $signer->first_name }} {{ $signer->last_name }}</td>
+				<td>{{ $owner['first_name'] }} {{ $owner['last_name'] }}</td>
+				<td>{{ $signer['first_name'] }} {{ $signer['last_name'] }}</td>
 				<td>{{ $certReq->created_at }}</td>
 				<?php if ($certReq->status == 'Pending') { ?>
 					<td class="text-warning">{{ $certReq->status }}</td>
@@ -44,7 +44,7 @@ View Request Information
 							<td>สทช. 1-1/1</td>
 							<td class="text-warning">{{ $certReqForm->status }}</td>
 						<?php } else if ($certReqForm->status == 'Available') { ?>
-							<td>สทช. 1-1/1 (<a href="#">Download</a>)</td>
+							<td>สทช. 1-1/1 (<a href="#">View</a>)</td>
 							<td class="text-success">{{ $certReqForm->status }}</td>
 						<?php } ?>
 					</tr>
@@ -54,7 +54,7 @@ View Request Information
 							<td>สทช. 1-1/2</td>
 							<td class="text-warning">{{ $certReqInfoForm->status }}</td>
 						<?php } else if ($certReqInfoForm->status == 'Available') { ?>
-							<td>สทช. 1-1/2 (<a href="#">Download)</a></td>
+							<td>สทช. 1-1/2 (<a href="#">View)</a></td>
 							<td class="text-success">{{ $certReqInfoForm->status }}</td>
 						<?php } ?>
 					<?php } else { ?>
@@ -68,6 +68,10 @@ View Request Information
 					</tr>
 					<tr>
 						<td>Receipt</td>
+						<td class="text-warning">Pending</td>
+					</tr>
+					<tr>
+						<td>Certificate</td>
 						<td class="text-warning">Pending</td>
 					</tr>
 

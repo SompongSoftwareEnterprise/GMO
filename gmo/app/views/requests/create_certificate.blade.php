@@ -97,9 +97,10 @@ Create Certificate Request Form
 							{{ Form::label('owner_id', 'Owner ID', array('class' => 'col-xs-3', 'control-label')) }}
 							<div class="col-xs-8">
 								<select class="form-control" name="owner_id">
-									<option>Owner ID</option>
+									<option>Owner</option>
 									<?php for($i = 0; $i < sizeof($customerAgency); $i++) { ?>
-										<option>{{ $customerAgency[$i]->customer_id }}</option>
+										<!-- <option>{{ $customerAgency[$i]->customer_id }}</option> -->
+										<option value="{{ $customerAgency[$i]->customer_id }}">Owner ID {{ $customerAgency[$i]->customer_id }} - {{ $customerAgency[$i]->first_name }} {{ $customerAgency[$i]->last_name }}</option>
 									<?php } ?>
 								</select>
 							</div>

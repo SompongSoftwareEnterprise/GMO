@@ -9,8 +9,8 @@ class EntrepreneurDomesticRequestsController extends AbstractEntrepreneurControl
 	public function newRequests() {
 		if($this->entrepreneur->is_agency == 1){
 			$entrepreneur = $this->entrepreneur;
-			$customerAgency = CustomerAgency::where('agency_id','=',
-				$entrepreneur->user_id)->get();
+			$customerAgency = CustomerAgency::join('entrepreneurs as en', 'en.user_id', '=', 'customer_id')
+											->where('agency_id', '=', $entrepreneur->user_id)->get();
 			return View::make('dmt_requests/create_certificate')
 				->with(array(
 					'entrepreneur' => $this->entrepreneur,
@@ -26,7 +26,7 @@ class EntrepreneurDomesticRequestsController extends AbstractEntrepreneurControl
 	    $entrepreneur = $this->entrepreneur;
 	
 	    $certReq = new DomesticCertificateRequest;
-	    $certReq->status = 'Available'; 
+	    $certReq->status = 'Pending'; 
 		$certReq->reference_id = RunningNumber::increment('default');
 		
 		if ($entrepreneur->is_agency == 1) {
@@ -83,7 +83,7 @@ class EntrepreneurDomesticRequestsController extends AbstractEntrepreneurControl
 
 
 
-		// $certReqForm->status = 'Available';
+		$certReqForm->status = 'Available';
         $certReq->save();
         
 //        $certReqForm->domestic_certificate_request_id = $certReq->id;
@@ -111,19 +111,21 @@ class EntrepreneurDomesticRequestsController extends AbstractEntrepreneurControl
 
 		$certReqForm->save();
 
-		// return Redirect::action('EntrepreneurDomesticRequestsController@show', array($certReq->id));
+		return Redirect::action('EntrepreneurDomesticRequestsController@show', array($certReq->reference_id));
 	}
 
 
 	public function show($id) {
-		$certificateRequest = DomesticCertificateRequest::find($id);
-		$certificateRequestForm = DomesticCertificateRequestForm::where('export_certificate_request_id', '=', $id)->first(); 
-		// $certificateRequestInfoForm = CertificateRequestInfoForm::where('export_certificate_request_id', '=', $id)->first(); 
-		return View::make('requests/view_request_information')
-			->with(array('certReq' => $certificateRequest,
-						 'certReqForm' => $certificateRequestForm,
-						 'certReqInfoForm' => $certificateRequestInfoForm,
-						 'entrepreneur' => $this->entrepreneur));
+		$dmtCertificateRequest = DomesticCertificateRequest::where('reference_id', '=', $id)->first();
+		$owner = Entrepreneur::where('user_id', '=', $dmtCertificateRequest->owner_id)->first();
+		$signer = Entrepreneur::where('user_id', '=', $dmtCertificateRequest->signer_id)->first();
+		$dmtCertificateRequestForm = DomesticCertificateRequestForm::where('domestic_certificate_request_id', '=', $id)->first(); 
+		return View::make('dmt_requests/view_request_information')
+			->with(array('dmtCertReq' => $dmtCertificateRequest,
+						 'owner' => $owner,
+						 'signer' => $signer,
+						 'dmtCertReqForm' => $dmtCertificateRequestForm
+		));
 	}
 
 
