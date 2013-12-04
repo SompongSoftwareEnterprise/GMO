@@ -163,7 +163,7 @@ class StaffRequestsController extends BaseController {
 		}
 		
 
-		$receipt = Receipt::where('export_certificate_request_id','=',$request->id)->first();
+		$receipt = Receipt::where('request_reference_id','=',$request->id)->first();
 		if($receipt != null) {
 			$data['Receipt'] = $receipt['id'];
 		}
