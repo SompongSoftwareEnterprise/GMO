@@ -132,15 +132,16 @@ class StaffRequestsController extends BaseController {
 
 	private function createRequestData($id) {
 		$data = array('Request ID' => '', 'Importer Name' => '', 'Requester'=> '',
-			'Sent Date' => '', 'Status' => '', 'Invoice' => '', 'Receipt' => '', 'Request From' => '1' , 'Invoice ID' => '' , 'Receipt ID' => '');
+			'Sent Date' => '', 'Status' => '', 'Invoice' => '', 'Receipt' => '', 'Request From' => '1');
 		$request = CertificateRequest::where('reference_id', '=', $id)->first();
 		$info = null;
 		if($request == null) {
 			$data['Request From'] = '2';
 			$request =  DomesticCertificateRequest::where('reference_id', '=', $id)->first();
+			$info = DomesticCertificateRequestForm::where('domestic_certificate_request_id', '=', $request['reference_id'])->first();
 		}
 		else {
-			$info = CertificateRequestInfoForm::where('reference_id', '=', $request['reference_id'])->first();
+			$info = CertificateRequestInfoForm::where('export_certificate_request_id', '=', $request['reference_id'])->first();
 		}
 		$data['ID'] = $request['id'];
 		$data['Reference ID'] = $request['reference_id'];
@@ -154,26 +155,17 @@ class StaffRequestsController extends BaseController {
 		$data['Status'] = $request['status'];
 
 		$invoice = Invoice::where('request_reference_id', '=', $id)->first();
-		if($invoice == null) {
-			$data['Invoice'] = 'Pending';
-		}
-		else {
-			$data['Invoice'] = 'Available';
+		if($invoice != null) {
 			$data['Invoice ID'] = $invoice['id'];
 		}
 		
 
 		$receipt = Receipt::where('export_certificate_request_id','=',$request->id)->first();
-		if($receipt == null) {
-			$data['Receipt'] = 'Pending';
-		}
-		else {
-			$data['Receipt'] = 'Available';	
-			$data['Receipt ID'] = $receipt['id'];
+		if($receipt != null) {
+			$data['Receipt'] = $receipt['id'];
 		}
 
 		return $data;
-
 
 	}
 
