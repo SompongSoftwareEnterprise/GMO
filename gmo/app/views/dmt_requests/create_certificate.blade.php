@@ -116,7 +116,7 @@
                             <!--<input type="text" class="form-control" name="manufactory_city" placeholder="Town/City">-->
                         </div>
                         <div class="col-xs-4 ">
-                            {{ Form::select('province_th', array('' => 'จังหวัด', 'Bangkok' => 'กรุงเทพมหานคร'), null, array('class' => 'form-control')) }}
+                            {{ Form::select('province_th', array('' => 'จังหวัด', 'กรุงเทพมหานคร' => 'กรุงเทพมหานคร'), null, array('class' => 'form-control')) }}
                             <!--<select class="form-control" name="manufactory_province">
 									<option>State/Province</option>
 									<option>Bangkok</option>
@@ -127,7 +127,7 @@
 
                     <div class="form-group">
                         <div class="col-sm-offset-3 col-xs-4">
-                            {{ Form::select('country_th', array( '' => 'ประเทศ', 'Thailand' => 'ไทย' ), null, array('class' => 'form-control')) }}
+                            {{ Form::select('country_th', array( '' => 'ประเทศ', 'ไทย' => 'ไทย' ), null, array('class' => 'form-control')) }}
                             <!--<select class="form-control" name="manufactory_country">
 									<option>Country</option>
 									<option>Thailand</option>
