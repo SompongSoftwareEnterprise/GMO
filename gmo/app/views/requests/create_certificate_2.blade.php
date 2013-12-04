@@ -176,9 +176,10 @@ $id),
 							<!-- </label> -->
 							{{ Form::label('final_destination', 'Final Destination', array('class' => 'col-xs-3', 'control-label')) }}
 							<div class="col-xs-8">
-								{{ Form::select('port_of_entry', array(
+								{{ Form::select('final_destination', array(
 									'' => 'Country',
-									'Thailand' => 'Thailand'
+									'Thailand' => 'Thailand',
+									'China' => 'China',
 									), null, 
 									array('class' => 'form-control')) 
 								}}
@@ -196,12 +197,7 @@ $id),
 							{{ Form::label('port_of_entry', 'Port of Entry or Embarktion', array('class' => 'col-xs-3', 'control-label')) }}
 
 								<div class="col-xs-8">
-									{{ Form::select('final_destination', array(
-										'' => 'State/Province',
-										'Bangkok' => 'Bangkok'
-										), null, 
-										array('class' => 'form-control')) 
-									}}
+									{{ Form::text('port_of_entry', null, array('class' => 'form-control', 'placeholder' => 'ex. Port of China')) }}
 									<!-- <select class="form-control" id="portOfEntryOrEmbarktion" name="port_of_entry"> -->
 									<!-- 	<option>Country</option> -->
 									<!-- 	<option>Thailand</option> -->

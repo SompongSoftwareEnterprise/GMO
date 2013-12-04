@@ -57,7 +57,7 @@ autofill('Registration Agency', '#register-form',
 	"mobile": "081-234-5678"
 })
 
-autofill('Certificate Request 1', '#new-request-form',
+autofill('Certificate Request 1-1/1', '#new-request-form',
 {
 	"input[name='purpose[]'][value='Export']": true,
 	"input[name='purpose[]'][value='Research']": true,
@@ -102,6 +102,25 @@ autofill('Certificate Request 1', '#new-request-form',
     "example_quantity_ex2": "20000",
     "example_detail_ex2": "Many reports have been increasing velocity and lower joke tolerant",
 })
+
+autofill('Certificate Request 1-1/2', '#new-request-form',
+{
+	"common_name": "Coconut",
+	"vendor_or_consignee": "Sompong Plant Company, Inc.",
+	"address1": "The Saints Club, 3/2, 3rd Street",
+	"address2": "Saints District",
+	"city": "Steelport",
+	"province": "Bangkok",
+	"country": "Thailand",
+	"zip": "11022",
+	"description_of_product": "Juicy coconut juice is juicy and gives you great refreshment.",
+	"final_destination": "China",
+	"port_of_entry": "Qingdao Qianwan Container Terminal"
+})
+
+
+
+
 
 autofill('Domestic Certificate Request', '#dmt-new-request-form',
 {
