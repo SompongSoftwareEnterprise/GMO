@@ -134,9 +134,13 @@ class StaffRequestsController extends BaseController {
 		$data = array('Request ID' => '', 'Importer Name' => '', 'Requester'=> '',
 			'Sent Date' => '', 'Status' => '', 'Invoice' => '', 'Receipt' => '', 'Request From' => '1' , 'Invoice ID' => '' , 'Receipt ID' => '');
 		$request = CertificateRequest::where('reference_id', '=', $id)->first();
+		$info = null;
 		if($request == null) {
 			$data['Request From'] = '2';
 			$request =  DomesticCertificateRequest::where('reference_id', '=', $id)->first();
+		}
+		else {
+			$info = CertificateRequestInfoForm::where('reference_id', '=', $request['reference_id'])->first();
 		}
 		$data['ID'] = $request['id'];
 		$data['Reference ID'] = $request['reference_id'];

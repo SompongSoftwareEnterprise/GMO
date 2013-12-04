@@ -50,8 +50,9 @@ View Requests Information
 					</tr>
 				</thead>
 				<tbody>
+					@if($data['Request From'] == '1')
 					<tr>
-						<td>สทช. 1-1/1(<a href="#">Download</a>)</td>
+						<td>สทช. 1-1/1(<a href="#">view</a>)</td>
 						<td class="text-success">Available</td>
 					</tr>
 					<tr>
@@ -78,6 +79,37 @@ View Requests Information
 						@endif
 
 					</tr>
+
+					@else
+					<tr>
+						<td>สทช. 1-1/1(<a href="#">view</a>)</td>
+						<td class="text-success">Available</td>
+					</tr>
+					<tr>
+						<td>สทช. 1-1/2(<a href="#">Download</a>) </td>
+						<td class="text-success">Available</td>
+					</tr>
+					<tr>						
+						@if($data['Invoice'] == 'Pending')
+							<td>Invoice</td>
+							<td class="text-warning">Pending</td>
+						@else
+							<td>Invoice(<a href="#">Download</a>)</td>
+							<td class="text-success">Available</td>
+						@endif
+					</tr>
+					<tr>
+
+						@if($data['Receipt'] == 'Pending')
+							<td>Receipt</td>
+							<td class="text-warning">Pending</td>
+						@else
+							<td>Receipt(<a href="#">Download</a>)</td>
+							<td class="text-success">Available</td>
+						@endif
+
+					</tr>
+					@endif
 
 				</tbody>
 			</table>
