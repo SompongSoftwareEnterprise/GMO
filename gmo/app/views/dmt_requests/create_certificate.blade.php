@@ -9,7 +9,7 @@
     {{ View::make('errors_row') }}
 
     <div class="row">
-        {{ Form::open(array( 'action' => array('EntrepreneurDomesticRequestsController@create'), 'class' => 'form-horizontal', 'id' => 'new-request-form', )) }}
+        {{ Form::open(array( 'action' => array('EntrepreneurDomesticRequestsController@create'), 'class' => 'form-horizontal', 'id' => 'dmt-new-request-form', )) }}
         <div id="form_1" class="col-xs-12">
             <div class="panel panel-default">
                 <div class="panel-body text-left">

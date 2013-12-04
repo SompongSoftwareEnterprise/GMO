@@ -64,6 +64,47 @@ autofill('Certificate Request Example2', '#new-request-form',
     "example_detail_ex2": "Many reports have been increasing velocity and lower joke tolerant",
 })
 
+autofill('Domestic Certificate Request', '#dmt-new-request-form',
+{
+    "company_th":   "บริษัท สมศรีกระด้างภัณฑ์ จำกัด",
+    "address_th":   "55/5",
+    "address_th2":   "บ้านหนองอีแร้",
+    "city_th": "บางกระโทก",
+    "province_th": "กรุงเทพมหานคร",
+    "country_th": "ไทย",
+    "company_en":   "Somsri Hardware Enterprise",
+    "address_en":   "55/5",
+    "address_en2":   "Ban Nhong E Rae",
+    "city_en": "Bangkatok",
+    "province_en": "Bangkok",
+    "country_en": "Thailand",
+    "zip": "11200",
+    
+    "purpose":        "business",
+    "contact_name":    "Somsri",
+    "contact_number":  "02-444-4444",
+    
+    "plant_name_th_ex1":    "ข้าวหอมมะลิ",
+    "plant_name_eng_ex1":   "THAI HOM MALI RICE",
+    "plant_name_sci_ex1":   "ORYZA SATIVA",
+    "cert_amount_ex1":      "1",
+    "export_to_ex1":        "USA,EUROPE,ASIA",
+    "export_qty_ex1":       "20",
+    "export_val_ex1":       "500000",
+    
+})
+
+autofill('Certificate Request Example2', '#dmt-new-request-form',
+{
+    "plant_name_th_ex2":  "ข้าวขาว",
+    "plant_name_eng_ex2":   "THAI WHITE RICE",
+    "plant_name_sci_ex2":   "ORYZA SATIVA",
+    "cert_amount_ex2":      "1",
+    "export_to_ex2":        "USA,EUROPE,ASIA",
+    "export_qty_ex1":       "50",
+    "export_val_ex2":       "Invalid export value",
+})
+
 
 $('#sompong-debugger-menu button').click(function() {
 	$('#sompong-debugger').fadeToggle('fast')
