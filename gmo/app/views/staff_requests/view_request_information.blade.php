@@ -52,12 +52,12 @@ View Requests Information
 				<tbody>
 					@if($data['Request From'] == '1')
 					<tr>
-						<td>สทช. 1-1/1(<a href="#">View</a>)</td>
+						<td>สทช. 1-1/1(<a href="/staff/requests/view/11/{{$data['Reference ID']}}">View</a>)</td>
 						<td class="text-success">Available</td>
 					</tr>
 					<tr>
 						@if($data['Info From'] == 1)
-						<td>สทช. 1-1/2(<a href="#">View</a>) </td>
+						<td>สทช. 1-1/2(<a href="/staff/requests/view/12/{{$data['Reference ID']}}">View</a>) </td>
 						<td class="text-success">Available</td>
 						@else
 						<td>สทช. 1-1/2</td>
@@ -87,30 +87,35 @@ View Requests Information
 
 					@else
 					<tr>
-						<td>สทช. 1-2/1(<a href="#">view</a>)</td>
+						<td>สทช. 1-2/1(<a href="/staff/requests/view/21/{{$data['Reference ID']}}">View</a>)</td>
 						<td class="text-success">Available</td>
 					</tr>
 					<tr>
-						<td>สทช. 1-2/2(<a href="#">Download</a>) </td>
+						@if($data['Info From'] == 1)
+						<td>สทช. 1-2/2(<a href="/staff/requests/view/22/{{$data['Reference ID']}}">View</a>) </td>
 						<td class="text-success">Available</td>
+						@else
+						<td>สทช. 1-2/2</td>
+						<td class="text-warning">Pending</td>
+						@endif
 					</tr>
 					<tr>						
-						@if($data['Invoice'] == 'Pending')
+						@if($data['Invoice'] != '0')
+							<td>Invoice(<a href="#">View</a>)</td>
+							<td class="text-success">Available</td>
+						@else
 							<td>Invoice</td>
 							<td class="text-warning">Pending</td>
-						@else
-							<td>Invoice(<a href="#">Download</a>)</td>
-							<td class="text-success">Available</td>
 						@endif
 					</tr>
 					<tr>
 
-						@if($data['Receipt'] == 'Pending')
+						@if($data['Receipt'] != '0')
+							<td>Receipt(<a href="#">View</a>)</td>
+							<td class="text-success">Available</td>
+						@else
 							<td>Receipt</td>
 							<td class="text-warning">Pending</td>
-						@else
-							<td>Receipt(<a href="#">Download</a>)</td>
-							<td class="text-success">Available</td>
 						@endif
 
 					</tr>

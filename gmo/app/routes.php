@@ -140,3 +140,7 @@ Route::get('/lab/test', 'LabController@viewLabResult');
 Route::post('/lab/test', 'LabController@uploadLabResult');
 Route::pattern('filename', '.+');
 Route::get('/lab/test/load/{filename}', 'LabController@downloadLabResult');
+
+Route::get('/staff/requests/view/{form}/{id}', 'StaffRequestsController@view');
+
+
