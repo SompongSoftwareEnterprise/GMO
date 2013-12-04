@@ -1,4 +1,5 @@
 
+/*global Promise*/
 $(function() {
 
 void function(login) {
@@ -94,12 +95,11 @@ autofill('Certificate Request 1', '#new-request-form',
 	"example_type_ex1": "Generic Tropical Tomato",
 	"example_quantity_ex1": "10000",
 	"example_detail_ex1": "Many reports have been emerged after de-classification of SCP-504 with",
-})
-
-autofill('Certificate Request Example2', '#new-request-form',
+	"[data-gmo-example=add]": true
+},
 {
-    "example_type_ex2": "Generic Tropical Tomato",
-    "example_quantity_ex2": "10000",
+    "example_type_ex2": "Generic Tropical Coconut",
+    "example_quantity_ex2": "20000",
     "example_detail_ex2": "Many reports have been increasing velocity and lower joke tolerant",
 })
 
@@ -149,26 +149,37 @@ $('#sompong-debugger-menu button').click(function() {
 	$('#sompong-debugger').fadeToggle('fast')
 })
 
-function autofill(name, selector, data) {
-	var form = document.querySelector(selector)
-	if (form) {
-		var button = $('<button class="btn btn-info btn-block"></button>')
-			.html('&nbsp; Fill <b>' + name + '</b> &nbsp;')
-			.appendTo('#sompong-debug-buttons')
-		button.click(function(e) {
+
+function addButton(text, actions) {
+	var button = $('<button class="btn btn-info btn-block"></button>')
+		.html('&nbsp; ' + text + ' &nbsp;')
+		.appendTo('#sompong-debug-buttons')
+	button.click(function(e) {
+		var promise = Promise.from(null)
+		actions.forEach(function(action) {
+			promise = promise.then(function() {
+				return action(e)
+			})
+		})
+	})
+	$('#sompong-debugger').fadeToggle('fast')
+}
+
+function autofillAction(form, data) {
+
+	return function(e) {
+
+		return new Promise(function(resolve, reject) {
 
 			var fast = e.shiftKey
-
-			$('#sompong-debugger').fadeToggle('fast')
 			var inputs = []
 
 			;(function() {
 				for (var i in data) {
 					var c = form[i]
-					if (!c) c = document.querySelector(i)
+					if (!c) c = $(i)[0]
 					if (c) inputs.push(c)
 				}
-				
 			})()
 
 			inputs.sort(function(a, b) {
@@ -179,7 +190,7 @@ function autofill(name, selector, data) {
 			})
 
 			var startY = window.scrollY
-			var finalY = $(inputs[inputs.length - 1]).offset().top - window.innerHeight + inputs[inputs.length - 1].offsetHeight + 96
+			var finalY = $(inputs[inputs.length - 1]).offset().top - window.innerHeight + inputs[inputs.length - 1].offsetHeight + window.innerHeight / 2
 			if (finalY < startY) finalY = startY
 
 			// gen animation
@@ -224,23 +235,35 @@ function autofill(name, selector, data) {
 			})()
 
 			// run animation
-			animate(0)
+			animate(0, 1 + Math.floor(frames.length / 60 / 4))
 
-			function animate(i) {
+			function animate(i, frameSkip) {
 				if (i < frames.length) {
 					frames[i]()
 					window.scrollBy(0, scrolling[i])
-					if (fast) {
-						animate(i + 1)
+					if (fast || i % frameSkip > 0) {
+						animate(i + 1, frameSkip)
 					} else {
 						setTimeout(function() {
-							animate(i + 1)
+							animate(i + 1, frameSkip)
 						}, 1000 / 60)
 					}
+				} else {
+					resolve()
 				}
 			}
-
 		})
+
+	}
+}
+
+function autofill(name, selector) {
+	var form = document.querySelector(selector)
+	var actions = [].slice.call(arguments, 2)
+	if (form) {
+		addButton('Fill <b>' + name + '</b>', actions.map(function(action) {
+			return (typeof action != 'function') ? autofillAction(form, action) : action
+		}))
 	}
 }
 	
