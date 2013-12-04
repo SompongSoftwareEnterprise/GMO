@@ -129,8 +129,8 @@ padding:0px 20px;
           box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
 }
 .navbar .open .dropdown-menu > li > a {
-  /*color: #333;*/
-  color:#fff;
+  color: #333;
+/*  color:#fff;*/
 }
 .navbar .open .dropdown-menu > li > a:hover,
 .navbar .open .dropdown-menu > li > a:focus,
