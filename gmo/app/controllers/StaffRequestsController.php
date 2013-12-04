@@ -29,6 +29,11 @@ class StaffRequestsController extends BaseController {
 			return View::make('view-form-1-1-1')->with('entrepreneur',$entrepreneur)->with('ex_cert',$form)->with('example',$example);
 		}
 		else if($form == '12') {
+			$request = CertificateRequest::where('reference_id', '=', $id)->first();
+			$user = User::find($request->signer_id);
+			$form = CertificateRequestInfoForm::where('export_certificate_request_id', '=', $id)->first();
+			$entrepreneur = Entrepreneur::where('user_id', '=', $user['id'])->first();
+			return View::make('view-form-1-1-2')->with('entrepreneur',$entrepreneur)->with('ex_cert_info',$form);
 
 		}
 		else if($form == '21') {

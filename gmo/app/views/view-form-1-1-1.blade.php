@@ -215,17 +215,17 @@
 										Example Detail # {{$i}}
 									</label>
 									<div class="col-xs-8  control-label">
-                                        {{$example['type_of_example']}}
+                                        {{$example[$i]['type_of_example']}}
 									</div>
 				        		</div>
                                 <div class="row">
 									<div class="col-sm-offset-3 col-xs-8  control-label">
-										 {{$example['detail']}}
+										 {{$example[$i]['detail']}}
 									</div>
 				        		</div>
                                 <div class="row">
 									<div class="col-sm-offset-3 col-xs-8  control-label">
-										 {{$example['quantity']}}
+										 {{$example[$i]['quantity']}}
 									</div>
 				        		</div>
 				        		
