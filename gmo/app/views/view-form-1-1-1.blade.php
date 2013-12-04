@@ -208,7 +208,6 @@
                                 <hr>
                                 
                                 @for ($i = 0; $i < sizeof($example); $i++)
-    The current value is {{ $i }}
 
                                 <div class="row">
 									<label class="col-xs-3 control-label text-right">
