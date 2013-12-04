@@ -25,7 +25,7 @@ Account Information
           @endif
 
           <div class = "col-xs-1">
-            <button id = "searchButton" class ="btn btn-primary"> Search </button>
+            <button id = "searchButton" type = "submit" class ="btn btn-primary"> Search </button>
           </div>
         </div>
       </form>
@@ -34,7 +34,7 @@ Account Information
       <br>
       <br>
       <hr>
-	  @if($agency == null)
+	  @if($agency == null && $agencyID != null)
 		<h3>Agency ID not found</h3>
       @elseif($agency != null)
 
