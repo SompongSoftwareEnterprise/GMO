@@ -1,25 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layout')
+@section('title') 
+    View Export Certificate Request Form
+@endsection 
+@section('content')
 
-<head>
-	<meta charset="utf-8">
-	<title>Bootstrap HTML Template // l2ollingneko </title>
-	<link href="bootstrap/css/bootstrap.css" rel="stylesheet">
-	<link href="common.css" rel="stylesheet">
-</head>
-
-<body>
-
-	<div class="container">
-    	<div class="panel panel-default">
-		    <div class="panel-heading">
-   				<h3 class="panel-title">Create Certificate</h3>
-				<ol class="breadcrumb" style="float: right; margin-top: -26px;">
-          			<li><a href="#">Home</a></li>
-          			<li><a href="#">Library</a></li>
-          			<li class="active">Data</li>
-				</ol>
-    		</div>
 
       		<div class="panel-body ">
 
@@ -28,13 +12,13 @@
 					<div id="certificateRequestForm1" class="col-xs-12">
 						<div class="panel panel-default">
 							<div class="panel-body text-left">
-								<h2>&nbsp;&nbsp;สทช 1-1/1</h2>
+								<h2 class="col-xs-offset-2">สทช 1-1/1</h2>
 								<div class="row" style="margin-top: 30px;">
 									<label class="col-xs-3 control-label text-right">
 										Name
 									</label>
 									<div class="col-xs-8  control-label">
-										Sompong Thepsoftware
+										 {{ $entrepreneur->first_name }} {{ $entrepreneur->last_name }}
 									</div>
 				        		</div>
 								<div class="row"> 
@@ -42,7 +26,8 @@
 										Nationality 
 									</label>
 									<div class="col-xs-8  control-label">
-										Thai 
+										
+										{{ $entrepreneur->nationality }} 
 									</div>
 				        		</div>
 								<div class="row"> 
@@ -50,24 +35,25 @@
 										Address 
 									</label>
 									<div class="col-xs-8  control-label">
-										795 Folsom Ave, Suite 600<br>
-				                		San Francisco, CA 94107<br>
+										{{ $entrepreneur->address1 }}<br>
+							            {{ $entrepreneur->address2 }}<br>
+							             {{ $entrepreneur->city }}, {{ $entrepreneur->province }}, {{ $entrepreneur->country }}, {{ $entrepreneur->zip }}<br>
 									</div>
 				        		</div>
 								<div class="row"> 
 									<label class="col-xs-3 control-label text-right">
-										Phone (ex. 0-2345-6789) 
+										Phone
 									</label>
 									<div class="col-xs-8  control-label">
-										0-2999-9999
+										{{ $entrepreneur->phone }}
 									</div>
 				        		</div>
 								<div class="row"> 
 									<label class="col-xs-3 control-label text-right">
-										Mobile Phone (ex. 0-2345-6789) 
+										Mobile Phone
 									</label>
 									<div class="col-xs-8  control-label">
-										08-0909-0909
+										{{ $entrepreneur->mobile }}
 									</div>
 				        		</div>
 								<div class="row"> 
@@ -75,7 +61,7 @@
 										Fax 
 									</label>
 									<div class="col-xs-8  control-label">
-										0-2999-9999
+										{{ $entrepreneur->fax }}
 									</div>
 				        		</div>
 								<hr>
@@ -84,37 +70,38 @@
 										Manufactory
 									</label>
 									<div class="col-xs-8  control-label">
-										Name (ex. Sompong Thepsoftware)
+										{{$ex_cert['manufactory_name']}}
 									</div>
 				        		</div>
                                 <div class="row">
 									<div class="col-sm-offset-3 col-xs-8  control-label">
-										Address Line 1
+										{{$ex_cert['manufactory_address1']}}
 									</div>
 				        		</div>
                                 <div class="row">
 									<div class="col-sm-offset-3 col-xs-8  control-label">
-										Address Line 2
+										{{$ex_cert['manufactory_address2']}}
 									</div>
 				        		</div>
                                 <div class="row">
 									<div class="col-sm-offset-3 col-xs-8  control-label">
-										Town/City, State/Province
+										{{$ex_cert['manufactory_city']}} ,                                                 {{$ex_cert['manufactory_province']}}
 									</div>
 				        		</div>
                                 <div class="row">
 									<div class="col-sm-offset-3 col-xs-8  control-label">
-										Country, Zip Code
+										{{$ex_cert['manufactory_country']}} ,
+										{{$ex_cert['manufactory_zip']}}
 									</div>
 				        		</div>
                                 <div class="row">
 									<div class="col-sm-offset-3 col-xs-8  control-label">
-										Phone:
+										{{$ex_cert['manufactory_phone']}}
 									</div>
 				        		</div>
                                 <div class="row">
 									<div class="col-sm-offset-3 col-xs-8  control-label">
-										Fax:
+										{{$ex_cert['manufactory_fax']}}
 									</div>
 				        		</div>
                                 <div class="row">
@@ -122,37 +109,39 @@
 										Warehouse
 									</label>
 									<div class="col-xs-8  control-label">
-										Name (ex. Bangkok Warehouse)
+										{{$ex_cert['warehouse_name']}}
 									</div>
 				        		</div>
                                 <div class="row">
 									<div class="col-sm-offset-3 col-xs-8  control-label">
-										Address Line 1
+										{{$ex_cert['warehouse_address1']}}
 									</div>
 				        		</div>
                                 <div class="row">
 									<div class="col-sm-offset-3 col-xs-8  control-label">
-										Address Line 2
+										{{$ex_cert['warehouse_address2']}}
 									</div>
 				        		</div>
                                 <div class="row">
 									<div class="col-sm-offset-3 col-xs-8  control-label">
-										Town/City, State/Province
+										{{$ex_cert['warehouse_city']}} ,
+								        {{$ex_cert['warehouse_province']}}
 									</div>
 				        		</div>
                                 <div class="row">
 									<div class="col-sm-offset-3 col-xs-8  control-label">
-										Country, Zip Code
+										{{$ex_cert['warehouse_country']}}, 
+										{{$ex_cert['warehouse_zip']}}
 									</div>
 				        		</div>
                                 <div class="row">
 									<div class="col-sm-offset-3 col-xs-8  control-label">
-										Phone:
+										{{$ex_cert['warehouse_phone']}}
 									</div>
 				        		</div>
                                 <div class="row">
 									<div class="col-sm-offset-3 col-xs-8  control-label">
-										Fax:
+										{{$ex_cert['warehouse_fax']}}
 									</div>
 				        		</div>
                                 <div class="row">
@@ -160,7 +149,7 @@
 										Purpose
 									</label>
 									<div class="col-xs-8  control-label">
-										ex. Export
+										{{$ex_cert['purposes']}}
 									</div>
 				        		</div>
                                 <div class="row">
@@ -168,12 +157,12 @@
 										Contact
 									</label>
 									<div class="col-xs-8  control-label">
-										Name (ex. Sompong Thepsoftware)
+										{{$ex_cert['contact_name']}}
 									</div>
 				        		</div>
                                 <div class="row">
 									<div class="col-sm-offset-3 col-xs-8  control-label">
-										Phone, E-mail
+										{{$ex_cert['contact_phone']}}, {{$ex_cert['contact_email']}}
 									</div>
 				        		</div>
                                 <div class="row">
@@ -181,65 +170,72 @@
 										Receiver
 									</label>
 									<div class="col-xs-8  control-label">
-										Name (ex. Sompong Thepsoftware)
+										{{$ex_cert['receiver_name']}}
 									</div>
 				        		</div>
                                 <div class="row">
 									<div class="col-sm-offset-3 col-xs-8  control-label">
-										Address Line 1
+										{{$ex_cert['receiver_address1']}}
 									</div>
 				        		</div>
                                 <div class="row">
 									<div class="col-sm-offset-3 col-xs-8  control-label">
-										Address Line 2
+										{{$ex_cert['receiver_address2']}}
 									</div>
 				        		</div>
                                 <div class="row">
 									<div class="col-sm-offset-3 col-xs-8  control-label">
-										Town/City, State/Province
+										{{$ex_cert['receiver_city']}} ,
+										{{$ex_cert['receiver_province']}}
 									</div>
 				        		</div>
                                 <div class="row">
 									<div class="col-sm-offset-3 col-xs-8  control-label">
-										Country, Zip Code
+										{{$ex_cert['receiver_country']}}, 
+										{{$ex_cert['receiver_zip']}}
 									</div>
 				        		</div>
                                 <div class="row">
-									<div class="col-sm-offset-3 col-xs-8  control-label">
+				        		    <label class="col-xs-3 control-label text-right">
 										Origin of plant
+									</label>
+									<div class="col-xs-8  control-label">
+										{{$ex_cert['orgin_of_plant']}}
 									</div>
+				        		
 				        		</div>
                                 <h3>&nbsp;&nbsp;Example</h3>
                                 <hr>
+                                
+                                @for ($i = 0; $i < sizeof($example); $i++)
+    The current value is {{ $i }}
+
                                 <div class="row">
 									<label class="col-xs-3 control-label text-right">
-										Example Detail #1
+										Example Detail # {{$i}}
 									</label>
 									<div class="col-xs-8  control-label">
-										Type of Example
+                                        {{$example['type_of_example']}}
 									</div>
 				        		</div>
                                 <div class="row">
 									<div class="col-sm-offset-3 col-xs-8  control-label">
-										Detail
+										 {{$example['detail']}}
 									</div>
 				        		</div>
                                 <div class="row">
 									<div class="col-sm-offset-3 col-xs-8  control-label">
-										Quantity
+										 {{$example['quantity']}}
 									</div>
 				        		</div>
+				        		
+				        		@endfor
+				        		
 							</div>
 						</div>
 					</div>
 				</div>
 
 			</div>
-		</div>
-	</div>
-
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="bootstrap/js/bootstrap.js"></script>
-
-</body>
-</html>
+			
+@endsection

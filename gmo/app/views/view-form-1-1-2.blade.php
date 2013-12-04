@@ -1,25 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-	<meta charset="utf-8">
-	<title>Bootstrap HTML Template // l2ollingneko </title>
-	<link href="bootstrap/css/bootstrap.css" rel="stylesheet">
-	<link href="common.css" rel="stylesheet">
-</head>
-
-<body>
-
-	<div class="container">
-    	<div class="panel panel-default">
-		    <div class="panel-heading">
-   				<h3 class="panel-title">Create Certificate</h3>
-				<ol class="breadcrumb" style="float: right; margin-top: -26px;">
-          			<li><a href="#">Home</a></li>
-          			<li><a href="#">Library</a></li>
-          			<li class="active">Data</li>
-				</ol>
-    		</div>
+@extends('layout')
+@section('title') 
+    View Export Certificate Request Form
+@endsection 
+@section('content')
 
       		<div class="panel-body ">
 
@@ -28,13 +11,13 @@
 					<div id="certificateRequestForm1" class="col-xs-12">
 						<div class="panel panel-default">
 							<div class="panel-body text-left">
-								<h2>&nbsp;&nbsp;สทช 1-1/2</h2>
+								<h2 class="col-xs-offset-2">สทช 1-1/2</h2>
 								<div class="row" style="margin-top: 30px;">
 									<label class="col-xs-3 control-label text-right">
 										Name
 									</label>
 									<div class="col-xs-8  control-label">
-										Sompong Thepsoftware
+										 {{ $entrepreneur->first_name }} {{ $entrepreneur->last_name }}
 									</div>
 				        		</div>
 								<div class="row"> 
@@ -42,7 +25,8 @@
 										Nationality 
 									</label>
 									<div class="col-xs-8  control-label">
-										Thai 
+										
+										{{ $entrepreneur->nationality }} 
 									</div>
 				        		</div>
 								<div class="row"> 
@@ -50,24 +34,25 @@
 										Address 
 									</label>
 									<div class="col-xs-8  control-label">
-										795 Folsom Ave, Suite 600<br>
-				                		San Francisco, CA 94107<br>
+										{{ $entrepreneur->address1 }}<br>
+							            {{ $entrepreneur->address2 }}<br>
+							             {{ $entrepreneur->city }}, {{ $entrepreneur->province }}, {{ $entrepreneur->country }}, {{ $entrepreneur->zip }}<br>
 									</div>
 				        		</div>
 								<div class="row"> 
 									<label class="col-xs-3 control-label text-right">
-										Phone (ex. 0-2345-6789) 
+										Phone
 									</label>
 									<div class="col-xs-8  control-label">
-										0-2999-9999
+										{{ $entrepreneur->phone }}
 									</div>
 				        		</div>
 								<div class="row"> 
 									<label class="col-xs-3 control-label text-right">
-										Mobile Phone (ex. 0-2345-6789) 
+										Mobile Phone
 									</label>
 									<div class="col-xs-8  control-label">
-										08-0909-0909
+										{{ $entrepreneur->mobile }}
 									</div>
 				        		</div>
 								<div class="row"> 
@@ -75,7 +60,7 @@
 										Fax 
 									</label>
 									<div class="col-xs-8  control-label">
-										0-2999-9999
+										{{ $entrepreneur->fax }}
 									</div>
 				        		</div>
 								<hr>
@@ -84,7 +69,7 @@
 										Common Name
 									</label>
 									<div class="col-xs-8  control-label">
-										Name (ex. Warehouse Bangkok)
+										{{$ex_cert_info['common_name']}}
 									</div>
 				        		</div>
                                 <div class="row">
@@ -92,27 +77,27 @@
 										Vendor or Consignee
 									</label>
 									<div class="col-xs-8  control-label">
-										Name (ex. Warehouse Bangkok)
+										{{$ex_cert_info['vendor_or_consignee']}}
 									</div>
 				        		</div>
                                 <div class="row">
 									<div class="col-sm-offset-3 col-xs-8  control-label">
-										Address Line 1
+										{{$ex_cert_info['address1']}}
 									</div>
 				        		</div>
                                 <div class="row">
 									<div class="col-sm-offset-3 col-xs-8  control-label">
-										Address Line 2
+										{{$ex_cert_info['address2']}}
 									</div>
 				        		</div>
                                 <div class="row">
 									<div class="col-sm-offset-3 col-xs-8  control-label">
-										Town/City, State/Province
+										{{$ex_cert_info['city']}}, {{$ex_cert_info['province']}}
 									</div>
 				        		</div>
                                 <div class="row">
 									<div class="col-sm-offset-3 col-xs-8  control-label">
-										Country, Zip Code
+										{{$ex_cert_info['country']}}, {{$ex_cert_info['country']}}
 									</div>
 				        		</div>
                                 <div class="row">
@@ -120,7 +105,7 @@
 										Description of Product
 									</label>
 									<div class="col-xs-8  control-label">
-										Detail
+										{{$ex_cert_info['description_of_product']}}
 									</div>
 				        		</div>
                                 <div class="row">
@@ -128,7 +113,7 @@
 										Final Destination
 									</label>
 									<div class="col-xs-8  control-label">
-										State/Province
+										{{$ex_cert_info['final_destination']}}
 									</div>
 				        		</div>
                                 <div class="row">
@@ -136,7 +121,7 @@
 										Port of Entry or Embarktion
 									</label>
 									<div class="col-xs-8  control-label">
-										Country
+										{{$ex_cert_info['port_of_entry']}}
 									</div>
 				        		</div>
 							</div>
@@ -148,8 +133,4 @@
 		</div>
 	</div>
 
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="bootstrap/js/bootstrap.js"></script>
-
-</body>
-</html>
+@endsection
