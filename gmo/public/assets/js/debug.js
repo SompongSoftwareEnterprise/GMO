@@ -159,18 +159,16 @@ autofill('Domestic Certificate Request', '#dmt-new-request-form',
     "export_to_ex1":        "USA,EUROPE,ASIA",
     "export_qty_ex1":       "20",
     "export_val_ex1":       "500000",
-    
-})
-
-autofill('Certificate Request Example2', '#dmt-new-request-form',
+    "[data-gmo-example=add]": true
+},
 {
     "plant_name_th_ex2":  "ข้าวขาว",
     "plant_name_eng_ex2":   "THAI WHITE RICE",
     "plant_name_sci_ex2":   "ORYZA SATIVA",
-    "cert_amount_ex2":      "1",
-    "export_to_ex2":        "USA,EUROPE,ASIA",
-    "export_qty_ex2":       "50",
-    "export_val_ex2":       "Invalid export value",
+    "cert_amount_ex2":      "3",
+    "export_to_ex2":        "ASIA",
+    "export_qty_ex2":       "150",
+    "export_val_ex2":       "10000000",
 })
 
 
