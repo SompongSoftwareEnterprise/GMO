@@ -89,6 +89,16 @@ Route::post('/entrepreneur/dmt-requests/{id}', array(
 	'uses' => 'EntrepreneurDomesticRequestsController@createCertificateInfo'
 ));
     
+//Entre view req
+    Route::get('/entrepreneur/requests/{id}/{type}/result/new', array(
+	'as' => 'entrepreneur.result.new',
+	'uses' => 'EntreprenuerRequestsController@newResult'
+));
+Route::post('/entrepreneur/requests/{id}/{type}/result', array(
+	'as' => 'entrepreneur.result.create',
+	'uses' => 'EntreprenuerRequestsController@createResult'
+));
+    
 
 
 // gmo staff requests
