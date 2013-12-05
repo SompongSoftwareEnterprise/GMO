@@ -52,12 +52,12 @@ View Requests Information
 				<tbody>
 					@if($data['Request From'] == '1')
 					<tr>
-						<td>สทช. 1-1/1(<a href="/staff/requests/view/11/{{$data['Reference ID']}}">View</a>)</td>
+						<td>สทช. 1-1/1  (<a href="/staff/requests/view/11/{{$data['Reference ID']}}">View</a>)</td>
 						<td class="text-success">Available</td>
 					</tr>
 					<tr>
 						@if($data['Info From'] == 1)
-						<td>สทช. 1-1/2(<a href="/staff/requests/view/12/{{$data['Reference ID']}}">View</a>) </td>
+						<td>สทช. 1-1/2  (<a href="/staff/requests/view/12/{{$data['Reference ID']}}">View</a>) </td>
 						<td class="text-success">Available</td>
 						@else
 						<td>สทช. 1-1/2</td>
@@ -66,7 +66,7 @@ View Requests Information
 					</tr>
 					<tr>						
 						@if($data['Invoice'] != '0')
-							<td>Invoice(<a href="#">View</a>)</td>
+							<td>Invoice  (<a href="#">View</a>)</td>
 							<td class="text-success">Available</td>
 						@else
 							<td>Invoice</td>
@@ -76,7 +76,7 @@ View Requests Information
 					<tr>
 
 						@if($data['Receipt'] != '0')
-							<td>Receipt(<a href="#">View</a>)</td>
+							<td>Receipt  (<a href="#">View</a>)</td>
 							<td class="text-success">Available</td>
 						@else
 							<td>Receipt</td>
@@ -87,21 +87,12 @@ View Requests Information
 
 					@else
 					<tr>
-						<td>สทช. 1-2/1(<a href="/staff/requests/view/21/{{$data['Reference ID']}}">View</a>)</td>
+						<td>สทช. 1-2/1 & สทช. 1-2/2 (<a href="/staff/requests/view/21/{{$data['Reference ID']}}">View</a>)</td>
 						<td class="text-success">Available</td>
-					</tr>
-					<tr>
-						@if($data['Info From'] == 1)
-						<td>สทช. 1-2/2(<a href="/staff/requests/view/22/{{$data['Reference ID']}}">View</a>) </td>
-						<td class="text-success">Available</td>
-						@else
-						<td>สทช. 1-2/2</td>
-						<td class="text-warning">Pending</td>
-						@endif
 					</tr>
 					<tr>						
 						@if($data['Invoice'] != '0')
-							<td>Invoice(<a href="#">View</a>)</td>
+							<td>Invoice  (<a href="#">View</a>)</td>
 							<td class="text-success">Available</td>
 						@else
 							<td>Invoice</td>
@@ -111,7 +102,7 @@ View Requests Information
 					<tr>
 
 						@if($data['Receipt'] != '0')
-							<td>Receipt(<a href="#">View</a>)</td>
+							<td>Receipt  (<a href="#">View</a>)</td>
 							<td class="text-success">Available</td>
 						@else
 							<td>Receipt</td>
@@ -123,16 +114,22 @@ View Requests Information
 
 				</tbody>
 			</table>
+			</div>
+			</div>
 			<br><br>
-			<button type="button" class="btn btn-default"><a href="/staff/requests/{{ $data['ID'] }}/receipt">Create Receipt</a></button>
-			<button type="button" class="btn btn-default"><a href="/staff/requests/{{ $data['ID'] }}/labtask/new">Create Lab Task</a></button>
+			<div class="row text-center">
 
-			<button type="button" disabled class="btn btn-disabled">Create Analysis of Report</button>
-
-			<button type="button" disabled class="btn btn-disabled">Create Certificate</button>
-
-		</div>
-	</div>
+			        <button type="button" class="btn btn-default"><a href="#">Create Invoice</a></button>
+			    
+			    <button type="button" class="btn btn-default"><a href="/staff/requests/{{ $data['ID'] }}/receipt">Create Receipt</a></button>
+                <button type="button" class="btn btn-default"><a href="/staff/requests/{{ $data['ID'] }}/labtask/new">Create Lab Task</a></button>
+    
+                <button type="button" disabled class="btn btn-disabled">Create Analysis of Report</button>
+    
+                <button type="button" disabled class="btn btn-disabled">Create Certificate</button>
+                
+			</div>
+			
 </div>
 
 @endsection
