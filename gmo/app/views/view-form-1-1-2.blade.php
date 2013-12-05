@@ -11,7 +11,12 @@
 					<div id="certificateRequestForm1" class="col-xs-12">
 						<div class="panel panel-default">
 							<div class="panel-body text-left">
-								<h2 class="col-xs-offset-2">สทช 1-1/2</h2>
+								<div class="row">
+								    <div class="col-sm-offset-1">
+								        <h2>สทช 1-1/2</h2>
+								    </div>
+								    
+								</div>
 								<div class="row" style="margin-top: 30px;">
 									<label class="col-xs-3 control-label text-right">
 										Name
@@ -92,12 +97,7 @@
 				        		</div>
                                 <div class="row">
 									<div class="col-sm-offset-3 col-xs-8  control-label">
-										{{$ex_cert_info['city']}}, {{$ex_cert_info['province']}}
-									</div>
-				        		</div>
-                                <div class="row">
-									<div class="col-sm-offset-3 col-xs-8  control-label">
-										{{$ex_cert_info['country']}}, {{$ex_cert_info['country']}}
+										{{$ex_cert_info['city']}}, {{$ex_cert_info['province']}}, {{$ex_cert_info['country']}}
 									</div>
 				        		</div>
                                 <div class="row">
@@ -124,6 +124,14 @@
 										{{$ex_cert_info['port_of_entry']}}
 									</div>
 				        		</div>
+				        		<br>
+				        		<div class="form-group">
+                                    <div class="col-sm-offset-4 col-sm-4 text-center">
+                    
+                                        <a href="{{ action('StaffRequestsController@show', $ref_id) }}" class="btn btn-primary">Back to request</a>
+                                    </div>
+                                </div>
+                                
 							</div>
 						</div>
 					</div>

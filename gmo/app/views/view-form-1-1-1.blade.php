@@ -12,7 +12,12 @@
 					<div id="certificateRequestForm1" class="col-xs-12">
 						<div class="panel panel-default">
 							<div class="panel-body text-left">
-								<h2 class="col-xs-offset-2">สทช 1-1/1</h2>
+								<div class="row">
+								    <div class="col-sm-offset-1">
+								        <h2>สทช 1-1/1</h2>
+								    </div>
+								    
+								</div>
 								<div class="row" style="margin-top: 30px;">
 									<label class="col-xs-3 control-label text-right">
 										Name
@@ -104,6 +109,8 @@
 										{{$ex_cert['manufactory_fax']}}
 									</div>
 				        		</div>
+                                
+                                <br>
                                 <div class="row">
 									<label class="col-xs-3 control-label text-right">
 										Warehouse
@@ -144,6 +151,7 @@
 										{{$ex_cert['warehouse_fax']}}
 									</div>
 				        		</div>
+                                <br>
                                 <div class="row">
 									<label class="col-xs-3 control-label text-right">
 										Purpose
@@ -186,13 +194,8 @@
                                 <div class="row">
 									<div class="col-sm-offset-3 col-xs-8  control-label">
 										{{$ex_cert['receiver_city']}} ,
-										{{$ex_cert['receiver_province']}}
-									</div>
-				        		</div>
-                                <div class="row">
-									<div class="col-sm-offset-3 col-xs-8  control-label">
-										{{$ex_cert['receiver_country']}}, 
-										{{$ex_cert['receiver_zip']}}
+										{{$ex_cert['receiver_province']}} ,        
+								    {{$ex_cert['receiver_country']}}
 									</div>
 				        		</div>
                                 <div class="row">
@@ -200,35 +203,43 @@
 										Origin of plant
 									</label>
 									<div class="col-xs-8  control-label">
-										{{$ex_cert['orgin_of_plant']}}
+										{{$ex_cert['origin_of_plant']}}
 									</div>
 				        		
 				        		</div>
-                                <h3>&nbsp;&nbsp;Example</h3>
-                                <hr>
+                        <div class="row">
+                                <div class="col-sm-offset-1" style="margin-top: 50px;">
+								        <h3>Example</h3><br>
+								</div>
+                        </div>     
+                        <div class="col-xs-12">
+                            <table class="table table-bordered table-hover " >
+                                <thead>
+                                    <tr>
+                                        <th>Example Type</th>
+                                        <th>Detail</th>
+                                        <th>Quantity</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for ($i = 0; $i < sizeof($example); $i++)
+                                    <tr>
+                                        <td>{{($i)+1}}. {{$example[$i]['type_of_example']}}</td>
+                                        <td>{{$example[$i]['detail']}}</td>
+                                        <td>{{$example[$i]['quantity']}}</td>
+                                    </tr>
+                                    @endfor
+                                </tbody>
+                            </table>
+                        </div>
                                 
-                                @for ($i = 0; $i < sizeof($example); $i++)
-
-                                <div class="row">
-									<label class="col-xs-3 control-label text-right">
-										Example Detail # {{$i}}
-									</label>
-									<div class="col-xs-8  control-label">
-                                        {{$example[$i]['type_of_example']}}
-									</div>
-				        		</div>
-                                <div class="row">
-									<div class="col-sm-offset-3 col-xs-8  control-label">
-										 {{$example[$i]['detail']}}
-									</div>
-				        		</div>
-                                <div class="row">
-									<div class="col-sm-offset-3 col-xs-8  control-label">
-										 {{$example[$i]['quantity']}}
-									</div>
-				        		</div>
-				        		
-				        		@endfor
+				        		<br>
+				        		<div class="form-group">
+                                    <div class="col-sm-offset-4 col-sm-4 text-center">
+                    
+                                        <a href="{{ action('StaffRequestsController@show', $ref_id) }}" class="btn btn-primary">Back to request</a>
+                                    </div>
+                                </div>
 				        		
 							</div>
 						</div>
