@@ -26,21 +26,23 @@ class StaffRequestsController extends BaseController {
 			$form = CertificateRequestForm::where('export_certificate_request_id', '=', $id)->first();
 			$example = CertificateRequestExample::where('export_certificate_request_form_id', '=', $id)->get();
 			$entrepreneur = Entrepreneur::where('user_id', '=', $user['id'])->first();
-			return View::make('view-form-1-1-1')->with('entrepreneur',$entrepreneur)->with('ex_cert',$form)->with('example',$example);
+			return View::make('view-form-1-1-1')->with('entrepreneur',$entrepreneur)->with('ex_cert',$form)->with('example',$example)->with('ref_id',$id);
 		}
 		else if($form == '12') {
 			$request = CertificateRequest::where('reference_id', '=', $id)->first();
 			$user = User::find($request->signer_id);
 			$form = CertificateRequestInfoForm::where('export_certificate_request_id', '=', $id)->first();
 			$entrepreneur = Entrepreneur::where('user_id', '=', $user['id'])->first();
-			return View::make('view-form-1-1-2')->with('entrepreneur',$entrepreneur)->with('ex_cert_info',$form);
+			return View::make('view-form-1-1-2')->with('entrepreneur',$entrepreneur)->with('ex_cert_info',$form)->with('ref_id',$id);
 
 		}
 		else if($form == '21') {
-
-		}
-		else if($form == '22') {
-
+            $request = DomesticCertificateRequest::where('reference_id', '=', $id)->first();
+            $user = User::find($request->signer_id);
+            $form = DomesticCertificateRequestForm::where('domestic_certificate_request_id', '=', $id)->first();
+            $example = DomesticCertificateRequestExample::where('domestic_certificate_request_id', '=', $id)->get();
+			$entrepreneur = Entrepreneur::where('user_id', '=', $user['id'])->first();
+			return View::make('view-form-1-2')->with('entrepreneur',$entrepreneur)->with('dmt_cert',$form)->with('example',$example)->with('ref_id',$id);
 		}
 	}
 
