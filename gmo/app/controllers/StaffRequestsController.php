@@ -46,10 +46,38 @@ class StaffRequestsController extends BaseController {
 		}
 	}
 
+	public function createInvoice($id){
+		$idForm = CertificateRequest::find($id);
+		$idForm = CertificateRequestInfoForm::where('export_certificate_request_id', '=', $idForm->reference_id)->get();
+		// print_r($idForm);
+		// var_dump($idForm);
+		if(count($idForm)>0){
+			$checkForm = true;
+		} 
+		else {
+			$checkForm = false;
+		}
+
+		$invoice = 
+		Invoice::where('request_reference_id', '=', $id)->first();
+		if( !(count($invoice) > 0) ){
+			$invoice = new Invoice;
+			$invoice->request_reference_id = $id;
+			if($checkForm)
+				$invoice->price = 100+150;
+			else
+				$invoice->price = 100;
+			$invoice->save();
+		}
+		return View::Make('staff_requests/create_invoice')
+			->with('checkForm', $checkForm);
+	}
+
 	public function createReceipt($id){
 		$idForm = CertificateRequest::find($id);
-		$idForm = CertificateRequestInfoForm::where('export_certificate_request_id', '=', $idForm->id)->get();
-		print_r($idForm);
+		$idForm = CertificateRequestInfoForm::where('export_certificate_request_id', '=', $idForm->reference_id)->get();
+		// print_r($idForm);
+		// var_dump($idForm);
 		if(count($idForm)>0){
 			$checkForm = true;
 		} 
