@@ -78,6 +78,14 @@ View Request Information
 
 				</tbody>
 			</table>
+<!--        show when certificate available-->
+            <div class="alert alert-success text-center">
+            ติดต่อขอรับได้ที่ สำนักวิจัยพัฒนาเทคโนโลยีชีวภาพ ถนนรังสิต-นครนายก (คลองหก) <br>
+            อำเภอธัญบุรี จังหวัดปทุมธานี 12110
+            <br>
+            โทร. 0-2904-6885-95 โทรสาร 0-2904-6885
+            </div>
+                    
 		</div>
 	</div>
 </div>
