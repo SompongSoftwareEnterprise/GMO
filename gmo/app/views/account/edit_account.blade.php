@@ -19,7 +19,7 @@ Edit Account Information
 		<div class="col-sm-offset-1 col-xs-5">
 			<div class="form-group">
 				<label for="sampleLabel">Account Type</label>
-				<div class="col-xs-9">Customer</div>
+				<div class="form-inline">Customer</div>
 			</div>
 		</div>
 	</div>
@@ -30,7 +30,9 @@ Edit Account Information
 			<div class="form-group">
 				{{ Form::label('first_name', 'First Name', array('data-label-company' => 'Company Name')) }}
 				<!-- {{ Form::text('first_name', null, array('class' => 'form-control', 'placeholder' => '', 'disabled')) }} -->
+				<div class="form-inline">
 				{{ $entrepreneur->first_name }}
+				</div>
 			</div>
 		</div>
 		
@@ -38,7 +40,9 @@ Edit Account Information
 			<div class="form-group individual">
 				{{ Form::label('last_name', 'Last Name') }}
 				<!-- {{ Form::text('last_name', null, array('class' => 'form-control', 'placeholder' => '', 'disabled')) }} -->
+				<div class="form-inline">
 				{{ $entrepreneur->last_name }}
+				</div>
 			</div>
 		</div>
 		
@@ -83,7 +87,7 @@ Edit Account Information
 		<div class="col-xs-5">
 			<div class="form-group individual">
 				<label for="date_of_birth">Date of Birth</label>
-				<div class="row">
+				<div class="form-inline">
 					{{ $entrepreneur->date_of_birth }}
 					<!-- {{ Form::date('date_of_birth', InputDate::parse('date_of_birth')) }} -->
 				</div>
@@ -98,7 +102,9 @@ Edit Account Information
 			<div class="form-group">
 				{{ Form::label('nationality', 'Nationality') }}
 				<!-- {{ Form::text('nationality', null, array('class' => 'form-control', 'placeholder' => 'ex. Thai')) }} -->
+				<div class="form-inline">
 				{{ $entrepreneur->nationality }}
+				</div>
 			</div>
 		</div>
 		

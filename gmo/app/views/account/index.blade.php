@@ -7,7 +7,7 @@ Account Information
 @section('content')
 
 
-<br><br>
+
 <div class="row">
 	<div class="col-sm-12">
 		<div class="bs-example bs-example-tabs">
@@ -16,10 +16,10 @@ Account Information
 				<li class="active"><a href="#accountInformation" data-toggle="tab">Account information</a></li>
 				@elseif ($from_edit_page!=null)
 				<li><a href="#accountInformation" data-toggle="tab">Account information</a></li>
-				<li class="active"><a href="#agency" data-toggle="tab">Agency</a></li>
+				<li class="active"><a href="#agency" data-toggle="tab">Registered Agency</a></li>
 				@else
 				<li class="active"><a href="#accountInformation" data-toggle="tab">Account information</a></li>
-				<li><a href="#agency" data-toggle="tab">Agency</a></li>
+				<li><a href="#agency" data-toggle="tab">Registered Agency</a></li>
 				@endif
 			</ul>
 		</div>
@@ -31,9 +31,13 @@ Account Information
 			@else
 			<div class="tab-pane fade active in" id="accountInformation">
 			@endif
-					<h3>Account Information</h3>
-
-
+<!--
+					<div class="col-sm-offset-1">
+                        <h3>Account Information</h3>
+                        <br>
+                    </div>
+-->
+                    <br>
 					<div class ="row form-group">
 						<label for="sampleLabel" class="col-xs-3 control-label text-right"> Account Type:</label>
 						@if ($entrepreneur->is_agency==0)
@@ -112,7 +116,7 @@ Account Information
 			@else
 			<div class="tab-pane fade" id="agency">
 			@endif
-				<h3>Registered Agency</h3>
+<!--				<h3>Registered Agency</h3>-->
 				</br>
 				<div class="row">
 					<div class="col-sm-offset-1 col-xs-10">
