@@ -24,8 +24,7 @@
 
     <ul class="nav navbar-nav">
       <li><a href="{{ action('HomeController@homePage') }}">HOME</a></li>
-      <li><a href="{{ action('EntrepreneurRequestsController@index') }}">REQUEST</a></li>
-      <li><a href="{{ action('EntrepreneurAccountController@index') }}">AGENCY</a></li>
+      <li id="en_req"><a href="{{ action('EntrepreneurRequestsController@index') }}">REQUEST</a></li>
     </ul>
 
     <ul class="nav navbar-nav navbar-right">
