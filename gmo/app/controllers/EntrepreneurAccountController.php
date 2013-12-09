@@ -32,7 +32,7 @@ class EntrepreneurAccountController extends AbstractEntrepreneurController {
 		//$a = '123'
 		//sd($a)
 		//var_dump($this->entrepreneur->id);
-		var_dump($this->entrepreneur->is_agency);
+		//var_dump($this->entrepreneur->is_agency);
 		return View::make('account/index')
 			->with('entrepreneur', $this->entrepreneur)
 			->with('agencies',$agencies)
