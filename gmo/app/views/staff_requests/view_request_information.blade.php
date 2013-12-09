@@ -52,15 +52,15 @@ View Requests Information
 				<tbody>
 					@if($data['Request From'] == '1')
 					<tr>
-						<td>สท�?. 1-1/1  (<a href="/staff/requests/view/11/{{$data['Reference ID']}}">View</a>)</td>
+						<td>สทช. 1-1/1  (<a href="/staff/requests/view/11/{{$data['Reference ID']}}">View</a>)</td>
 						<td class="text-success">Available</td>
 					</tr>
 					<tr>
 						@if($data['Info From'] == 1)
-						<td>สท�?. 1-1/2  (<a href="/staff/requests/view/12/{{$data['Reference ID']}}">View</a>) </td>
+						<td>สทช. 1-1/2  (<a href="/staff/requests/view/12/{{$data['Reference ID']}}">View</a>) </td>
 						<td class="text-success">Available</td>
 						@else
-						<td>สท�?. 1-1/2</td>
+						<td>สทช. 1-1/2</td>
 						<td class="text-warning">Pending</td>
 						@endif
 					</tr>
@@ -87,7 +87,7 @@ View Requests Information
 
 					@else
 					<tr>
-						<td>สท�?. 1-2/1 & สท�?. 1-2/2 (<a href="/staff/requests/view/21/{{$data['Reference ID']}}">View</a>)</td>
+						<td>สทช. 1-2/1 &amp; สทช. 1-2/2 (<a href="/staff/requests/view/21/{{$data['Reference ID']}}">View</a>)</td>
 						<td class="text-success">Available</td>
 					</tr>
 					<tr>						

@@ -96,6 +96,10 @@ class RegistrationController extends BaseController {
 		$entrepreneur = new Entrepreneur;
 		$entrepreneur->first_name = $first_name = Input::get('first_name');
 		$entrepreneur->last_name  = $last_name  = Input::get('last_name', '');
+
+		$user->name = trim($first_name . ' ' . $last_name);
+		$user->save();
+
 		$entrepreneur->is_agency  = $is_agency ? 1 : 0;
 		$entrepreneur->email      = $email = Input::get('email');
 		$entrepreneur->sex = Input::get('sex', '');

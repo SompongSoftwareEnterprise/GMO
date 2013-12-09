@@ -233,8 +233,8 @@ class StaffRequestsController extends BaseController {
 
 		// get request 1-1 data
 		foreach ($request1_1 as $request) {
-			$user = User::find($request->signer_id);
-			$requestInfoFrom = CertificateRequestInfoForm::where('export_certificate_request_id','=',$request->id)->first();
+			$user = User::find($request->owner_id);
+			$requestInfoFrom = CertificateRequestInfoForm::where('export_certificate_request_id','=',$request->reference_id)->first();
 			$item = array(
 				'ID' => $request->id,
 				'Reference ID' => $request->reference_id,
