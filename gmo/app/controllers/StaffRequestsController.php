@@ -47,10 +47,9 @@ class StaffRequestsController extends BaseController {
 	}
 
 	public function createInvoice($id){
-		$idForm = CertificateRequest::find($id);
-		$idForm = CertificateRequestInfoForm::where('export_certificate_request_id', '=', $idForm->reference_id)->get();
-		// print_r($idForm);
-		// var_dump($idForm);
+
+		$idForm = CertificateRequestInfoForm::where('export_certificate_request_id', '=', $id)->get();
+
 		if(count($idForm)>0){
 			$checkForm = true;
 		} 
@@ -94,30 +93,26 @@ class StaffRequestsController extends BaseController {
 	}
 
 	public function createReceipt($id){
-		$idForm = CertificateRequest::find($id);
-		$idForm = CertificateRequestInfoForm::where('export_certificate_request_id', '=', $idForm->reference_id)->get();
-		// print_r($idForm);
-		// var_dump($idForm);
-		if(count($idForm)>0){
-			$checkForm = true;
-		} 
-		else {
-			$checkForm = false;
+
+		$receipt = Receipt::where('request_reference_id', '=', $id)->first();
+		$invoice = Invoice::where('request_reference_id', '=', $id)->first();
+
+		if( empty($receipt) ){
+
+			$receipt = new Receipt;
+			$receipt->reference_id = 'RC' . RunningNumber::increment('receipt');
+			$receipt->request_reference_id = $id;
+			$receipt->save();
+
 		}
 
-		$receipt = 
-		Receipt::where('request_reference_id', '=', $id)->first();
-		if( !(count($receipt) > 0) ){
-			$receipt = new Receipt;
-			$receipt->request_reference_id = $id;
-			if($checkForm)
-				$receipt->price = 100+150;
-			else
-				$receipt->price = 100;
-			$receipt->save();
-		}
+		$price = json_decode($invoice->price, true);
+
 		return View::Make('staff_requests/create_receipt')
-			->with('checkForm', $checkForm);
+			->with('receipt', $receipt)
+			->with('invoice', $invoice)
+			->with('price', $price);
+
 	}
 
 	public function newLabTask($id) {
@@ -242,11 +237,12 @@ class StaffRequestsController extends BaseController {
 		$data['Status'] = $request['status'];
 
 		$invoice = Invoice::where('request_reference_id', '=', $id)->first();
+
 		if($invoice != null) {
-			$data['Invoice'] = $invoice['id'];
+			$data['Invoice'] = $invoice->id;
 		}
 
-		$receipt = Receipt::where('request_reference_id','=',$request->id)->first();
+		$receipt = Receipt::where('request_reference_id', '=', $id)->first();
 		if($receipt != null) {
 			$data['Receipt'] = $receipt['id'];
 		}
