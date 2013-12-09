@@ -58,19 +58,39 @@ class StaffRequestsController extends BaseController {
 			$checkForm = false;
 		}
 
-		$invoice = 
-		Invoice::where('request_reference_id', '=', $id)->first();
-		if( !(count($invoice) > 0) ){
+		$invoice = Invoice::where('request_reference_id', '=', $id)->first();
+
+		if( empty($invoice) ){
+
 			$invoice = new Invoice;
 			$invoice->request_reference_id = $id;
-			if($checkForm)
-				$invoice->price = 100+150;
-			else
-				$invoice->price = 100;
+			$invoice->reference_id = 'IV' . RunningNumber::increment('invoice');
+
+			$price = array(
+				array('name' => 'สทช.1-1/1', 'price' => 100),
+			);
+
+			if ($checkForm) {
+				$price[] = array('name' => 'สทช.1-1/2', 'price' => 150);
+			}
+
+			$totalPrice = 0;
+			foreach ($price as $item) {
+				$totalPrice += $item['price'];
+			}
+
+			$invoice->price = json_encode($price);
+			$invoice->total_price = $totalPrice;
+
 			$invoice->save();
+
+		} else {
+			// use true to convert to array and not object
+			$price = json_decode($invoice->price, true);
 		}
 		return View::Make('staff_requests/create_invoice')
-			->with('checkForm', $checkForm);
+			->with('invoice', $invoice)
+			->with('price', $price);
 	}
 
 	public function createReceipt($id){
@@ -187,8 +207,16 @@ class StaffRequestsController extends BaseController {
 	}
 
 	private function createRequestData($id) {
-		$data = array('Request ID' => '', 'Importer Name' => '', 'Requester'=> '',
-			'Sent Date' => '', 'Status' => '', 'Invoice' => '0', 'Receipt' => '0', 'Request From' => '1', 'Info From' => '0');
+		$data = array(
+			'Request ID' => '',
+			'Importer Name' => '',
+			'Requester'=> '',
+			'Sent Date' => '',
+			'Status' => '',
+			'Invoice' => '0',
+			'Receipt' => '0',
+			'Request From' => '1',
+			'Info From' => '0');
 		$request = CertificateRequest::where('reference_id', '=', $id)->first();
 		$info = null;
 		if($request == null) {
@@ -217,7 +245,6 @@ class StaffRequestsController extends BaseController {
 		if($invoice != null) {
 			$data['Invoice'] = $invoice['id'];
 		}
-		
 
 		$receipt = Receipt::where('request_reference_id','=',$request->id)->first();
 		if($receipt != null) {

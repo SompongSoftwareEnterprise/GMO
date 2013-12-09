@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('title')
-Invoice
+Invoice {{ $invoice->reference_id }}
 @endsection
 
 @section('content')
@@ -16,26 +16,15 @@ Invoice
 			</tr>
 		</thead>
 		<tbody>
-			<tr class="info" >
-				<td>สทช. 1-1/1</td>
-				<td class="text-right"><? $form1 = 100; echo $form1; ?></td>
-
-			</tr>
-			<tr class="info" >
-				<td>สทช. 1-1/2</td>
-				<td class="text-right">
-				<?
-					if($checkForm)
-					 	$form2 = 150; 
-					else 
-						$form2 = 0;
-					echo $form2;
-				?>
-				</td>
-			</tr>
+			@foreach ($price as $item)
+				<tr class="info" >
+					<td>{{ $item['name'] }}</td>
+					<td class="text-right">{{ $item['price'] }}</td>
+				</tr>
+			@endforeach
 			<tr class="info" >
 				<td><strong>Total</strong></td>
-				<td class="text-right"><strong><? echo $form1+$form2; ?></strong></td>
+				<td class="text-right"><strong>{{ $invoice->total_price }}</strong></td>
 
 			</tr>
 		</tbody>

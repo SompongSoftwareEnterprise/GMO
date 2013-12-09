@@ -120,9 +120,14 @@ View Requests Information
 
 			<div class="row text-center">
 
-			<button type="button" class="btn btn-default"><a href="/staff/requests/{{ $data['ID'] }}/invoice">Create Invoice</a></button>
-			<button type="button" class="btn btn-default"><a href="/staff/requests/{{ $data['ID'] }}/receipt">Create Receipt</a></button>
-			<button type="button" class="btn btn-default"><a href="/staff/requests/{{ $data['ID'] }}/labtask/new">Create Lab Task</a></button>
+			<a class="btn btn-default" href="/staff/requests/{{ $data['ID'] }}/invoice">Create Invoice</a>
+
+			@if ($data['Invoice'] == '0')
+				<span class="btn btn-default disabled">Create Receipt</span>
+			@else
+				<a class="btn btn-default" href="/staff/requests/{{ $data['ID'] }}/receipt">Create Receipt</a>
+			@endif
+			<a class="btn btn-default" href="/staff/requests/{{ $data['ID'] }}/labtask/new">Create Lab Task</a>
 
 			<button type="button" disabled class="btn btn-disabled">Create Analysis of Report</button>
 
