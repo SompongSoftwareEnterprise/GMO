@@ -7,6 +7,12 @@ View Requests Information
 @section('content')
 
 <div class="panel-body">
+
+	<div class="text-right">
+		<a class="btn btn-default" href="{{ action('RegistrationController@index') }}" id="register-button">Register</a>
+		<br><br>
+	</div>
+
 	<table class="table table-bordered">
 		<tr class="header">
 			<th>Request ID</th>
