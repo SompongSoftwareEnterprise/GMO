@@ -24,11 +24,17 @@
 
     <ul class="nav navbar-nav">
       <li><a href="{{ action('HomeController@homePage') }}">HOME</a></li>
-      <li id="en_req"><a href="{{ action('EntrepreneurRequestsController@index') }}">REQUEST</a></li>
+      @if ($user->role == 'Customer' || $user->role == 'Agency')
+	      <li id="en_req"><a href="{{ action('EntrepreneurRequestsController@index') }}">REQUEST</a></li>
+      @elseif ($user->role == 'GMO Staff')
+	      <li id="en_req"><a href="{{ action('StaffRequestsController@index') }}">REQUEST</a></li>
+      @else
+	      <li id="en_req"><a href="{{ action('LabController@index') }}">REQUEST</a></li>
+      @endif
     </ul>
 
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="{{ action('EntrepreneurAccountController@index') }}"><i class="glyphicon glyphicon-user"></i> {{$user_name}}</a></li>
+      <li><a href="{{ action('EntrepreneurAccountController@index') }}"><i class="glyphicon glyphicon-user"></i> {{$user->name}}</a></li>
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
         	<i class="glyphicon glyphicon-cog"></i> Setting <b class="caret"></b></a>
