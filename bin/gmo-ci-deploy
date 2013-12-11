@@ -1,0 +1,25 @@
+#!/bin/bash
+
+export PATH=/vagrant/bin:$PATH
+set -e
+cd /vagrant/gmo
+
+step() {
+	echo ""
+	echo ">>> Resetting the database! <<<"
+}
+
+show() {
+	echo "[Run]" "$@"
+	"$@"
+}
+
+step "Resetting the database..."
+show php artisan migrate:refresh
+
+step "Inserting test user..."
+show gmo-load-fixtures login-data
+
+
+
+
