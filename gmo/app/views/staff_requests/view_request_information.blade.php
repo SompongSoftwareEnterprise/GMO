@@ -122,9 +122,9 @@ View Requests Information
 
 			<a class="btn btn-default" href="/staff/requests/{{ $data['Reference ID'] }}/labtask/new">Create Lab Task</a>
 
-			<button type="button" disabled class="btn btn-disabled">Create Analysis of Report</button>
+			<button type="button" class="btn btn-default">Create Analysis of Report</button>
 
-			<button type="button" disabled class="btn btn-disabled">Create Certificate</button>
+			<button type="button" class="btn btn-default">Create Certificate</button>
 
 		</div>
 	</div>
