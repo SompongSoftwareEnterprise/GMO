@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export PATH=/vagrant/bin:$PATH
+. /vagrant/bashrc
 set -e
 cd /vagrant/gmo
 
