@@ -1,16 +1,36 @@
-@extends('layout')
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Receipt</title>
+	<meta charset="utf-8">
+	<link href="/bootstrap/css/bootstrap.css" rel="stylesheet">
+	<link href="/assets/css/common.css" rel="stylesheet">
+	<script src="/assets/js/jquery.min.js"></script>
+	<script src="/assets/js/promise-3.2.0.js"></script>
+	<script src="/assets/js/common.js"></script>
+	<script src="/bootstrap/js/bootstrap.js"></script>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
 
-@section('title')
-Receipt {{ $receipt->reference_id }}
-@endsection
+</head>
+<body>
 
-@section('content')
 
+<div class="container">
+<div class="panel panel-default">
+<!-- <div class="row-fluid"> -->
+<div align="center"><img class="logo pull-center" src = "/assets/img/bird.png"></div>
+<h1 align="center">Receipt</h1>
+<p align="center">Official Department of Agriculture </p>
+<div class="span3" style="margin:20px 500px">	
+office………………………………
+<br>date………………………………
+</div>
+<!-- </div> -->
 <div class="panel">
-	<table class="table table-bordered"style=" width: 700px;" align="center">
+	<table class="table table-bordered"style=" width: 500px;" align="center">
 		<thead>
 			<tr class="Header" >
-				<th>Item</th>
+				<th>List</th>
 				<th style="width: 20%">Price (Baht)</th>
 			</tr>
 		</thead>
@@ -30,16 +50,15 @@ Receipt {{ $receipt->reference_id }}
 
 	<br>
 
-	<form class="form-horizontal" role="form">
-
-		<div class="form-group">
-			<div class="col-sm-offset-10 col-xs-2">
-				<a href="{{ action('StaffRequestsController@index') }}" class="btn btn-default"> Back </a>
-				<button class="btn btn-primary" type="button"> Print </button>
-			</div>
-		</div>
-
-	</form>
+<div class="span3" style="margin: 20px 220px;"> <b>Total price:</b>  {{$invoice->total_price}} Baht.</div>
+<div class="span3" style="margin:20px 500px">	
+(name)...........................................payee
+<br>(position).........................................
 </div>
+</div>
+</div>
+</div>
+</body>
+</html>
 
-@endsection
+
