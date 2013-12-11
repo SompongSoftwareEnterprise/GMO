@@ -122,14 +122,29 @@ autofill('Certificate Request 1-1/2', '#new-request-form',
 
 autofill('Lab Task Information', '#create-lab-task-form',
 {
-	"product_code": "117462732",
 	"product_detail": "Juicy coconut juice is juicy and gives you great refreshment.",
 	"method_of_extractinf_DNA": "Boiling",
 	"input[name=transgene][value=PRC]": true,
 	"endogenous": "B",
 	"input[name=transgene][value=camv_35s_promoter]": true,
-	"input[name=transgene][value=nos_terminal]": true
-})
+	"input[name=transgene][value=nos_terminal]": true,
+	"product_codepj1": "117462732",
+	"product_codepj2": "117462733",
+	"volumepj1": "20",
+	"volumepj2": "30",
+},
+{ '[data-gmo-responsible=add]:last': true },
+{ '[data-gmo-responsible=add]:last': true },
+{ '[data-gmo-responsible=add]:last': true },
+{ '[data-gmo-responsible=add]:last': true },
+{
+	'responsiblerp1': 'Surayud',
+	'responsiblerp2': 'Samak',
+	'responsiblerp3': 'Somchai',
+	'responsiblerp4': 'Abhisit',
+	'responsiblerp5': 'Yingluck'
+}
+)
 
 
 

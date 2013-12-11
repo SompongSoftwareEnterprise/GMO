@@ -116,8 +116,10 @@ class StaffRequestsController extends BaseController {
 	}
 
 	public function newLabTask($id) {
+		$examples = CertificateRequestExample::where('export_certificate_request_form_id', '=', $id)->get();
 		return View::make('staff_requests/create_lab_task')
-			->with('id', $id);
+			->with('id', $id)
+			->with('examples', $examples);
 	}
 
 	public function createLabTask($id) {
@@ -155,8 +157,8 @@ class StaffRequestsController extends BaseController {
 				$product->product_name = Input::get('product_namepj' . $number);
 				$product->measure = Input::get('measurepj' . $number);
 				$product->volume = Input::get('volumepj' . $number);
-				$product->start = Input::get('dateStartpj' . $number) . "-" . Input::get('monthStartpj' . $number) . "-" . Input::get('yearStartpj' . $number);
-				$product->finish = Input::get('dateFinishpj' . $number) . "-" . Input::get('monthFinishpj' . $number) . "-" . Input::get('yearFinishpj' . $number);
+				$product->start = InputDate::parse('dateStartpj' . $number);
+				$product->finish = InputDate::parse('dateFinishpj' . $number);
 				$product->save();
 			}
 		}
