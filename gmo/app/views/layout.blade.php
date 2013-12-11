@@ -28,6 +28,7 @@
 	      <li id="en_req"><a href="{{ action('EntrepreneurRequestsController@index') }}">REQUEST</a></li>
       @elseif ($user->role == 'GMO Staff')
 	      <li id="en_req"><a href="{{ action('StaffRequestsController@index') }}">REQUEST</a></li>
+	      <li><a href="{{ action('StaffReportController@index') }}">REPORT</a></li>
       @else
 	      <li id="en_req"><a href="{{ action('LabController@index') }}">REQUEST</a></li>
       @endif
