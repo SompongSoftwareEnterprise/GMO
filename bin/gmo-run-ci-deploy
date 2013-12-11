@@ -1,4 +1,11 @@
 #!/bin/bash
 
+
 set -e
+
+echo ">>>>> Generating autoload <<<<"
+cd gmo
+php ~/GMO/composer.phar dump-autoload
+cd ..
+
 ssh vagrant@localhost -p 32022 -i ~/.vagrant.d/insecure_private_key bash -l /vagrant/bin/gmo-ci-deploy
