@@ -10,6 +10,7 @@ step() {
 }
 
 show() {
+	set -e
 	echo "[Run]" "$@"
 	"$@"
 }
