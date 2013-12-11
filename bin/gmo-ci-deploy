@@ -14,6 +14,9 @@ show() {
 	"$@"
 }
 
+step "Generating autoload..."
+show composer dump-autoload
+
 step "Resetting the database..."
 show php artisan migrate:refresh
 
