@@ -34,11 +34,13 @@
     </ul>
 
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="{{ action('EntrepreneurAccountController@index') }}"><i class="glyphicon glyphicon-user"></i> {{$user->name}}</a></li>
+      <li><a href="{{ action('EntrepreneurAccountController@index') }}"><i class="glyphicon glyphicon-user"></i>{{$user->name}}
+       <span class="label label-info">{{$user->role}}</span></a></li>
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
         	<i class="glyphicon glyphicon-cog"></i> Setting <b class="caret"></b></a>
         <ul class="dropdown-menu">
+          <li><a href="{{ action('EntrepreneurAccountController@index') }}">Account Info</a></li>
           <li><a href="{{ action('LoginController@index') }}">Log out</a></li>
         </ul>
       </li>
