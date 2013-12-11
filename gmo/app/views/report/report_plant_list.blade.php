@@ -8,7 +8,8 @@ View Report
     <div class="row">
         <!--            {{var_dump($example)}}-->
         <div class="text-center">
-        <h3><span class="glyphicon glyphicon-file"></span> Domestic Plant (1/1/2013 - 31/12/2013)</h3><br>
+        <h3><span class="glyphicon glyphicon-file"></span> Domestic Plant 
+        (1/1/2013 - 31/12/2013)</h3><br>
 <!--        <h4>Total : {{sizeof($example)}}</h4>-->
         </div>
         <table class="table table-bordered table-striped text-left">
