@@ -265,7 +265,7 @@ class StaffRequestsController extends BaseController {
 				'Reference ID' => $request->reference_id,
 				'Plant Name' => $requestInfoFrom ? $requestInfoFrom->common_name : '-',
 				'Entrepreneur' => $user ? $user->name : '(missing)',
-				'Current Process' => $request->status
+				'Current Process' => StatusChecker::getStatus($request->status, "staff")
 			);
 			array_push($items, $item);
 		}
@@ -280,7 +280,7 @@ class StaffRequestsController extends BaseController {
 				'Reference ID' => $request->reference_id,
 				'Plant Name' => '-',
 				'Entrepreneur' => $user ? $user->name : '(missing)',
-				'Current Process' => $request->status
+				'Current Process' => StatusChecker::getStatus($request->status, "staff")
 			);
 			array_push($items, $item);
 		}
