@@ -27,10 +27,15 @@ Route::post('/login', 'LoginController@login');
 Route::get('/test/home', 'HomeController@homePage');
 
 // register
+
 Route::get('/staff/register',           'RegistrationController@index');
 Route::get('/staff/register/customer', 	'RegistrationController@registerCustomer');
 Route::get('/staff/register/agency',   	'RegistrationController@registerAgency');
 Route::post('/staff/register',         	'RegistrationController@submitRegister');
+
+//Report
+Route::get('/staff/report',         	'StaffReportController@index');
+Route::get('/staff/report/1',         	'StaffReportController@reportPlantList');
 
 //account
 Route::get('/entrepreneur/account',    		'EntrepreneurAccountController@index');
