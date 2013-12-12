@@ -115,6 +115,7 @@ class StaffRequestsController extends BaseController {
         $signer_name = DB::table('export_certificate_requests')
             ->join('receipts', 'export_certificate_requests.reference_id', '=', 'receipts.request_reference_id')
             ->join('users', 'users.id', '=', 'export_certificate_requests.signer_id')
+            ->where('receipts.request_reference_id', '=', $id)
             ->select('users.name','export_certificate_requests.updated_at')
             ->get();
 
@@ -304,9 +305,7 @@ class StaffRequestsController extends BaseController {
 	}
 
 	private function updateStatus($request) {
-		for ($i=0; $i < sizeof($request); $i++) { 
-			$request[$i]['status'] = StatusChecker::getStatus($request[$i]['status'],"entrepreneur");
-		}
+		$request['status'] = StatusChecker::getStatus($request['status'],"entrepreneur");
 	}
 	
 	public function createResult($id, $type) {
