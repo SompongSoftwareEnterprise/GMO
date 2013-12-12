@@ -43,7 +43,7 @@ View Request Information
 							<td>สทช. 1-2/1 & สทช. 1-2/2</td>
 							<td class="text-warning">{{ $dmtCertReqForm->status }}</td>
 						<?php } else if ($dmtCertReqForm->status == 'Available') { ?>
-							<td>สทช. 1-2/1 & สทช. 1-2/2 (<a href="#">View</a>)</td>
+							<td>สทช. 1-2/1 & สทช. 1-2/2 </td>
 							<td class="text-success">{{ $dmtCertReqForm->status }}</td>
 						<?php } ?>
 					</tr>

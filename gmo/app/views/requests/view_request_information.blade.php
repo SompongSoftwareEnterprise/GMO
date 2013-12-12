@@ -35,7 +35,7 @@ View Request Information
 				<thead>
 					<tr>
 						<th>Document</th>
-						<th>Status</th>
+						<th class="col-xs-4">Status</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -44,7 +44,7 @@ View Request Information
 							<td>สทช. 1-1/1</td>
 							<td class="text-warning">{{ $certReqForm->status }}</td>
 						<?php } else if ($certReqForm->status == 'Available') { ?>
-							<td>สทช. 1-1/1 (<a href="/entrepreneur/requests/view/11/{{$certReq->reference_id}}">View</a>)</td>
+							<td>สทช. 1-1/1</td>
 							<td class="text-success">Sent Request</td>
 <!--							<td class="text-success">{{ $certReqForm->status }}</td>-->
 						<?php } ?>
@@ -55,7 +55,7 @@ View Request Information
 							<td>สทช. 1-1/2</td>
 							<td class="text-warning">{{ $certReqInfoForm->status }}</td>
 						<?php } else if ($certReqInfoForm->status == 'Available') { ?>
-							<td>สทช. 1-1/2 (<a href="#">View)</a></td>
+							<td>สทช. 1-1/2</td>
 							<td class="text-success">Sent Request</td>
 						<?php } ?>
 					<?php } else { ?>
