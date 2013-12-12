@@ -77,6 +77,15 @@ Route::post('/entrepreneur/requests/{id}', array(
 	'as' => 'entrepreneur.requests.create.info',
 	'uses' => 'EntrepreneurRequestsController@createCertificateInfo'
 ));
+Route::post('/entrepreneur/requests/invoice/{id}', array(
+	'as' => 'entrepreneur.requests.invoice',
+	'uses' => 'EntrepreneurRequestsController@showInvoice'
+));
+Route::post('/entrepreneur/requests/receipt/{id}', array(
+	'as' => 'entrepreneur.requests.receipt',
+	'uses' => 'EntrepreneurRequestsController@showReceipt'
+));
+
 
 
 //domestic request
