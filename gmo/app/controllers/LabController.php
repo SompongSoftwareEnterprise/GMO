@@ -81,12 +81,20 @@ class LabController extends BaseController {
 	private function getTableItem($labtasks) {
 		$items = array();
 		foreach ($labtasks as $labtask) {
-
-			$labproduct = LabTaskProduct::where('lab_task_id','=',$labtask->id)->first();
-			$item = array('taskid' => $labtask->reference_id,'taskname' => $labproduct->product_name,'duedate' => $labproduct->finish,'status' => $labtask->status);
+			$labproduct = LabTaskProduct::where('lab_task_id','=',$labtask->id)->get();
+			$product_names = array();
+			$due_date = '';
+			foreach ($labproduct as $product) {
+				$product_names[] = $product->product_name;
+				$due_date = $product->finish;
+			}
+			$item = array(
+				'taskid' => $labtask->reference_id,
+				'taskname' => implode(', ', $product_names),
+				'duedate' => $due_date,
+				'status' => $labtask->status);
 			array_push($items, $item);
 		}
-
 		return $items;
 	}
 
@@ -112,7 +120,6 @@ class LabController extends BaseController {
 
 	public function uploadLabResult(){
 		$filenum = Input::get('filenum');
-		var_dump($filenum);
 		$file = Input::file($filenum);
 		$namef = Input::file($filenum)->getClientOriginalName();
 		$destinationPath = 'uploads/'.str_random(8);

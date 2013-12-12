@@ -22,7 +22,7 @@ class StaffRequestsController extends BaseController {
 	public function view($form,$id) {
 		if($form == '11') {
 			$request = CertificateRequest::where('reference_id', '=', $id)->first();
-			$this->updateStatus($request);
+			updateStatus($request);
 			$user = User::find($request->signer_id);
 			$form = CertificateRequestForm::where('export_certificate_request_id', '=', $id)->first();
 			$example = CertificateRequestExample::where('export_certificate_request_form_id', '=', $id)->get();
@@ -31,7 +31,7 @@ class StaffRequestsController extends BaseController {
 		}
 		else if($form == '12') {
 			$request = CertificateRequest::where('reference_id', '=', $id)->first();
-			$this->updateStatus($request);
+			updateStatus($request);
 			$user = User::find($request->signer_id);
 			$form = CertificateRequestInfoForm::where('export_certificate_request_id', '=', $id)->first();
 			$entrepreneur = Entrepreneur::where('user_id', '=', $user['id'])->first();
@@ -40,7 +40,7 @@ class StaffRequestsController extends BaseController {
 		}
 		else if($form == '21') {
             $request = DomesticCertificateRequest::where('reference_id', '=', $id)->first();
-            $this->updateStatus($request);
+            updateStatus($request);
             $user = User::find($request->signer_id);
             $form = DomesticCertificateRequestForm::where('domestic_certificate_request_id', '=', $id)->first();
             $example = DomesticCertificateRequestExample::where('domestic_certificate_request_id', '=', $id)->get();
@@ -160,12 +160,12 @@ class StaffRequestsController extends BaseController {
 		$labTask->transgene = Input::get('transgene', '');
 		$labTask->save();
 
-		$product = new LabTaskProduct;
 		foreach (Input::all() as $k => $v) {	
 			$prefix = 'product_codepj';
 			if (substr($k, 0, strlen($prefix)) == $prefix) {
+				$product = new LabTaskProduct;
 				$number = substr($k, strlen($prefix));
-				$product->lab_task_id = $id;
+				$product->lab_task_id = $labTask->id;
 				$product->product_code = Input::get('product_codepj' . $number);
 				$product->product_name = Input::get('product_namepj' . $number);
 				$product->measure = Input::get('measurepj' . $number);
@@ -177,12 +177,12 @@ class StaffRequestsController extends BaseController {
 		}
 		
 
-		$responsible = new LabTaskAssignment;
 		foreach (Input::all() as $k => $v) {
 			$prefix = 'responsiblerp';
 			if (substr($k, 0, strlen($prefix)) == $prefix) {
+				$responsible = new LabTaskAssignment;
 				$number = substr($k, strlen($prefix));
-				$responsible->lab_task_id = $id;
+				$responsible->lab_task_id = $labTask->id;
 				$responsible->assignee = Input::get('responsiblerp' . $number);
 				$responsible->save();
 			}
@@ -304,7 +304,9 @@ class StaffRequestsController extends BaseController {
 	}
 
 	private function updateStatus($request) {
-		$request[$i]['status'] = StatusChecker::getStatus($request[$i]['status'],"entrepreneur");
+		for ($i=0; $i < sizeof($request); $i++) { 
+			$request[$i]['status'] = StatusChecker::getStatus($request[$i]['status'],"entrepreneur");
+		}
 	}
 	
 	public function createResult($id, $type) {

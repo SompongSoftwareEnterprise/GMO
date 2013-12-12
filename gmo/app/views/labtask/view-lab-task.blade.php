@@ -11,43 +11,43 @@ View Lab Task
 
     @foreach ($products as $product)
       <div class="form-group">
-        <label for="inputCodeOfProduct1" class="col-lg-2 control-label">Product Code :</label>
-        <div class="col-lg-8">
+        <label for="inputCodeOfProduct1" class="col-sm-2 control-label">Product Code :</label>
+        <div class="col-sm-8">
           <p>{{$product['product_code']}}</p>
         </div>
       </div>
 
       <div class="form-group">
-        <label for="inputNameOfProduct1" class="col-lg-2 control-label">Product Name :</label>
-        <div class="col-lg-8">
+        <label for="inputNameOfProduct1" class="col-sm-2 control-label">Product Name :</label>
+        <div class="col-sm-8">
           <p>{{$product['product_name']}}</p>
         </div>
       </div>
 
       <div class="form-group">
-        <label for="measureAndVolume1" class="col-lg-2 control-label">Measure :</label>
-        <div class="col-lg-8">
+        <label for="measureAndVolume1" class="col-sm-2 control-label">Measure :</label>
+        <div class="col-sm-8">
           <p>{{$product['measure']}}</p>
         </div>
       </div>
 
       <div class="form-group">
-        <label for="measureAndVolume1" class="col-lg-2 control-label">Volume :</label>
-        <div class="col-lg-8">
+        <label for="measureAndVolume1" class="col-sm-2 control-label">Volume :</label>
+        <div class="col-sm-8">
           <p>{{$product['volume']}}</p>
         </div>
       </div>
 
       <div class="form-group">
-        <label for="dateStart1" class="col-lg-2 control-label">Date Start:</label>
-        <div class="col-lg-8">
+        <label for="dateStart1" class="col-sm-2 control-label">Date Start:</label>
+        <div class="col-sm-8">
           <p>{{$product['start']}}</p>
         </div>
       </div>
 
       <div class="form-group">
-        <label for="dateStart1" class="col-lg-2 control-label">Date Finish:</label>
-        <div class="col-lg-8">
+        <label for="dateStart1" class="col-sm-2 control-label">Date Finish:</label>
+        <div class="col-sm-8">
           <p>{{$product['finish']}}</p>
         </div>
       </div>
@@ -56,8 +56,8 @@ View Lab Task
 
 
       <div class="form-group">
-        <label for="responsible" class="col-lg-2 control-label">Responsible :</label>
-        <div class="col-lg-8">
+        <label for="responsible" class="col-sm-2 control-label">Responsible :</label>
+        <div class="col-sm-8">
         <? $no = 1; ?>
           @foreach($assignees as $assignee)
             <p>{{$no++.".".$assignee['assignee']}}</p>
@@ -66,8 +66,8 @@ View Lab Task
       </div>
 
       <div class="form-group">
-        <label for="inputMedthodOfExtractDNA" class="col-lg-2 control-label">Medthod Of Extracting DNA :</label>
-        <div class="col-lg-8">
+        <label for="inputMedthodOfExtractDNA" class="col-sm-2 control-label">Medthod Of Extracting DNA :</label>
+        <div class="col-sm-8">
           <p>{{$labTask['dna_extraction_method']}}</p>
         </div>
       </div>
@@ -79,15 +79,15 @@ View Lab Task
       <hr>
 
       <div class="form-group">
-        <label for="inputEndogenous" class="col-lg-2 control-label">Endogenous :</label>
-        <div class="col-lg-8">
+        <label for="inputEndogenous" class="col-sm-2 control-label">Endogenous :</label>
+        <div class="col-sm-8">
           <p>{{$labTask['endogenous']}}</p>
         </div>
       </div>
 
       <div class="form-group">
-        <label for="inputTransgene" class="col-lg-2 control-label">Transgene :</label>
-        <div class="col-lg-8">
+        <label for="inputTransgene" class="col-sm-2 control-label">Transgene :</label>
+        <div class="col-sm-8">
           <p>{{$labTask['transgene']}}</p>
         </div>
       </div>
@@ -98,8 +98,8 @@ View Lab Task
       </div>
 
 <!-- <div class="form-group">
-<label for="date1" class="col-lg-2 control-label ">Lab Status</label>
-<div class="col-lg-2">
+<label for="date1" class="col-sm-2 control-label ">Lab Status</label>
+<div class="col-sm-2">
 
 <select class="dateStart2 form-control">
 <option>pending</option>
