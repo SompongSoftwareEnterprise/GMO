@@ -35,7 +35,7 @@ GMO Staff
     * An error box must be shown.
 6. Complete the remaining/incorrect fields with the data from [register-customer-attempt2](../../../casper/testdata/register-customer-attempt2.yml).
     * A message box that the registration is complete must be shown.
-    * An email message must be sent to "sompong@sompongplant.co.th"
+    * An email message must be sent to "sompongplant@mailinator.com"
 7. Click the finish button.
     * The user must be taken back to the register home page.
 

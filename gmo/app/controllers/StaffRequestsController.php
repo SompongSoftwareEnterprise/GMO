@@ -22,7 +22,7 @@ class StaffRequestsController extends BaseController {
 	public function view($form,$id) {
 		if($form == '11') {
 			$request = CertificateRequest::where('reference_id', '=', $id)->first();
-			updateStatus($request);
+			$this->updateStatus($request);
 			$user = User::find($request->signer_id);
 			$form = CertificateRequestForm::where('export_certificate_request_id', '=', $id)->first();
 			$example = CertificateRequestExample::where('export_certificate_request_form_id', '=', $id)->get();
@@ -31,7 +31,7 @@ class StaffRequestsController extends BaseController {
 		}
 		else if($form == '12') {
 			$request = CertificateRequest::where('reference_id', '=', $id)->first();
-			updateStatus($request);
+			$this->updateStatus($request);
 			$user = User::find($request->signer_id);
 			$form = CertificateRequestInfoForm::where('export_certificate_request_id', '=', $id)->first();
 			$entrepreneur = Entrepreneur::where('user_id', '=', $user['id'])->first();
@@ -40,7 +40,7 @@ class StaffRequestsController extends BaseController {
 		}
 		else if($form == '21') {
             $request = DomesticCertificateRequest::where('reference_id', '=', $id)->first();
-            updateStatus($request);
+            $this->updateStatus($request);
             $user = User::find($request->signer_id);
             $form = DomesticCertificateRequestForm::where('domestic_certificate_request_id', '=', $id)->first();
             $example = DomesticCertificateRequestExample::where('domestic_certificate_request_id', '=', $id)->get();
