@@ -183,19 +183,19 @@ Registration
 
 <div class="row">
 	<div class="form-group">
-		@if($statuslist['Waiting For Approval'] == 'Pending')
+		@if($statuslist['Waiting For Approval'] == 'Pending' && $user->name == 'head')
 		<div class="col-sm-offset-1 col-sm-5">
-			<button type="button" class="btn btn-success btn-lg btn-block">Pass</button>
+			<a class="btn btn-success btn-lg btn-block" href="/lab/task/result/{{ $labtask['reference_id'] }}/pass">Pass</a>
 		</div>
 		<div class="col-sm-offset-0 col-sm-5">
-			<button type="button" class="btn btn-danger btn-lg btn-block">Fail</button>
+			<a class="btn btn-danger btn-lg btn-block" href="/lab/task/result/{{ $labtask['reference_id'] }}/fail">Fail</a>
 		</div>
 		@else
 		<div class="col-sm-offset-1 col-sm-5">
-			<button type="button" class="btn btn-success btn-lg btn-block disabled">Pass</button>
+			<a class="btn btn-success btn-lg btn-block disabled" herf="">Pass</a>
 		</div>
 		<div class="col-sm-offset-0 col-sm-5">
-			<button type="button" class="btn btn-danger btn-lg btn-block disabled">Fail</button>
+			<a class="btn btn-danger btn-lg btn-block disabled" href="">Fail</a>
 		</div>
 		@endif
 
