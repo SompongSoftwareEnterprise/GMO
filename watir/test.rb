@@ -142,9 +142,42 @@ end
 
 	step "Make 1-1/1 Request" do
 		id("make-111").click
+		select(name: "owner_id").select(/Sompong Somchai/)
 		autofill "Certificate Request 1-1/1"
 		form(id: "new-request-form").submit
 	end
+
+	step "Make sure status is Pending" do
+		assert selector("td.text-warning").text =~ /Pending/
+	end
+
+	login_as "GMO Staff"
+
+	step "Make sure status is New Request" do
+		assert trs.find { |c| c.text =~ /Sompong Somchai/ }.text =~ /New Request/
+	end
+
+	step "Click link and create invoice" do
+		assert trs.find { |c| c.text =~ /Sompong Somchai/ }.a.click
+		element(text: /Create Invoice/, class: 'btn').click
+		element(text: /Back/, class: 'btn').click
+		assert text =~ /Awaiting payment/i
+	end
+
+	step "Create receipt" do
+		element(text: /Create Receipt/, class: 'btn').click
+		back
+	end
+
+	step "Create lab task" do
+		element(text: /Create Lab Task/, class: 'btn').click
+		autofill "Lab Task Information"
+		form(id: "create-lab-task-form").submit
+		element(text: /Back/, class: 'btn').click
+		assert trs.find { |c| c.text =~ /Sompong Somchai/ }.text =~ /Lab in Progress/i
+	end
+
+	login_as "Lab Staff"
 
 	binding.pry
 	close

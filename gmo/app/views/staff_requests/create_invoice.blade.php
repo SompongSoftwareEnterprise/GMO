@@ -34,7 +34,7 @@ Invoice {{ $invoice->reference_id }}
 
 		<div class="form-group">
 			<div class="col-sm-offset-10 col-xs-2">
-				<a href="{{ action('StaffRequestsController@index') }}" class="btn btn-default"> Back </a>
+				<a href="{{ action('StaffRequestsController@show', $invoice->request_reference_id) }}" class="btn btn-default"> Back </a>
 				<button class="btn btn-primary" type="button"> Print </button>
 			</div>
 		</div>
