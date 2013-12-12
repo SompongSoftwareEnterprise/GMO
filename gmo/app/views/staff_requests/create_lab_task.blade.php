@@ -3,8 +3,11 @@
 View All Requests
 @endsection
 @section('content')
-{{Form::open(array('action' => array('StaffRequestsController@createLabTask', $id), 'class' => 'form-horizontal'))}}
+{{Form::open(array('action' => array('StaffRequestsController@createLabTask', $id), 'class' => 'form-horizontal', 'id' => 'create-lab-task-form'))}}
 <div class="panel-body ">
+
+    {{ View::make('errors_row') }}
+
     <div class="row">
         <div class="col-xs-12">
             <div class="bs-example bs-example-tabs">  
@@ -17,32 +20,36 @@ View All Requests
                         </div>
                         <br>
                         <!-- <form class="form-horizontal" role="form"> -->
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label for="productCode" class="col-xs-3 control-label">Product Code</label>
                                 <div class="col-xs-4">
                                     <input type="codeOfProduct" class="form-control" id="productCode" name="product_code" placeholder="ex. 111122223333">
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="form-group">
                                 <label for="productDetail" class="col-xs-3 control-label">Detail</label>
                                 <div class="col-xs-4">
+                                    <!-- {{ Form::text('product_detail') }} -->
                                     <input type="detailOfProduct" class="form-control" id="productDetail" name="product_detail" placeholder="ex. Product Detail">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="methodOfExtractinfDNA" class="col-xs-3 control-label">Medthod Of Extracting DNA</label>
                                 <div class="col-xs-4">
+
+                                    <!-- {{ Form::text('method_of_extractinf_DNA') }} -->
                                     <input type="methodOfExtractingDNA" class="form-control" id="methodOfExtractinfDNA" name="method_of_extractinf_DNA" placeholder="ex. Boiling method">
+                                    
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="detailOfAnalysis" class="col-xs-3 control-label">Method Of Seperating Gene</label>
                                 <div class="col-xs-8">
                                     <div class="checkbox">
-                                        <label> {{ Form::checkbox('transgene', 'PRC') }} PRC </label>
+                                        <label> {{ Form::checkbox('method_of_seperate_gene', 'PRC') }} PRC </label>
                                     </div>
                                     <div class="checkbox">
-                                         <label> {{ Form::checkbox('transgene', 'real_time') }} Real-time </label>
+                                         <label> {{ Form::checkbox('method_of_seperate_gene', 'real_time') }} Real-time </label>
                                     </div>
                                 </div>
                             </div>
@@ -100,6 +107,9 @@ View All Requests
                     <!-- <form class="form-horizontal" role="form"> -->
                         <!-- List1 -->
                         <div class="project-detail">
+							<div class="row">
+								<h4 class="col-sm-6 col-sm-offset-3">Product #<span data-gmo-project="number">1</span></h4>
+							</div>
                             <div class="form-group">
                                 <label for="productCode1" class="col-xs-3 control-label">Product Code</label>
                                 <div class="col-xs-4">
@@ -127,77 +137,40 @@ View All Requests
                             <!-- DateStart -->
                             <div class="form-group">
                                 <label for="date1" class="col-xs-3 control-label">Date Start</label>
-                                <div class="col-xs-1">
-                                    <select id="date1" class="form-control" name="dateStartpj1">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
-                                    </select>
-                                </div>
-                                <div class="col-xs-2">
-                                    <select class="form-control" name="monthStartpj1">
-                                        <option>January</option>
-                                        <option>February</option>
-                                        <option>March</option>
-                                        <option>April</option>
-                                        <option>May</option> 
-                                    </select>
-                                </div>
-                                <div class="col-xs-2">
-                                    <select class="form-control" name="yearStartpj1">
-                                        <option>2011</option>
-                                        <option>2012</option>
-                                        <option>2013</option>
-                                        <option>2014</option>
-                                        <option>2015</option>
-                                    </select>
-                                </div>
+								<div class="row col-xs-6">
+									{{ Form::date('dateStartpj1') }}
+								</div>
                             </div>
                             <!-- DateFinish -->
                             <div class="form-group">
                                 <label for="date1" class="col-xs-3 control-label">Date Finish</label>
-                                <div class="col-xs-1">
-                                    <select class="form-control" name="dateFinishpj1">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
-                                    </select>
-                                </div>
-                                <div class="col-xs-2">
-                                    <select class="form-control" name="monthFinishpj1">
-                                        <option>January</option>
-                                        <option>February</option>
-                                        <option>March</option>
-                                        <option>April</option>
-                                        <option>May</option> 
-                                    </select>
-                                </div>
-                                <div class="col-xs-2">
-                                    <select class="form-control" name="yearFinishpj1">
-                                        <option>2011</option>
-                                        <option>2012</option>
-                                        <option>2013</option>
-                                        <option>2014</option>
-                                        <option>2015</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-xs-1">
-                                        <button data-gmo-project="remove" type="button" class="btn btn-danger">Delete</button>
-                                    </div>
-                                    <div class="col-xs-2">
-                                        <button data-gmo-project="add" type="button" class="btn btn-primary text-left">Add Project</button>
-                                    </div>
-                                </div>
+								<div class="row col-xs-6">
+									{{ Form::date('dateFinishpj1') }}
+								</div>
+								<div class="col-xs-1">
+									<button data-gmo-project="remove" type="button" class="btn btn-danger">Delete</button>
+								</div>
+								<div class="col-xs-2">
+									<button data-gmo-project="add" type="button" class="btn btn-primary text-left">Add Product</button>
+								</div>
                             </div>
+							<br><br>
                         </div>
+<?php
+	$examples_json = array();
+	if (!empty($examples)) {
+		foreach ($examples as $example) {
+			$examples_json[] = array(
+				'productName' => $example->type_of_example,
+				'measure' => $example->quantity,
+			);
+		}
+	}
+?>
                         <!-- Add Project -->
                         <script>
                             $(function() {
+								var data = {{ json_encode($examples_json) }};
                                 var template = $('.project-detail').html()
                                 $(document).on('click', '[data-gmo-project="remove"]', function(e) {
                                     if ($('.project-detail').length == 1) {
@@ -221,6 +194,29 @@ View All Requests
                                         $(this).find('[data-gmo-project="number"]').html(index + 1 + '')
                                     })
                                 }
+
+								// pre-fill product data
+								function fill(name, value) {
+									$('[name=' + name + ']').val(function(x) {
+										return x == '' ? value + '' : x
+									})
+								}
+
+								data.forEach(function(product, i) {
+									var index = i + 1
+									if (index > 1) $('[data-gmo-project="add"]:last').click()
+									fill('product_namepj' + index, product.productName)
+									fill('measurepj' + index, product.measure)
+
+									var now = new Date()
+									fill('dateStartpj' + index + '__date', now.getDate())
+									fill('dateStartpj' + index + '__month', now.getMonth() + 1)
+									fill('dateStartpj' + index + '__year', now.getFullYear() + 543)
+									now.setDate(now.getDate() + 12)
+									fill('dateFinishpj' + index + '__date', now.getDate())
+									fill('dateFinishpj' + index + '__month', now.getMonth() + 1)
+									fill('dateFinishpj' + index + '__year', now.getFullYear() + 543)
+								})
                             })
                         </script>
                         <!-- End Add Project -->

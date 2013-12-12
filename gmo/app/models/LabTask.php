@@ -4,9 +4,8 @@ class LabTask extends Eloquent {
 
 	public static function getValidationRules() {
         $rules = array(
-        	'productCode' => 'required',
-        	'productDetail' => 'Required',
-	        'methodOfExtractinfDNA' => 'Required',
+           	'product_detail' => 'Required',
+	        'method_of_extractinf_DNA' => 'Required',
 	        'endogenous' => 'required',
         );
         return $rules;

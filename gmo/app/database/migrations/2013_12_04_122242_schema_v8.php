@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 
-class SchemaV7 extends Migration {
+class SchemaV8 extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,7 +12,7 @@ class SchemaV7 extends Migration {
 	public function up()
 	{
 		Schema::table('domestic_certificate_request_forms', function($table) {
-		    $table->renameColumn('rep_of', 'owner_id');
+		     $table->string('status');
 		});
 		
 	}
@@ -24,8 +24,8 @@ class SchemaV7 extends Migration {
 	 */
 	public function down()
 	{
-		Schema::table('domestic_certificate_request_forms', function($table) {
-		    $table->renameColumn('owner_id', 'rep_of');
+		Schema::table('domestic_certificate_request_forms', function($table){
+		    $table->dropColumn('status');
 		});
 	}
 

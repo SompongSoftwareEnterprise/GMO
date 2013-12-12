@@ -162,7 +162,8 @@ back and forth from the requirements to the test cases.
   <tr>
     <td valign='top'><a href="../use-cases/uc118-change-lab-requests-status.md">uc118</a>
     <td valign='top'>
-      <a href="../designs/ds118-view-lab-task.md">ds118</a>
+      <a href="../designs/ds118-view-lab-task.md">ds118</a><br>
+      <a href="../designs/ds301-upload-lab-result.md">ds301</a>
     <td>
     <td valign='top'>
       <a href="userdoc/5-lab-staff.md#53-see-the-info-of-each-specific-lab-task-">5.3</a>
@@ -178,7 +179,8 @@ back and forth from the requirements to the test cases.
   <tr>
     <td valign='top'><a href="../use-cases/uc120-send-the-labs-result.md">uc120</a>
     <td valign='top'>
-      <a href="../designs/ds120-lab-request-completion-page.md">ds120</a>
+      <a href="../designs/ds120-lab-request-completion-page.md">ds120</a><br>
+      <a href="../designs/ds301-upload-lab-result.md">ds301</a>
     <td>
     <td>
     <td>

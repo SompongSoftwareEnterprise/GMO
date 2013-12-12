@@ -19,10 +19,37 @@ class StaffRequestsController extends BaseController {
 			->with('id', $id);
 	}
 
-	public function createReceipt($id){
-		$idForm = CertificateRequest::find($id);
-		$idForm = CertificateRequestInfoForm::where('export_certificate_request_id', '=', $idForm->id)->get();
-		print_r($idForm);
+	public function view($form,$id) {
+		if($form == '11') {
+			$request = CertificateRequest::where('reference_id', '=', $id)->first();
+			$user = User::find($request->signer_id);
+			$form = CertificateRequestForm::where('export_certificate_request_id', '=', $id)->first();
+			$example = CertificateRequestExample::where('export_certificate_request_form_id', '=', $id)->get();
+			$entrepreneur = Entrepreneur::where('user_id', '=', $user['id'])->first();
+			return View::make('view-form-1-1-1')->with('entrepreneur',$entrepreneur)->with('ex_cert',$form)->with('example',$example)->with('ref_id',$id);
+		}
+		else if($form == '12') {
+			$request = CertificateRequest::where('reference_id', '=', $id)->first();
+			$user = User::find($request->signer_id);
+			$form = CertificateRequestInfoForm::where('export_certificate_request_id', '=', $id)->first();
+			$entrepreneur = Entrepreneur::where('user_id', '=', $user['id'])->first();
+			return View::make('view-form-1-1-2')->with('entrepreneur',$entrepreneur)->with('ex_cert_info',$form)->with('ref_id',$id);
+
+		}
+		else if($form == '21') {
+            $request = DomesticCertificateRequest::where('reference_id', '=', $id)->first();
+            $user = User::find($request->signer_id);
+            $form = DomesticCertificateRequestForm::where('domestic_certificate_request_id', '=', $id)->first();
+            $example = DomesticCertificateRequestExample::where('domestic_certificate_request_id', '=', $id)->get();
+			$entrepreneur = Entrepreneur::where('user_id', '=', $user['id'])->first();
+			return View::make('view-form-1-2')->with('entrepreneur',$entrepreneur)->with('dmt_cert',$form)->with('example',$example)->with('ref_id',$id);
+		}
+	}
+
+	public function createInvoice($id){
+
+		$idForm = CertificateRequestInfoForm::where('export_certificate_request_id', '=', $id)->get();
+
 		if(count($idForm)>0){
 			$checkForm = true;
 		} 
@@ -30,24 +57,76 @@ class StaffRequestsController extends BaseController {
 			$checkForm = false;
 		}
 
-		$receipt = 
-		Receipt::where('export_certificate_request_id', '=', $id)->first();
-		if( !(count($receipt) > 0) ){
-			$receipt = new Receipt;
-			$receipt->export_certificate_request_id = $id;
-			if($checkForm)
-				$receipt->price = 100+150;
-			else
-				$receipt->price = 100;
-			$receipt->save();
+		$invoice = Invoice::where('request_reference_id', '=', $id)->first();
+
+		if( empty($invoice) ){
+
+			$invoice = new Invoice;
+			$invoice->request_reference_id = $id;
+			$invoice->reference_id = 'IV' . RunningNumber::increment('invoice');
+
+			$price = array(
+				array('name' => 'สทช.1-1/1', 'price' => 100),
+			);
+
+			if ($checkForm) {
+				$price[] = array('name' => 'สทช.1-1/2', 'price' => 150);
+			}
+
+			$totalPrice = 0;
+			foreach ($price as $item) {
+				$totalPrice += $item['price'];
+			}
+
+			$invoice->price = json_encode($price);
+			$invoice->total_price = $totalPrice;
+			$invoice->save();
+
+		} else {
+			// use true to convert to array and not object
+			$price = json_decode($invoice->price, true);
 		}
+		return View::Make('staff_requests/create_invoice')
+			->with('invoice', $invoice)
+			->with('price', $price);
+		
+	}
+
+	public function createReceipt($id){
+
+		$receipt = Receipt::where('request_reference_id', '=', $id)->first();
+		$invoice = Invoice::where('request_reference_id', '=', $id)->first();
+
+		if( empty($receipt) ){
+
+			$receipt = new Receipt;
+			$receipt->reference_id = 'RC' . RunningNumber::increment('receipt');
+			$receipt->request_reference_id = $id;
+			$receipt->save();
+    
+		}
+
+		$price = json_decode($invoice->price, true);
+        
+        $signer_name = DB::table('export_certificate_requests')
+            ->join('receipts', 'export_certificate_requests.reference_id', '=', 'receipts.request_reference_id')
+            ->join('users', 'users.id', '=', 'export_certificate_requests.signer_id')
+            ->select('users.name','export_certificate_requests.updated_at')
+            ->get();
+            
 		return View::Make('staff_requests/create_receipt')
-			->with('checkForm', $checkForm);
+			->with('receipt', $receipt)
+			->with('invoice', $invoice)
+			->with('price', $price)
+			->with('signer_name',$signer_name);
+
 	}
 
 	public function newLabTask($id) {
+		$examples = CertificateRequestExample::where('export_certificate_request_form_id', '=', $id)->get();
 		return View::make('staff_requests/create_lab_task')
-			->with('id', $id);
+			->with('id', $id)
+			->with('examples', $examples);
 	}
 
 	public function createLabTask($id) {
@@ -55,22 +134,23 @@ class StaffRequestsController extends BaseController {
 		//Check Validator rules
 		$validator = Validator::make(Input::all(), LabTask::getValidationRules());
 		if ($validator->fails()) {
-			return Redirect::action('StaffRequestsController@newLabTask')
+			return Redirect::action('StaffRequestsController@newLabTask', $id)
 				->withErrors($validator)
 				->withInput();
 		}
-
 
 		//Save in database
 		$labTask = new labTask;
 		$labTask->reference_id = 'LT'.RunningNumber::increment('default');
 		$labTask->export_certificate_request_id = $id;
 		$labTask->status = 'Pending';
-		$labTask->product_code = Input::get('product_code');
+		// $labTask->product_code = Input::get('product_code');
 		$labTask->detail = Input::get('product_detail');
 		$labTask->dna_extraction_method = Input::get('method_of_extractinf_DNA');
-		$labTask->gene_separation_method = Input::get('gene', '');
-		$labTask->gene_of_analysis = Input::get('endogenous');
+
+		$labTask->gene_separation_method = Input::get('method_of_seperate_gene', '');
+		$labTask->endogenous = Input::get('endogenous');
+		// $labTask->gene_of_analysis = Input::get('endogenous');
 		$labTask->transgene = Input::get('transgene', '');
 		$labTask->save();
 
@@ -84,8 +164,8 @@ class StaffRequestsController extends BaseController {
 				$product->product_name = Input::get('product_namepj' . $number);
 				$product->measure = Input::get('measurepj' . $number);
 				$product->volume = Input::get('volumepj' . $number);
-				$product->start = Input::get('dateStartpj' . $number) . "-" . Input::get('monthStartpj' . $number) . "-" . Input::get('yearStartpj' . $number);
-				$product->finish = Input::get('dateFinishpj' . $number) . "-" . Input::get('monthFinishpj' . $number) . "-" . Input::get('yearFinishpj' . $number);
+				$product->start = InputDate::parse('dateStartpj' . $number);
+				$product->finish = InputDate::parse('dateFinishpj' . $number);
 				$product->save();
 			}
 		}
@@ -131,10 +211,29 @@ class StaffRequestsController extends BaseController {
 	}
 
 	private function createRequestData($id) {
-		$data = array('Request ID' => '', 'Importer Name' => '', 'Requester'=> '',
-			'Sent Date' => '', 'Status' => '', 'Invoice' => '', 'Receipt' => '');
+		$data = array(
+			'Request ID' => '',
+			'Importer Name' => '',
+			'Requester'=> '',
+			'Sent Date' => '',
+			'Status' => '',
+			'Invoice' => '0',
+			'Receipt' => '0',
+			'Request From' => '1',
+			'Info From' => '0');
 		$request = CertificateRequest::where('reference_id', '=', $id)->first();
-		if($request == null) $request =  DomesticCertificateRequest::where('reference_id', '=', $id)->first();
+		$info = null;
+		if($request == null) {
+			$data['Request From'] = '2';
+			$request =  DomesticCertificateRequest::where('reference_id', '=', $id)->first();
+			$info = DomesticCertificateRequestForm::where('domestic_certificate_request_id', '=', $request['reference_id'])->first();
+		}
+		else {
+			$info = CertificateRequestInfoForm::where('export_certificate_request_id', '=', $request['reference_id'])->first();
+		}
+		if($info) {
+			$data['Info From'] = '1';
+		}
 		$data['ID'] = $request['id'];
 		$data['Reference ID'] = $request['reference_id'];
 
@@ -145,18 +244,19 @@ class StaffRequestsController extends BaseController {
 		$data['Requester'] = $requester['name'];
 		$data['Sent Date'] = $request['created_at'];
 		$data['Status'] = $request['status'];
-		$data['Invoice'] = 'Available';
 
-		$receipt = Receipt::where('export_certificate_request_id','=',$request->id)->get();
-		if(count($receipt) > 0) {
-			$data['Receipt'] = 'Available';			
+		$invoice = Invoice::where('request_reference_id', '=', $id)->first();
+
+		if($invoice != null) {
+			$data['Invoice'] = $invoice->id;
 		}
-		else {
-			$data['Receipt'] = 'Pending';		
+
+		$receipt = Receipt::where('request_reference_id', '=', $id)->first();
+		if($receipt != null) {
+			$data['Receipt'] = $receipt['id'];
 		}
 
 		return $data;
-
 
 	}
 
@@ -165,14 +265,14 @@ class StaffRequestsController extends BaseController {
 
 		// get request 1-1 data
 		foreach ($request1_1 as $request) {
-			$user = User::find($request->signer_id);
-			$requestInfoFrom = CertificateRequestInfoForm::where('export_certificate_request_id','=',$request->id)->first();
+			$user = User::find($request->owner_id);
+			$requestInfoFrom = CertificateRequestInfoForm::where('export_certificate_request_id','=',$request->reference_id)->first();
 			$item = array(
 				'ID' => $request->id,
 				'Reference ID' => $request->reference_id,
 				'Plant Name' => $requestInfoFrom ? $requestInfoFrom->common_name : '-',
 				'Entrepreneur' => $user ? $user->name : '(missing)',
-				'Current Process' => $request->status
+				'Current Process' => StatusChecker::getStatus($request->status, "staff")
 			);
 			array_push($items, $item);
 		}
@@ -187,7 +287,7 @@ class StaffRequestsController extends BaseController {
 				'Reference ID' => $request->reference_id,
 				'Plant Name' => '-',
 				'Entrepreneur' => $user ? $user->name : '(missing)',
-				'Current Process' => $request->status
+				'Current Process' => StatusChecker::getStatus($request->status, "staff")
 			);
 			array_push($items, $item);
 		}

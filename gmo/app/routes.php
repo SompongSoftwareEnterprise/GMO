@@ -27,10 +27,17 @@ Route::post('/login', 'LoginController@login');
 Route::get('/test/home', 'HomeController@homePage');
 
 // register
+
 Route::get('/staff/register',           'RegistrationController@index');
 Route::get('/staff/register/customer', 	'RegistrationController@registerCustomer');
 Route::get('/staff/register/agency',   	'RegistrationController@registerAgency');
 Route::post('/staff/register',         	'RegistrationController@submitRegister');
+
+//Report
+Route::get('/staff/report',         	'StaffReportController@index');
+Route::get('/staff/report/1',         	'StaffReportController@reportPlantList');
+Route::get('/staff/report/2',         	'StaffReportController@reportLabRequest');
+Route::get('/staff/report/5',         	'StaffReportController@reportDestinationCountry');
 
 //account
 Route::get('/entrepreneur/account',    		'EntrepreneurAccountController@index');
@@ -89,6 +96,16 @@ Route::post('/entrepreneur/dmt-requests/{id}', array(
 	'uses' => 'EntrepreneurDomesticRequestsController@createCertificateInfo'
 ));
     
+//Entre view req
+    Route::get('/entrepreneur/requests/{id}/{type}/result/new', array(
+	'as' => 'entrepreneur.result.new',
+	'uses' => 'EntreprenuerRequestsController@newResult'
+));
+Route::post('/entrepreneur/requests/{id}/{type}/result', array(
+	'as' => 'entrepreneur.result.create',
+	'uses' => 'EntreprenuerRequestsController@createResult'
+));
+    
 
 
 // gmo staff requests
@@ -96,6 +113,10 @@ Route::get('/staff', 'StaffRequestsController@index');
 Route::get('/staff/requests/{id}', array(
 	'as' => 'staff.requests.show',
 	'uses' => 'StaffRequestsController@show'
+));
+Route::get('/staff/requests/{id}/invoice', array(
+	'as' => 'staff.requests.invoice',
+	'uses' => 'StaffRequestsController@createInvoice'
 ));
 Route::get('/staff/requests/{id}/receipt', array(
 	'as' => 'staff.requests.receipt',
@@ -134,3 +155,13 @@ Route::get('/entrepreneur/account/{entrepreneurID}','EntrepreneurAgenciesControl
 Route::post('/entrepreneur/account/search','EntrepreneurAgenciesController@createAgenciesBySearch');
 Route::post('/entrepreneur/account/create','EntrepreneurAgenciesController@create');
 Route::post('/entrepreneur/account/delete','EntrepreneurAgenciesController@delete');
+
+//View & Upload Lab Task
+Route::get('/lab/test', 'LabController@viewLabResult');
+Route::post('/lab/test', 'LabController@uploadLabResult');
+Route::pattern('filename', '.+');
+Route::get('/lab/test/load/{filename}', 'LabController@downloadLabResult');
+
+Route::get('/staff/requests/view/{form}/{id}', 'StaffRequestsController@view');
+
+

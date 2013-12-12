@@ -42,13 +42,13 @@ View Certificate Request
 			{{ View::make('requests/table/header') }}
 		</thead>
 		<tbody>
+			<?php if ($certReqs != null) { ?>
 			<?php $row = null; ?>
 			@foreach($certReqs as $certReq)
 				<tr>
 					<td><a href="/entrepreneur/requests/{{ $certReq->reference_id }}">{{ $certReq->reference_id }}</a></td>
 					<td>{{ $certReq->owner_first_name }} {{ $certReq->owner_last_name }}</td>
 					<td>{{ $certReq->signer_first_name }} {{ $certReq->signer_last_name }}</td>
-					<!-- <td>{{ $certReq->first_name }}</td> -->
 					<td>{{ $certReq->created_at }}</td>
 					<?php if ($certReq->status == 'Pending') { ?>
 					<td class="text-warning">{{ $certReq->status }}</td>
@@ -57,13 +57,33 @@ View Certificate Request
 					<?php } ?>
 				</tr>
 			@endforeach
+			<?php } ?>
+			<?php if ($dmtCertReqs != null) { ?>
+			<?php $row = null; ?>
+			@foreach($dmtCertReqs as $dmtCertReq)
+				<tr>
+					<td><a href="/entrepreneur/dmt-requests/{{ $dmtCertReq->reference_id }}">{{ $dmtCertReq->reference_id }}</a></td>
+					<td>{{ $dmtCertReq->owner_first_name }} {{ $dmtCertReq->owner_last_name }}</td>
+					<td>{{ $dmtCertReq->signer_first_name }} {{ $dmtCertReq->signer_last_name }}</td>
+					<td>{{ $dmtCertReq->created_at }}</td>
+					<?php if ($dmtCertReq->status == 'Pending') { ?>
+					<td class="text-warning">{{ $dmtCertReq->status }}</td>
+					<?php } else if ($dmtCertReq->status == 'Available') { ?>
+					<td class="text-success">{{ $dmtCertReq->status }}</td>
+					<?php } ?>
+				</tr>
+			@endforeach
+			<?php } ?>
 		</tbody>
 	</table>
 
 	<br>
 
 	<a href="/entrepreneur/requests/new">
-		<button id="make-new-request-button" type="button" class="btn btn-default">Make New Request</button>
+		<button type="button" class="btn btn-default">Make New สทช 1-1/1 Request</button>
+	</a>
+	<a href="/entrepreneur/dmt-requests/new">
+		<button type="button" class="btn btn-default">Make New สทช 1-2/1 Request</button>
 	</a>
 
 </div>

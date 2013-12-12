@@ -15,8 +15,8 @@ View Request Information
 		<tbody>
 			<tr>
 				<td>{{ $certReq->reference_id }}</a></td>
-				<td>{{ $owner->first_name }} {{ $owner->last_name }}</td>
-				<td>{{ $signer->first_name }} {{ $signer->last_name }}</td>
+				<td>{{ $owner['first_name'] }} {{ $owner['last_name'] }}</td>
+				<td>{{ $signer['first_name'] }} {{ $signer['last_name'] }}</td>
 				<td>{{ $certReq->created_at }}</td>
 				<?php if ($certReq->status == 'Pending') { ?>
 					<td class="text-warning">{{ $certReq->status }}</td>
@@ -44,8 +44,9 @@ View Request Information
 							<td>สทช. 1-1/1</td>
 							<td class="text-warning">{{ $certReqForm->status }}</td>
 						<?php } else if ($certReqForm->status == 'Available') { ?>
-							<td>สทช. 1-1/1 (<a href="#">Download</a>)</td>
-							<td class="text-success">{{ $certReqForm->status }}</td>
+							<td>สทช. 1-1/1 (<a href="/entrepreneur/requests/view/11/{{$certReq->reference_id}}">View</a>)</td>
+							<td class="text-success">Sent Request</td>
+<!--							<td class="text-success">{{ $certReqForm->status }}</td>-->
 						<?php } ?>
 					</tr>
 					<tr>
@@ -54,8 +55,8 @@ View Request Information
 							<td>สทช. 1-1/2</td>
 							<td class="text-warning">{{ $certReqInfoForm->status }}</td>
 						<?php } else if ($certReqInfoForm->status == 'Available') { ?>
-							<td>สทช. 1-1/2 (<a href="#">Download)</a></td>
-							<td class="text-success">{{ $certReqInfoForm->status }}</td>
+							<td>สทช. 1-1/2 (<a href="#">View)</a></td>
+							<td class="text-success">Sent Request</td>
 						<?php } ?>
 					<?php } else { ?>
 						<td>สทช. 1-1/2 (<a href="{{ action('EntrepreneurRequestsController@newRequestsInfo', array($certReq->reference_id)) }}">Complete this Document</a>)</td>
@@ -70,9 +71,21 @@ View Request Information
 						<td>Receipt</td>
 						<td class="text-warning">Pending</td>
 					</tr>
+					<tr>
+						<td>Certificate</td>
+						<td class="text-warning">Pending</td>
+					</tr>
 
 				</tbody>
 			</table>
+<!--        show when certificate available-->
+            <div class="alert alert-success text-center">
+            ติดต่อขอรับได้ที่ สำนักวิจัยพัฒนาเทคโนโลยีชีวภาพ ถนนรังสิต-นครนายก (คลองหก) <br>
+            อำเภอธัญบุรี จังหวัดปทุมธานี 12110
+            <br>
+            โทร. 0-2904-6885-95 โทรสาร 0-2904-6885
+            </div>
+                    
 		</div>
 	</div>
 </div>

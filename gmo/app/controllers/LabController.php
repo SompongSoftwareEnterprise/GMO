@@ -90,5 +90,60 @@ class LabController extends BaseController {
 
 		return $items;
 	}
+
+	//Upload & Download Lab Result
+	public function viewLabResult(){
+		$labTaskProduct = LabTaskProduct::where('lab_task_id', '=', '1')->get();
+		$labTask = LabTask::find('1');
+		$labTaskAssignment = LabTaskAssignment::where('lab_task_id', '=', '1')->get();
+		$upload = UploadLabTaskFile::find('1');
+		
+
+		return View::make('/labtask/view-lab-task')
+			->with('products', $labTaskProduct)
+			->with('assignees', $labTaskAssignment)
+			->with('labTask', $labTask)
+			->with(array(
+				'file1' => $upload['file1'],
+				'file2' => $upload['file2'],
+				'file3' => $upload['file3'],
+				'file4' => $upload['file4'],
+			));
+	}
+
+	public function uploadLabResult(){
+		$filenum = Input::get('filenum');
+		var_dump($filenum);
+		$file = Input::file($filenum);
+		$namef = Input::file($filenum)->getClientOriginalName();
+		$destinationPath = 'uploads/'.str_random(8);
+        $uploadSuccess = Input::file($filenum)->move($destinationPath, $namef);
+
+        if( $uploadSuccess ) {
+        	$is_success = 1;
+        	$namef = $destinationPath."/".$namef;
+        	$upload = UploadLabTaskFile::find('1');
+        	$upload->$filenum = $namef;
+        	$upload->save();
+        	return Redirect::to('/staff/test')
+			->with('filename', $namef)
+			->with('message', "success")
+			->with('is_success', $is_success);
+		 // or do a redirect with some message that file was uploaded
+        } else {
+           return View::make('/staff_requests/test')
+			->with('file', $namef)
+			->with('message', "fail");
+        }
+	}
+
+
+
+	public function downloadLabResult($filename){
+		// print_r($destinationPath);
+		// return Response::download("public/".$destinationPath);
+		return Response::download($filename);
+	}
+	//End Upload & Download Lab Result
 	
 }

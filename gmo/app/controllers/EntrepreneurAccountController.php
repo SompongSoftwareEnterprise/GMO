@@ -17,20 +17,26 @@ class EntrepreneurAccountController extends AbstractEntrepreneurController {
 
 	public function index() {
 
-		$id = 1001;
-                $agencyIDs = CustomerAgency::where('customer_id','=',$id)->get();
+		$id = $this->entrepreneur->id;
+		$username = $this->entrepreneur->user_id;
+		$agencyIDs = CustomerAgency::where('customer_id','=',$username)->get();
 
-                $agencies = array();
+		$agencies = array();
 
-                foreach($agencyIDs as $agencyID){
-                    $agency = Entrepreneur::where('user_id','=',$agencyID->agency_id)->first();
-//                    $tmp = array('agencyID' => $agency->user_id,'first_name' => $agency->first_name,'last_name' => $agency->last_name);
-                    array_push($agencies,$agency);
-                }
+		foreach($agencyIDs as $agencyID){
+			$agency = Entrepreneur::where('user_id','=',$agencyID->agency_id)->first();
+			//                    $tmp = array('agencyID' => $agency->user_id,'first_name' => $agency->first_name,'last_name' => $agency->last_name);
+			array_push($agencies,$agency);
+		}
 
+		//$a = '123'
+		//sd($a)
+		//var_dump($this->entrepreneur->id);
+		//var_dump($this->entrepreneur->is_agency);
 		return View::make('account/index')
 			->with('entrepreneur', $this->entrepreneur)
-			->with('agencies',$agencies);
+			->with('agencies',$agencies)
+			->with('from_edit_page',Session::get('from_edit_page'));
 	}
 
 	public function editAccount(){
