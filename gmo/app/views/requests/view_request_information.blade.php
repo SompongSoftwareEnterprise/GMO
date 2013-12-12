@@ -18,10 +18,12 @@ View Request Information
 				<td>{{ $owner['first_name'] }} {{ $owner['last_name'] }}</td>
 				<td>{{ $signer['first_name'] }} {{ $signer['last_name'] }}</td>
 				<td>{{ $certReq->created_at }}</td>
-				<?php if ($certReq->status == 'Pending') { ?>
-					<td class="text-warning">{{ $certReq->status }}</td>
+				<?php if ($certReq->status == 'Payment Required' || $certReq->status == 'Document Needed') { ?>
+				<td class="text-danger">{{ $certReq->status }}</td>
 				<?php } else if ($certReq->status == 'Available') { ?>
-					<td class="text-success">{{ $certReq->status }}</td>
+				<td class="text-success">{{ $certReq->status }}</td>
+				<?php } else { ?>
+				<td class="text-warning">{{ $certReq->status }}</td>
 				<?php } ?>
 			</tr>
 			<!-- {{ View::make('requests/table/row')->with('certReq', $certReq); }} -->

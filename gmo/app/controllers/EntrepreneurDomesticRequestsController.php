@@ -26,7 +26,7 @@ class EntrepreneurDomesticRequestsController extends AbstractEntrepreneurControl
 	    $entrepreneur = $this->entrepreneur;
 	
 	    $certReq = new DomesticCertificateRequest;
-	    $certReq->status = 'Pending'; 
+	    // $certReq->status = 'Pending'; 
 		$certReq->reference_id = RunningNumber::increment('default');
 		
 		if ($entrepreneur->is_agency == 1) {
@@ -111,12 +111,15 @@ class EntrepreneurDomesticRequestsController extends AbstractEntrepreneurControl
 
 		$certReqForm->save();
 
+		StatusChecker::update($certReq->reference_id);
+
 		return Redirect::action('EntrepreneurDomesticRequestsController@show', array($certReq->reference_id));
 	}
 
 
 	public function show($id) {
 		$dmtCertificateRequest = DomesticCertificateRequest::where('reference_id', '=', $id)->first();
+		$dmtCertificateRequest['status'] = StatusChecker::getStatus($dmtCertificateRequest['status'],"entrepreneur");
 		$owner = Entrepreneur::where('user_id', '=', $dmtCertificateRequest->owner_id)->first();
 		$signer = Entrepreneur::where('user_id', '=', $dmtCertificateRequest->signer_id)->first();
 		$dmtCertificateRequestForm = DomesticCertificateRequestForm::where('domestic_certificate_request_id', '=', $id)->first(); 

@@ -22,6 +22,7 @@ class StaffRequestsController extends BaseController {
 	public function view($form,$id) {
 		if($form == '11') {
 			$request = CertificateRequest::where('reference_id', '=', $id)->first();
+			updateStatus($request);
 			$user = User::find($request->signer_id);
 			$form = CertificateRequestForm::where('export_certificate_request_id', '=', $id)->first();
 			$example = CertificateRequestExample::where('export_certificate_request_form_id', '=', $id)->get();
@@ -30,6 +31,7 @@ class StaffRequestsController extends BaseController {
 		}
 		else if($form == '12') {
 			$request = CertificateRequest::where('reference_id', '=', $id)->first();
+			updateStatus($request);
 			$user = User::find($request->signer_id);
 			$form = CertificateRequestInfoForm::where('export_certificate_request_id', '=', $id)->first();
 			$entrepreneur = Entrepreneur::where('user_id', '=', $user['id'])->first();
@@ -38,6 +40,7 @@ class StaffRequestsController extends BaseController {
 		}
 		else if($form == '21') {
             $request = DomesticCertificateRequest::where('reference_id', '=', $id)->first();
+            updateStatus($request);
             $user = User::find($request->signer_id);
             $form = DomesticCertificateRequestForm::where('domestic_certificate_request_id', '=', $id)->first();
             $example = DomesticCertificateRequestExample::where('domestic_certificate_request_id', '=', $id)->get();
@@ -86,6 +89,7 @@ class StaffRequestsController extends BaseController {
 			// use true to convert to array and not object
 			$price = json_decode($invoice->price, true);
 		}
+		StatusChecker::update($id);
 		return View::Make('staff_requests/create_invoice')
 			->with('invoice', $invoice)
 			->with('price', $price);
@@ -113,6 +117,8 @@ class StaffRequestsController extends BaseController {
             ->join('users', 'users.id', '=', 'export_certificate_requests.signer_id')
             ->select('users.name','export_certificate_requests.updated_at')
             ->get();
+
+        StatusChecker::update($id);
             
 		return View::Make('staff_requests/create_receipt')
 			->with('receipt', $receipt)
@@ -182,6 +188,7 @@ class StaffRequestsController extends BaseController {
 			}
 		}
 		
+		StatusChecker::update($id);
 		return View::make('/staff_requests/update_lab_task');
 
 	}
@@ -243,7 +250,7 @@ class StaffRequestsController extends BaseController {
 		$data['Importer Name'] = $importer['name'];
 		$data['Requester'] = $requester['name'];
 		$data['Sent Date'] = $request['created_at'];
-		$data['Status'] = $request['status'];
+		$data['Status'] = StatusChecker::getStatus($request['status'],"staff");
 
 		$invoice = Invoice::where('request_reference_id', '=', $id)->first();
 
@@ -295,6 +302,12 @@ class StaffRequestsController extends BaseController {
 
 		return $items;
 	}
+
+	private function updateStatus($request) {
+		for ($i=0; $i < sizeof($request); $i++) { 
+			$request[$i]['status'] = StatusChecker::getStatus($request[$i]['status'],"entrepreneur");
+		}
+	}
 	
 	public function createResult($id, $type) {
 
@@ -316,7 +329,7 @@ class StaffRequestsController extends BaseController {
 		$certificateRequest->status = 'Available';
 
 		$certificateRequest->update();
-
+		StatusChecker::update($id);
 		return Redirect::action('StaffRequestsController@index');
 	}
 

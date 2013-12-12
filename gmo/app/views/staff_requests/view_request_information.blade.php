@@ -25,14 +25,12 @@ View Requests Information
 				<td>{{$data['Importer Name']}}</td>
 				<td>{{$data['Requester']}}</td>
 				<td>{{$data['Sent Date']}}</td>
-				@if($data['Status'] == 'Pending')
-					<td class="text-warning">Pending</td>
-				@elseif($data['Status'] == 'Document Needed')
-					<td class="text-danger">Document Needed</td>
-				@elseif($data['Status'] == 'Failed')
-					<td class="text-danger">Failed</td>
-				@else
+				@if($data['Status'] == 'Awaiting Payment' || $data['Status'] == 'Lab Not Initiated')
+					<td class="text-danger">{{$data['Status']}}</td>
+				@elseif($data['Status'] == 'Complete')
 					<td class="text-success">{{$data['Status']}}</td>
+				@else
+					<td class="text-warning">{{$data['Status']}}</td>
 				@endif
 			</tr>
 		</tbody>

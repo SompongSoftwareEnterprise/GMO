@@ -9,11 +9,14 @@ class EntrepreneurRequestsController extends AbstractEntrepreneurController {
 											->join('entrepreneurs as signer', 'signer_id', '=', 'signer.user_id')
 											->where('signer_id', '=', $this->entrepreneur->user_id)
 											->get();
+
+			$this->updateStatus($certReqs);
 			$dmtCertReqs = DomesticCertificateRequest::select('owner.first_name as owner_first_name', 'owner.last_name as owner_last_name', 'signer.first_name as signer_first_name', 'signer.last_name as signer_last_name', 'domestic_certificate_requests.*')
 														->join('entrepreneurs as owner', 'owner_id', '=', 'owner.user_id')
 														->join('entrepreneurs as signer', 'signer_id', '=', 'signer.user_id')
 														->where('signer_id', '=', $this->entrepreneur->user_id)
 														->get();
+			$this->updateStatus($dmtCertReqs);
 			return View::make('requests/index')
 			->with(array(
 				'entrepreneur' => $this->entrepreneur,
@@ -27,11 +30,15 @@ class EntrepreneurRequestsController extends AbstractEntrepreneurController {
 											->join('entrepreneurs as signer', 'signer_id', '=', 'signer.user_id')
 											->where('owner_id', '=', $this->entrepreneur->user_id)
 											->get();
+
+			$this->updateStatus($certReqs);
+
 			$dmtCertReqs = DomesticCertificateRequest::select('owner.first_name as owner_first_name', 'owner.last_name as owner_last_name', 'signer.first_name as signer_first_name', 'signer.last_name as signer_last_name', 'domestic_certificate_requests.*')
 											->join('entrepreneurs as owner', 'owner_id', '=', 'owner.user_id')
 											->join('entrepreneurs as signer', 'signer_id', '=', 'signer.user_id')
 											->where('owner_id', '=', $this->entrepreneur->user_id)
 											->get();
+			$this->updateStatus($dmtCertReqs);
 			return View::make('requests/index')
 			->with(array(
 				'entrepreneur' => $this->entrepreneur,
@@ -52,12 +59,14 @@ class EntrepreneurRequestsController extends AbstractEntrepreneurController {
 												->where('signer_id', '=', $this->entrepreneur->user_id)
 												->where('reference_id', 'like', '%'.$searchInput.'%')
 												->get();
+				$this->updateStatus($certReqs);
 				$dmtCertReqs = DomesticCertificateRequest::select('owner.first_name as owner_first_name', 'owner.last_name as owner_last_name', 'signer.first_name as signer_first_name', 'signer.last_name as signer_last_name', 'domestic_certificate_requests.*')
 												->join('entrepreneurs as owner', 'owner_id', '=', 'owner.user_id')
 												->join('entrepreneurs as signer', 'signer_id', '=', 'signer.user_id')
 												->where('signer_id', '=', $this->entrepreneur->user_id)
 												->where('reference_id', 'like', '%'.$searchInput.'%')
 												->get();
+				$this->updateStatus($dmtCertReqs);
 				return View::make('requests/index')
 				->with(array(
 					'entrepreneur' => $this->entrepreneur,
@@ -72,12 +81,14 @@ class EntrepreneurRequestsController extends AbstractEntrepreneurController {
 												->where('owner_id', '=', $this->entrepreneur->user_id)
 												->where('reference_id', 'like', '%'.$searchInput.'%')
 												->get();
+				$this->updateStatus($certReqs);
 				$dmtCertReqs = DomesticCertificateRequest::select('owner.first_name as owner_first_name', 'owner.last_name as owner_last_name', 'signer.first_name as signer_first_name', 'signer.last_name as signer_last_name', 'domestic_certificate_requests.*')
 												->join('entrepreneurs as owner', 'owner_id', '=', 'owner.user_id')
 												->join('entrepreneurs as signer', 'signer_id', '=', 'signer.user_id')
 												->where('owner_id', '=', $this->entrepreneur->user_id)
 												->where('reference_id', 'like', '%'.$searchInput.'%')
 												->get();
+				$this->updateStatus($dmtCertReqs);
 				return View::make('requests/index')
 				->with(array(
 					'entrepreneur' => $this->entrepreneur,
@@ -97,6 +108,7 @@ class EntrepreneurRequestsController extends AbstractEntrepreneurController {
 			 									->orWhere('signer_id', '=', $this->entrepreneur->user_id)
 			 									->where('owner.last_name','like','%'.$searchInput.'%')
 												->get();
+				$this->updateStatus($certReqs);
 				$dmtCertReqs = DomesticCertificateRequest::select('owner.first_name as owner_first_name', 'owner.last_name as owner_last_name', 'signer.first_name as signer_first_name', 'signer.last_name as signer_last_name', 'domestic_certificate_requests.*')
 												->join('entrepreneurs as owner', 'owner_id', '=', 'owner.user_id')
 												->join('entrepreneurs as signer', 'signer_id', '=', 'signer.user_id')
@@ -105,6 +117,7 @@ class EntrepreneurRequestsController extends AbstractEntrepreneurController {
 			 									->orWhere('signer_id', '=', $this->entrepreneur->user_id)
 			 									->where('owner.last_name','like','%'.$searchInput.'%')
 												->get();
+				$this->updateStatus($dmtCertReqs);
 				return View::make('requests/index')
 				->with(array(
 					'entrepreneur' => $this->entrepreneur,
@@ -121,6 +134,7 @@ class EntrepreneurRequestsController extends AbstractEntrepreneurController {
 			 									->orWhere('owner_id', '=', $this->entrepreneur->user_id)
 			 									->where('owner.last_name','like','%'.$searchInput.'%')
 												->get();
+				$this->updateStatus($certReqs);
 				$dmtCertReqs = DomesticCertificateRequest::select('owner.first_name as owner_first_name', 'owner.last_name as owner_last_name', 'signer.first_name as signer_first_name', 'signer.last_name as signer_last_name', 'domestic_certificate_requests.*')
 												->join('entrepreneurs as owner', 'owner_id', '=', 'owner.user_id')
 												->join('entrepreneurs as signer', 'signer_id', '=', 'signer.user_id')
@@ -129,6 +143,7 @@ class EntrepreneurRequestsController extends AbstractEntrepreneurController {
 			 									->orWhere('owner_id', '=', $this->entrepreneur->user_id)
 			 									->where('owner.last_name','like','%'.$searchInput.'%')
 												->get();
+				$this->updateStatus($dmtCertReqs);
 				return View::make('requests/index')
 				->with(array(
 					'entrepreneur' => $this->entrepreneur,
@@ -147,6 +162,7 @@ class EntrepreneurRequestsController extends AbstractEntrepreneurController {
 			 									->orWhere('signer_id', '=', $this->entrepreneur->user_id)
 			 									->where('signer.last_name','like','%'.$searchInput.'%')
 												->get();
+				$this->updateStatus($certReqs);
 				$dmtCertReqs = DomesticCertificateRequest::select('owner.first_name as owner_first_name', 'owner.last_name as owner_last_name', 'signer.first_name as signer_first_name', 'signer.last_name as signer_last_name', 'domestic_certificate_requests.*')
 												->join('entrepreneurs as owner', 'owner_id', '=', 'owner.user_id')
 												->join('entrepreneurs as signer', 'signer_id', '=', 'signer.user_id')
@@ -155,6 +171,7 @@ class EntrepreneurRequestsController extends AbstractEntrepreneurController {
 			 									->orWhere('signer_id', '=', $this->entrepreneur->user_id)
 			 									->where('signer.last_name','like','%'.$searchInput.'%')
 												->get();
+				$this->updateStatus($dmtCertReqs);
 				return View::make('requests/index')
 				->with(array(
 					'entrepreneur' => $this->entrepreneur,
@@ -171,6 +188,7 @@ class EntrepreneurRequestsController extends AbstractEntrepreneurController {
 												->orWhere('owner_id', '=', $this->entrepreneur->user_id)
 			 									->where('signer.last_name','like','%'.$searchInput.'%')
 												->get();
+				$this->updateStatus($certReqs);
 				$dmtCertReqs = DomesticCertificateRequest::select('owner.first_name as owner_first_name', 'owner.last_name as owner_last_name', 'signer.first_name as signer_first_name', 'signer.last_name as signer_last_name', 'domestic_certificate_requests.*')
 												->join('entrepreneurs as owner', 'owner_id', '=', 'owner.user_id')
 												->join('entrepreneurs as signer', 'signer_id', '=', 'signer.user_id')
@@ -179,6 +197,7 @@ class EntrepreneurRequestsController extends AbstractEntrepreneurController {
 												->orWhere('owner_id', '=', $this->entrepreneur->user_id)
 			 									->where('signer.last_name','like','%'.$searchInput.'%')
 												->get();
+				$this->updateStatus($dmtCertReqs);
 				return View::make('requests/index')
 				->with(array(
 					'entrepreneur' => $this->entrepreneur,
@@ -219,7 +238,7 @@ class EntrepreneurRequestsController extends AbstractEntrepreneurController {
 		$entrepreneur = $this->entrepreneur;
 
 		$certReq = new CertificateRequest;
-		$certReq->status = 'Pending'; 
+		// $certReq->status = 'Pending'; 
 		$certReq->reference_id = RunningNumber::increment('default');
 		
 		if ($entrepreneur->is_agency == 1) {
@@ -320,6 +339,7 @@ class EntrepreneurRequestsController extends AbstractEntrepreneurController {
 		}
 
 		$certReqForm->save();
+		StatusChecker::update($certReq->reference_id);
 
 		return Redirect::action('EntrepreneurRequestsController@show', array($certReq->reference_id));
 	}
@@ -351,12 +371,14 @@ class EntrepreneurRequestsController extends AbstractEntrepreneurController {
 		$certReqInfoForm->status = 'Available';
 
 		$certReqInfoForm->save();
+		StatusChecker::update($id);
 
 		return Redirect::action('EntrepreneurRequestsController@index');
 	}
 
 	public function show($id) {
 		$certificateRequest = CertificateRequest::where('reference_id', '=', $id)->first();
+		$certificateRequest['status'] = StatusChecker::getStatus($certificateRequest['status'],"entrepreneur");
 		$owner = Entrepreneur::where('user_id', '=', $certificateRequest->owner_id)->first();
 		$signer = Entrepreneur::where('user_id', '=', $certificateRequest->signer_id)->first();
 		$certificateRequestForm = CertificateRequestForm::where('export_certificate_request_id', '=', $id)->first(); 
@@ -373,10 +395,17 @@ class EntrepreneurRequestsController extends AbstractEntrepreneurController {
 	public function askForCertificateRequestInfo() {
 
 	}
+
+	private function updateStatus($request) {
+		for ($i=0; $i < sizeof($request); $i++) { 
+			$request[$i]['status'] = StatusChecker::getStatus($request[$i]['status'],"entrepreneur");
+		}
+	}
 	
 	public function view($form,$id) {
 		if($form == '11') {
 			$request = CertificateRequest::where('reference_id', '=', $id)->first();
+			$request['status'] = StatusChecker::getStatus($request['status'],"entrepreneur");
 			$user = User::find($request->signer_id);
 			$form = CertificateRequestForm::where('export_certificate_request_id', '=', $id)->first();
 			$example = CertificateRequestExample::where('export_certificate_request_form_id', '=', $id)->get();
@@ -385,6 +414,7 @@ class EntrepreneurRequestsController extends AbstractEntrepreneurController {
 		}
 		else if($form == '12') {
 			$request = CertificateRequest::where('reference_id', '=', $id)->first();
+			$request['status'] = StatusChecker::getStatus($request['status'],"entrepreneur");
 			$user = User::find($request->signer_id);
 			$form = CertificateRequestInfoForm::where('export_certificate_request_id', '=', $id)->first();
 			$entrepreneur = Entrepreneur::where('user_id', '=', $user['id'])->first();
@@ -393,6 +423,7 @@ class EntrepreneurRequestsController extends AbstractEntrepreneurController {
 		}
 		else if($form == '21') {
             $request = DomesticCertificateRequest::where('reference_id', '=', $id)->first();
+            $request['status'] = StatusChecker::getStatus($request['status'],"entrepreneur");
             $user = User::find($request->signer_id);
             $form = DomesticCertificateRequestForm::where('domestic_certificate_request_id', '=', $id)->first();
             $example = DomesticCertificateRequestExample::where('domestic_certificate_request_id', '=', $id)->get();
