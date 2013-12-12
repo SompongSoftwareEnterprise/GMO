@@ -304,7 +304,7 @@ class StaffRequestsController extends BaseController {
 	}
 
 	private function updateStatus($request) {
-		$request[$i]['status'] = StatusChecker::getStatus($request[$i]['status'],"entrepreneur");
+		$request['status'] = StatusChecker::getStatus($request['status'],"entrepreneur");
 	}
 	
 	public function createResult($id, $type) {
