@@ -112,8 +112,8 @@ if true
 
 else
 
-	customer_username, customer_password = %w(user00013 fXm32sgl)
-	agency_username, agency_password, agency_id = %w(user00014 es6d8akL 14)
+	customer_username, customer_password = %w(user00005 VD7nqvud)
+	agency_username, agency_password, agency_id = %w(user00006 iIw6aWM2 6)
 
 end
 
@@ -142,8 +142,8 @@ end
 
 	step "Make 1-1/1 Request" do
 		id("make-111").click
-		select(name: "owner_id").select(/Sompong Somchai/)
 		autofill "Certificate Request 1-1/1"
+		select_list(name: "owner_id").when_present.select(/Sompong Somchai/)
 		form(id: "new-request-form").submit
 	end
 
@@ -178,6 +178,23 @@ end
 	end
 
 	login_as "Lab Staff"
+
+	step "Check request" do
+		assert trs.find { |c| c.text =~ /Generic/ }.text =~ /Pending/
+		trs.find { |c| c.text =~ /Generic/ }.a.click
+	end
+
+	step "Start analyzing sequence" do
+		element(class: 'btn', text: /Start Analyzing/).click
+		file_field(name: 'file1').set(File.realpath('watir/file1.pdf'))
+		form(id: 'file1').submit
+		file_field(name: 'file2').set(File.realpath('watir/file2.pdf'))
+		form(id: 'file2').submit
+		file_field(name: 'file3').set(File.realpath('watir/file3.pdf'))
+		form(id: 'file3').submit
+		file_field(name: 'file4').set(File.realpath('watir/file4.pdf'))
+		form(id: 'file4').submit
+	end
 
 	binding.pry
 	close

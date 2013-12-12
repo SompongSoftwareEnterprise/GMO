@@ -21,8 +21,27 @@ class LabController extends BaseController {
 		$labtask = LabTask::where('reference_id' , '=', $id)->first();
 		$labtaskProduct = LabTaskProduct::where('lab_task_id' , '=', $labtask->id)->first();
 		$labtaskAssignment = LabTaskAssignment::where('lab_task_id' , '=', $labtask->id)->get();
+		$upload = UploadLabTaskFile::where('labtask_id', '=', $labtask->id)->first();
+		if (empty($upload)) {
+			$upload = array(
+				'file1' => null,
+				'file2' => null,
+				'file3' => null,
+				'file4' => null,
+			);
+		}
 
-		return View::make('labtask/labtask')->with('labtask',$labtask)->with('labtaskProduct',$labtaskProduct)->with('labtaskAssignment',$labtaskAssignment)->with('statuslist',$this->getTaskStatus($labtask['status']));
+		return View::make('labtask/labtask')
+			->with('labtask',$labtask)
+			->with('labtaskProduct',$labtaskProduct)
+			->with('labtaskAssignment',$labtaskAssignment)
+			->with('statuslist',$this->getTaskStatus($labtask['status']))
+			->with(array(
+				'file1' => $upload['file1'],
+				'file2' => $upload['file2'],
+				'file3' => $upload['file3'],
+				'file4' => $upload['file4'],
+			));
 	}
 
 	public function start($id) {
@@ -128,22 +147,37 @@ class LabController extends BaseController {
 	}
 
 	public function uploadLabResult(){
+		$labtask = LabTask::find(Input::get('labtask_id'))->first();
 		$filenum = Input::get('filenum');
 		$file = Input::file($filenum);
 		$namef = Input::file($filenum)->getClientOriginalName();
 		$destinationPath = 'uploads/'.str_random(8);
         $uploadSuccess = Input::file($filenum)->move($destinationPath, $namef);
 
+
         if( $uploadSuccess ) {
         	$is_success = 1;
         	$namef = $destinationPath."/".$namef;
-        	$upload = UploadLabTaskFile::find('1');
+        	$upload = UploadLabTaskFile::where('labtask_id', '=', $labtask->id)->first();
+			if (empty($upload)) {
+				$upload = new UploadLabTaskFile;
+				$upload->labtask_id = $labtask->id;
+			}
         	$upload->$filenum = $namef;
         	$upload->save();
-        	return Redirect::to('/staff/test')
-			->with('filename', $namef)
-			->with('message', "success")
-			->with('is_success', $is_success);
+			
+			$statusList = array(
+				'file1' => 'Volume & Concentration Measurement',
+				'file2' => 'Endrogenous Gene Analysis',
+				'file3' => 'Gene Analysis',
+				'file4' => 'Waiting For Approval');
+			$labtask->status = $statusList[$filenum];
+			$labtask->save();
+
+        	return Redirect::action('LabController@show', $labtask->reference_id)
+				->with('filename', $namef)
+				->with('message', "success")
+				->with('is_success', $is_success);
 		 // or do a redirect with some message that file was uploaded
         } else {
            return View::make('/staff_requests/test')

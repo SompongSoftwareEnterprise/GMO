@@ -102,9 +102,18 @@ Registration
 				<tr>
 					<td>1. DNA Extraction</td>
 					@if($statuslist['DNA Extraction'] == 'Pending')
-					<td class="text-warning">Pending(<a href="#">Upload</a>)</td>
+					<td class="text-warning">
+						Pending
+						{{ Form::open(array('action' => 'LabController@uploadLabResult', 'files' => true, 'id' => 'file1')) }}
+							{{ Form::hidden('labtask_id', $labtask->id) }}
+							{{ Form::hidden('filenum', 'file1') }}
+							<div width="50px">{{ Form::file('file1') }}</div>
+							<button type="submit" class="btn btn-primary" onclick="form2()">submit</button>
+						{{ Form::close() }}  
+					</td>
 					@elseif($statuslist['DNA Extraction'] == 'Completed')
-					<td class="text-success">Uploaded(<a href="#">Download</a>)</td>
+						<td class="text-success">Uploaded
+							(<a href="{{action('LabController@downloadLabResult',array('filename' => $file1))}}">Download</a>)</td>
 					@else
 					<td class="text-danger">Waiting for above sequence</td>
 					@endif
@@ -112,9 +121,18 @@ Registration
 				<tr>
 					<td>2. Volume & Concentration Measurement</td>
 					@if($statuslist['Volume & Concentration Measurement'] == 'Pending')
-					<td class="text-warning">Pending(<a href="#">Upload</a>)</td>
+					<td class="text-warning">
+						Pending
+						{{ Form::open(array('action' => 'LabController@uploadLabResult', 'files' => true, 'id' => 'file2')) }}
+							{{ Form::hidden('labtask_id', $labtask->id) }}
+							{{ Form::hidden('filenum', 'file2') }}
+							<div width="50px">{{ Form::file('file2') }}</div>
+							<button type="submit" class="btn btn-primary" onclick="form2()">submit</button>
+						{{ Form::close() }}  
+					</td>
 					@elseif($statuslist['Volume & Concentration Measurement'] == 'Completed')
-					<td class="text-success">Uploaded(<a href="#">Download</a>)</td>
+						<td class="text-success">Uploaded
+							(<a href="{{action('LabController@downloadLabResult',array('filename' => $file2))}}">Download</a>)</td>A
 					@else
 					<td class="text-danger">Waiting for above sequence</td>
 					@endif
@@ -122,9 +140,18 @@ Registration
 				<tr>
 					<td>3. Endrogenous Gene Analysis</td>
 					@if($statuslist['Endrogenous Gene Analysis'] == 'Pending')
-					<td class="text-warning">Pending(<a href="#">Upload</a>)</td>
+					<td class="text-warning">
+						Pending
+						{{ Form::open(array('action' => 'LabController@uploadLabResult', 'files' => true, 'id' => 'file3')) }}
+							{{ Form::hidden('labtask_id', $labtask->id) }}
+							{{ Form::hidden('filenum', 'file3') }}
+							<div width="50px">{{ Form::file('file3') }}</div>
+							<button type="submit" class="btn btn-primary" onclick="form2()">submit</button>
+						{{ Form::close() }}  
+					</td>
 					@elseif($statuslist['Endrogenous Gene Analysis'] == 'Completed')
-					<td class="text-success">Uploaded(<a href="#">Download</a>)</td>
+						<td class="text-success">Uploaded
+							(<a href="{{action('LabController@downloadLabResult',array('filename' => $file3))}}">Download</a>)</td>A
 					@else
 					<td class="text-danger">Waiting for above sequence</td>
 					@endif
@@ -132,9 +159,18 @@ Registration
 				<tr>
 					<td>4. Gene Analysis</td>
 					@if($statuslist['Gene Analysis'] == 'Pending')
-					<td class="text-warning">Pending(<a href="#">Upload</a>)</td>
+					<td class="text-warning">
+						Pending
+						{{ Form::open(array('action' => 'LabController@uploadLabResult', 'files' => true, 'id' => 'file4')) }}
+							{{ Form::hidden('labtask_id', $labtask->id) }}
+							{{ Form::hidden('filenum', 'file4') }}
+							<div width="50px">{{ Form::file('file4') }}</div>
+							<button type="submit" class="btn btn-primary" onclick="form2()">submit</button>
+						{{ Form::close() }}  
+					</td>
 					@elseif($statuslist['Gene Analysis'] == 'Completed')
-					<td class="text-success">Uploaded(<a href="#">Download</a>)</td>
+						<td class="text-success">Uploaded
+							(<a href="{{action('LabController@downloadLabResult',array('filename' => $file4))}}">Download</a>)</td>A
 					@else
 					<td class="text-danger">Waiting for above sequence</td>
 					@endif
