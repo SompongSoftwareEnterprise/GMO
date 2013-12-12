@@ -45,6 +45,34 @@ class StaffReportController extends BaseController {
 	}
 
 
+    public function reportNonGmo(){
+        $desp = DB::table('gmo.export_certificate_requests')
+                        ->join('gmo.users', 'gmo.users.id', '=', 'gmo.export_certificate_requests.owner_id')
+                        ->get();
+        $date['first'] = DB::table('gmo.export_certificate_requests')->select('updated_at')->orderBy('updated_at', 'asc')->first();
+        $date['last'] = DB::table('gmo.export_certificate_requests')->select('updated_at')->orderBy('updated_at', 'desc')->first();
+        $notP = DB::table('gmo.export_certificate_requests')->select('id')->where('status','=', 'Pending')->get();
+
+        return View::make('report/report_non_gmo_list')
+                ->with('datas', $desp)
+                ->with('notP', $notP)
+                ->with('date', $date);
+    }
+
+    public function reportDomestic(){
+        $desp = DB::table('gmo.domestic_certificate_requests')
+                        ->join('gmo.users', 'gmo.users.id', '=', 'gmo.domestic_certificate_requests.owner_id')
+                        ->get();
+        $date['first'] = DB::table('gmo.domestic_certificate_requests')->select('updated_at')->orderBy('updated_at', 'asc')->first();
+        $date['last'] = DB::table('gmo.domestic_certificate_requests')->select('updated_at')->orderBy('updated_at', 'desc')->first();
+        $notP = DB::table('gmo.domestic_certificate_requests')->select('id')->where('status','=', 'Pending')->get();
+
+        return View::make('report/report_non_gmo_list')
+                ->with('datas', $desp)
+                ->with('notP', $notP)
+                ->with('date', $date);
+    }
+
 	
 }
 
