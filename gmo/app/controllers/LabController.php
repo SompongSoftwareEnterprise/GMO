@@ -34,6 +34,21 @@ class LabController extends BaseController {
 		return Redirect::action('LabController@show', $id);
 	}
 
+	public function result($id,$status) {
+		$labtask = LabTask::where('reference_id' , '=', $id)->first();
+		if($this->user->name == "head") {
+			if($status == "pass") {
+				$labtask['status'] = "Pass";
+			}
+			else if($status == "fail") {
+				$labtask['status'] = "Fail";
+			}
+			$labtask->save();
+			StatusChecker::update($labtask['export_certificate_request_id']);
+		}
+		return Redirect::action('LabController@index');
+	}
+
 
 	public function index() {
 
@@ -65,14 +80,21 @@ class LabController extends BaseController {
 	private function getTaskStatus($status) {
 		$statusList = array('Pending', 'DNA Extraction','Volume & Concentration Measurement', 'Endrogenous Gene Analysis', 'Gene Analysis','Waiting For Approval');
 		$statusResult = array('Pending' => '',  'DNA Extraction' => '','Volume & Concentration Measurement' => '', 'Endrogenous Gene Analysis' => '', 'Gene Analysis' => '', 'Waiting For Approval' => '');
-		$index = array_search($status, $statusList);
-		$statusResult[$statusList[$index]] = 'Pending';
-		for ($i=$index+1; $i < sizeof($statusList); $i++) { 
-			$statusResult[$statusList[$i]] = 'Waiting for above sequence';
-		}
+		if($status != "Pass" && $status != "Fail") {
+			$index = array_search($status, $statusList);
+			$statusResult[$statusList[$index]] = 'Pending';
+			for ($i=$index+1; $i < sizeof($statusList); $i++) { 
+				$statusResult[$statusList[$i]] = 'Waiting for above sequence';
+			}
 
-		for ($i=$index-1; $i >= 0; $i--) { 
-			$statusResult[$statusList[$i]] = 'Completed';
+			for ($i=$index-1; $i >= 0; $i--) { 
+				$statusResult[$statusList[$i]] = 'Completed';
+			}
+		}
+		else {
+			for ($i=0; $i < sizeof($statusList); $i++) { 
+				$statusResult[$statusList[$i]] = 'Completed';
+			}
 		}
 		return $statusResult;
 	}
