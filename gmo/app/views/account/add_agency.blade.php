@@ -145,7 +145,7 @@ Account Information
             <div class = "row form-group">
               <input type ='hidden' name = 'customer_id' value = {{$entrepreneurID}} >
               <input type ='hidden' name = 'agency_id' value = {{$agency->user_id}} >
-              <input id = "agencyId" type = "submit" class = "btn btn-primary" value = "Add Agency">
+              <input id = "add-agency-confirm-button" type = "submit" class = "btn btn-primary" value = "Add Agency">
             </div>
           </form>
         </div>

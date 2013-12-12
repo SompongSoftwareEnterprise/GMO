@@ -193,17 +193,21 @@ $('#sompong-debugger-menu button').click(function() {
 })
 
 
+function runActions(actions, e) {
+	var promise = Promise.from(null)
+	actions.forEach(function(action) {
+		promise = promise.then(function() {
+			return action(e)
+		})
+	})
+}
+
 function addButton(text, actions) {
 	var button = $('<button class="btn btn-info btn-block"></button>')
 		.html('&nbsp; ' + text + ' &nbsp;')
 		.appendTo('#sompong-debug-buttons')
 	button.click(function(e) {
-		var promise = Promise.from(null)
-		actions.forEach(function(action) {
-			promise = promise.then(function() {
-				return action(e)
-			})
-		})
+		runActions(actions, e)
 	})
 	$('#sompong-debugger').fadeToggle('fast')
 }
@@ -302,11 +306,15 @@ function autofillAction(form, data) {
 
 function autofill(name, selector) {
 	var form = document.querySelector(selector)
-	var actions = [].slice.call(arguments, 2)
-	if (form) {
-		addButton('Fill <b>' + name + '</b>', actions.map(function(action) {
+	var actions = [].slice.call(arguments, 2).map(function(action) {
 			return (typeof action != 'function') ? autofillAction(form, action) : action
-		}))
+		})
+	if (form) {
+		addButton('Fill <b>' + name + '</b>', actions)
+		if (!window.autofill) window.autofill = { }
+		window.autofill[name] = function() {
+			runActions(actions, { shiftKey: true })
+		}
 	}
 }
 	

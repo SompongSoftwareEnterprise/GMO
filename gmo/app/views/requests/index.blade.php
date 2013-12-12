@@ -85,10 +85,10 @@ View Certificate Request
 	<br>
 
 	<a href="/entrepreneur/requests/new">
-		<button type="button" class="btn btn-default">Make New สทช 1-1/1 Request</button>
+		<button type="button" class="btn btn-default" id="make-111">Make New สทช 1-1/1 Request</button>
 	</a>
 	<a href="/entrepreneur/dmt-requests/new">
-		<button type="button" class="btn btn-default">Make New สทช 1-2/1 Request</button>
+		<button type="button" class="btn btn-default" id="make-121">Make New สทช 1-2/1 Request</button>
 	</a>
 
 </div>

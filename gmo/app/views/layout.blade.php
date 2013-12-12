@@ -39,7 +39,7 @@
 
     <ul class="nav navbar-nav navbar-right">
     	@if ($user != null)
-	    	<li><a href="{{ action('EntrepreneurAccountController@index') }}">
+	    	<li><a id="account-link" href="{{ action('EntrepreneurAccountController@index') }}">
 	    		<i class="glyphicon glyphicon-user"></i>{{$user->name}}
 	    		<span class="label label-info">{{$user->role}}</span></a>
 	    	</li>

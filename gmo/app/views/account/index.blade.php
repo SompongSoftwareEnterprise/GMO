@@ -16,10 +16,10 @@ Account Information
 				<li class="active"><a href="#accountInformation" data-toggle="tab">Account information</a></li>
 				@elseif ($from_edit_page!=null)
 				<li><a href="#accountInformation" data-toggle="tab">Account information</a></li>
-				<li class="active"><a href="#agency" data-toggle="tab">Registered Agency</a></li>
+				<li class="active"><a id="agency-tab-button" href="#agency" data-toggle="tab">Registered Agency</a></li>
 				@else
 				<li class="active"><a href="#accountInformation" data-toggle="tab">Account information</a></li>
-				<li><a href="#agency" data-toggle="tab">Registered Agency</a></li>
+				<li><a href="#agency" id="agency-tab-button" data-toggle="tab">Registered Agency</a></li>
 				@endif
 			</ul>
 		</div>
@@ -153,7 +153,7 @@ Account Information
 					</div>
 				</div>
 				<div class="text-right">
-					<a href="{{action('EntrepreneurAgenciesController@createAgencies', array('entrepreneurID' => $entrepreneur->user_id))}}" class="btn btn-primary">Add</a>
+					<a href="{{action('EntrepreneurAgenciesController@createAgencies', array('entrepreneurID' => $entrepreneur->user_id))}}" class="btn btn-primary" id="add-agency-button">Add</a>
 				</div>
 			</div>
 @endif
