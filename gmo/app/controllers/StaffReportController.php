@@ -67,7 +67,7 @@ class StaffReportController extends BaseController {
         $date['last'] = DB::table('gmo.domestic_certificate_requests')->select('updated_at')->orderBy('updated_at', 'desc')->first();
         $notP = DB::table('gmo.domestic_certificate_requests')->select('id')->where('status','=', 'Pending')->get();
 
-        return View::make('report/report_non_gmo_list')
+        return View::make('report/report_domestic_list')
                 ->with('datas', $desp)
                 ->with('notP', $notP)
                 ->with('date', $date);
