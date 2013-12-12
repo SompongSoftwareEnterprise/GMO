@@ -29,13 +29,13 @@ Invoice {{ $invoice->reference_id }}
 			</tr>
 		</tbody>
 	</table>	
-
+<br>
 	<form class="form-horizontal" role="form">
 
 		<div class="form-group">
-			<div class="col-sm-offset-10 col-xs-2">
-				<a href="{{ action('StaffRequestsController@show', $invoice->request_reference_id) }}" class="btn btn-default"> Back </a>
-				<button class="btn btn-primary" type="button"> Print </button>
+			<div class="text-center">
+				<a href="{{ action('StaffRequestsController@show', $invoice->request_reference_id) }}" class="btn btn-primary"> Back </a>
+<!--				<button class="btn btn-primary" type="button"> Print </button>-->
 			</div>
 		</div>
 
