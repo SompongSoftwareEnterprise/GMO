@@ -80,16 +80,13 @@ class StaffRequestsController extends BaseController {
 
 			$invoice->price = json_encode($price);
 			$invoice->total_price = $totalPrice;
-
 			$invoice->save();
 
 		} else {
 			// use true to convert to array and not object
 			$price = json_decode($invoice->price, true);
 		}
-		return View::Make('staff_requests/create_invoice')
-			->with('invoice', $invoice)
-			->with('price', $price);
+		
 	}
 
 	public function createReceipt($id){
@@ -103,15 +100,22 @@ class StaffRequestsController extends BaseController {
 			$receipt->reference_id = 'RC' . RunningNumber::increment('receipt');
 			$receipt->request_reference_id = $id;
 			$receipt->save();
-
+    
 		}
 
 		$price = json_decode($invoice->price, true);
-
+        
+        $signer_name = DB::table('export_certificate_requests')
+            ->join('receipts', 'export_certificate_requests.reference_id', '=', 'receipts.request_reference_id')
+            ->join('users', 'users.id', '=', 'export_certificate_requests.signer_id')
+            ->select('users.name','export_certificate_requests.updated_at')
+            ->get();
+            
 		return View::Make('staff_requests/create_receipt')
 			->with('receipt', $receipt)
 			->with('invoice', $invoice)
-			->with('price', $price);
+			->with('price', $price)
+			->with('signer_name',$signer_name);
 
 	}
 
