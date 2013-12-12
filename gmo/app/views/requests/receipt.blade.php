@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('title')
-receipt {{ $receipt->reference_id }}
+Receipt {{ $receipt['reference_id'] }}
 @endsection
 
 @section('content')
@@ -24,7 +24,7 @@ receipt {{ $receipt->reference_id }}
 			@endforeach
 			<tr class="info" >
 				<td><strong>Total</strong></td>
-				<td class="text-right"><strong>{{ $receipt->total_price }}</strong></td>
+				<td class="text-right"><strong>{{ $total_price }}</strong></td>
 
 			</tr>
 		</tbody>
@@ -34,7 +34,7 @@ receipt {{ $receipt->reference_id }}
 
 		<div class="form-group">
 			<div class="text-center">
-				<a href="{{ action('StaffRequestsController@show', $receipt->request_reference_id) }}" class="btn btn-primary"> Back </a>
+				<a href="{{ action('EntrepreneurRequestsController@show', $receipt->request_reference_id) }}" class="btn btn-primary"> Back </a>
 <!--				<button class="btn btn-primary" type="button"> Print </button>-->
 			</div>
 		</div>

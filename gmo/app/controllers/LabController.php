@@ -121,7 +121,8 @@ class LabController extends BaseController {
 	private function sortByDueDate($labtasks) {
 		$labtasks = $labtasks->sortBy(function($labtask)
 		{
-			$product = LabTaskProduct::find($labtask->id);
+			// $product = LabTaskProduct::find($labtask->id);
+			$product = LabTaskProduct::where('lab_task_id', '=', $labtask->id)->first();
 		    return $product->finish;
 		});
 

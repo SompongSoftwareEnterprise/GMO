@@ -228,7 +228,8 @@ class StaffRequestsController extends BaseController {
 			'Invoice' => '0',
 			'Receipt' => '0',
 			'Request From' => '1',
-			'Info From' => '0');
+			'Info From' => '0',
+			'Certificate' => '2');
 		$request = CertificateRequest::where('reference_id', '=', $id)->first();
 		$info = null;
 		if($request == null) {
@@ -264,6 +265,14 @@ class StaffRequestsController extends BaseController {
 			$data['Receipt'] = $receipt['id'];
 		}
 
+		if ($request['status'] == 'complete') {
+			$certificate = ExportCertificate::where('export_certificate_request_id', '=', $request['reference_id'])->first();
+			if ($certificate['is_certificate'] == '1')
+				$data['Certificate'] = '1';
+			else
+				$data['Certificate'] = '0';
+		}
+
 		return $data;
 
 	}
@@ -290,10 +299,11 @@ class StaffRequestsController extends BaseController {
 		foreach ($request1_2 as $request) {
 			$user = User::find($request->signer_id);
 			$requestInfoFrom = DomesticCertificateRequestForm::where('domestic_certificate_request_id','=',$request->id)->first();
+			$DomesticCertificateRequestExample = DomesticCertificateRequestExample::where('domestic_certificate_request_id' ,'=', $request->reference_id)->first();
 			$item = array(
 				'ID' => $request->id,
 				'Reference ID' => $request->reference_id,
-				'Plant Name' => '-',
+				'Plant Name' => $DomesticCertificateRequestExample['plant_name_eng'],
 				'Entrepreneur' => $user ? $user->name : '(missing)',
 				'Current Process' => StatusChecker::getStatus($request->status, "staff")
 			);
@@ -311,7 +321,7 @@ class StaffRequestsController extends BaseController {
 	public function createResult($id, $type) {
 
 		$exportCertificate = new ExportCertificate;
-		$exportCertificate->reference_id =  'NG' . RunningNumber::increment('default');
+		$exportCertificate->reference_id = 'NG' . RunningNumber::increment('default');
 		$exportCertificate->export_certificate_request_id = $id;
 		$exportCertificate->sample_name = Input::get('sample_name');
 		$exportCertificate->conclusion = Input::get('conclusion');
@@ -322,12 +332,59 @@ class StaffRequestsController extends BaseController {
 			$exportCertificate->is_certificate = 1;
 		}
 
-		$exportCertificate->save();
+		foreach (Input::all() as $k => $v) {
+			$prefix = 'test_ex';		
+			if (substr($k, 0, strlen($prefix)) == $prefix) {
+				$number = substr($k, strlen($prefix));
+				$exportCertificateTest = new ExportCertificateTest;
+				$exportCertificateTest->export_certificate_id = $id;
+				$exportCertificateTest->type = Input::get('test_ex' . $number);
+				$exportCertificateTest->result = Input::get('result_ex' . $number);
+				$exportCertificateTest->save();
+			}
+		}
 
+		$exportCertificate->save();
 		$certificateRequest = CertificateRequest::where('reference_id', '=', $id)->first();
 		$certificateRequest->update();
 		StatusChecker::update($id);
 		return Redirect::action('StaffRequestsController@index');
+	}
+
+	public function viewResult($id) {
+		$certificateRequest = CertificateRequest::where('reference_id', '=', $id)->first();
+		$certificateRequestForm = CertificateRequestForm::where('export_certificate_request_id', '=', $id)->first();
+		$certificateRequestInfoForm = CertificateRequestInfoForm::where('export_certificate_request_id', '=', $id)->first();
+		$exportCertificate = ExportCertificate::where('export_certificate_request_id', '=', $id)->first();
+		$exportCertificateTest = ExportCertificateTest::where('export_certificate_id', '=', $id)->get();
+		if ($exportCertificate['is_certificate'] == '1') {
+			return View::Make('staff_requests/certificate')
+						->with('certificateRequest', $certificateRequest)
+						->with('certificateRequestForm', $certificateRequestForm)
+						->with('certificateRequestInfoForm', $certificateRequestInfoForm)
+						->with('exportCertificate', $exportCertificate)
+						->with('exportCertificateTest', $exportCertificateTest);
+		}
+		else {
+			return View::Make('staff_requests/analysis')
+						->with('certificateRequest', $certificateRequest)
+						->with('certificateRequestForm', $certificateRequestForm)
+						->with('certificateRequestInfoForm', $certificateRequestInfoForm)
+						->with('exportCertificate', $exportCertificate)
+						->with('exportCertificateTest', $exportCertificateTest);
+		}
+		// if ($CertificateRequest != null) {
+			// $certificateRequestForm = CertificateRequestForm::where('export_certificate_request_id', '=', $id)->first();
+			// $certificateRequestInfoForm = CertificateRequestInfoForm::where('export_certificate_request_id', '=', $id)->first();
+			// $exportCertificate = ExportCertificate::where('export_certificate_request_id');
+			// return View::Make('staff_requests/certificate');
+		// } 
+		// else {
+			// $domesticCertificateRequest = DomesticCertificateRequest::where('reference_id', '=', $id)->first();
+			// $domesticCertificateRequestForm = DomesticCertificateRequestForm::where('domestic_certificate_request_id', '=', $id)->first();
+			// $exportCertificate = ExportCertificate::where('export_certificate_request_id');
+			// return View::Make('staff_requests/certificate');
+		// }
 	}
 
 }

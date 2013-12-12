@@ -231,7 +231,7 @@
                     <div class="example-detail">
                         <div class="form-group">
                             <label class="col-xs-3 control-label">
-                                Plant #
+                                Plant
                                 <span data-gmo-example="number">1</span>
                             </label>
                             <div class="col-xs-8">
@@ -275,12 +275,12 @@
                                 <input type="text" class="form-control" name="export_val_ex1" placeholder="Export Value (Baht)">
                             </div>
                         </div>
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <div class="col-sm-offset-7 col-xs-5">
                                 <button data-gmo-example="remove" type="button" class="btn btn-danger">Remove</button>
                                 <button data-gmo-example="add" type="button" class="btn btn-primary">Add Plant</button>
                             </div>
-                        </div>
+                        </div> -->
 
                     </div>
                 <script>

@@ -77,7 +77,7 @@ View Request Information
 
 					<tr>
 						@if($receipt != '0')
-							<td>Receipt  (<a href="{{ action('EntrepreneurRequestsController@showReceipt', array($certReq->reference_id)) }}">View</a>)</td>
+							<td>Receipt (<a href="{{ action('EntrepreneurRequestsController@showReceipt', array($certReq->reference_id)) }}">View</a>)</td>
 							<td class="text-success">Available</td>
 						@else
 							<td>Receipt</td>
@@ -85,19 +85,30 @@ View Request Information
 						@endif
 					</tr>
 					<tr>
-						<td>Certificate</td>
-						<td class="text-warning">Pending</td>
+						@if ($certReq->status == 'Available')
+							@if ($is_certificate == '0')
+								<td>Analysis of Report (<a href="{{ action('EntrepreneurRequestsController@showResult', array($certReq->reference_id)) }}">View</a>)</td>
+							@else
+								<td>Certificate (<a href="{{ action('EntrepreneurRequestsController@showResult', array($certReq->reference_id)) }}">View</a>)</td>
+							@endif
+							<td class="text-success">Available</td>
+						@else
+							<td>Certificate</td>
+							<td class="text-warning">Pending</td>
+						@endif
 					</tr>
 
 				</tbody>
 			</table>
 <!--        show when certificate available-->
+			@if ($certReq->status == 'complete')
             <div class="alert alert-success text-center">
             ติดต่อขอรับได้ที่ สำนักวิจัยพัฒนาเทคโนโลยีชีวภาพ ถนนรังสิต-นครนายก (คลองหก) <br>
             อำเภอธัญบุรี จังหวัดปทุมธานี 12110
             <br>
             โทร. 0-2904-6885-95 โทรสาร 0-2904-6885
             </div>
+            @endif
                     
 		</div>
 	</div>

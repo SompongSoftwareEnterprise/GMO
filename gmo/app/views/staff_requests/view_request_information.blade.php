@@ -120,10 +120,33 @@ View Requests Information
 
 			<a class="btn btn-default" href="/staff/requests/{{ $data['Reference ID'] }}/labtask/new">Create Lab Task</a>
 
-			<a class="btn btn-default" href="{{action('StaffRequestsController@newResult', array($data['Reference ID'], 'analysis'))}}">Create Analysis of Report</a>
+			@if ($data['Status'] == 'Complete' && $data['Certificate'] == '1')
+				<span class="btn btn-default disabled">Create Analysis of Report</span>
+			@else
+				@if ($data['Status'] == 'Complete' && $data['Certificate'] == '0')
+					<a class="btn btn-default" href="{{action('StaffRequestsController@viewResult', array($data['Reference ID']))}}">
+						View Analysis of Report
+					</a>
+				@else
+					<a class="btn btn-default" href="{{action('StaffRequestsController@newResult', array($data['Reference ID'], 'analysis'))}}">
+						Create Analysis of Report
+					</a>
+				@endif
+			@endif
 
-			<a class="btn btn-default" href="{{action('StaffRequestsController@newResult', array($data['Reference ID'], 'certificate'))}}">Create Certificate</a>
-
+			@if ($data['Status'] == 'Complete' && $data['Certificate'] == '0')
+				<span class="btn btn-default disabled">Create Certificate</span>
+			@else
+				@if ($data['Status'] == 'Complete' && $data['Certificate'] == '1')
+					<a class="btn btn-default" href="{{action('StaffRequestsController@viewResult', array($data['Reference ID']))}}">
+						View Certificate
+					</a>
+				@else
+					<a class="btn btn-default" href="{{action('StaffRequestsController@newResult', array($data['Reference ID'], 'certificate'))}}">
+						Create Certificate
+					</a>
+				@endif
+			@endif
 		</div>
 	</div>
 

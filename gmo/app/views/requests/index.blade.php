@@ -41,46 +41,51 @@ View Certificate Request
 		<thead>
 			{{ View::make('requests/table/header') }}
 		</thead>
-		<tbody>
-			<?php if ($certReqs != null) { ?>
-			<?php $row = null; ?>
-			@foreach($certReqs as $certReq)
-				<tr>
-					<!-- {{var_dump($certReq)}} -->
-					<td><a href="/entrepreneur/requests/{{ $certReq->reference_id }}">{{ $certReq->reference_id }}</a></td>
-					<td>{{ $certReq->owner_first_name }} {{ $certReq->owner_last_name }}</td>
-					<td>{{ $certReq->signer_first_name }} {{ $certReq->signer_last_name }}</td>
-					<td>{{ $certReq->created_at }}</td>
-					<?php if ($certReq->status == 'Payment Required' || $certReq->status == 'Document Needed') { ?>
-					<td class="text-danger">{{ $certReq->status }}</td>
-					<?php } else if ($certReq->status == 'Available') { ?>
-					<td class="text-success">{{ $certReq->status }}</td>
-					<?php } else { ?>
-					<td class="text-warning">{{ $certReq->status }}</td>
-					<?php } ?>
-				</tr>
-			@endforeach
-			<?php } ?>
-			<?php if ($dmtCertReqs != null) { ?>
-			<?php $row = null; ?>
-			@foreach($dmtCertReqs as $dmtCertReq)
-				<tr>
-					<td><a href="/entrepreneur/dmt-requests/{{ $dmtCertReq->reference_id }}">{{ $dmtCertReq->reference_id }}</a></td>
-					<td>{{ $dmtCertReq->owner_first_name }} {{ $dmtCertReq->owner_last_name }}</td>
-					<td>{{ $dmtCertReq->signer_first_name }} {{ $dmtCertReq->signer_last_name }}</td>
-					<td>{{ $dmtCertReq->created_at }}</td>
-					<?php if ($dmtCertReq->status == 'Payment Required' || $dmtCertReq->status == 'Document Needed') { ?>
-					<td class="text-danger">{{ $dmtCertReq->status }}</td>
-					<?php } else if ($dmtCertReq->status == 'Available') { ?>
-					<td class="text-success">{{ $dmtCertReq->status }}</td>
-					<?php } else { ?>
-					<td class="text-warning">{{ $dmtCertReq->status }}</td>
-					<?php } ?>
-				</tr>
-			@endforeach
-			<?php } ?>
-		</tbody>
-	</table>
+			@if (count($certReqs) == 0 && count($dmtCertReqs) == 0)
+				</table>	
+				<div class="row" style="margin-bottom: 20px;">
+					<div class="col-lg-12 text-center"><strong>No Data</strong></div>
+				</div>
+			@else
+				<?php if ($certReqs != null) { ?>
+					<?php $row = null; ?>
+					@foreach($certReqs as $certReq)
+						<tr>
+							<!-- {{var_dump($certReq)}} -->
+							<td><a href="/entrepreneur/requests/{{ $certReq->reference_id }}">{{ $certReq->reference_id }}</a></td>
+							<td>{{ $certReq->owner_first_name }} {{ $certReq->owner_last_name }}</td>
+							<td>{{ $certReq->signer_first_name }} {{ $certReq->signer_last_name }}</td>
+							<td>{{ $certReq->created_at }}</td>
+							<?php if ($certReq->status == 'Payment Required' || $certReq->status == 'Document Needed') { ?>
+							<td class="text-danger">{{ $certReq->status }}</td>
+							<?php } else if ($certReq->status == 'Available') { ?>
+							<td class="text-success">{{ $certReq->status }}</td>
+							<?php } else { ?>
+							<td class="text-warning">{{ $certReq->status }}</td>
+							<?php } ?>
+						</tr>
+					@endforeach
+				<?php } ?>
+				<?php if ($dmtCertReqs != null) { ?>
+				<?php $row = null; ?>
+				@foreach($dmtCertReqs as $dmtCertReq)
+					<tr>
+						<td><a href="/entrepreneur/dmt-requests/{{ $dmtCertReq->reference_id }}">{{ $dmtCertReq->reference_id }}</a></td>
+						<td>{{ $dmtCertReq->owner_first_name }} {{ $dmtCertReq->owner_last_name }}</td>
+						<td>{{ $dmtCertReq->signer_first_name }} {{ $dmtCertReq->signer_last_name }}</td>
+						<td>{{ $dmtCertReq->created_at }}</td>
+						<?php if ($dmtCertReq->status == 'Payment Required' || $dmtCertReq->status == 'Document Needed') { ?>
+						<td class="text-danger">{{ $dmtCertReq->status }}</td>
+						<?php } else if ($dmtCertReq->status == 'Available') { ?>
+						<td class="text-success">{{ $dmtCertReq->status }}</td>
+						<?php } else { ?>
+						<td class="text-warning">{{ $dmtCertReq->status }}</td>
+						<?php } ?>
+					</tr>
+				@endforeach
+				<?php } ?>
+			</table>
+			@endif
 
 	<br>
 
