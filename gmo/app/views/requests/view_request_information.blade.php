@@ -66,12 +66,23 @@ View Request Information
 					<?php } ?>
 					</tr>
 					<tr>
-						<td>Invoice</td>
-						<td class="text-warning">Pending</td>
+						@if($invoice != '0')
+							<td>Invoice  (<a href="{{ action('EntrepreneurRequestsController@showInvoice', array($certReq->reference_id)) }}">View</a>)</td>
+							<td class="text-success">Available</td>
+						@else
+							<td>Invoice</td>
+							<td class="text-warning">Pending</td>
+						@endif
 					</tr>
+
 					<tr>
-						<td>Receipt</td>
-						<td class="text-warning">Pending</td>
+						@if($receipt != '0')
+							<td>Receipt  (<a href="{{ action('EntrepreneurRequestsController@showReceipt', array($certReq->reference_id)) }}">View</a>)</td>
+							<td class="text-success">Available</td>
+						@else
+							<td>Receipt</td>
+							<td class="text-warning">Pending</td>
+						@endif
 					</tr>
 					<tr>
 						<td>Certificate</td>

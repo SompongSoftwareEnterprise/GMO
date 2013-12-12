@@ -383,13 +383,23 @@ class EntrepreneurRequestsController extends AbstractEntrepreneurController {
 		$signer = Entrepreneur::where('user_id', '=', $certificateRequest->signer_id)->first();
 		$certificateRequestForm = CertificateRequestForm::where('export_certificate_request_id', '=', $id)->first(); 
 		$certificateRequestInfoForm = CertificateRequestInfoForm::where('export_certificate_request_id', '=', $id)->first(); 
+		$invoice = Invoice::where('request_reference_id', '=', $id)->first();
+		if($invoice != null) {
+			$invoice = $invoice->id;
+		}
+		$receipt = Receipt::where('request_reference_id', '=', $id)->first();
+		if($receipt != null) {
+			$receipt = $receipt->id;
+		}
 		return View::make('requests/view_request_information')
 			->with(array('certReq' => $certificateRequest,
 						 'owner' => $owner,
 						 'signer' => $signer,
 						 'certReqForm' => $certificateRequestForm,
 						 'certReqInfoForm' => $certificateRequestInfoForm,
-						 'entrepreneur' => $this->entrepreneur));
+						 'entrepreneur' => $this->entrepreneur,
+						 'invoice' => $invoice,
+						 'receipt' => $receipt));
 	}
 
 	public function askForCertificateRequestInfo() {
@@ -430,6 +440,29 @@ class EntrepreneurRequestsController extends AbstractEntrepreneurController {
 			$entrepreneur = Entrepreneur::where('user_id', '=', $user['id'])->first();
 			return View::make('view-form-1-2')->with('entrepreneur',$entrepreneur)->with('dmt_cert',$form)->with('example',$example)->with('ref_id',$id);
 		}
+	}
+
+	public function showInvoice($id){
+		$invoice = Invoice::where('request_reference_id', '=', $id)->get();
+		$signer_name = DB::table('export_certificate_requests')
+            ->join('invoices', 'export_certificate_requests.reference_id', '=', 'invoices.request_reference_id')
+            ->join('users', 'users.id', '=', 'export_certificate_requests.signer_id')
+            ->where('invoices.request_reference_id', '=', $id)
+            ->select('users.name','export_certificate_requests.updated_at')
+            ->get();
+        $price = json_decode($invoice->price, true);
+		return View::make('requests/invoice')
+			->with('signer_name', $signer_name)
+			->with('price', $price)
+			->with('invoice', $invoice);
+	}
+
+	public function showReceipt($id){
+		$receipt = Receipt::where('request_reference_id', '=', $id)->get();
+		$price = json_decode($receipt->price, true);
+		return View::make('requests/receipt')
+			->with('price', $price)
+			->with('receipt', $receipt);
 	}
 
 }
