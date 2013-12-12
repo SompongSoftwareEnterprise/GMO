@@ -18,10 +18,12 @@ View Request Information
 				<td>{{ $owner['first_name'] }} {{ $owner['last_name'] }}</td>
 				<td>{{ $signer['first_name'] }} {{ $signer['last_name'] }}</td>
 				<td>{{ $dmtCertReq->created_at }}</td>
-				<?php if ($dmtCertReq->status == 'Pending') { ?>
-					<td class="text-warning">{{ $dmtCertReq->status }}</td>
+				<?php if ($dmtCertReq->status == 'Payment Required' || $dmtCertReq->status == 'Document Needed') { ?>
+				<td class="text-danger">{{ $dmtCertReq->status }}</td>
 				<?php } else if ($dmtCertReq->status == 'Available') { ?>
-					<td class="text-success">{{ $dmtCertReq->status }}</td>
+				<td class="text-success">{{ $dmtCertReq->status }}</td>
+				<?php } else { ?>
+				<td class="text-warning">{{ $dmtCertReq->status }}</td>
 				<?php } ?>
 			</tr>
 		</tbody>

@@ -46,14 +46,17 @@ View Certificate Request
 			<?php $row = null; ?>
 			@foreach($certReqs as $certReq)
 				<tr>
+					<!-- {{var_dump($certReq)}} -->
 					<td><a href="/entrepreneur/requests/{{ $certReq->reference_id }}">{{ $certReq->reference_id }}</a></td>
 					<td>{{ $certReq->owner_first_name }} {{ $certReq->owner_last_name }}</td>
 					<td>{{ $certReq->signer_first_name }} {{ $certReq->signer_last_name }}</td>
 					<td>{{ $certReq->created_at }}</td>
-					<?php if ($certReq->status == 'Pending') { ?>
-					<td class="text-warning">{{ $certReq->status }}</td>
+					<?php if ($certReq->status == 'Payment Required' || $certReq->status == 'Document Needed') { ?>
+					<td class="text-danger">{{ $certReq->status }}</td>
 					<?php } else if ($certReq->status == 'Available') { ?>
 					<td class="text-success">{{ $certReq->status }}</td>
+					<?php } else { ?>
+					<td class="text-warning">{{ $certReq->status }}</td>
 					<?php } ?>
 				</tr>
 			@endforeach
@@ -66,10 +69,12 @@ View Certificate Request
 					<td>{{ $dmtCertReq->owner_first_name }} {{ $dmtCertReq->owner_last_name }}</td>
 					<td>{{ $dmtCertReq->signer_first_name }} {{ $dmtCertReq->signer_last_name }}</td>
 					<td>{{ $dmtCertReq->created_at }}</td>
-					<?php if ($dmtCertReq->status == 'Pending') { ?>
-					<td class="text-warning">{{ $dmtCertReq->status }}</td>
+					<?php if ($dmtCertReq->status == 'Payment Required' || $dmtCertReq->status == 'Document Needed') { ?>
+					<td class="text-danger">{{ $dmtCertReq->status }}</td>
 					<?php } else if ($dmtCertReq->status == 'Available') { ?>
 					<td class="text-success">{{ $dmtCertReq->status }}</td>
+					<?php } else { ?>
+					<td class="text-warning">{{ $dmtCertReq->status }}</td>
 					<?php } ?>
 				</tr>
 			@endforeach
