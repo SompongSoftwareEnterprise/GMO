@@ -82,9 +82,9 @@ Registration
 <div class="form-group">
 	<div class="col-sm-offset-2 col-sm-8">
 		@if($statuslist['Pending'] == 'Pending')
-		<button type="button" class="btn btn-muted btn-lg btn-block">Start Analyzing Sequence</button>
+		<a class="btn btn-default btn-lg btn-block" href="/lab/task/{{ $labtask['reference_id'] }}/start" >Start Analyzing Sequence</a>
 		@elseif($statuslist['Pending'] == 'Completed')
-		<button type="button" class="btn btn-muted btn-lg btn-block disabled">Start Analyzing Sequence</button>
+		<a class="btn btn-default btn-lg btn-block disabled" href="#">Start Analyzing Sequence</a>
 		@endif
 		<br>
 	</div>

@@ -25,6 +25,15 @@ class LabController extends BaseController {
 		return View::make('labtask/labtask')->with('labtask',$labtask)->with('labtaskProduct',$labtaskProduct)->with('labtaskAssignment',$labtaskAssignment)->with('statuslist',$this->getTaskStatus($labtask['status']));
 	}
 
+	public function start($id) {
+		$labtask = LabTask::where('reference_id' , '=', $id)->first();
+		if($labtask['status'] == "Pending") {
+			$labtask['status'] = "DNA Extraction";
+			$labtask->save();
+		}
+		return Redirect::action('LabController@show', $id);
+	}
+
 
 	public function index() {
 
