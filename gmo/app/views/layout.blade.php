@@ -24,27 +24,34 @@
 
     <ul class="nav navbar-nav">
       <li><a href="{{ action('HomeController@homePage') }}">HOME</a></li>
-      @if ($user->role == 'Customer' || $user->role == 'Agency')
-	      <li id="en_req"><a href="{{ action('EntrepreneurRequestsController@index') }}">REQUEST</a></li>
-      @elseif ($user->role == 'GMO Staff')
-	      <li id="en_req"><a href="{{ action('StaffRequestsController@index') }}">REQUEST</a></li>
-	      <li><a href="{{ action('StaffReportController@index') }}">REPORT</a></li>
-      @else
-	      <li id="en_req"><a href="{{ action('LabController@index') }}">REQUEST</a></li>
-      @endif
+      @if($user != null)
+	      @if ($user->role == 'Customer' || $user->role == 'Agency')
+		      <li id="en_req"><a href="{{ action('EntrepreneurRequestsController@index') }}">REQUEST</a></li>
+	      @elseif ($user->role == 'GMO Staff')
+		      <li id="en_req"><a href="{{ action('StaffRequestsController@index') }}">REQUEST</a></li>
+	      @elseif ($user->role == 'Lab Staff')
+		      <li id="en_req"><a href="{{ action('LabController@index') }}">REQUEST</a></li>
+		  @else
+		  	<li id="en_req"></li>
+	      @endif
+	  @endif
     </ul>
 
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="{{ action('EntrepreneurAccountController@index') }}"><i class="glyphicon glyphicon-user"></i>{{$user->name}}
-       <span class="label label-info">{{$user->role}}</span></a></li>
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-        	<i class="glyphicon glyphicon-cog"></i> Setting <b class="caret"></b></a>
-        <ul class="dropdown-menu">
-          <li><a href="{{ action('EntrepreneurAccountController@index') }}">Account Info</a></li>
-          <li><a href="{{ action('LoginController@index') }}">Log out</a></li>
-        </ul>
-      </li>
+    	@if ($user != null)
+	    	<li><a href="{{ action('EntrepreneurAccountController@index') }}">
+	    		<i class="glyphicon glyphicon-user"></i>{{$user->name}}
+	    		<span class="label label-info">{{$user->role}}</span></a>
+	    	</li>
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+				<i class="glyphicon glyphicon-cog"></i> Setting <b class="caret"></b></a>
+				<ul class="dropdown-menu">
+					<li><a href="{{ action('EntrepreneurAccountController@index') }}">Account Info</a></li>
+					<li><a href="{{ action('LoginController@index') }}">Log out</a></li>
+				</ul>
+			</li>
+		@endif
     </ul>
   </div><!-- /.navbar-collapse -->
 
