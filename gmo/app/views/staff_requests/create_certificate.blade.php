@@ -88,7 +88,7 @@ Create Analysis Report
 
 	<br>
 
-	{{ Form::open(array('action' => array('StaffRequestsController@createResult', $certReqInfoForm['export_certificate_request_id'], 'certificate'), 'class' => 'form-horizontal')) }}
+	{{ Form::open(array('action' => array('StaffRequestsController@createResult', $certReqInfoForm['export_certificate_request_id'], 'certificate'), 'class' => 'form-horizontal', 'id' => 'final-certificate-form')) }}
 	<form class="form-horizontal" role="form">
 		<div class="row">
 
@@ -113,7 +113,7 @@ Create Analysis Report
 				</div>
 
 				<div class="col-xs-2">
-					<select class="form-control" id="result_ex1" name="result_ex2">
+					<select class="form-control" id="result_ex1" name="result_ex1">
 						<option>Result</option>
 						<option>Positive</option>
 						<option>Negative</option>

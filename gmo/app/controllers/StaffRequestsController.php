@@ -324,9 +324,7 @@ class StaffRequestsController extends BaseController {
 
 		$exportCertificate->save();
 
-		$certificateRequest = CertificateRequest::where('id', '=', $id)->first();
-		$certificateRequest->status = 'Available';
-
+		$certificateRequest = CertificateRequest::where('reference_id', '=', $id)->first();
 		$certificateRequest->update();
 		StatusChecker::update($id);
 		return Redirect::action('StaffRequestsController@index');

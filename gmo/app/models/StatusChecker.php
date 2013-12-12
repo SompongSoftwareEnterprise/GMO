@@ -32,9 +32,8 @@
 			if($labtask) {
 				$labStatus = $labtask['status'];
 			}
-			$certificate = null;
-			$analysisReport = null;
-			if($certificate || $analysisReport) {
+			$result = ExportCertificate::where('export_certificate_request_id', $id)->first();
+			if($result) {
 				return "complete";
 			}
 			else {

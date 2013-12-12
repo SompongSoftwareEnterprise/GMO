@@ -2,6 +2,7 @@
 require 'pry'
 require 'watir-webdriver'
 require "test/unit"
+require 'shellwords'
 
 class Watir::Browser
 	include Test::Unit::Assertions
@@ -19,11 +20,20 @@ def selector(selector)
 	element(css: selector)
 end
 
+module Messagr
+	def self.message(name)
+		puts ">> #{name}"
+		system "pushnot watir #{Shellwords.shellescape name}"
+	end
+end
+
 def step(name)
-	puts ">> #{name}"
+	Messagr.message name
 	yield
 	wait
 end
+
+Messagr.message "Get ready..."
 
 def check_mail(mailbox)
 	goto "http://mailinator.com/inbox.jsp?to=#{mailbox}"
@@ -39,6 +49,8 @@ def check_mail(mailbox)
 	if text =~ /Agency ID: (\w+)/
 		agency_id = $1
 	end
+	Messagr.message "Mail\nUsername: #{username}\nPassword: #{password}\nID: #{agency_id}"
+	sleep 3
 	[username, password, agency_id]
 end
 
@@ -60,6 +72,12 @@ def login_as(type)
 end
 
 Watir::Browser.new(:chrome).instance_eval do
+
+if true
+	sleep 10
+	Messagr.message "GMO - Certificate Request System Test"
+	sleep 5
+end
 
 if true
 
@@ -112,10 +130,12 @@ if true
 
 else
 
-	customer_username, customer_password = %w(user00005 VD7nqvud)
-	agency_username, agency_password, agency_id = %w(user00006 iIw6aWM2 6)
+	customer_username, customer_password = %w(user00008 qw8B9ilu)
+	agency_username, agency_password, agency_id = %w(user00009 1qPeers4 9)
 
 end
+
+if true
 
 	login("Customer", customer_username, customer_password)
 
@@ -184,16 +204,65 @@ end
 		trs.find { |c| c.text =~ /Generic/ }.a.click
 	end
 
-	step "Start analyzing sequence" do
+	step "Upload forms" do
 		element(class: 'btn', text: /Start Analyzing/).click
 		file_field(name: 'file1').set(File.realpath('watir/file1.pdf'))
+		execute_script "window.scrollBy(0,1000)"
 		form(id: 'file1').submit
 		file_field(name: 'file2').set(File.realpath('watir/file2.pdf'))
+		execute_script "window.scrollBy(0,1000)"
 		form(id: 'file2').submit
 		file_field(name: 'file3').set(File.realpath('watir/file3.pdf'))
+		execute_script "window.scrollBy(0,1000)"
 		form(id: 'file3').submit
 		file_field(name: 'file4').set(File.realpath('watir/file4.pdf'))
+		execute_script "window.scrollBy(0,1000)"
 		form(id: 'file4').submit
+	end
+
+	login_as "Lab Head"
+
+	step "Go to lab" do
+		a(text: /Waiting for Approval/i).click
+		assert tr(text: /Generic/).when_present.text =~ /Waiting for Approval/i
+		tr(text: /Generic/).a.click
+	end
+
+	step "Click pass button" do
+		element(class: 'btn', text: 'Pass').click
+	end
+
+end
+
+	login_as "GMO Staff"
+
+	step "Check the request status - must be pending" do
+		assert tr(text: /Sompong Somchai/).text =~ /Pending/
+	end
+
+	login "Customer", customer_username, customer_password
+
+	step "Status must be 'document needed'" do
+		assert tr(text: /Sompong Somchai/).text =~ /Document Needed/i
+	end
+
+	step "Complete the document" do
+		tr(text: /Sompong Somchai/).a.click
+		a(text: /Complete this/i).click
+		autofill "Certificate Request 1-1/2"
+		form(id: "new-request-form").submit
+	end
+
+	login_as "GMO Staff"
+	step "Check the request status - must be lab PASS" do
+		assert tr(text: /Sompong Somchai/).text =~ /Lab PASS/i
+	end
+
+	step "Create a certificate!" do
+		tr(text: /Sompong Somchai/).a.click
+		element(class: 'btn', text: /Create cer/i).click
+		autofill "Certificate Info"
+		element(class: 'btn', text: /Create cer/i).click
 	end
 
 	binding.pry

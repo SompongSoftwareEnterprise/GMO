@@ -183,7 +183,7 @@ Registration
 
 <div class="row">
 	<div class="form-group">
-		@if($statuslist['Waiting For Approval'] == 'Pending' && $user->name == 'head')
+		@if($statuslist['Waiting For Approval'] == 'Pending' && preg_match('~\(Head\)~i', $user->name))
 		<div class="col-sm-offset-1 col-sm-5">
 			<a class="btn btn-success btn-lg btn-block" href="/lab/task/result/{{ $labtask['reference_id'] }}/pass">Pass</a>
 		</div>

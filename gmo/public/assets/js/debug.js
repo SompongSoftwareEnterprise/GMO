@@ -8,6 +8,7 @@ void function(login) {
 	login('Agency', 'user0002', 'passwordagency0002')
 	login('GMO Staff', 'staff18473', 'passwordstaff18473')
 	login('Lab Staff', 'lab72812', 'passwordlab72812')
+	login('Lab Head', 'lab98172', 'passwordlab98172')
 
 }(function login(accountType, username, password) {
 
@@ -188,6 +189,14 @@ autofill('Domestic Certificate Request', '#dmt-new-request-form',
 })
 
 
+autofill('Certificate Info', '#final-certificate-form', {
+	"sample_name": "Coconut",
+	"test_ex1": "Postitive Control",
+	"result_ex1": "Positive",
+	"conclusion": "This plant is non-GMO!"
+})
+
+
 $('#sompong-debugger-menu button').click(function() {
 	$('#sompong-debugger').fadeToggle('fast')
 })
@@ -244,6 +253,7 @@ function autofillAction(form, data) {
 			var frames = []
 			inputs.forEach(function(input) {
 				var value = data[input.name]
+				console.log(value, input.name)
 				frames.push(function() { input.focus(); })
 				if (input.nodeName.toLowerCase() == 'button' ||
 					input.type == 'button' ||

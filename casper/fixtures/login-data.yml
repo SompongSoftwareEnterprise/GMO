@@ -32,6 +32,14 @@ data:
     password: passwordlab72812
     name: I am a Lab Staff
     role: Lab Staff
+---
+table: users
+data:
+    id: 5
+    username: lab98172
+    password: passwordlab98172
+    name: I am a Lab (Head)
+    role: Lab Staff
 
 
 # These datas are used to test linking between the user and an

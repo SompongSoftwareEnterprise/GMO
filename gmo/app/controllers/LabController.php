@@ -55,7 +55,7 @@ class LabController extends BaseController {
 
 	public function result($id,$status) {
 		$labtask = LabTask::where('reference_id' , '=', $id)->first();
-		if($this->user->name == "head") {
+		if(preg_match('~\(Head\)~i', $this->user->name)) {
 			if($status == "pass") {
 				$labtask['status'] = "Pass";
 			}
