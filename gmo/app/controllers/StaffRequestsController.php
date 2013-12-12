@@ -86,6 +86,9 @@ class StaffRequestsController extends BaseController {
 			// use true to convert to array and not object
 			$price = json_decode($invoice->price, true);
 		}
+		return View::Make('staff_requests/create_invoice')
+			->with('invoice', $invoice)
+			->with('price', $price);
 		
 	}
 
