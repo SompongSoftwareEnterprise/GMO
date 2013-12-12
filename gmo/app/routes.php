@@ -36,6 +36,8 @@ Route::post('/staff/register',         	'RegistrationController@submitRegister')
 //Report
 Route::get('/staff/report',         	'StaffReportController@index');
 Route::get('/staff/report/1',         	'StaffReportController@reportPlantList');
+Route::get('/staff/report/2',         	'StaffReportController@reportLabRequest');
+Route::get('/staff/report/5',         	'StaffReportController@reportDestinationCountry');
 
 //account
 Route::get('/entrepreneur/account',    		'EntrepreneurAccountController@index');
