@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Receipt</title>
+    <title>Invoice</title>
     <meta charset="utf-8">
     <link href="/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="/assets/css/common.css" rel="stylesheet">
@@ -12,17 +12,6 @@
     <script src="/bootstrap/js/bootstrap.js"></script>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
     <style type="text/css">
-		@page {
-			margin: 0;
-			size: 148mm 210mm;
-		}
-		@media print {
-			.container { width: 100% !important; }
-			body { 
-				font-size: 10pt;
-			}
-			h1 { font-size: 18pt; }
-		}
         body{
             background:#fff;
         }
@@ -35,28 +24,26 @@
 
 <body>
 
-    <div class="container"><div class="row"><div class="col-md-offset-2 col-md-8">
+    <div class="container">
         <div class="row">
-
-
             <div align="center">
                 <img class="logo pull-center" src="/assets/img/bird.png">
             </div>
-            <h1 align="center" style="margin-top:-20px">Receipt</h1>
+            <h1 align="center" style="margin-top:-20px">Invoice</h1>
             <h4 align="center">Department of Agriculture</h4>
             
             <br>
             <div class="row">
-            <div class="col-xs-offset-6 col-xs-6 ">
+            <div class="col-sm-offset-6 col-xs-4 ">
                 <div class="col-xs-3">
                     <strong>Office</strong>
                 </div>
                 <div class="col-xs-8 underline">Biotechnology Research</div>
-                <div class="col-xs-offset-3 col-xs-8 underline">and Development Office</div>
+                <div class="col-sm-offset-3 col-xs-8 underline">and Development Office</div>
             </div>
             </div>
             <div class="row">
-            <div class="col-xs-offset-6 col-xs-6 ">
+            <div class="col-sm-offset-6 col-xs-4 ">
                 <div class="col-xs-3">
                     <strong>Date</strong>
                 </div>
@@ -70,9 +57,9 @@
         </div>
         <br>
         <div class="row">
-            <div class="col-xs-7">
+            <div class="col-sm-offset-2 col-xs-5 ">
                 <div class="col-xs-5">
-                    <strong>Received from</strong>
+                    <strong>From</strong>
                 </div>
                 <div class="col-xs-7 underline">
                     @foreach ($signer_name as $sn) {{ $sn->name }} @endforeach
@@ -81,7 +68,7 @@
         </div>
         <br>
         <div class="row">
-        <div class="col-xs-12">  
+        <div class="col-sm-offset-2 col-xs-8">  
             <table class="table table-bordered " align="center">
                 <thead>
                     <tr class="Header">
@@ -110,7 +97,7 @@
         </div>
         
         <div class="row">
-            <div class="col-xs-7">
+            <div class="col-sm-offset-2 col-xs-5 ">
                 <div class="col-xs-5">
                     <strong>Total price</strong>
                 </div>
@@ -121,15 +108,15 @@
         </div>
         <br><br>
         <div class="row">
-            <div class="col-xs-offset-6 col-xs-6">
+            <div class="col-sm-offset-6 col-xs-4">
                 <div class="col-xs-4">
-                    <strong>Payee</strong>
+                    <strong>Payer</strong>
                 </div>
                 <div class="col-xs-7 underline">{{$user->name}}</div>
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-offset-6 col-xs-6">
+            <div class="col-sm-offset-6 col-xs-4">
                 <div class="col-xs-4">
                     <strong>Position</strong>
                 </div>
@@ -137,7 +124,7 @@
             </div>
         </div>
             
-    </div></div></div>
+    </div>
     <br><br>
 
 </body>

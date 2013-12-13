@@ -36,9 +36,11 @@ View Requests Information
 				<td><a href="/staff/requests/{{ $request['Reference ID'] }}">{{ $request['Reference ID'] }}</a></td>
 				<td>{{$request['Plant Name']}}</td>
 				<td>{{$request['Entrepreneur']}}</td>
-				@if ($request['Current Process'] == 'Available')
+				@if($request['Current Process'] == 'Awaiting Payment' || $request['Current Process'] == 'Lab Not Initiated')
+					<td class="text-danger">{{$request['Current Process']}}</td>
+				@elseif($request['Current Process'] == 'Complete')
 					<td class="text-success">{{$request['Current Process']}}</td>
-				@elseif ($request['Current Process'] == 'Pending')
+				@else
 					<td class="text-warning">{{$request['Current Process']}}</td>
 				@endif
 			</tr>

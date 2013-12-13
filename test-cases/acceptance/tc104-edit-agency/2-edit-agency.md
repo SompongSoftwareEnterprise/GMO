@@ -1,71 +1,28 @@
-+Test Plan: Test Revoke Agency
+Test Plan:  To make sure that the status of request is shown correctly.
+=======================================================================
 
-+===========================================
+## Purpose
 
-+
+To make sure that adding agency process is correct.
 
-+## Purpose
 
-+
+## XRef
 
-+To make sure that revoking agency process is correct.
-+
+uc103, uc104, ds109
 
-+
 
-+## XRef
+## Actors
 
-+
+Entrepreneur
 
-+-----
 
-+
+## Preconditions
 
-+
+* Initial database data: [account/agency-5556](../../../casper/fixtures/account/agency-5556.yml)
+* Initial database data: [account/entrepreneur-5558](../../../casper/fixtures/account/entrepreneur-5558.yml)
 
-+## Actors
 
-+
+## Test Procedure
 
-+Entrepreneur
 
-+
 
-+
-
-+## Preconditions
-
-+
-
-+* A entrepreneur is logged in.
-
-+* Initial database data: Entrepreneur user data (with only one authorized agency)
-
-+* Initial database data: Agency user data
-
-+
-
-+
-
-+## Test Procedure
-
-+
-
-+1. Login as entrepreneuru
-
-+    * Must login successfully
-
-+2. Go to AGENCY header to view all authorized agencies.
-
-+  * List only one agency, the current authorized agency.
-
-+3. Click at the Id of the agency.
-
-+  * Direct to the revoke agency page of the selected agency correctly
-+  * List of all information of selected agency must be correct.
-
-+4. Click at the Revoke button.
-
-+  * Direct to the entrepreneur home page correctly.
-+*  List of agencies must show nothing.
-+

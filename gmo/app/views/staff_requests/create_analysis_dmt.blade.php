@@ -6,6 +6,7 @@ Create Analysis Report
 
 @section('content')
 
+<!-- สทช 1-1/2 -->
 <div class="panel-body ">
 	<ol class="breadcrumb">
 		<li><a href="#">Home</a></li>
@@ -15,36 +16,37 @@ Create Analysis Report
 
 	<div class="row">
 		<div class="col-xs-3 text-right"><strong>Sample Name</strong></div>
-		<div class="col-xs-9">{{ $certReqInfoForm['common_name'] }}</div>
+		<div class="col-xs-9">{{ $dmtCertReqEx['plant_name_eng'] }}</div>
 	</div>
 
 	<div class="row">
 		<div class="col-xs-3 text-right"><strong>Manufacturer or Shipper</strong></div>
-		<div class="col-xs-9">{{ $certReqForm['manufactory_name'] }}</div>
+		<div class="col-xs-9">{{ $dmtCertReqForm['company_en'] }}</div>
 	</div>
 
 	<div class="row">
 		<div class="col-xs-3 text-right"><strong>Address</strong></div>
 		<div class="col-xs-9"> <address>
-			{{ $certReqForm['manufactory_address1'] }}<br>
-			{{ $certReqForm['manufactory_address2'] }}<br>
-			{{ $certReqForm['manufactory_city'] }}, {{ $certReqForm['manufactory_province'] }}, {{ $certReqForm['manufactory_country'] }}, {{ $certReqForm['manufactory_zip'] }}<br>
-			<abbr title="Phone">Phone :</abbr>{{ $certReqForm['manufactory_phone'] }}
+			{{ $dmtCertReqForm['address_en'] }}<br>
+			{{ $dmtCertReqForm['address_en2'] }}<br>
+			{{ $dmtCertReqForm['city_en'] }}, {{ $dmtCertReqForm['province_en'] }}, Thailand, {{ $dmtCertReqForm['zip'] }}<br>
+			<abbr title="Phone">Phone :</abbr>{{ $dmtCertReqForm['contact_number'] }}
 		</address></div>
 	</div>
 	<br>
 
 	<div class="row">
 		<div class="col-xs-3 text-right"><strong>Vendor or Consignee</strong></div>
-		<div class="col-xs-9">{{ $certReqInfoForm['vendor_or_consignee'] }}</div>
+		<div class="col-xs-9">{{ $dmtCertReqForm['company_en'] }}</div>
 	</div>
 
 	<div class="row">
 		<div class="col-xs-3 text-right"><strong>Address</strong></div>
 		<div class="col-xs-9"> <address>
-			{{ $certReqInfoForm['address1'] }}<br>
-			{{ $certReqInfoForm['address2'] }}<br>
-			{{ $certReqInfoForm['city'] }}, {{ $certReqInfoForm['province'] }}, {{ $certReqInfoForm['country'] }}, {{ $certReqInfoForm['zip'] }}<br>
+			{{ $dmtCertReqForm['address_en'] }}<br>
+			{{ $dmtCertReqForm['address_en2'] }}<br>
+			{{ $dmtCertReqForm['city_en'] }}, {{ $dmtCertReqForm['province_en'] }}, Thailand, {{ $dmtCertReqForm['zip'] }}<br>
+			<abbr title="Phone">Phone :</abbr>{{ $dmtCertReqForm['contact_number'] }}
 		</address></div>
 	</div>
 
@@ -54,7 +56,9 @@ Create Analysis Report
 	<div class="row">
 		<div class="col-xs-3 text-right"><strong>Description of Product</strong></div>
 		<div class="col-xs-9">
-			{{ $certReqInfoForm['description_of_product'] }}
+			<p>{{ $dmtCertReqEx['plant_name_eng'] }}</p>
+			<p>{{ $dmtCertReqEx['plant_name_th'] }}</p> 
+			<p>{{ $dmtCertReqEx['plant_name_sci'] }}</p> 
 		</div>
 	</div>
 
@@ -64,19 +68,19 @@ Create Analysis Report
 
 	<div class="row">
 		<div class="col-xs-3 text-right"><strong>Country of Origin</strong></div>
-		<div class="col-xs-9">{{ $certReqForm['origin_of_plant'] }}</div>
+		<div class="col-xs-9">Thailand</div>
 	</div>
 
 
 	<div class="row">
 		<div class="col-xs-3 text-right"><strong>Final Destination</strong></div>
-		<div class="col-xs-9">{{ $certReqInfoForm['final_destination'] }}</div>
+		<div class="col-xs-9">{{ $dmtCertReqEx['export_to'] }}</div>
 	</div>
 
 
 	<div class="row">
 		<div class="col-xs-3 text-right"><strong>Port of Entry or Embarkation</strong></div>
-		<div class="col-xs-9">{{ $certReqInfoForm['port_of_entry'] }}</div>
+		<div class="col-xs-9">{{ $dmtCertReqEx['export_to'] }}</div>
 	</div>
 
 	<hr>
@@ -88,7 +92,7 @@ Create Analysis Report
 
 	<br>
 
-	{{ Form::open(array('action' => array('StaffRequestsController@createResult', $certReqInfoForm['export_certificate_request_id'], 'certificate'), 'class' => 'form-horizontal', 'id' => 'final-certificate-form')) }}
+	{{ Form::open(array('action' => array('StaffRequestsController@createResult', $dmtCertReqForm['domestic_certificate_request_id'], 'analysis'), 'class' => 'form-horizontal')) }}
 	<form class="form-horizontal" role="form">
 		<div class="row">
 
@@ -130,54 +134,54 @@ Create Analysis Report
 			</div>
 		</div>
 
-<script>
-	$(function() {
-		var template = $('.test-detail').html()
-		$(document).on('click', '[data-test="remove"]', function(e) {
-			if ($('.test-detail').length == 1) {
-				alert('Cannot remove last example')
-			} else {
-				$(this).closest('.test-detail').remove()
-				updateNumber()
-			}
-		})
-		var exId = 1
-		$(document).on('click', '[data-test="add"]', function(e) {
-			exId += 1
-			$(this).closest('.test-detail').after(
-				'<div class="test-detail">' +
-					template.replace(/ex1/g, 'ex' + exId) +
-				'</div>')
-			updateNumber()
-		})
-		function updateNumber() {
-			$('.test-detail').each(function(index) {
-				$(this).find('[data-test="number"]').html(index + 1 + '')
+		<script>
+			$(function() {
+				var template = $('.test-detail').html()
+				$(document).on('click', '[data-test="remove"]', function(e) {
+					if ($('.test-detail').length == 1) {
+						alert('Cannot remove last example')
+					} else {
+						$(this).closest('.test-detail').remove()
+						updateNumber()
+					}
+				})
+				var exId = 1
+				$(document).on('click', '[data-test="add"]', function(e) {
+					exId += 1
+					$(this).closest('.test-detail').after(
+						'<div class="test-detail">' +
+							template.replace(/ex1/g, 'ex' + exId) +
+						'</div>')
+					updateNumber()
+				})
+				function updateNumber() {
+					$('.test-detail').each(function(index) {
+						$(this).find('[data-test="number"]').html(index + 1 + '')
+					})
+				}
 			})
-		}
-	})
-</script>
+		</script>
 
 
-<br>
-<div class="row">
+		<br>
+		<div class="row">
 
-	<div class="col-xs-3 text-right"> <label for="conclusion">Conclusion</label></div>
-	<div class="col-xs-7">
-		<textarea class="form-control" id="conclusion" name="conclusion" placeholder="Conclusion" style="height: 95px"></textarea>
-	</div>
-</div>
+			<div class="col-xs-3 text-right"> <label for="conclusion">Conclusion</label></div>
+			<div class="col-xs-7">
+				<textarea class="form-control" id="conclusion" name="conclusion" placeholder="Conclusion" style="height: 95px"></textarea>
+			</div>
+		</div>
 
 
-<br>
-<div class="form-group row">
-	<div class="col-xs-12 text-right">
-		<button type="button" class="btn btn-default">Back</button>
-		<button type="reset" class="btn btn-danger">Reset</button>
-		<button type="submit" class="btn btn-primary">Create Certificate</button>
-	</div>
-</div>
-</form>
+		<br>
+		<div class="form-group row">
+			<div class="col-xs-12 text-right">
+				<button type="button" class="btn btn-default">Back</button>
+				<button type="reset" class="btn btn-danger">Reset</button>
+				<button type="submit" class="btn btn-primary">Create Analysis</button>
+			</div>
+		</div>
+	</form>
 
 </div>
 

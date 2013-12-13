@@ -21,8 +21,6 @@ show php artisan migrate:refresh
 step "Inserting test user..."
 show gmo-load-fixtures login-data
 
-step "Running tests...."
-show gmo-test-casper all
 
 
 

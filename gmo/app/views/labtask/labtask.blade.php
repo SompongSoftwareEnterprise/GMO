@@ -7,48 +7,48 @@ Registration
 @section('content')
 
 <div class="row">
-	<div class="col-lg-3 text-right"><strong>Product Name :</strong></div>
-	<div class="col-lg-8">{{  $labtaskProduct['product_name'] }}</div>
+	<div class="col-sm-3 text-right"><strong>Product Name :</strong></div>
+	<div class="col-sm-8">{{  $labtaskProduct['product_name'] }}</div>
 </div>
 
 <div class="row">
-	<div class="col-lg-3 text-right"><strong>Product Code :</strong></div>
-	<div class="col-lg-8">{{  $labtaskProduct['product_code'] }}</div>
+	<div class="col-sm-3 text-right"><strong>Product Code :</strong></div>
+	<div class="col-sm-8">{{  $labtaskProduct['product_code'] }}</div>
 </div>
 <div class="row">
-	<div class="col-lg-3 text-right"><strong>Measure (g) :</strong></div>
-	<div class="col-lg-8">{{  $labtaskProduct['measure'] }} g</div>
+	<div class="col-sm-3 text-right"><strong>Measure (g) :</strong></div>
+	<div class="col-sm-8">{{  $labtaskProduct['measure'] }} g</div>
 </div>
 <div class="row">
-	<div class="col-lg-3 text-right"><strong>Volume (mL) :</strong></div>
-	<div class="col-lg-8">{{  $labtaskProduct['volume'] }} mL</div>
+	<div class="col-sm-3 text-right"><strong>Volume (mL) :</strong></div>
+	<div class="col-sm-8">{{  $labtaskProduct['volume'] }} mL</div>
 </div>
 <div class="row">
-	<div class="col-lg-3 text-right"><strong>Date Start :</strong></div>
-	<div class="col-lg-8">{{  $labtaskProduct['start'] }}</div>
+	<div class="col-sm-3 text-right"><strong>Date Start :</strong></div>
+	<div class="col-sm-8">{{  $labtaskProduct['start'] }}</div>
 </div>
 <div class="row">
-	<div class="col-lg-3 text-right"><strong>Date Finish :</strong></div>
-	<div class="col-lg-8">{{  $labtaskProduct['finish'] }}</div>
+	<div class="col-sm-3 text-right"><strong>Date Finish :</strong></div>
+	<div class="col-sm-8">{{  $labtaskProduct['finish'] }}</div>
 </div>
 
 
 
 <div class="row">
-	<div class="col-lg-3 text-right"><strong>Responsible :</strong></div>
-	<div class="col-lg-9">1. {{$labtaskAssignment[0]['assignee']}}</div>
+	<div class="col-sm-3 text-right"><strong>Responsible :</strong></div>
+	<div class="col-sm-9">1. {{$labtaskAssignment[0]['assignee']}}</div>
 </div>
 
 @if(sizeof($labtaskAssignment) > 1)
 @for($i = 1; $i < sizeof($labtaskAssignment); $i++)
 <div class="row">
-	<div class="col-md-offset-3 col-lg-8">{{$i + 1}}. {{$labtaskAssignment[$i]['assignee']}}</div>
+	<div class="col-md-offset-3 col-sm-8">{{$i + 1}}. {{$labtaskAssignment[$i]['assignee']}}</div>
 </div>
 @endfor
 @endif
 <div class="row">
-	<div class="col-lg-3 text-right"><strong>Medthod Of Extracting DNA :</strong></div>
-	<div class="col-lg-8">{{$labtask['dna_extraction_method']}}</p></div>
+	<div class="col-sm-3 text-right"><strong>Medthod Of Extracting DNA :</strong></div>
+	<div class="col-sm-8">{{$labtask['dna_extraction_method']}}</p></div>
 </div>
 
 <hr>
@@ -60,19 +60,19 @@ Registration
 </div>
 
 <div class="row">
-	<div class="col-lg-3 text-right"><strong>Endogenous :</strong></div>
-	<div class="col-lg-8">{{$labtask['endogenous']}}</p></div>
+	<div class="col-sm-3 text-right"><strong>Endogenous :</strong></div>
+	<div class="col-sm-8">{{$labtask['endogenous']}}</p></div>
 </div>
 
 <div class="row">
-	<div class="col-lg-3 text-right"><strong>Transgene :</strong></div>
-	<div class="col-lg-8">1. {{explode('|',$labtask['transgene'])[0]}}</div>
+	<div class="col-sm-3 text-right"><strong>Transgene :</strong></div>
+	<div class="col-sm-8">1. {{explode('|',$labtask['transgene'])[0]}}</div>
 </div>
 
 @if(sizeof(explode('|',$labtask['transgene'])) > 1)
 @for($i = 1; $i < sizeof(explode('|',$labtask['transgene'])); $i++)
 <div class="row">
-	<div class="col-md-offset-3 col-lg-8">{{$i + 1}}. {{explode('|',$labtask['transgene'])[$i]}}</div>
+	<div class="col-md-offset-3 col-sm-8">{{$i + 1}}. {{explode('|',$labtask['transgene'])[$i]}}</div>
 </div>
 @endfor
 @endif
@@ -82,9 +82,9 @@ Registration
 <div class="form-group">
 	<div class="col-sm-offset-2 col-sm-8">
 		@if($statuslist['Pending'] == 'Pending')
-		<button type="button" class="btn btn-muted btn-lg btn-block">Start Analyzing Sequence</button>
+		<a class="btn btn-default btn-lg btn-block" href="/lab/task/{{ $labtask['reference_id'] }}/start" >Start Analyzing Sequence</a>
 		@elseif($statuslist['Pending'] == 'Completed')
-		<button type="button" class="btn btn-muted btn-lg btn-block disabled">Start Analyzing Sequence</button>
+		<a class="btn btn-default btn-lg btn-block disabled" href="#">Start Analyzing Sequence</a>
 		@endif
 		<br>
 	</div>
@@ -102,9 +102,18 @@ Registration
 				<tr>
 					<td>1. DNA Extraction</td>
 					@if($statuslist['DNA Extraction'] == 'Pending')
-					<td class="text-warning">Pending(<a href="#">Upload</a>)</td>
+					<td class="text-warning">
+						Pending
+						{{ Form::open(array('action' => 'LabController@uploadLabResult', 'files' => true, 'id' => 'file1')) }}
+							{{ Form::hidden('labtask_id', $labtask->id) }}
+							{{ Form::hidden('filenum', 'file1') }}
+							<div width="50px">{{ Form::file('file1') }}</div>
+							<button type="submit" class="btn btn-primary" onclick="form2()">submit</button>
+						{{ Form::close() }}  
+					</td>
 					@elseif($statuslist['DNA Extraction'] == 'Completed')
-					<td class="text-success">Uploaded(<a href="#">Download</a>)</td>
+						<td class="text-success">Uploaded
+							(<a href="{{action('LabController@downloadLabResult',array('filename' => $file1))}}">Download</a>)</td>
 					@else
 					<td class="text-danger">Waiting for above sequence</td>
 					@endif
@@ -112,9 +121,18 @@ Registration
 				<tr>
 					<td>2. Volume & Concentration Measurement</td>
 					@if($statuslist['Volume & Concentration Measurement'] == 'Pending')
-					<td class="text-warning">Pending(<a href="#">Upload</a>)</td>
+					<td class="text-warning">
+						Pending
+						{{ Form::open(array('action' => 'LabController@uploadLabResult', 'files' => true, 'id' => 'file2')) }}
+							{{ Form::hidden('labtask_id', $labtask->id) }}
+							{{ Form::hidden('filenum', 'file2') }}
+							<div width="50px">{{ Form::file('file2') }}</div>
+							<button type="submit" class="btn btn-primary" onclick="form2()">submit</button>
+						{{ Form::close() }}  
+					</td>
 					@elseif($statuslist['Volume & Concentration Measurement'] == 'Completed')
-					<td class="text-success">Uploaded(<a href="#">Download</a>)</td>
+						<td class="text-success">Uploaded
+							(<a href="{{action('LabController@downloadLabResult',array('filename' => $file2))}}">Download</a>)</td>A
 					@else
 					<td class="text-danger">Waiting for above sequence</td>
 					@endif
@@ -122,9 +140,18 @@ Registration
 				<tr>
 					<td>3. Endrogenous Gene Analysis</td>
 					@if($statuslist['Endrogenous Gene Analysis'] == 'Pending')
-					<td class="text-warning">Pending(<a href="#">Upload</a>)</td>
+					<td class="text-warning">
+						Pending
+						{{ Form::open(array('action' => 'LabController@uploadLabResult', 'files' => true, 'id' => 'file3')) }}
+							{{ Form::hidden('labtask_id', $labtask->id) }}
+							{{ Form::hidden('filenum', 'file3') }}
+							<div width="50px">{{ Form::file('file3') }}</div>
+							<button type="submit" class="btn btn-primary" onclick="form2()">submit</button>
+						{{ Form::close() }}  
+					</td>
 					@elseif($statuslist['Endrogenous Gene Analysis'] == 'Completed')
-					<td class="text-success">Uploaded(<a href="#">Download</a>)</td>
+						<td class="text-success">Uploaded
+							(<a href="{{action('LabController@downloadLabResult',array('filename' => $file3))}}">Download</a>)</td>A
 					@else
 					<td class="text-danger">Waiting for above sequence</td>
 					@endif
@@ -132,9 +159,18 @@ Registration
 				<tr>
 					<td>4. Gene Analysis</td>
 					@if($statuslist['Gene Analysis'] == 'Pending')
-					<td class="text-warning">Pending(<a href="#">Upload</a>)</td>
+					<td class="text-warning">
+						Pending
+						{{ Form::open(array('action' => 'LabController@uploadLabResult', 'files' => true, 'id' => 'file4')) }}
+							{{ Form::hidden('labtask_id', $labtask->id) }}
+							{{ Form::hidden('filenum', 'file4') }}
+							<div width="50px">{{ Form::file('file4') }}</div>
+							<button type="submit" class="btn btn-primary" onclick="form2()">submit</button>
+						{{ Form::close() }}  
+					</td>
 					@elseif($statuslist['Gene Analysis'] == 'Completed')
-					<td class="text-success">Uploaded(<a href="#">Download</a>)</td>
+						<td class="text-success">Uploaded
+							(<a href="{{action('LabController@downloadLabResult',array('filename' => $file4))}}">Download</a>)</td>A
 					@else
 					<td class="text-danger">Waiting for above sequence</td>
 					@endif
@@ -147,19 +183,19 @@ Registration
 
 <div class="row">
 	<div class="form-group">
-		@if($statuslist['Waiting For Approval'] == 'Pending')
+		@if($statuslist['Waiting For Approval'] == 'Pending' && preg_match('~\(Head\)~i', $user->name))
 		<div class="col-sm-offset-1 col-sm-5">
-			<button type="button" class="btn btn-success btn-lg btn-block">Pass</button>
+			<a class="btn btn-success btn-lg btn-block" href="/lab/task/result/{{ $labtask['reference_id'] }}/pass">Pass</a>
 		</div>
 		<div class="col-sm-offset-0 col-sm-5">
-			<button type="button" class="btn btn-danger btn-lg btn-block">Fail</button>
+			<a class="btn btn-danger btn-lg btn-block" href="/lab/task/result/{{ $labtask['reference_id'] }}/fail">Fail</a>
 		</div>
 		@else
 		<div class="col-sm-offset-1 col-sm-5">
-			<button type="button" class="btn btn-success btn-lg btn-block disabled">Pass</button>
+			<a class="btn btn-success btn-lg btn-block disabled" herf="">Pass</a>
 		</div>
 		<div class="col-sm-offset-0 col-sm-5">
-			<button type="button" class="btn btn-danger btn-lg btn-block disabled">Fail</button>
+			<a class="btn btn-danger btn-lg btn-block disabled" href="">Fail</a>
 		</div>
 		@endif
 

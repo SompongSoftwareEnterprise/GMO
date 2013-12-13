@@ -21,8 +21,51 @@ class LabController extends BaseController {
 		$labtask = LabTask::where('reference_id' , '=', $id)->first();
 		$labtaskProduct = LabTaskProduct::where('lab_task_id' , '=', $labtask->id)->first();
 		$labtaskAssignment = LabTaskAssignment::where('lab_task_id' , '=', $labtask->id)->get();
+		$upload = UploadLabTaskFile::where('labtask_id', '=', $labtask->id)->first();
+		if (empty($upload)) {
+			$upload = array(
+				'file1' => null,
+				'file2' => null,
+				'file3' => null,
+				'file4' => null,
+			);
+		}
 
-		return View::make('labtask/labtask')->with('labtask',$labtask)->with('labtaskProduct',$labtaskProduct)->with('labtaskAssignment',$labtaskAssignment)->with('statuslist',$this->getTaskStatus($labtask['status']));
+		return View::make('labtask/labtask')
+			->with('labtask',$labtask)
+			->with('labtaskProduct',$labtaskProduct)
+			->with('labtaskAssignment',$labtaskAssignment)
+			->with('statuslist',$this->getTaskStatus($labtask['status']))
+			->with(array(
+				'file1' => $upload['file1'],
+				'file2' => $upload['file2'],
+				'file3' => $upload['file3'],
+				'file4' => $upload['file4'],
+			));
+	}
+
+	public function start($id) {
+		$labtask = LabTask::where('reference_id' , '=', $id)->first();
+		if($labtask['status'] == "Pending") {
+			$labtask['status'] = "DNA Extraction";
+			$labtask->save();
+		}
+		return Redirect::action('LabController@show', $id);
+	}
+
+	public function result($id,$status) {
+		$labtask = LabTask::where('reference_id' , '=', $id)->first();
+		if(preg_match('~\(Head\)~i', $this->user->name)) {
+			if($status == "pass") {
+				$labtask['status'] = "Pass";
+			}
+			else if($status == "fail") {
+				$labtask['status'] = "Fail";
+			}
+			$labtask->save();
+			StatusChecker::update($labtask['export_certificate_request_id']);
+		}
+		return Redirect::action('LabController@index');
 	}
 
 
@@ -57,14 +100,21 @@ class LabController extends BaseController {
 	private function getTaskStatus($status) {
 		$statusList = array('Pending', 'DNA Extraction','Volume & Concentration Measurement', 'Endrogenous Gene Analysis', 'Gene Analysis','Waiting For Approval');
 		$statusResult = array('Pending' => '',  'DNA Extraction' => '','Volume & Concentration Measurement' => '', 'Endrogenous Gene Analysis' => '', 'Gene Analysis' => '', 'Waiting For Approval' => '');
-		$index = array_search($status, $statusList);
-		$statusResult[$statusList[$index]] = 'Pending';
-		for ($i=$index+1; $i < sizeof($statusList); $i++) { 
-			$statusResult[$statusList[$i]] = 'Waiting for above sequence';
-		}
+		if($status != "Pass" && $status != "Fail") {
+			$index = array_search($status, $statusList);
+			$statusResult[$statusList[$index]] = 'Pending';
+			for ($i=$index+1; $i < sizeof($statusList); $i++) { 
+				$statusResult[$statusList[$i]] = 'Waiting for above sequence';
+			}
 
-		for ($i=$index-1; $i >= 0; $i--) { 
-			$statusResult[$statusList[$i]] = 'Completed';
+			for ($i=$index-1; $i >= 0; $i--) { 
+				$statusResult[$statusList[$i]] = 'Completed';
+			}
+		}
+		else {
+			for ($i=0; $i < sizeof($statusList); $i++) { 
+				$statusResult[$statusList[$i]] = 'Completed';
+			}
 		}
 		return $statusResult;
 	}
@@ -72,7 +122,8 @@ class LabController extends BaseController {
 	private function sortByDueDate($labtasks) {
 		$labtasks = $labtasks->sortBy(function($labtask)
 		{
-			$product = LabTaskProduct::find($labtask->id);
+			// $product = LabTaskProduct::find($labtask->id);
+			$product = LabTaskProduct::where('lab_task_id', '=', $labtask->id)->first();
 		    return $product->finish;
 		});
 
@@ -82,12 +133,20 @@ class LabController extends BaseController {
 	private function getTableItem($labtasks) {
 		$items = array();
 		foreach ($labtasks as $labtask) {
-
-			$labproduct = LabTaskProduct::where('lab_task_id','=',$labtask->id)->first();
-			$item = array('taskid' => $labtask->reference_id,'taskname' => $labproduct->product_name,'duedate' => $labproduct->finish,'status' => $labtask->status);
+			$labproduct = LabTaskProduct::where('lab_task_id','=',$labtask->id)->get();
+			$product_names = array();
+			$due_date = '';
+			foreach ($labproduct as $product) {
+				$product_names[] = $product->product_name;
+				$due_date = $product->finish;
+			}
+			$item = array(
+				'taskid' => $labtask->reference_id,
+				'taskname' => implode(', ', $product_names),
+				'duedate' => $due_date,
+				'status' => $labtask->status);
 			array_push($items, $item);
 		}
-
 		return $items;
 	}
 
@@ -112,23 +171,37 @@ class LabController extends BaseController {
 	}
 
 	public function uploadLabResult(){
+		$labtask = LabTask::find(Input::get('labtask_id'));
 		$filenum = Input::get('filenum');
-		var_dump($filenum);
 		$file = Input::file($filenum);
 		$namef = Input::file($filenum)->getClientOriginalName();
 		$destinationPath = 'uploads/'.str_random(8);
         $uploadSuccess = Input::file($filenum)->move($destinationPath, $namef);
 
+
         if( $uploadSuccess ) {
         	$is_success = 1;
         	$namef = $destinationPath."/".$namef;
-        	$upload = UploadLabTaskFile::find('1');
+        	$upload = UploadLabTaskFile::where('labtask_id', '=', $labtask->id)->first();
+			if (empty($upload)) {
+				$upload = new UploadLabTaskFile;
+				$upload->labtask_id = $labtask->id;
+			}
         	$upload->$filenum = $namef;
         	$upload->save();
-        	return Redirect::to('/staff/test')
-			->with('filename', $namef)
-			->with('message', "success")
-			->with('is_success', $is_success);
+			
+			$statusList = array(
+				'file1' => 'Volume & Concentration Measurement',
+				'file2' => 'Endrogenous Gene Analysis',
+				'file3' => 'Gene Analysis',
+				'file4' => 'Waiting For Approval');
+			$labtask->status = $statusList[$filenum];
+			$labtask->save();
+
+        	return Redirect::action('LabController@show', $labtask->reference_id)
+				->with('filename', $namef)
+				->with('message', "success")
+				->with('is_success', $is_success);
 		 // or do a redirect with some message that file was uploaded
         } else {
            return View::make('/staff_requests/test')

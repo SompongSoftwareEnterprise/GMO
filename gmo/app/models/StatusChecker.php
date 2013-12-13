@@ -3,7 +3,7 @@
 	class StatusChecker{
 		public static function update($id) {
 
-			$status = check($id);
+			$status = StatusChecker::check($id);
 
 			$request = CertificateRequest::where('reference_id', '=', $id)->first();
 			if($request == null) {
@@ -32,9 +32,8 @@
 			if($labtask) {
 				$labStatus = $labtask['status'];
 			}
-			$certificate = null;
-			$analysisReport = null;
-			if($certificate || $analysisReport) {
+			$result = ExportCertificate::where('export_certificate_request_id', $id)->first();
+			if($result) {
 				return "complete";
 			}
 			else {
@@ -64,7 +63,7 @@
 					return "payment_required";
 				}
 				else {
-					return "new_payment";
+					return "new_request";
 				}
 			}
 
@@ -74,11 +73,11 @@
 
 		public static function getStatus($status, $role) {
 			if($role == "entrepreneur" || $role == "agency") {
-				if($status == "new_payment" || $status == "no_lab" || $status == "lab_pass" || $status == "lab_fail") {
+				if($status == "new_request" || $status == "no_lab" || $status == "lab_pass" || $status == "lab_fail") {
 					return "Pending";
 				}
 				else if($status == "payment_required") {
-					return "payment required";
+					return "Payment Required";
 				}
 				else if($status == "lab_in_progress") {
 					return "Lab In Progress";
@@ -95,7 +94,7 @@
 
 			}
 			else {
-				if($status == "new_payment") {
+				if($status == "new_request") {
 					return "New Request";
 				}
 				else if($status == "payment_required") {

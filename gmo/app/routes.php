@@ -37,7 +37,10 @@ Route::post('/staff/register',         	'RegistrationController@submitRegister')
 Route::get('/staff/report',         	'StaffReportController@index');
 Route::get('/staff/report/1',         	'StaffReportController@reportPlantList');
 Route::get('/staff/report/2',         	'StaffReportController@reportLabRequest');
+Route::get('/staff/report/3',         	'StaffReportController@reportNonGmo');
+Route::get('/staff/report/4',         	'StaffReportController@reportDomestic');
 Route::get('/staff/report/5',         	'StaffReportController@reportDestinationCountry');
+
 
 //account
 Route::get('/entrepreneur/account',    		'EntrepreneurAccountController@index');
@@ -47,6 +50,8 @@ Route::post('/entrepreneur/save_account', 'EntrepreneurAccountController@saveAcc
 
 Route::get('/lab', 'LabController@index');
 Route::get('/lab/task/{id}', 'LabController@show');
+Route::get('/lab/task/{id}/start', 'LabController@start');
+Route::get('/lab/task/result/{id}/{status}', 'LabController@result');
 
 // entrepreneur request
 Route::get('/entrepreneur', 'EntrepreneurRequestsController@index');
@@ -72,7 +77,18 @@ Route::post('/entrepreneur/requests/{id}', array(
 	'as' => 'entrepreneur.requests.create.info',
 	'uses' => 'EntrepreneurRequestsController@createCertificateInfo'
 ));
-
+Route::get('/entrepreneur/requests/invoice/{id}', array(
+	'as' => 'entrepreneur.requests.invoice',
+	'uses' => 'EntrepreneurRequestsController@showInvoice'
+));
+Route::get('/entrepreneur/requests/receipt/{id}', array(
+	'as' => 'entrepreneur.requests.receipt',
+	'uses' => 'EntrepreneurRequestsController@showReceipt'
+));
+Route::get('/entrepreneur/requests/result/{id}', array(
+	'as' => 'entrepreneur.requests.result',
+	'uses' => 'EntrepreneurRequestsController@showResult'
+));
 
 //domestic request
 Route::get('/entrepreneur/dmt-requests/new', array(
@@ -94,6 +110,18 @@ Route::post('/entrepreneur/dmt-requests', array(
 Route::post('/entrepreneur/dmt-requests/{id}', array(
 	'as' => 'entrepreneur.dmt.requests.create.info',
 	'uses' => 'EntrepreneurDomesticRequestsController@createCertificateInfo'
+));
+Route::get('/entrepreneur/dmt-requests/invoice/{id}', array(
+	'as' => 'entrepreneur.dmt.requests.invoice',
+	'uses' => 'EntrepreneurDomesticRequestsController@showInvoice'
+));
+Route::get('/entrepreneur/dmt-requests/receipt/{id}', array(
+	'as' => 'entrepreneur.dmt.requests.receipt',
+	'uses' => 'EntrepreneurDomesticRequestsController@showReceipt'
+));
+Route::get('/entrepreneur/dmt-requests/result/{id}', array(
+	'as' => 'entrepreneur.dmt.requests.result',
+	'uses' => 'EntrepreneurDomesticRequestsController@showResult'
 ));
     
 //Entre view req
@@ -137,6 +165,10 @@ Route::get('staff/requests/{id}/{type}/result/new', array(
 Route::post('staff/requests/{id}/{type}/result', array(
 	'as' => 'staff.result.create',
 	'uses' => 'StaffRequestsController@createResult'
+));
+Route::get('staff/request/{id}/result/view', array(
+	'as' => 'staff.result.view',
+	'uses' => 'StaffRequestsController@viewResult'
 ));
 
 Route::get('/test/running_number', function() {

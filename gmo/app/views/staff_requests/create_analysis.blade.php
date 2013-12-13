@@ -114,7 +114,7 @@ Create Analysis Report
 				</div>
 
 				<div class="col-xs-2">
-					<select class="form-control" id="result_ex1" name="result_ex2">
+					<select class="form-control" id="result_ex1" name="result_ex1">
 						<option>Result</option>
 						<option>Positive</option>
 						<option>Negative</option>
@@ -131,54 +131,54 @@ Create Analysis Report
 			</div>
 		</div>
 
-<script>
-	$(function() {
-		var template = $('.test-detail').html()
-		$(document).on('click', '[data-test="remove"]', function(e) {
-			if ($('.test-detail').length == 1) {
-				alert('Cannot remove last example')
-			} else {
-				$(this).closest('.test-detail').remove()
-				updateNumber()
-			}
-		})
-		var exId = 1
-		$(document).on('click', '[data-test="add"]', function(e) {
-			exId += 1
-			$(this).closest('.test-detail').after(
-				'<div class="test-detail">' +
-					template.replace(/ex1/g, 'ex' + exId) +
-				'</div>')
-			updateNumber()
-		})
-		function updateNumber() {
-			$('.test-detail').each(function(index) {
-				$(this).find('[data-test="number"]').html(index + 1 + '')
+		<script>
+			$(function() {
+				var template = $('.test-detail').html()
+				$(document).on('click', '[data-test="remove"]', function(e) {
+					if ($('.test-detail').length == 1) {
+						alert('Cannot remove last example')
+					} else {
+						$(this).closest('.test-detail').remove()
+						updateNumber()
+					}
+				})
+				var exId = 1
+				$(document).on('click', '[data-test="add"]', function(e) {
+					exId += 1
+					$(this).closest('.test-detail').after(
+						'<div class="test-detail">' +
+							template.replace(/ex1/g, 'ex' + exId) +
+						'</div>')
+					updateNumber()
+				})
+				function updateNumber() {
+					$('.test-detail').each(function(index) {
+						$(this).find('[data-test="number"]').html(index + 1 + '')
+					})
+				}
 			})
-		}
-	})
-</script>
+		</script>
 
 
-<br>
-<div class="row">
+		<br>
+		<div class="row">
 
-	<div class="col-xs-3 text-right"> <label for="conclusion">Conclusion</label></div>
-	<div class="col-xs-7">
-		<textarea class="form-control" id="conclusion" name="conclusion" placeholder="Conclusion" style="height: 95px"></textarea>
-	</div>
-</div>
+			<div class="col-xs-3 text-right"> <label for="conclusion">Conclusion</label></div>
+			<div class="col-xs-7">
+				<textarea class="form-control" id="conclusion" name="conclusion" placeholder="Conclusion" style="height: 95px"></textarea>
+			</div>
+		</div>
 
 
-<br>
-<div class="form-group row">
-	<div class="col-xs-12 text-right">
-		<button type="button" class="btn btn-default">Back</button>
-		<button type="reset" class="btn btn-danger">Reset</button>
-		<button type="submit" class="btn btn-primary">Create Analysis</button>
-	</div>
-</div>
-</form>
+		<br>
+		<div class="form-group row">
+			<div class="col-xs-12 text-right">
+				<button type="button" class="btn btn-default">Back</button>
+				<button type="reset" class="btn btn-danger">Reset</button>
+				<button type="submit" class="btn btn-primary">Create Analysis</button>
+			</div>
+		</div>
+	</form>
 
 </div>
 

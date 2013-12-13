@@ -8,6 +8,7 @@ void function(login) {
 	login('Agency', 'user0002', 'passwordagency0002')
 	login('GMO Staff', 'staff18473', 'passwordstaff18473')
 	login('Lab Staff', 'lab72812', 'passwordlab72812')
+	login('Lab Head', 'lab98172', 'passwordlab98172')
 
 }(function login(accountType, username, password) {
 
@@ -188,22 +189,34 @@ autofill('Domestic Certificate Request', '#dmt-new-request-form',
 })
 
 
+autofill('Certificate Info', '#final-certificate-form', {
+	"sample_name": "Coconut",
+	"test_ex1": "Postitive Control",
+	"result_ex1": "Positive",
+	"conclusion": "This plant is non-GMO!"
+})
+
+
 $('#sompong-debugger-menu button').click(function() {
 	$('#sompong-debugger').fadeToggle('fast')
 })
 
+
+function runActions(actions, e) {
+	var promise = Promise.from(null)
+	actions.forEach(function(action) {
+		promise = promise.then(function() {
+			return action(e)
+		})
+	})
+}
 
 function addButton(text, actions) {
 	var button = $('<button class="btn btn-info btn-block"></button>')
 		.html('&nbsp; ' + text + ' &nbsp;')
 		.appendTo('#sompong-debug-buttons')
 	button.click(function(e) {
-		var promise = Promise.from(null)
-		actions.forEach(function(action) {
-			promise = promise.then(function() {
-				return action(e)
-			})
-		})
+		runActions(actions, e)
 	})
 	$('#sompong-debugger').fadeToggle('fast')
 }
@@ -240,6 +253,7 @@ function autofillAction(form, data) {
 			var frames = []
 			inputs.forEach(function(input) {
 				var value = data[input.name]
+				console.log(value, input.name)
 				frames.push(function() { input.focus(); })
 				if (input.nodeName.toLowerCase() == 'button' ||
 					input.type == 'button' ||
@@ -302,11 +316,15 @@ function autofillAction(form, data) {
 
 function autofill(name, selector) {
 	var form = document.querySelector(selector)
-	var actions = [].slice.call(arguments, 2)
-	if (form) {
-		addButton('Fill <b>' + name + '</b>', actions.map(function(action) {
+	var actions = [].slice.call(arguments, 2).map(function(action) {
 			return (typeof action != 'function') ? autofillAction(form, action) : action
-		}))
+		})
+	if (form) {
+		addButton('Fill <b>' + name + '</b>', actions)
+		if (!window.autofill) window.autofill = { }
+		window.autofill[name] = function() {
+			runActions(actions, { shiftKey: true })
+		}
 	}
 }
 	

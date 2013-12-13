@@ -15,36 +15,37 @@ Create Analysis Report
 
 	<div class="row">
 		<div class="col-xs-3 text-right"><strong>Sample Name</strong></div>
-		<div class="col-xs-9">{{ $certReqInfoForm['common_name'] }}</div>
+		<div class="col-xs-9">{{ $dmtCertReqEx['plant_name_eng'] }}</div>
 	</div>
 
 	<div class="row">
 		<div class="col-xs-3 text-right"><strong>Manufacturer or Shipper</strong></div>
-		<div class="col-xs-9">{{ $certReqForm['manufactory_name'] }}</div>
+		<div class="col-xs-9">{{ $dmtCertReqForm['company_en'] }}</div>
 	</div>
 
 	<div class="row">
 		<div class="col-xs-3 text-right"><strong>Address</strong></div>
 		<div class="col-xs-9"> <address>
-			{{ $certReqForm['manufactory_address1'] }}<br>
-			{{ $certReqForm['manufactory_address2'] }}<br>
-			{{ $certReqForm['manufactory_city'] }}, {{ $certReqForm['manufactory_province'] }}, {{ $certReqForm['manufactory_country'] }}, {{ $certReqForm['manufactory_zip'] }}<br>
-			<abbr title="Phone">Phone :</abbr>{{ $certReqForm['manufactory_phone'] }}
+			{{ $dmtCertReqForm['address_en'] }}<br>
+			{{ $dmtCertReqForm['address_en2'] }}<br>
+			{{ $dmtCertReqForm['city_en'] }}, {{ $dmtCertReqForm['province_en'] }}, Thailand, {{ $dmtCertReqForm['zip'] }}<br>
+			<abbr title="Phone">Phone :</abbr>{{ $dmtCertReqForm['contact_number'] }}
 		</address></div>
 	</div>
 	<br>
 
 	<div class="row">
 		<div class="col-xs-3 text-right"><strong>Vendor or Consignee</strong></div>
-		<div class="col-xs-9">{{ $certReqInfoForm['vendor_or_consignee'] }}</div>
+		<div class="col-xs-9">{{ $dmtCertReqForm['company_en'] }}</div>
 	</div>
 
 	<div class="row">
 		<div class="col-xs-3 text-right"><strong>Address</strong></div>
 		<div class="col-xs-9"> <address>
-			{{ $certReqInfoForm['address1'] }}<br>
-			{{ $certReqInfoForm['address2'] }}<br>
-			{{ $certReqInfoForm['city'] }}, {{ $certReqInfoForm['province'] }}, {{ $certReqInfoForm['country'] }}, {{ $certReqInfoForm['zip'] }}<br>
+			{{ $dmtCertReqForm['address_en'] }}<br>
+			{{ $dmtCertReqForm['address_en2'] }}<br>
+			{{ $dmtCertReqForm['city_en'] }}, {{ $dmtCertReqForm['province_en'] }}, Thailand, {{ $dmtCertReqForm['zip'] }}<br>
+			<abbr title="Phone">Phone :</abbr>{{ $dmtCertReqForm['contact_number'] }}
 		</address></div>
 	</div>
 
@@ -54,7 +55,9 @@ Create Analysis Report
 	<div class="row">
 		<div class="col-xs-3 text-right"><strong>Description of Product</strong></div>
 		<div class="col-xs-9">
-			{{ $certReqInfoForm['description_of_product'] }}
+			<p>{{ $dmtCertReqEx['plant_name_eng'] }}</p>
+			<p>{{ $dmtCertReqEx['plant_name_th'] }}</p> 
+			<p>{{ $dmtCertReqEx['plant_name_sci'] }}</p> 
 		</div>
 	</div>
 
@@ -64,19 +67,19 @@ Create Analysis Report
 
 	<div class="row">
 		<div class="col-xs-3 text-right"><strong>Country of Origin</strong></div>
-		<div class="col-xs-9">{{ $certReqForm['origin_of_plant'] }}</div>
+		<div class="col-xs-9">Thailand</div>
 	</div>
 
 
 	<div class="row">
 		<div class="col-xs-3 text-right"><strong>Final Destination</strong></div>
-		<div class="col-xs-9">{{ $certReqInfoForm['final_destination'] }}</div>
+		<div class="col-xs-9">{{ $dmtCertReqEx['export_to'] }}</div>
 	</div>
 
 
 	<div class="row">
 		<div class="col-xs-3 text-right"><strong>Port of Entry or Embarkation</strong></div>
-		<div class="col-xs-9">{{ $certReqInfoForm['port_of_entry'] }}</div>
+		<div class="col-xs-9">{{ $dmtCertReqEx['export_to'] }}</div>
 	</div>
 
 	<hr>
@@ -88,7 +91,7 @@ Create Analysis Report
 
 	<br>
 
-	{{ Form::open(array('action' => array('StaffRequestsController@createResult', $certReqInfoForm['export_certificate_request_id'], 'certificate'), 'class' => 'form-horizontal', 'id' => 'final-certificate-form')) }}
+	{{ Form::open(array('action' => array('StaffRequestsController@createResult', $dmtCertReqForm['domestic_certificate_request_id'], 'certificate'), 'class' => 'form-horizontal', 'id' => 'final-certificate-form')) }}
 	<form class="form-horizontal" role="form">
 		<div class="row">
 

@@ -25,14 +25,12 @@ View Requests Information
 				<td>{{$data['Importer Name']}}</td>
 				<td>{{$data['Requester']}}</td>
 				<td>{{$data['Sent Date']}}</td>
-				@if($data['Status'] == 'Pending')
-					<td class="text-warning">Pending</td>
-				@elseif($data['Status'] == 'Document Needed')
-					<td class="text-danger">Document Needed</td>
-				@elseif($data['Status'] == 'Failed')
-					<td class="text-danger">Failed</td>
-				@else
+				@if($data['Status'] == 'Awaiting Payment' || $data['Status'] == 'Lab Not Initiated')
+					<td class="text-danger">{{$data['Status']}}</td>
+				@elseif($data['Status'] == 'Complete')
 					<td class="text-success">{{$data['Status']}}</td>
+				@else
+					<td class="text-warning">{{$data['Status']}}</td>
 				@endif
 			</tr>
 		</tbody>
@@ -122,10 +120,33 @@ View Requests Information
 
 			<a class="btn btn-default" href="/staff/requests/{{ $data['Reference ID'] }}/labtask/new">Create Lab Task</a>
 
-			<button type="button" class="btn btn-default">Create Analysis of Report</button>
+			@if ($data['Status'] == 'Complete' && $data['Certificate'] == '1')
+				<span class="btn btn-default disabled">Create Analysis of Report</span>
+			@else
+				@if ($data['Status'] == 'Complete' && $data['Certificate'] == '0')
+					<a class="btn btn-default" href="{{action('StaffRequestsController@viewResult', array($data['Reference ID']))}}">
+						View Analysis of Report
+					</a>
+				@else
+					<a class="btn btn-default" href="{{action('StaffRequestsController@newResult', array($data['Reference ID'], 'analysis'))}}">
+						Create Analysis of Report
+					</a>
+				@endif
+			@endif
 
-			<button type="button" class="btn btn-default">Create Certificate</button>
-
+			@if ($data['Status'] == 'Complete' && $data['Certificate'] == '0')
+				<span class="btn btn-default disabled">Create Certificate</span>
+			@else
+				@if ($data['Status'] == 'Complete' && $data['Certificate'] == '1')
+					<a class="btn btn-default" href="{{action('StaffRequestsController@viewResult', array($data['Reference ID']))}}">
+						View Certificate
+					</a>
+				@else
+					<a class="btn btn-default" href="{{action('StaffRequestsController@newResult', array($data['Reference ID'], 'certificate'))}}">
+						Create Certificate
+					</a>
+				@endif
+			@endif
 		</div>
 	</div>
 

@@ -1,13 +1,13 @@
 @extends('layout')
 
 @section('title')
-Invoice {{ $invoice->reference_id }}
+Receipt {{ $receipt['reference_id'] }}
 @endsection
 
 @section('content')
 
 <div class="panel">
-	<table class="table table-bordered"style=" width: 700px;" align="center">
+	<table class="table table-bordered" style=" width: 700px;" align="center">
 		<thead>
 			<tr class="Header" >
 				<th>Item</th>
@@ -24,7 +24,7 @@ Invoice {{ $invoice->reference_id }}
 			@endforeach
 			<tr class="info" >
 				<td><strong>Total</strong></td>
-				<td class="text-right"><strong>{{ $invoice->total_price }}</strong></td>
+				<td class="text-right"><strong>{{ $total_price }}</strong></td>
 
 			</tr>
 		</tbody>
@@ -34,7 +34,8 @@ Invoice {{ $invoice->reference_id }}
 
 		<div class="form-group">
 			<div class="text-center">
-				<a href="{{ action('StaffRequestsController@show', $invoice->request_reference_id) }}" class="btn btn-primary"> Back </a>
+
+				<a href="{{ action('EntrepreneurDomesticRequestsController@show', $receipt->request_reference_id) }}" class="btn btn-primary"> Back </a>
 <!--				<button class="btn btn-primary" type="button"> Print </button>-->
 			</div>
 		</div>
