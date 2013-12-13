@@ -29,5 +29,5 @@ suite('To test that the process to create certificate 1-1/2 is working correctly
 
 	test.fillAndSubmit('#new-request-form','create-new-request-112','fill 1-1/2 form with the correct data')
 
-	test.wait('table','View-Request-Information page must be shown')
+	// test.wait('table','View-Request-Information page must be shown')
 })

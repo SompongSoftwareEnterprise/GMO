@@ -32,6 +32,5 @@ Entrepreneur
 4. Click this link to 1-1/2 request page
     * Create-Request-From page must be shown
 5. fill 1-1/2 form with the correct data
-    * View-Request-Information page must be shown
 
 

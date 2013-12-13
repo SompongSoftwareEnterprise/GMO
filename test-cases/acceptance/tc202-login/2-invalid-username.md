@@ -19,7 +19,7 @@ Any User
 
 ## Preconditions
 
-* Initial database data: [entrepreneur-1](../../../casper/fixtures/entrepreneur-1.yml)
+* Initial database data: [account/entrepreneur-1](../../../casper/fixtures/account/entrepreneur-1.yml)
 
 
 ## Test Procedure

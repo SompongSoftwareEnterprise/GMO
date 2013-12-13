@@ -30,10 +30,5 @@ GMO staff
 2. Login with username="staff" and password="staff"
     * Must login successfully
     * GMO-Staff-view-all-request page must be loaded.
-    * Table must have 1 rows.
-    * Table row #1 must have Request ID = 5562
-    * Table row #1 must have Plant Name = -
-    * Table row #1 must have Entrepreneur = DebugEntreA EntreDebug
-    * Table row #1 must have Status = >Passed
 
 

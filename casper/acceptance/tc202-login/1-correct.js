@@ -5,7 +5,7 @@ var suite = require('../../helpers/suite')
  * To make sure that an entrepreneur is logged in to the system
  * when a correct username and password is entered.
  *
- * @fixture entrepreneur-1
+ * @fixture account/entrepreneur-1
  * @actors  Any User
  * @xref    uc202, ds202
  */

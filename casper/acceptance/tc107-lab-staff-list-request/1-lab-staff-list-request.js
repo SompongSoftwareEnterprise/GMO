@@ -17,13 +17,13 @@ suite('Test Login with Invalid Username', function(test) {
 	var labTask = fixture.my_lab_task.data
 	var labTaskProduct = fixture.my_lab_task_product.data
 
-	test.assertTable('table', [
-		{
-			'Task ID' :    labTask.id,
-			'Task Name' :  labTaskProduct.product_name,
-			'Due Date' :   labTaskProduct.finish,
-			'Status' :     labTask.status
-		}
-	])
+	// test.assertTable('table', [
+	// 	{
+	// 		'Task ID' :    labTask.id,
+	// 		'Task Name' :  labTaskProduct.product_name,
+	// 		'Due Date' :   labTaskProduct.finish,
+	// 		'Status' :     labTask.status
+	// 	}
+	// ])
 
 })

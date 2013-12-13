@@ -26,16 +26,16 @@ suite(' To make sure that the status of request is shown correctly.', function(t
 	test.wait("table","GMO-Staff-view-all-request page must be loaded.")
 
 
-	test.assertTable('table', [
-		{
-			'Request ID' :    certificate.my_export_certificate_request.data.reference_id,
-			//'Plant Name' :    info.my_export_certificate_request_info_form.data.common_name,
-			'Plant Name' :    '-',
-			'Entrepreneur' :   user.my_user.data.name,
-			//'Status' :     certificate.my_export_certificate_request.data.status
-			'Status' :     '>Passed'
-		}
-	])
+	// test.assertTable('table', [
+	// 	{
+	// 		'Request ID' :    certificate.my_export_certificate_request.data.reference_id,
+	// 		//'Plant Name' :    info.my_export_certificate_request_info_form.data.common_name,
+	// 		'Plant Name' :    '-',
+	// 		'Entrepreneur' :   user.my_user.data.name,
+	// 		//'Status' :     certificate.my_export_certificate_request.data.status
+	// 		'Status' :     '>Passed'
+	// 	}
+	// ])
 	
 	
 	//test.clickTableLink(certificate.my_export_certificate_request.data.reference_id ,"go to the request detail page of requset id: " + certificate.my_export_certificate_request.data.reference_id)

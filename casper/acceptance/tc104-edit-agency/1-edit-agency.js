@@ -7,6 +7,7 @@ var yaml = require('../../helpers/yaml')
  * @actors  Entrepreneur
  * @fixture	account/entrepreneur-5558
  * @fixture	account/agency-5556
+ * @fixture account/customer_agency2
  * @xref    uc103, uc104, ds109
  */
 

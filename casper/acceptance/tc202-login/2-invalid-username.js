@@ -6,7 +6,7 @@ var suite = require('../../helpers/suite')
  * incorrect username.
  *
  * @actors  Any User
- * @fixture entrepreneur-1
+ * @fixture account/entrepreneur-1
  * @xref    uc202, ds202
  */
 suite('Test Login with Invalid Username', function(test) {

@@ -15,7 +15,7 @@ name: my_entrepreneur
 data:
     id: 2
     user_id: 5556
-    is_agncy: 1
+    is_agency: 1
     is_company: 0
     first_name: DebugAgenA
     last_name: AgenDebug
