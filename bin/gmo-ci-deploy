@@ -19,7 +19,7 @@ step "Resetting the database..."
 show php artisan migrate:refresh
 
 step "Inserting test user..."
-show gmo-load-fixtures login-data
+show gmo-load-fixtures account/login-data
 
 
 
