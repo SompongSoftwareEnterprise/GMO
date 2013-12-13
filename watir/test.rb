@@ -81,7 +81,7 @@ end
 
 if true
 
-if false
+if true
 
 	login_as "GMO Staff"
 
@@ -93,6 +93,7 @@ if false
 		id("register-customer").click
 		wait
 		autofill("Registration Customer")
+		text_field(name: "last_name").set("Somchai Test#{rand}")
 		form(id: "register-form").submit
 	end
 

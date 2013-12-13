@@ -35,7 +35,8 @@ back and forth from the requirements to the test cases.
     <td valign='top'>
       <a href="../designs/ds109-agency-management-page.md">ds109</a>
     <td valign='top'>
-      <a href="../test-cases/acceptance/tc104-edit-agency/1-edit-agency.md">tc104-1</a>
+      <a href="../test-cases/acceptance/tc104-edit-agency/1-edit-agency.md">tc104-1</a><br>
+      <a href="../test-cases/acceptance/tc104-edit-agency/2-edit-agency.md">tc104-2</a>
     <td valign='top'>
       <a href="userdoc/2-entrepreneur.md#261-add-agency-">2.6.1</a>
     <td>
@@ -44,7 +45,8 @@ back and forth from the requirements to the test cases.
     <td valign='top'>
       <a href="../designs/ds109-agency-management-page.md">ds109</a>
     <td valign='top'>
-      <a href="../test-cases/acceptance/tc104-edit-agency/1-edit-agency.md">tc104-1</a>
+      <a href="../test-cases/acceptance/tc104-edit-agency/1-edit-agency.md">tc104-1</a><br>
+      <a href="../test-cases/acceptance/tc104-edit-agency/2-edit-agency.md">tc104-2</a>
     <td valign='top'>
       <a href="userdoc/2-entrepreneur.md#262-revoke-agency-">2.6.2</a>
     <td>
@@ -75,7 +77,9 @@ back and forth from the requirements to the test cases.
     <td valign='top'>
       <a href="../designs/ds105-view-request-information.md">ds105</a>
     <td valign='top'>
+      <a href="../test-cases/acceptance/tc101-entrepreneur-view-all-request/3-entrepreneur-view-all-request.md">tc101-3</a><br>
       <a href="../test-cases/acceptance/tc101-entrepreneur-view-all-request/3-entrepreneur-view-detail.md">tc101-3</a><br>
+      <a href="../test-cases/acceptance/tc101-entrepreneur-view-all-request/4-entrepreneur-view-all-request.md">tc101-4</a><br>
       <a href="../test-cases/acceptance/tc101-entrepreneur-view-all-request/4-entrepreneur-view-detail.md">tc101-4</a>
     <td valign='top'>
       <a href="userdoc/2-entrepreneur.md#23-view-requested-information-">2.3</a><br>
@@ -250,13 +254,6 @@ back and forth from the requirements to the test cases.
     <td>
     <td valign='top'>
       <a href="../test-cases/acceptance/tc304-Staff-check-Certificant-for-entrepreneur/1-request-for-entrepreneur-documents.md">tc304-1</a>
-    <td>
-    <td>
-  <tr>
-    <td valign='top'>(missing reference)
-    <td>
-    <td valign='top'>
-      <a href="../test-cases/acceptance/tc104-edit-agency/2-edit-agency.md">tc104-2</a>
     <td>
     <td>
 </table>
