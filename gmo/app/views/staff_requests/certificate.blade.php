@@ -12,10 +12,15 @@
     <script src="/bootstrap/js/bootstrap.js"></script>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
     <style>
-
+		@page {
+			margin: 0;
+		}
         body {
             background: #fff;
         }
+		@media print {
+			.container { padding: 1.5cm; }
+		}
         .logo {
             margin-bottom: -30px;
         }

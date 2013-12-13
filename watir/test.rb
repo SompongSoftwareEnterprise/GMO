@@ -23,7 +23,7 @@ end
 module Messagr
 	def self.message(name)
 		puts ">> #{name}"
-		system "pushnot watir #{Shellwords.shellescape name}"
+		# system "pushnot watir #{Shellwords.shellescape name}"
 	end
 end
 
@@ -50,7 +50,7 @@ def check_mail(mailbox)
 		agency_id = $1
 	end
 	Messagr.message "Mail\nUsername: #{username}\nPassword: #{password}\nID: #{agency_id}"
-	sleep 3
+	# sleep 3
 	[username, password, agency_id]
 end
 
@@ -73,13 +73,15 @@ end
 
 Watir::Browser.new(:chrome).instance_eval do
 
-if true
+if false
 	sleep 10
 	Messagr.message "GMO - Certificate Request System Test"
 	sleep 5
 end
 
 if true
+
+if false
 
 	login_as "GMO Staff"
 
@@ -109,7 +111,9 @@ if true
 		autofill("Registration Agency")
 		form(id: "register-form").submit
 	end
-	
+
+end
+
 	customer_username = nil
 	customer_password = nil
 	agency_username = nil
@@ -173,12 +177,8 @@ if true
 
 	login_as "GMO Staff"
 
-	step "Make sure status is New Request" do
-		assert trs.find { |c| c.text =~ /Sompong Somchai/ }.text =~ /New Request/
-	end
-
 	step "Click link and create invoice" do
-		assert trs.find { |c| c.text =~ /Sompong Somchai/ }.a.click
+		tr(text: /New Request/i).a.click
 		element(text: /Create Invoice/, class: 'btn').click
 		element(text: /Back/, class: 'btn').click
 		assert text =~ /Awaiting payment/i
@@ -194,7 +194,7 @@ if true
 		autofill "Lab Task Information"
 		form(id: "create-lab-task-form").submit
 		element(text: /Back/, class: 'btn').click
-		assert trs.find { |c| c.text =~ /Sompong Somchai/ }.text =~ /Lab in Progress/i
+		tr(text: /Lab in Progress/i).exist?
 	end
 
 	login_as "Lab Staff"
@@ -224,8 +224,7 @@ if true
 
 	step "Go to lab" do
 		a(text: /Waiting for Approval/i).click
-		assert tr(text: /Generic/).when_present.text =~ /Waiting for Approval/i
-		tr(text: /Generic/).a.click
+		tr(text: /Waiting For Approval/i).when_present.a.click
 	end
 
 	step "Click pass button" do
@@ -237,17 +236,17 @@ end
 	login_as "GMO Staff"
 
 	step "Check the request status - must be pending" do
-		assert tr(text: /Sompong Somchai/).text =~ /Pending/
+		assert tr(text: /Pending/).exist?
 	end
 
 	login "Customer", customer_username, customer_password
 
 	step "Status must be 'document needed'" do
-		assert tr(text: /Sompong Somchai/).text =~ /Document Needed/i
+		assert tr(text: /Document Needed/i)
 	end
 
 	step "Complete the document" do
-		tr(text: /Sompong Somchai/).a.click
+		tr(text: /Document Needed/).a.click
 		a(text: /Complete this/i).click
 		autofill "Certificate Request 1-1/2"
 		form(id: "new-request-form").submit
@@ -255,14 +254,19 @@ end
 
 	login_as "GMO Staff"
 	step "Check the request status - must be lab PASS" do
-		assert tr(text: /Sompong Somchai/).text =~ /Lab PASS/i
+		assert tr(text: /Lab PASS/i).exist?
 	end
 
 	step "Create a certificate!" do
-		tr(text: /Sompong Somchai/).a.click
+		tr(text: /Lab PASS/i).a.click
 		element(class: 'btn', text: /Create cer/i).click
 		autofill "Certificate Info"
 		element(class: 'btn', text: /Create cer/i).click
+	end
+
+	step "View the certificate!" do
+		tr(text: /Complete/i).a.click
+		element(class: 'btn', text: /View Cert/i).click
 	end
 
 	binding.pry
