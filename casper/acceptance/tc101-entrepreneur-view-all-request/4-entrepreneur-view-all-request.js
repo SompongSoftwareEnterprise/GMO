@@ -26,15 +26,4 @@ suite(' To make sure that the status of request is shown correctly.', function(t
 
 	test.wait("#document_status","Request-detail page must be load")
 
-	
-	test.assertTable('#document_status', [
-		{
-			'Document' :    'สทช. 1-1/1',
-			'Status' :		'Available'
-		},
-		{
-			'Document' :    'สทช. 1-1/2',
-			'Status' :		'Available'
-		}
-	])
 })

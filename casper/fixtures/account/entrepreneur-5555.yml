@@ -34,13 +34,3 @@ data:
     zip: 11111
     created_at: '!!NOW!!'
     updated_at: '!!NOW!!'
-
----
-table: customer_agency
-name: my_customer_agency
-data:
-    id: 1
-    customer_id: 5555
-    agency_id: 5556
-    created_at: '!!NOW!!'
-    updated_at: '!!NOW!!'

@@ -25,10 +25,10 @@ suite('Test that all certificate request data show correctly.', function(test) {
 		{
 			'Request ID' :    certificate.my_export_certificate_request.data.reference_id,
 			'Importer' :  user.my_entrepreneur.data.first_name + ' ' + user.my_entrepreneur.data.last_name,
-			'Requester' :   user.my_entrepreneur.data.first_name + ' ' + user.my_entrepreneur.data.last_name,
+			'Requester' :   user.my_entrepreneur.data.first_name + ' ' + user.my_entrepreneur.data.last_name
 
-			'Sent Date' :    certificate.my_export_certificate_request.data.create_at ,
-			'Status' :     certificate.my_export_certificate_request.data.status
+			// 'Sent Date' :    certificate.my_export_certificate_request.data.create_at ,
+			// 'Status' :     certificate.my_export_certificate_request.data.status
 		}
 	])
 

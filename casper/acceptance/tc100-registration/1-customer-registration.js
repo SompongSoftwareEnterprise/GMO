@@ -6,7 +6,7 @@
  * @xref     uc101, ds101, ds102, uc203, ds203
  * @actors   GMO Staff
  * @pre      A GMO staff is logged in.
- * @fixture  only-gmo-staff
+ * @fixture  account/only-gmo-staff
  */
 
 var suite = require('../../helpers/suite')

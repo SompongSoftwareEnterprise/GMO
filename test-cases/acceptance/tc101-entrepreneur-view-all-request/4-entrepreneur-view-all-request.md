@@ -31,10 +31,5 @@ Entrepreneur
     * Entrepreneur-view-all-request page must be loaded.
 3. go to the request detail page of requset id: 5562
     * Request-detail page must be load
-    * Table must have 2 rows.
-    * Table row #1 must have Document = สทช. 1-1/1
-    * Table row #1 must have Status = Available
-    * Table row #2 must have Document = สทช. 1-1/2
-    * Table row #2 must have Status = Available
 
 

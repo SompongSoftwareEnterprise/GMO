@@ -24,5 +24,19 @@ Entrepreneur
 
 ## Test Procedure
 
+1. Go to login page.
+2. Login with username="entre2" and password="entrepassword"
+    * Must login successfully
+    * Entrepreneur-view-all-request page must be loaded.
+3. Click AGENCY header
+    * Table must have 0 rows.
+4. go to add-agency page
+5. fill the form with the existing agency
+6. search for the agency
+    * agency information must be shown
+7. add the new agency, and go to the list of agencies page
+    * Table must have 1 rows.
+    * Table row #1 must have ID = 5556
+    * Table row #1 must have Agency name = DebugAgenA AgenDebug
 
 

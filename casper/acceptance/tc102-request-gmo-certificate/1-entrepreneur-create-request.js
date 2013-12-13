@@ -17,7 +17,7 @@ suite('Test that all certificate request data show correctly.', function(test) {
 	test.login(user.my_user.data.username,user.my_user.data.password)
 	test.wait("table","Entrepreneur-view-all-request page must be loaded.")
 
-	test.click("#make-new-request-button",'go to make-new-request page')
+	test.click("#make-111",'go to make-new-request page')
 
 	test.wait('#new-request-form','new-request-form must be shown')
 

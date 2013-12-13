@@ -33,7 +33,7 @@ View Request Information
 
 	<div class="row">
 		<div class="col-sm-offset-2 col-sm-8">
-			<table class="table table-bordered">
+			<table class="table table-bordered" id="document_status">
 				<thead>
 					<tr>
 						<th>Document</th>

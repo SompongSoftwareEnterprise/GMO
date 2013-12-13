@@ -18,7 +18,7 @@ table: export_certificate_request_forms # (1-1/1)
 name: my_export_certificate_request_form
 data:
     id: 8010
-    export_certificate_request_id: 2345
+    export_certificate_request_id: 5562
     manufactory_name: "Andromeda Biotech Corporation"
     manufactory_address1: "90/55, Moo 5"
     manufactory_address2: "San Klang"
