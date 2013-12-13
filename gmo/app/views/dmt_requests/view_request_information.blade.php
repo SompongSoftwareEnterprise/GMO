@@ -50,16 +50,35 @@ View Request Information
 						<?php } ?>
 					</tr>
 					<tr>
-						<td>Invoice</td>
-						<td class="text-warning">Pending</td>
+						@if(!empty($invoice))
+							<td>Invoice  (<a href="{{ action('EntrepreneurDomesticRequestsController@showInvoice', array($dmtCertReq->reference_id)) }}">View</a>)</td>
+							<td class="text-success">Available</td>
+						@else
+							<td>Invoice</td>
+							<td class="text-warning">Pending</td>
+						@endif
 					</tr>
 					<tr>
-						<td>Receipt</td>
-						<td class="text-warning">Pending</td>
+						@if(!empty($receipt))
+							<td>Receipt (<a href="{{ action('EntrepreneurDomesticRequestsController@showReceipt', array($dmtCertReq->reference_id)) }}">View</a>)</td>
+							<td class="text-success">Available</td>
+						@else
+							<td>Receipt</td>
+							<td class="text-warning">Pending</td>
+						@endif
 					</tr>
 					<tr>
-						<td>Certificate</td>
-						<td class="text-warning">Pending</td>
+						@if ($dmtCertReq->status == 'Available')
+							@if ($is_certificate == '0')
+								<td>Analysis of Report (<a href="{{ action('EntrepreneurDomesticRequestsController@showResult', array($dmtCertReq->reference_id)) }}">View</a>)</td>
+							@else
+								<td>Certificate (<a href="{{ action('EntrepreneurDomesticRequestsController@showResult', array($dmtCertReq->reference_id)) }}">View</a>)</td>
+							@endif
+							<td class="text-success">Available</td>
+						@else
+							<td>Certificate</td>
+							<td class="text-warning">Pending</td>
+						@endif
 					</tr>
 				</tbody>
 			</table>

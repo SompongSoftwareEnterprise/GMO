@@ -123,12 +123,75 @@ class EntrepreneurDomesticRequestsController extends AbstractEntrepreneurControl
 		$owner = Entrepreneur::where('user_id', '=', $dmtCertificateRequest->owner_id)->first();
 		$signer = Entrepreneur::where('user_id', '=', $dmtCertificateRequest->signer_id)->first();
 		$dmtCertificateRequestForm = DomesticCertificateRequestForm::where('domestic_certificate_request_id', '=', $id)->first(); 
+		$invoice = Invoice::where('request_reference_id', '=', $id)->first();
+		if($invoice != null) {
+			$invoice = $invoice->id;
+		}
+		$receipt = Receipt::where('request_reference_id', '=', $id)->first();
+		if($receipt != null) {
+			$receipt = $receipt->id;
+		}
+		$exportCertificate = ExportCertificate::where('export_certificate_request_id', '=', $id)->first();
+		$is_certificate = $exportCertificate['is_certificate'];
 		return View::make('dmt_requests/view_request_information')
 			->with(array('dmtCertReq' => $dmtCertificateRequest,
 						 'owner' => $owner,
 						 'signer' => $signer,
-						 'dmtCertReqForm' => $dmtCertificateRequestForm
+						 'dmtCertReqForm' => $dmtCertificateRequestForm,
+						 'entrepreneur' => $this->entrepreneur,
+						 'invoice' => $invoice,
+						 'receipt' => $receipt,
+						 'is_certificate' => $is_certificate
 		));
+	}
+
+	public function showInvoice($id){
+		$invoice = Invoice::where('request_reference_id', '=', $id)->first();
+		$signer_name = DB::table('domestic_certificate_requests')
+            ->join('invoices', 'domestic_certificate_requests.reference_id', '=', 'invoices.request_reference_id')
+            ->join('users', 'users.id', '=', 'domestic_certificate_requests.signer_id')
+            ->where('invoices.request_reference_id', '=', $id)
+            ->select('users.name','domestic_certificate_requests.updated_at')
+            ->get();
+        $price = json_decode($invoice->price, true);
+		return View::make('requests/invoice')
+			->with('signer_name', $signer_name)
+			->with('price', $price)
+			->with('invoice', $invoice);
+	}
+
+	public function showReceipt($id){
+		$receipt = Receipt::where('request_reference_id', '=', $id)->first();
+		$invoice = Invoice::where('request_reference_id', '=', $id)->first();
+		$price = json_decode($invoice->price, true);
+		return View::make('requests/receipt_dmt')
+			->with('price', $price)
+			->with('total_price', $invoice->total_price)
+			->with('receipt', $receipt);
+	}
+
+	public function showResult($id) {
+		$dmtCertReq = DomesticCertificateRequest::where('reference_id', '=', $id)->first();
+		$dmtCertReqForm = DomesticCertificateRequestForm::where('domestic_certificate_request_id', '=', $id)->first();
+		$dmtCertReqEx = DomesticCertificateRequestExample::where('domestic_certificate_request_id', '=', $id)->first();
+		$exportCertificate = ExportCertificate::where('export_certificate_request_id', '=', $id)->first();
+		$exportCertificateTest = ExportCertificateTest::where('export_certificate_id', '=', $id)->get();
+		if ($exportCertificate['is_certificate'] == '1') {
+			return View::Make('requests/certificate_dmt')
+						->with('dmtCertRequest', $dmtCertReq)
+						->with('dmtCertRequestForm', $dmtCertReqForm)
+						->with('dmtCertRequestEx', $dmtCertReqEx)
+						->with('exportCertificate', $exportCertificate)
+						->with('exportCertificateTest', $exportCertificateTest);
+		}
+		else {
+			return View::Make('requests/analysis_dmt')
+						->with('dmtCertRequest', $dmtCertReq)
+						->with('dmtCertRequestForm', $dmtCertReqForm)
+						->with('dmtCertRequestEx', $dmtCertReqEx)
+						->with('exportCertificate', $exportCertificate)
+						->with('exportCertificateTest', $exportCertificateTest);
+		}
 	}
 
 

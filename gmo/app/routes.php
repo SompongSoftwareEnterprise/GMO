@@ -111,6 +111,18 @@ Route::post('/entrepreneur/dmt-requests/{id}', array(
 	'as' => 'entrepreneur.dmt.requests.create.info',
 	'uses' => 'EntrepreneurDomesticRequestsController@createCertificateInfo'
 ));
+Route::get('/entrepreneur/dmt-requests/invoice/{id}', array(
+	'as' => 'entrepreneur.dmt.requests.invoice',
+	'uses' => 'EntrepreneurDomesticRequestsController@showInvoice'
+));
+Route::get('/entrepreneur/dmt-requests/receipt/{id}', array(
+	'as' => 'entrepreneur.dmt.requests.receipt',
+	'uses' => 'EntrepreneurDomesticRequestsController@showReceipt'
+));
+Route::get('/entrepreneur/dmt-requests/result/{id}', array(
+	'as' => 'entrepreneur.dmt.requests.result',
+	'uses' => 'EntrepreneurDomesticRequestsController@showResult'
+));
     
 //Entre view req
     Route::get('/entrepreneur/requests/{id}/{type}/result/new', array(
