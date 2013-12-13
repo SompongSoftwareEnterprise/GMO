@@ -170,7 +170,7 @@ class LabController extends BaseController {
 	}
 
 	public function uploadLabResult(){
-		$labtask = LabTask::find(Input::get('labtask_id'))->first();
+		$labtask = LabTask::find(Input::get('labtask_id'));
 		$filenum = Input::get('filenum');
 		$file = Input::file($filenum);
 		$namef = Input::file($filenum)->getClientOriginalName();

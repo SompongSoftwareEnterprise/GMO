@@ -66,7 +66,7 @@ View Request Information
 					<?php } ?>
 					</tr>
 					<tr>
-						@if($invoice != '0')
+						@if(!empty($invoice))
 							<td>Invoice  (<a href="{{ action('EntrepreneurRequestsController@showInvoice', array($certReq->reference_id)) }}">View</a>)</td>
 							<td class="text-success">Available</td>
 						@else
@@ -76,7 +76,7 @@ View Request Information
 					</tr>
 
 					<tr>
-						@if($receipt != '0')
+						@if(!empty($receipt))
 							<td>Receipt (<a href="{{ action('EntrepreneurRequestsController@showReceipt', array($certReq->reference_id)) }}">View</a>)</td>
 							<td class="text-success">Available</td>
 						@else
