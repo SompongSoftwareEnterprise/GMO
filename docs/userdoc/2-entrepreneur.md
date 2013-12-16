@@ -27,7 +27,7 @@ You can select/click on ID of specific request to view specific request informat
 
 In view specific requested information page - figure 2.3.A. In this page you will see more information of the selected request. In the bottom of page there is table of documents to this request, you can track its status and download them as .pdf, or word document file.
 
-![Screenshot](images/view-request-information.png)
+![Screenshot](images/gmo-review-request.png )
 Figure 2.3.A - View Specific Requested
 
 2.4 View Account Information <xref id="uc102" />

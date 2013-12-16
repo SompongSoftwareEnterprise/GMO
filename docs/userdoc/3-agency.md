@@ -24,7 +24,7 @@ You can select/click on ID of specific request to view specific request informat
 3.3 View Requested Information <xref id="uc107" />
 ------
 
-![Screenshot](images/view-request-information.png)
+![Screenshot](images/gmo-review-request.png )
 Figure 3.3.A - View Specific Requested
 
 You  can check or review information about selected request in this page (Figure 3.3).
